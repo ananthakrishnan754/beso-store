@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── BESO Dark Theme Tokens ─────────────────────────────────────────────── */
+:root {
+  --beso-dark: #101010;
+  --beso-card: #1c1c1c;
+  --beso-lime: #a3e635;
+  --beso-red: #F94047;
+  --beso-gold: #FFD700;
+  --beso-text: #FFFFFF;
+  --beso-muted: #9C9C9C;
+  --beso-subtle: #BFBFBF;
+  --beso-border: rgba(255, 255, 255, 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--beso-dark);
+  color: var(--beso-text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Glass Header ───────────────────────────────────────────────────────── */
+.glass-header {
+  background: rgba(16, 16, 16, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--beso-border);
+}
+
+/* ─── Text Gradient ──────────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, var(--beso-lime) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.btn-beso {
+  background: var(--beso-lime);
+  color: var(--beso-dark);
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: inline-block;
+}
+.btn-beso:hover {
+  background: #b8f04a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(163, 230, 53, 0.3);
+}
+
+.btn-pill-outline {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: inline-block;
+}
+.btn-pill-outline:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Product Card ───────────────────────────────────────────────────────── */
+.product-card {
+  background: var(--beso-card);
+  border: 1px solid var(--beso-border);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.product-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transform: translateY(-4px);
+}
+
+.product-card .product-image {
+  position: relative;
+  overflow: hidden;
+}
+.product-card .product-image .overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.product-card:hover .product-image .overlay {
+  opacity: 1;
+}
+
+/* ─── Badge ──────────────────────────────────────────────────────────────── */
+.badge-sale {
+  background: var(--beso-red);
+  color: white;
+}
+.badge-hot {
+  background: var(--beso-lime);
+  color: var(--beso-dark);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--beso-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--beso-lime);
+  color: var(--beso-dark);
+}
