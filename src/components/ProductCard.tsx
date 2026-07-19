@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 
 interface Product {
@@ -13,6 +15,8 @@ interface Product {
   rating: number;
   reviews: number;
   sku: string;
+  image?: string;
+  images?: string[];
 }
 
 function formatPrice(amount: number) {
@@ -43,21 +47,50 @@ function SubcategoryIcon({subcategory}: {subcategory: string}) {
 }
 
 export function ProductCard({product}: {product: Product}) {
+  const imageSrc = product.image
+    ? product.image.startsWith('/')
+      ? product.image
+      : '/' + product.image
+    : null;
+
   return (
     <Link
       href={`/products/${product.slug}`}
       className="product-card group block"
     >
       {/* Image area */}
-      <div className="product-image aspect-square bg-beso-card flex items-center justify-center relative">
-        <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
+      <div className="product-image aspect-square bg-beso-card flex items-center justify-center relative overflow-hidden">
+        {imageSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={imageSrc}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 product-img-element"
+            onError={(e) => {
+              // Fallback to emoji on image load error
+              e.currentTarget.style.display = 'none';
+              const parent = e.currentTarget.parentElement;
+              if (parent) {
+                const fallback = parent.querySelector('.fallback-icon') as HTMLElement;
+                if (fallback) {
+                  fallback.style.display = 'block';
+                }
+              }
+            }}
+          />
+        ) : null}
+
+        <div
+          className="fallback-icon text-6xl group-hover:scale-110 transition-transform duration-300"
+          style={imageSrc ? { display: 'none' } : undefined}
+        >
           <SubcategoryIcon subcategory={product.subcategory} />
         </div>
 
         {/* Badge */}
         {product.badge && (
           <span
-            className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold uppercase ${
+            className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
               product.badge === 'sale'
                 ? 'badge-sale'
                 : product.badge === 'hot'
@@ -77,7 +110,7 @@ export function ProductCard({product}: {product: Product}) {
 
       {/* Info */}
       <div className="p-4">
-        <p className="text-xs text-beso-muted uppercase tracking-wider mb-1">
+        <p className="text-[10px] text-beso-muted uppercase tracking-wider mb-1">
           {product.subcategory.replace(/-/g, ' ')}
         </p>
         <h3 className="text-sm font-semibold text-white mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
