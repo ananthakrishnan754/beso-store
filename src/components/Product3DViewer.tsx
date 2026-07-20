@@ -15,16 +15,19 @@ interface Hotspot {
 interface Product3DViewerProps {
   subcategory: string;
   productName: string;
+  videoUrl?: string;
 }
 
-export function Product3DViewer({ subcategory, productName }: Product3DViewerProps) {
+export function Product3DViewer({ subcategory, productName, videoUrl }: Product3DViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   const [rotation, setRotation] = useState(0); // in degrees (0 - 360)
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [viewMode, setViewMode] = useState<'canvas' | 'video'>(videoUrl ? 'video' : 'canvas');
 
   const isTable = subcategory.includes('table');
 
@@ -555,7 +558,114 @@ export function Product3DViewer({ subcategory, productName }: Product3DViewerPro
 
   }, [rotation, isTable, hotspots]);
 
-  // Touch and drag event handlers for mouse rotation
+  // ─── 3D Video Ping-Pong (Back-and-Forth) & Drag Engine ──────────────────────
+  const [videoDirection, setVideoDirection] = useState<'forward' | 'backward'>('forward');
+  const [isVideoInteracting, setIsVideoInteracting] = useState(false);
+  const videoDragStartRef = useRef(0);
+  const animationFrameRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (viewMode !== 'video' || !videoRef.current) return;
+    const video = videoRef.current;
+    let lastTime = performance.now();
+
+    const updateVideoLoop = (now: number) => {
+      if (!video || isVideoInteracting) {
+        animationFrameRef.current = requestAnimationFrame(updateVideoLoop);
+        return;
+      }
+
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+
+      const duration = video.duration || 8;
+
+      if (videoDirection === 'forward') {
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+        if (video.currentTime >= duration - 0.15) {
+          setVideoDirection('backward');
+          video.pause();
+        }
+      } else {
+        // Reverse playback by stepping currentTime backwards
+        if (!video.paused) {
+          video.pause();
+        }
+        let nextTime = video.currentTime - delta * 0.9;
+        if (nextTime <= 0.15) {
+          nextTime = 0.15;
+          setVideoDirection('forward');
+        }
+        try {
+          video.currentTime = nextTime;
+        } catch (_) {}
+      }
+
+      animationFrameRef.current = requestAnimationFrame(updateVideoLoop);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(updateVideoLoop);
+
+    return () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [viewMode, videoDirection, isVideoInteracting]);
+
+  // Handle Video Drag / Scrubbing
+  const handleVideoMouseDown = (e: React.MouseEvent) => {
+    if (!videoRef.current) return;
+    setIsVideoInteracting(true);
+    videoDragStartRef.current = e.clientX;
+    videoRef.current.pause();
+  };
+
+  const handleVideoMouseMove = (e: React.MouseEvent) => {
+    if (!isVideoInteracting || !videoRef.current) return;
+    const video = videoRef.current;
+    const duration = video.duration || 8;
+    const delta = e.clientX - videoDragStartRef.current;
+    videoDragStartRef.current = e.clientX;
+
+    // Dragging right moves forward, dragging left moves backward
+    let nextTime = video.currentTime + (delta / 300) * (duration / 2);
+    if (nextTime < 0) nextTime = 0;
+    if (nextTime > duration) nextTime = duration;
+    try {
+      video.currentTime = nextTime;
+    } catch (_) {}
+  };
+
+  const handleVideoMouseUp = () => {
+    setIsVideoInteracting(false);
+  };
+
+  const handleVideoTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1 || !videoRef.current) return;
+    setIsVideoInteracting(true);
+    videoDragStartRef.current = e.touches[0].clientX;
+    videoRef.current.pause();
+  };
+
+  const handleVideoTouchMove = (e: React.TouchEvent) => {
+    if (!isVideoInteracting || !videoRef.current || e.touches.length !== 1) return;
+    const video = videoRef.current;
+    const duration = video.duration || 8;
+    const delta = e.touches[0].clientX - videoDragStartRef.current;
+    videoDragStartRef.current = e.touches[0].clientX;
+
+    let nextTime = video.currentTime + (delta / 300) * (duration / 2);
+    if (nextTime < 0) nextTime = 0;
+    if (nextTime > duration) nextTime = duration;
+    try {
+      video.currentTime = nextTime;
+    } catch (_) {}
+  };
+
+  // Touch and drag event handlers for canvas mouse rotation
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setDragStart(e.clientX);
@@ -602,6 +712,7 @@ export function Product3DViewer({ subcategory, productName }: Product3DViewerPro
 
   const handleMouseLeave = () => {
     setIsDragging(false);
+    setIsVideoInteracting(false);
     setAutoRotate(true);
   };
 
@@ -609,35 +720,79 @@ export function Product3DViewer({ subcategory, productName }: Product3DViewerPro
     <div
       ref={containerRef}
       className="relative w-full aspect-square md:aspect-[4/3] bg-black/40 border border-white/[0.04] rounded-3xl overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing select-none group"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleMouseUp}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseDown={viewMode === 'canvas' ? handleMouseDown : handleVideoMouseDown}
+      onMouseMove={viewMode === 'canvas' ? handleMouseMove : handleVideoMouseMove}
+      onMouseUp={viewMode === 'canvas' ? handleMouseUp : handleVideoMouseUp}
+      onTouchStart={viewMode === 'canvas' ? handleTouchStart : handleVideoTouchStart}
+      onTouchMove={viewMode === 'canvas' ? handleTouchMove : handleVideoTouchMove}
+      onTouchEnd={viewMode === 'canvas' ? handleMouseUp : handleVideoMouseUp}
+      onMouseEnter={viewMode === 'canvas' ? handleMouseEnter : undefined}
+      onMouseLeave={viewMode === 'canvas' ? handleMouseLeave : handleVideoMouseUp}
     >
       {/* Visual background details */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-beso-lime/10 transition-all duration-500" />
       
-      {/* 3D Canvas element */}
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full block z-10"
-        style={{ touchAction: 'none' }}
-      />
+      {viewMode === 'video' && videoUrl ? (
+        <video
+          ref={videoRef}
+          src={videoUrl}
+          autoPlay
+          muted
+          playsInline
+          className="w-full h-full object-cover z-10 rounded-3xl pointer-events-none"
+        />
+      ) : (
+        /* 3D Canvas element */
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full block z-10"
+          style={{ touchAction: 'none' }}
+        />
+      )}
 
       {/* Guide text */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 text-[10px] text-white/30 tracking-widest uppercase flex items-center gap-2 pointer-events-none">
-        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current animate-pulse">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 text-[10px] text-white/40 tracking-widest uppercase flex items-center gap-2 pointer-events-none bg-black/50 px-3 py-1 rounded-full border border-white/10 backdrop-blur-md">
+        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-beso-lime animate-pulse">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
         </svg>
-        Drag or swipe to rotate 360°
+        {viewMode === 'video' ? 'Interactive 3D Video (Drag or let auto-bounce)' : 'Drag or swipe to rotate 360°'}
+      </div>
+
+      {/* Mode Switcher Buttons */}
+      <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-black/60 border border-white/10 p-1 rounded-full backdrop-blur-md">
+        {videoUrl && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setViewMode('video');
+            }}
+            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+              viewMode === 'video'
+                ? 'bg-beso-lime text-black shadow-md'
+                : 'text-white/60 hover:text-white'
+            }`}
+          >
+            Veo 3D Video
+          </button>
+        )}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setViewMode('canvas');
+          }}
+          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+            viewMode === 'canvas'
+              ? 'bg-beso-lime text-black shadow-md'
+              : 'text-white/60 hover:text-white'
+          }`}
+        >
+          Interactive 3D
+        </button>
       </div>
 
       {/* Floating Tag */}
-      <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-white/60 tracking-wider backdrop-blur-sm pointer-events-none font-medium">
+      <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-white/70 tracking-wider backdrop-blur-sm pointer-events-none font-medium flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-beso-lime animate-ping" />
         {productName} 3D Engine
       </div>
     </div>
