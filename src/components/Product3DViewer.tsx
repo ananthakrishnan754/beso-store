@@ -758,38 +758,6 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
         {viewMode === 'video' ? 'Interactive 3D Video (Drag or let auto-bounce)' : 'Drag or swipe to rotate 360°'}
       </div>
 
-      {/* Mode Switcher Buttons */}
-      <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-black/60 border border-white/10 p-1 rounded-full backdrop-blur-md">
-        {videoUrl && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setViewMode('video');
-            }}
-            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
-              viewMode === 'video'
-                ? 'bg-beso-lime text-black shadow-md'
-                : 'text-white/60 hover:text-white'
-            }`}
-          >
-            Veo 3D Video
-          </button>
-        )}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setViewMode('canvas');
-          }}
-          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
-            viewMode === 'canvas'
-              ? 'bg-beso-lime text-black shadow-md'
-              : 'text-white/60 hover:text-white'
-          }`}
-        >
-          Interactive 3D
-        </button>
-      </div>
-
       {/* Floating Tag */}
       <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-white/70 tracking-wider backdrop-blur-sm pointer-events-none font-medium flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-beso-lime animate-ping" />
