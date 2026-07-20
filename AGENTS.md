@@ -1,0 +1,160 @@
+# AGENTS.md - Veo 3 Video Generation & Integration for BESO Store
+
+## Overview
+
+This file contains instructions for generating and integrating 360-degree turntable videos for BESO Store's flagship products using Veo 3 AI video generation.
+
+---
+
+## Phase 1: Infrastructure Setup
+
+### 1.1 Create Video Directory
+
+```bash
+mkdir -p public/assets/videos/products
+```
+
+### 1.2 Verify Source Photos Exist
+
+Source photos are located in `public/assets/images/products/`:
+- `executive-chair-07.jpg` → BESO Crown Executive Chair
+- `height-table-01.jpg` → BESO FlexRise Height-Adjustable Table
+- `executive-chair-04.jpg` → BESO Prestige Executive Chair
+
+---
+
+## Phase 2: Veo 3 Video Generation
+
+### 2.1 Hero Background Video (Text-to-Video)
+
+**Storage Path:** `public/assets/videos/hero-bg.webm` (already exists)
+
+**Veo 3 Prompt:**
+```
+A cinematic high-end studio video of a modern ergonomic executive office chair positioned in a minimalist dark luxury room. The camera glides subtly around the chair in slow motion. Soft volumetric lighting highlights the breathable mesh textures, polished chrome metal base, and ergonomic curves. Deep dark slate and ambient green rim lighting. Ultra-wide 16:9 aspect ratio, 4k resolution, 60fps, photorealistic, seamless loop video.
+```
+
+---
+
+### 2.2 BESO Crown Executive Chair (Image-to-Video)
+
+**Product ID:** 7  
+**Slug:** `beso-crown-executive-chair`  
+**Source Photo:** `public/assets/images/products/executive-chair-07.jpg`  
+**Live URL:** `https://thebesostore.com/wp-content/uploads/2025/07/J163A.jpg`
+
+**Veo 3 Prompt:**
+```
+A studio-lit 360-degree rotation video of a premium ergonomic office chair, the BESO Crown. The chair features a high-back design with a dark black double-layered mesh backrest, an adjustable headrest, and a thick, plush memory foam seat cushion upholstered in matte black fabric. The armrests are adjustable 3D polyurethane. The chair rotates smoothly on a polished silver aluminum alloy 5-star base with premium black nylon caster wheels. The camera is locked at a fixed eye-level perspective, capturing a seamless, continuous turntable spin. The background is a clean, minimalist studio setting with deep black space and a subtle, soft green volumetric rim light highlighting the silhouette and textures of the mesh and aluminum. Photorealistic, 8k resolution, ultra-detailed fabric and metal textures, smooth 24fps motion, looped video.
+```
+
+**Output Files:**
+- `public/assets/videos/products/beso-crown-3d.webm`
+- `public/assets/videos/products/beso-crown-3d.mp4`
+
+---
+
+### 2.3 BESO FlexRise Height-Adjustable Table (Image-to-Video)
+
+**Product ID:** 21  
+**Slug:** `beso-flexrise-height-adjustable-table`  
+**Source Photo:** `public/assets/images/products/height-table-01.jpg`  
+**Live URL:** `https://thebesostore.com/wp-content/uploads/2021/08/Y201_BLACK.jpg`
+
+**Veo 3 Prompt:**
+```
+A high-end studio-lit 360-degree rotation video of a modern height-adjustable standing desk, the BESO FlexRise. The desk has a thick, premium solid walnut wood top with a visible natural grain and sleek beveled edges. The underframe is a powder-coated steel dual-motor frame in clean matte white, showing telescoping legs. On the front-right edge, a small, sleek digital control panel with a blue LED memory readout is visible. The desk rotates smoothly and continuously on a central turntable. The camera is positioned at a 30-degree high angle, capturing the wood texture on the top as it spins. The background is a dark, warm-toned minimalist studio with soft warm spotlights casting elegant shadows on the floor. Photorealistic, 8k resolution, ultra-detailed wood grain and metal textures, smooth 24fps motion, looped video.
+```
+
+**Output Files:**
+- `public/assets/videos/products/beso-flexrise-3d.webm`
+- `public/assets/videos/products/beso-flexrise-3d.mp4`
+
+---
+
+### 2.4 BESO Prestige Executive Chair (Image-to-Video)
+
+**Product ID:** 4  
+**Slug:** `beso-prestige-executive-chair`  
+**Source Photo:** `public/assets/images/products/executive-chair-04.jpg`  
+**Live URL:** `https://thebesostore.com/wp-content/uploads/2025/07/F101.jpg`
+
+**Veo 3 Prompt:**
+```
+A luxurious studio-lit 360-degree rotation video of an executive leather chair, the BESO Prestige. The chair is fully upholstered in rich, full-grain dark brown leather with double-stitched seams and premium ergonomic padding. The armrests are padded with matching leather and supported by dark steel frames. The chair rotates smoothly on a heavy-duty chrome 5-star base with matching dark walnut wood inserts on each spoke and premium black wheels. The camera is locked at a fixed mid-level angle, capturing the texture and sheen of the premium leather as it spins. The background is a dark, professional study room setting, softly blurred, with warm golden rim lighting. Photorealistic, 8k resolution, ultra-detailed leather texture with natural folds, smooth 24fps motion, looped video.
+```
+
+**Output Files:**
+- `public/assets/videos/products/beso-prestige-3d.webm`
+- `public/assets/videos/products/beso-prestige-3d.mp4`
+
+---
+
+## Phase 3: Data Integration
+
+### 3.1 Update products.json
+
+Edit `src/data/products.json` and update the `"video"` field for each product:
+
+**Product ID 7 (BESO Crown Executive Chair):**
+```json
+"video": "/assets/videos/products/beso-crown-3d.webm"
+```
+
+**Product ID 21 (BESO FlexRise Height-Adjustable Table):**
+```json
+"video": "/assets/videos/products/beso-flexrise-3d.webm"
+```
+
+**Product ID 4 (BESO Prestige Executive Chair):**
+```json
+"video": "/assets/videos/products/beso-prestige-3d.webm"
+```
+
+---
+
+## Phase 4: Verification
+
+### 4.1 Verify File Structure
+
+After video generation, the directory should contain:
+```
+public/assets/videos/
+├── hero-bg.webm
+├── hero-bg.mp4
+└── products/
+    ├── beso-crown-3d.webm
+    ├── beso-crown-3d.mp4
+    ├── beso-flexrise-3d.webm
+    ├── beso-flexrise-3d.mp4
+    ├── beso-prestige-3d.webm
+    └── beso-prestige-3d.mp4
+```
+
+### 4.2 Test Product Pages
+
+Verify video playback at:
+- `/products/beso-crown-executive-chair`
+- `/products/beso-flexrise-height-adjustable-table`
+- `/products/beso-prestige-executive-chair`
+
+---
+
+## Technical Notes
+
+- **Video Format Priority:** WebM preferred for web, MP4 as fallback
+- **Product3DViewer Component:** Located at `src/components/Product3DViewer.tsx`
+- **Automatic Fallback:** If no product video exists, falls back to `hero-bg.webm`
+- **Video Toggle:** Users can switch between 3D Veo Video and Interactive 3D Canvas modes
+
+---
+
+## Summary Checklist
+
+- [ ] Create `public/assets/videos/products/` directory
+- [ ] Generate BESO Crown video (Product ID 7)
+- [ ] Generate BESO FlexRise video (Product ID 21)
+- [ ] Generate BESO Prestige video (Product ID 4)
+- [ ] Upload all videos to correct paths
+- [ ] Update `src/data/products.json` with video paths
+- [ ] Verify video playback on product pages

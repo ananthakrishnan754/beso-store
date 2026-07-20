@@ -108,9 +108,13 @@ export default function ProductDetailPage({
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Interactive 3D Rotator */}
           <div id="view3d" className="lg:col-span-7 space-y-4">
-            <Product3DViewer subcategory={product.subcategory} productName={product.name} />
+            <Product3DViewer
+              subcategory={product.subcategory}
+              productName={product.name}
+              videoUrl={product.video || '/assets/videos/hero-bg.webm'}
+            />
             <p className="text-[10px] text-white/30 text-center uppercase tracking-widest">
-              Move cursor over model to spin 360 degrees and view ergonomic features
+              Use mode toggle above to switch between 3D Veo Video turntable and Interactive 3D Canvas
             </p>
           </div>
 
