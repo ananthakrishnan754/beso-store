@@ -26,10 +26,6 @@ export default function HomePage() {
 
   return (
     <div className="bg-beso-dark text-white overflow-hidden min-h-screen flex flex-col">
-      {/* ─── Announcement Bar ─── */}
-      <div className="bg-beso-lime/10 border-b border-beso-lime/20 text-center py-2.5 text-[10px] sm:text-xs font-bold tracking-widest text-beso-lime uppercase relative z-30">
-        MONSOON ACTIVE-WORK SALE • FLAT 10% OFF ON ALL PREPAID ORDERS
-      </div>
 
       {/* ─── Hero Section with Video Loop ─── */}
       <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden">
@@ -40,13 +36,14 @@ export default function HomePage() {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-35"
+            className="w-full h-full object-cover opacity-60"
           >
+            <source src="/assets/videos/hero-bg.webm" type="video/webm" />
             <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
           </video>
           {/* Vignette & Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-beso-dark via-beso-dark/50 to-beso-dark/80" />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-beso-dark via-beso-dark/40 to-beso-dark/60" />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
         {/* Ambient background glows */}
@@ -54,11 +51,6 @@ export default function HomePage() {
         <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-white/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest text-beso-lime backdrop-blur-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-beso-lime animate-ping" />
-            India's Only Hyper-Focused Work-Tech Brand
-          </span>
-          
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white">
             Pain-Free Working.<br />
             <span className="text-gradient">Max Productivity.</span><br />
@@ -69,8 +61,8 @@ export default function HomePage() {
             We design state-of-the-art office chairs and height-adjustable desks tailored to support your posture, improve focus, and elevate your space.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center">
-            <Link href="/products" className="btn-beso px-8 py-4 text-xs uppercase tracking-widest font-extrabold min-w-[200px]">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center">
+            <Link href="/products" className="btn-beso px-8 py-4 text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center">
               Explore Shop
             </Link>
             <a
@@ -85,20 +77,6 @@ export default function HomePage() {
               Contact Now
             </a>
           </div>
-
-          {/* Quick stats badges */}
-          <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/5 max-w-lg w-full">
-            {[
-              { val: '10,000+', label: 'Active Setups' },
-              { val: '79+', label: 'Ergo Designs' },
-              { val: '5.0★', label: 'Customer Rating' }
-            ].map((stat, i) => (
-              <div key={i} className="space-y-1">
-                <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">{stat.val}</div>
-                <div className="text-[10px] sm:text-xs text-white/40 font-medium tracking-wide uppercase">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -110,7 +88,7 @@ export default function HomePage() {
       </div>
 
       {/* ─── Flagship Spotlight Showcase Cards ─── */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 space-y-16">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 space-y-16">
         <div className="text-center space-y-3 mb-16">
           <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">The Flagship Line</span>
           <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
@@ -122,14 +100,15 @@ export default function HomePage() {
         </div>
 
         {/* Card 1: BESO Crown (Text Left, Image Right) */}
-        <div className="bg-gradient-to-br from-[#122A26] to-[#040C0B] border border-white/5 rounded-[2.5rem] overflow-hidden p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#122A26] to-[#040C0B] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
             <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Signature Flagship Chair</span>
-            <h3 className="text-3xl md:text-5xl font-black text-white tracking-tight">{crownChair.name}</h3>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{crownChair.name}</h3>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Designed for peak performance. Features custom double-layer high-elasticity mesh backing, active pelvic lumbar support, 3D adjustable armrests, and an integrated memory-foam seating pad to cushion long work sessions.
             </p>
-            <div className="grid grid-cols-2 gap-4 py-2">
+            <p className="text-white/50 text-xs sm:hidden">{crownChair.tagline}</p>
+            <div className="hidden sm:grid grid-cols-2 gap-4 py-2">
               <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
                 <div className="text-[10px] text-white/40 uppercase mb-1">Lumbar support</div>
                 <div className="text-xs md:text-sm font-semibold text-white">Active Synchro-Tracking</div>
@@ -140,7 +119,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${crownChair.slug}`} className="btn-beso px-8 py-3.5 text-xs uppercase tracking-wider font-extrabold">
+              <Link href={`/products/${crownChair.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
                 Explore Crown • ₹{crownChair.price.toLocaleString('en-IN')}
               </Link>
             </div>
@@ -157,14 +136,15 @@ export default function HomePage() {
         </div>
 
         {/* Card 2: BESO FlexRise (Image Left, Text Right) */}
-        <div className="bg-gradient-to-br from-[#2D1B10] to-[#120B06] border border-white/5 rounded-[2.5rem] overflow-hidden p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#2D1B10] to-[#120B06] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
           <div className="lg:col-span-6 lg:order-2 space-y-6 z-10">
             <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Smart Standing Desks</span>
-            <h3 className="text-3xl md:text-5xl font-black text-white tracking-tight">{flexRiseTable.name}</h3>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{flexRiseTable.name}</h3>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Transform your productivity by switching between sitting and standing seamlessly. Engineered with quiet dual-motors, anti-collision sensors, an elegant solid walnut desktop, and a 4-preset memory digital controller.
             </p>
-            <div className="grid grid-cols-2 gap-4 py-2">
+            <p className="text-white/50 text-xs sm:hidden">{flexRiseTable.tagline}</p>
+            <div className="hidden sm:grid grid-cols-2 gap-4 py-2">
               <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
                 <div className="text-[10px] text-white/40 uppercase mb-1">Height Range</div>
                 <div className="text-xs md:text-sm font-semibold text-white">70 cm to 120 cm</div>
@@ -175,7 +155,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${flexRiseTable.slug}`} className="btn-beso px-8 py-3.5 text-xs uppercase tracking-wider font-extrabold">
+              <Link href={`/products/${flexRiseTable.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
                 Configure Setup • ₹{flexRiseTable.price.toLocaleString('en-IN')}
               </Link>
             </div>
@@ -192,14 +172,15 @@ export default function HomePage() {
         </div>
 
         {/* Card 3: BESO Prestige (Text Left, Image Right) */}
-        <div className="bg-gradient-to-br from-[#241B15] to-[#0F0A08] border border-white/5 rounded-[2.5rem] overflow-hidden p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#241B15] to-[#0F0A08] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
             <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Premium Luxury Support</span>
-            <h3 className="text-3xl md:text-5xl font-black text-white tracking-tight">{prestigeChair.name}</h3>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{prestigeChair.name}</h3>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Crafted for leaders. Upholstered in select full-grain Italian leather, featuring adjustable contoured structural segments, luxury padded armrests, and beautiful dark walnut wood spokes lining the polished steel base.
             </p>
-            <div className="grid grid-cols-2 gap-4 py-2">
+            <p className="text-white/50 text-xs sm:hidden">{prestigeChair.tagline}</p>
+            <div className="hidden sm:grid grid-cols-2 gap-4 py-2">
               <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
                 <div className="text-[10px] text-white/40 uppercase mb-1">Material Trim</div>
                 <div className="text-xs md:text-sm font-semibold text-white">Full-grain Leather</div>
@@ -210,7 +191,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${prestigeChair.slug}`} className="btn-beso px-8 py-3.5 text-xs uppercase tracking-wider font-extrabold">
+              <Link href={`/products/${prestigeChair.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
                 Explore Prestige • ₹{prestigeChair.price.toLocaleString('en-IN')}
               </Link>
             </div>
@@ -228,7 +209,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── Featured Picks Grid ─── */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 w-full border-t border-white/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-white/5">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <span className="text-xs font-bold text-beso-lime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
@@ -249,8 +230,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── Real-time Trust Badges Section ─── */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 w-full">
-        <div className="bg-black/40 border border-white/10 rounded-[2.5rem] p-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 backdrop-blur-sm">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20">
+        <div className="bg-black/40 border border-white/10 rounded-[2.5rem] p-8 sm:p-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 backdrop-blur-sm">
           {[
             { icon: '🚚', title: 'Free PAN-India Shipping', desc: 'Secure doorstep delivery for all orders' },
             { icon: '🛡️', title: '5-Year Brand Warranty', desc: 'Comprehensive coverage on materials' },
@@ -267,8 +248,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── Contact/WhatsApp Expert CTA ─── */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 pb-24 w-full">
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-beso-lime/10 via-black to-black border border-beso-lime/20 p-12 md:p-16 overflow-hidden text-center space-y-6">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-24">
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-beso-lime/10 via-black to-black border border-beso-lime/20 p-8 sm:p-12 md:p-16 overflow-hidden text-center space-y-6">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none" />
           <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             Furnishing a Workspace?

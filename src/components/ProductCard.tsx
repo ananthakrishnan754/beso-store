@@ -46,6 +46,12 @@ function SubcategoryIcon({subcategory}: {subcategory: string}) {
   return <span>{icons[subcategory] || '\u{1F4E6}'}</span>;
 }
 
+function getShortName(name: string) {
+  // Extract short product name for mobile CTA, e.g. "BESO Crown Executive Chair" → "Crown"
+  const keywords = name.replace(/^(BESO|EZEEBEE)\s+/i, '').split(' ');
+  return keywords[0] || name;
+}
+
 export function ProductCard({product}: {product: Product}) {
   const imageSrc = product.image
     ? product.image.startsWith('/')
@@ -108,18 +114,25 @@ export function ProductCard({product}: {product: Product}) {
         </div>
       </div>
 
-      {/* Info */}
+      {/* Info - Desktop: full details, Mobile: compact */}
       <div className="p-4">
-        <p className="text-[10px] text-beso-muted uppercase tracking-wider mb-1">
+        {/* Subcategory label - hidden on mobile */}
+        <p className="hidden sm:block text-[10px] text-beso-muted uppercase tracking-wider mb-1">
           {product.subcategory.replace(/-/g, ' ')}
         </p>
+
+        {/* Product name */}
         <h3 className="text-sm font-semibold text-white mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
           {product.name}
         </h3>
+
+        {/* Tagline - always visible */}
         <p className="text-xs text-white/40 mb-3 line-clamp-1">
           {product.tagline}
         </p>
-        <div className="flex items-center gap-2">
+
+        {/* Price + stars - hidden on mobile */}
+        <div className="hidden sm:flex items-center gap-2">
           <span className="text-base font-bold text-white">
             {formatPrice(product.price)}
           </span>
@@ -129,11 +142,21 @@ export function ProductCard({product}: {product: Product}) {
             </span>
           )}
         </div>
-        <div className="flex items-center gap-1 mt-2">
+        <div className="hidden sm:flex items-center gap-1 mt-2">
           <span className="text-beso-gold text-xs">
             {'\u2605'.repeat(Math.floor(product.rating))}
           </span>
           <span className="text-xs text-white/30">({product.reviews})</span>
+        </div>
+
+        {/* Mobile CTA */}
+        <div className="sm:hidden flex items-center justify-between mt-1">
+          <span className="text-sm font-bold text-white">
+            {formatPrice(product.price)}
+          </span>
+          <span className="text-[10px] font-bold text-beso-lime uppercase tracking-wider">
+            Explore {getShortName(product.name)} →
+          </span>
         </div>
       </div>
     </Link>
