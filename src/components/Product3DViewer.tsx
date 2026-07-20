@@ -578,27 +578,27 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       const delta = (now - lastTime) / 1000;
       lastTime = now;
 
-      const duration = video.duration || 8;
+      // Cap rotation video clip to exact 4-second chair rotation segment
+      const maxTime = Math.min(video.duration || 4.0, 4.0);
 
       if (videoDirection === 'forward') {
-        if (video.paused) {
-          video.play().catch(() => {});
-        }
-        if (video.currentTime >= duration - 0.15) {
+        let nextTime = video.currentTime + delta;
+        if (nextTime >= maxTime) {
+          nextTime = maxTime;
           setVideoDirection('backward');
-          video.pause();
         }
+        try {
+          if (!video.paused) video.pause();
+          video.currentTime = nextTime;
+        } catch (_) {}
       } else {
-        // Reverse playback by stepping currentTime backwards
-        if (!video.paused) {
-          video.pause();
-        }
-        let nextTime = video.currentTime - delta * 0.9;
-        if (nextTime <= 0.15) {
-          nextTime = 0.15;
+        let nextTime = video.currentTime - delta;
+        if (nextTime <= 0.05) {
+          nextTime = 0.05;
           setVideoDirection('forward');
         }
         try {
+          if (!video.paused) video.pause();
           video.currentTime = nextTime;
         } catch (_) {}
       }
@@ -626,14 +626,14 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
   const handleVideoMouseMove = (e: React.MouseEvent) => {
     if (!isVideoInteracting || !videoRef.current) return;
     const video = videoRef.current;
-    const duration = video.duration || 8;
+    const maxTime = Math.min(video.duration || 4.0, 4.0);
     const delta = e.clientX - videoDragStartRef.current;
     videoDragStartRef.current = e.clientX;
 
-    // Dragging right moves forward, dragging left moves backward
-    let nextTime = video.currentTime + (delta / 300) * (duration / 2);
+    // Dragging right rotates chair forward, dragging left rotates backward within 4s clip
+    let nextTime = video.currentTime + (delta / 250) * maxTime;
     if (nextTime < 0) nextTime = 0;
-    if (nextTime > duration) nextTime = duration;
+    if (nextTime > maxTime) nextTime = maxTime;
     try {
       video.currentTime = nextTime;
     } catch (_) {}
@@ -653,13 +653,13 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
   const handleVideoTouchMove = (e: React.TouchEvent) => {
     if (!isVideoInteracting || !videoRef.current || e.touches.length !== 1) return;
     const video = videoRef.current;
-    const duration = video.duration || 8;
+    const maxTime = Math.min(video.duration || 4.0, 4.0);
     const delta = e.touches[0].clientX - videoDragStartRef.current;
     videoDragStartRef.current = e.touches[0].clientX;
 
-    let nextTime = video.currentTime + (delta / 300) * (duration / 2);
+    let nextTime = video.currentTime + (delta / 250) * maxTime;
     if (nextTime < 0) nextTime = 0;
-    if (nextTime > duration) nextTime = duration;
+    if (nextTime > maxTime) nextTime = maxTime;
     try {
       video.currentTime = nextTime;
     } catch (_) {}
