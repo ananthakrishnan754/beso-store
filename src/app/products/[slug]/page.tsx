@@ -3,6 +3,7 @@ import products from '@/data/products.json';
 import { notFound } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { Product3DViewer } from '@/components/Product3DViewer';
+import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import type { Metadata } from 'next';
 
 function getProduct(slug: string) {
@@ -212,6 +213,17 @@ export default function ProductDetailPage({
                 Add to Compare
               </Link>
             </div>
+
+            {/* AR: View in Your Room */}
+            <ViewInYourRoom
+              subcategory={product.subcategory}
+              productName={product.name}
+              poster={product.image}
+              variant="solid"
+              size="lg"
+              align="center"
+              label="View in Your Room"
+            />
 
             {/* Product SKU */}
             <div className="text-[10px] text-white/20 uppercase tracking-widest font-mono">

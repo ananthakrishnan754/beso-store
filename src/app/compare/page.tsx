@@ -3,6 +3,7 @@
 import {useState} from 'react';
 import products from '@/data/products.json';
 import type {Metadata} from 'next';
+import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 
 const ALL = products as any[];
 
@@ -152,9 +153,16 @@ export default function ComparePage() {
                 {selectedProducts.map((p) => (
                   <th
                     key={p.id}
-                    className="text-left text-sm text-white font-semibold px-4 py-3 border-b border-white/[0.06]"
+                    className="text-left text-sm text-white font-semibold px-4 py-3 border-b border-white/[0.06] min-w-[180px] align-top"
                   >
-                    {p.name}
+                    <span className="block mb-1">{p.name}</span>
+                    <ViewInYourRoom
+                      subcategory={p.subcategory}
+                      productName={p.name}
+                      poster={p.image}
+                      size="md"
+                      label="View in Your Room"
+                    />
                   </th>
                 ))}
               </tr>

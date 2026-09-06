@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import products from '@/data/products.json';
 import { ProductCard } from '@/components/ProductCard';
+import { ViewInYourRoom } from '@/components/ViewInYourRoom';
+import { MEETING_ROOM } from '@/lib/arModels';
 
 const MARQUEE_TEXT = '✦  ERGO-TECH INNOVATION  ✦  FREE PAN-INDIA DELIVERY  ✦  5-YEAR COMPREHENSIVE WARRANTY  ✦  BIFMA CERTIFIED  ✦  10-DAY RETURN POLICY  ✦  CUSTOMISABLE SETUPS  ✦';
 
@@ -122,6 +124,12 @@ export default function HomePage() {
               <Link href={`/products/${crownChair.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
                 Explore Crown • ₹{crownChair.price.toLocaleString('en-IN')}
               </Link>
+              <ViewInYourRoom
+                subcategory={crownChair.subcategory}
+                productName={crownChair.name}
+                poster={crownChair.image}
+                label="View in Your Room"
+              />
             </div>
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
@@ -158,6 +166,12 @@ export default function HomePage() {
               <Link href={`/products/${flexRiseTable.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
                 Configure Setup • ₹{flexRiseTable.price.toLocaleString('en-IN')}
               </Link>
+              <ViewInYourRoom
+                subcategory={flexRiseTable.subcategory}
+                productName={flexRiseTable.name}
+                poster={flexRiseTable.image}
+                label="View in Your Room"
+              />
             </div>
           </div>
           <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
@@ -194,6 +208,12 @@ export default function HomePage() {
               <Link href={`/products/${prestigeChair.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
                 Explore Prestige • ₹{prestigeChair.price.toLocaleString('en-IN')}
               </Link>
+              <ViewInYourRoom
+                subcategory={prestigeChair.subcategory}
+                productName={prestigeChair.name}
+                poster={prestigeChair.image}
+                label="View in Your Room"
+              />
             </div>
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
@@ -204,6 +224,53 @@ export default function HomePage() {
               alt={prestigeChair.name} 
               className="w-full max-w-[420px] object-contain rounded-3xl group-hover:scale-105 transition-transform duration-700 filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── AR Meeting Room Demo ─── */}
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-white/5">
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#101c10] to-[#060a06] border border-beso-lime/15 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
+          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-beso-lime/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="lg:col-span-7 space-y-5 z-10">
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-beso-lime uppercase tracking-[0.25em]">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>
+              New · AR Experience
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+              Preview a BESO <span className="text-gradient">Meeting Room</span> in Your Own Space
+            </h2>
+            <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
+              See a full conference setup — ergonomic chairs around a flagship table — placed at real scale in your
+              boardroom, office, or home. Point your phone camera at the floor and walk around it.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-3">
+              <ViewInYourRoom
+                model={MEETING_ROOM}
+                productName="BESO Meeting Room Setup"
+                variant="solid"
+                size="lg"
+                label="View Meeting Setup in AR"
+              />
+              <span className="text-[10px] text-white/30 uppercase tracking-widest">
+                Works on phone · No app needed
+              </span>
+            </div>
+          </div>
+          <div className="lg:col-span-5 relative z-10 space-y-3 text-sm">
+            {[
+              ['Real-scale placement', 'True-to-size meters, not guesswork'],
+              ['Rotate & inspect', 'Drag to spin — zoom into materials'],
+              ['Try before you buy', 'Fit the whole setup in your room first'],
+            ].map(([title, desc]) => (
+              <div key={title} className="flex items-start gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
+                <span className="mt-0.5 w-2 h-2 rounded-full bg-beso-lime shrink-0" />
+                <div>
+                  <div className="font-semibold text-white text-sm">{title}</div>
+                  <div className="text-xs text-white/40">{desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
