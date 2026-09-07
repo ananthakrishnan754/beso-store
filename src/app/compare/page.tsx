@@ -56,10 +56,10 @@ export default function ComparePage() {
         <p className="text-beso-lime text-sm font-semibold tracking-widest uppercase mb-2">
           Product Comparison
         </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-white">
+        <h1 className="text-3xl md:text-4xl font-bold text-ink">
           Compare Products
         </h1>
-        <p className="text-white/40 mt-2">
+        <p className="text-ink/40 mt-2">
           Select up to 4 products to compare side by side.
         </p>
       </div>
@@ -71,7 +71,7 @@ export default function ComparePage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search products..."
-          className="w-full bg-beso-card border border-white/[0.06] rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-beso-lime/50 mb-4"
+          className="w-full bg-beso-card border border-line/6 rounded-xl px-4 py-3 text-ink placeholder-ink/30 text-sm focus:outline-none focus:border-beso-lime/50 mb-4"
         />
 
         {selected.length > 0 && (
@@ -84,7 +84,7 @@ export default function ComparePage() {
                 {p.name}
                 <button
                   onClick={() => remove(p.id)}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-ink transition-colors"
                 >
                   \u00D7
                 </button>
@@ -93,7 +93,7 @@ export default function ComparePage() {
             {selected.length >= 2 && (
               <button
                 onClick={() => setSelected([])}
-                className="text-xs text-white/40 hover:text-white px-2"
+                className="text-xs text-ink/40 hover:text-ink px-2"
               >
                 Clear all
               </button>
@@ -104,7 +104,7 @@ export default function ComparePage() {
 
       {/* Product picker grid */}
       <div className="mb-12">
-        <h2 className="text-sm font-semibold text-white/60 mb-4">
+        <h2 className="text-sm font-semibold text-ink/60 mb-4">
           Select products to compare ({selected.length}/4)
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-h-[400px] overflow-y-auto pr-2">
@@ -120,13 +120,13 @@ export default function ComparePage() {
                   isSelected
                     ? 'bg-beso-lime/10 border-beso-lime/40 ring-1 ring-beso-lime/30'
                     : isDisabled
-                      ? 'bg-beso-card/30 border-white/[0.03] opacity-40 cursor-not-allowed'
-                      : 'bg-beso-card border-white/[0.06] hover:border-white/15'
+                      ? 'bg-beso-card/30 border-line/[0.03] opacity-40 cursor-not-allowed'
+                      : 'bg-beso-card border-line/6 hover:border-line/15'
                 }`}
               >
                 <div className="text-lg mb-1">{'\u{1FA91}'}</div>
-                <p className="font-medium text-white line-clamp-1">{p.name}</p>
-                <p className="text-xs text-white/40 capitalize">
+                <p className="font-medium text-ink line-clamp-1">{p.name}</p>
+                <p className="text-xs text-ink/40 capitalize">
                   {p.subcategory.replace(/-/g, ' ')}
                 </p>
                 <p className="text-xs text-beso-lime mt-1 font-medium">
@@ -141,19 +141,19 @@ export default function ComparePage() {
       {/* Comparison table */}
       {selectedProducts.length >= 2 && (
         <div className="overflow-x-auto">
-          <h2 className="text-xl font-bold text-white mb-6">
+          <h2 className="text-xl font-bold text-ink mb-6">
             Comparison <span className="text-beso-lime">Table</span>
           </h2>
           <table className="w-full min-w-[600px] border-collapse">
             <thead>
               <tr>
-                <th className="text-left text-sm text-white/40 font-medium px-4 py-3 border-b border-white/[0.06] w-40">
+                <th className="text-left text-sm text-ink/40 font-medium px-4 py-3 border-b border-line/6 w-40">
                   Feature
                 </th>
                 {selectedProducts.map((p) => (
                   <th
                     key={p.id}
-                    className="text-left text-sm text-white font-semibold px-4 py-3 border-b border-white/[0.06] min-w-[180px] align-top"
+                    className="text-left text-sm text-ink font-semibold px-4 py-3 border-b border-line/6 min-w-[180px] align-top"
                   >
                     <span className="block mb-1">{p.name}</span>
                     <ViewInYourRoom
@@ -171,9 +171,9 @@ export default function ComparePage() {
               {COMPARE_FIELDS.map((field) => (
                 <tr
                   key={field.key}
-                  className="hover:bg-white/[0.02] transition-colors"
+                  className="hover:bg-ink/[0.02] transition-colors"
                 >
-                  <td className="text-sm text-white/40 px-4 py-3 border-b border-white/[0.04]">
+                  <td className="text-sm text-ink/40 px-4 py-3 border-b border-line/4">
                     {field.label}
                   </td>
                   {selectedProducts.map((p) => {
@@ -186,7 +186,7 @@ export default function ComparePage() {
                     return (
                       <td
                         key={p.id}
-                        className="text-sm text-white px-4 py-3 border-b border-white/[0.04]"
+                        className="text-sm text-ink px-4 py-3 border-b border-line/4"
                       >
                         {val != null ? String(val) : '\u2014'}
                       </td>
@@ -200,7 +200,7 @@ export default function ComparePage() {
       )}
 
       {selectedProducts.length === 1 && (
-        <div className="text-center py-12 text-white/30 text-sm">
+        <div className="text-center py-12 text-ink/30 text-sm">
           Select at least 2 products to see the comparison table.
         </div>
       )}

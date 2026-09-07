@@ -37,14 +37,14 @@ export default function ProductsPage({
         <p className="text-beso-lime text-sm font-semibold tracking-widest uppercase mb-2">
           {catLabel} Collection
         </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-white">
+        <h1 className="text-3xl md:text-4xl font-bold text-ink">
           {searchParams.subcategory
             ? searchParams.subcategory.replace(/-/g, ' ')
             : searchParams.category
               ? `${catLabel} Furniture`
               : 'All Products'}
         </h1>
-        <p className="text-white/40 mt-2">
+        <p className="text-ink/40 mt-2">
           {filtered.length} {filtered.length === 1 ? 'product' : 'products'} found
         </p>
       </div>
@@ -55,8 +55,8 @@ export default function ProductsPage({
           href="/products"
           className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
             !searchParams.category && !searchParams.subcategory
-              ? 'bg-beso-lime text-beso-dark'
-              : 'bg-beso-card border border-white/[0.06] text-white/60 hover:text-white'
+              ? 'bg-beso-lime text-onAccent'
+              : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
           }`}
         >
           All
@@ -65,8 +65,8 @@ export default function ProductsPage({
           href="/products?category=office"
           className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
             searchParams.category === 'office' && !searchParams.subcategory
-              ? 'bg-beso-lime text-beso-dark'
-              : 'bg-beso-card border border-white/[0.06] text-white/60 hover:text-white'
+              ? 'bg-beso-lime text-onAccent'
+              : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
           }`}
         >
           Office
@@ -75,8 +75,8 @@ export default function ProductsPage({
           href="/products?category=home"
           className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
             searchParams.category === 'home' && !searchParams.subcategory
-              ? 'bg-beso-lime text-beso-dark'
-              : 'bg-beso-card border border-white/[0.06] text-white/60 hover:text-white'
+              ? 'bg-beso-lime text-onAccent'
+              : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
           }`}
         >
           Home
@@ -87,8 +87,8 @@ export default function ProductsPage({
             href={`/products?subcategory=${sub}`}
             className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
               searchParams.subcategory === sub
-                ? 'bg-beso-lime text-beso-dark'
-                : 'bg-beso-card border border-white/[0.06] text-white/60 hover:text-white'
+                ? 'bg-beso-lime text-onAccent'
+                : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
             }`}
           >
             {sub.replace(/-/g, ' ')}
@@ -99,7 +99,7 @@ export default function ProductsPage({
       {/* Product grid */}
       {filtered.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-white/40 text-lg">No products found.</p>
+          <p className="text-ink/40 text-lg">No products found.</p>
           <a href="/products" className="btn-beso mt-4 inline-block px-6 py-2 text-sm">
             View All Products
           </a>

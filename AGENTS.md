@@ -34,6 +34,40 @@ Source photos are located in `public/assets/images/products/`:
 A cinematic high-end studio video of a modern ergonomic executive office chair positioned in a minimalist dark luxury room. The camera glides subtly around the chair in slow motion. Soft volumetric lighting highlights the breathable mesh textures, polished chrome metal base, and ergonomic curves. Deep dark slate and ambient green rim lighting. Ultra-wide 16:9 aspect ratio, 4k resolution, 60fps, photorealistic, seamless loop video.
 ```
 
+#### 2.1.1 Themed Hero Variants (4 clips — same chair & camera, different color themes)
+
+Each theme that has a dedicated clip is wired via `heroVideo` in `src/lib/themes.ts`; the
+`HeroVideo` component (`src/components/HeroVideo.tsx`) swaps the `<source>` by the active
+`data-theme` and falls back to the Night Luxe clip when missing. WebM preferred, MP4 fallback.
+
+| Theme slug | WebM / MP4 base path |
+|---|---|
+| `night-luxe` (default) | `public/assets/videos/hero-bg.webm/.mp4` (existing clip) |
+| `ivory-minimal` | `public/assets/videos/hero-bg-ivory.webm/.mp4` |
+| `walnut-midcentury` | `public/assets/videos/hero-bg-walnut.webm/.mp4` |
+| `industrial-loft` | `public/assets/videos/hero-bg-loft.webm/.mp4` |
+
+**Bulk generation:** `GEMINI_API_KEY=... node scripts/generate-hero-videos.mjs`
+(run `node scripts/generate-hero-videos.mjs --only ivory-minimal` for one clip; each clip is a paid Veo 3 generation).
+
+**Ivory Minimal prompt:**
+```
+A cinematic ultra-wide 16:9 studio film of a modern ergonomic executive office chair in a bright, airy minimalist room. Warm ivory linen walls and floor, soft diffused morning daylight flooding in, gentle soft shadows, airy negative space. Chair in matte black and warm greige upholstery. Low contrast, calm, clean, hotel-lounge feel. Seamless loop, photorealistic, 8k, 60fps.
+```
+
+**Generation status (Sep 2026):** `ivory-minimal` clip DONE (`hero-bg-ivory.webm/.mp4`, 1280×720 VP9/h264 10s, generated via Gemini web Veo "Videos" tool).
+`walnut-midcentury` and `industrial-loft` clips NOT yet generated — Gemini hit "Video Generation Limit Reached" (daily cap) before they could be produced. Re-run generation on a later day; `HeroVideo` gracefully falls back to the Night Luxe clip (`hero-bg.webm`) for any missing theme clip, so the site remains fully functional.
+
+**Walnut Mid-Century prompt:**
+```
+A cinematic ultra-wide 16:9 studio film of a modern ergonomic executive office chair in a warm mid-century room. Cream walls, walnut wood paneling and furniture accents, terrazzo floor. Golden-hour light with burnt-orange and amber rim glow wrapping the chair edges. Warm, rich, premium vintage-moderne mood. Seamless loop, photorealistic, 8k, 60fps.
+```
+
+**Industrial Loft prompt:**
+```
+A cinematic ultra-wide 16:9 studio film of a modern ergonomic executive office chair in a dark industrial loft. Raw charcoal concrete walls, exposed steel beams, utility amber sodium lighting casting deep hard shadows, faint fog at the floor. Chair accents in black leather and brushed metal. Gritty, high-drama, editorial. Seamless loop, photorealistic, 8k, 60fps.
+```
+
 ---
 
 ### 2.2 BESO Crown Executive Chair (Image-to-Video)

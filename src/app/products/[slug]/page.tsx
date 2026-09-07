@@ -54,25 +54,25 @@ export default function ProductDetailPage({
   const whatsAppUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
-    <div className="bg-beso-dark text-white min-h-screen">
+    <div className="bg-beso-dark text-ink min-h-screen">
       {/* ─── Secondary Sticky Header ─── */}
-      <div className="sticky top-20 z-40 bg-black/80 border-y border-white/5 backdrop-blur-md">
+      <div className="sticky top-20 z-40 bg-app/80 border-y border-line/5 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="font-extrabold text-sm tracking-tight text-white line-clamp-1">{product.name}</span>
+            <span className="font-extrabold text-sm tracking-tight text-ink line-clamp-1">{product.name}</span>
             <span className="hidden sm:inline-block px-2 py-0.5 bg-beso-lime/10 border border-beso-lime/20 rounded-full text-[9px] font-bold text-beso-lime uppercase tracking-widest">
               {product.subcategory.replace(/-/g, ' ')}
             </span>
           </div>
           
           <div className="flex items-center gap-6">
-            <nav className="hidden md:flex items-center gap-6 text-xs font-semibold text-white/50">
-              <a href="#view3d" className="hover:text-white transition-colors">3D Rotate</a>
-              <a href="#specs" className="hover:text-white transition-colors">Specifications</a>
-              <a href="#reviews" className="hover:text-white transition-colors">Reviews</a>
+            <nav className="hidden md:flex items-center gap-6 text-xs font-semibold text-ink/50">
+              <a href="#view3d" className="hover:text-ink transition-colors">3D Rotate</a>
+              <a href="#specs" className="hover:text-ink transition-colors">Specifications</a>
+              <a href="#reviews" className="hover:text-ink transition-colors">Reviews</a>
             </nav>
             <div className="flex items-center gap-4">
-              <span className="text-sm font-bold text-white hidden xs:inline">
+              <span className="text-sm font-bold text-ink hidden xs:inline">
                 {formatPrice(product.price)}
               </span>
               <a
@@ -90,19 +90,19 @@ export default function ProductDetailPage({
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-xs text-white/30 mb-8 font-medium">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-xs text-ink/30 mb-8 font-medium">
+          <Link href="/" className="hover:text-ink transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/products" className="hover:text-white transition-colors">Products</Link>
+          <Link href="/products" className="hover:text-ink transition-colors">Products</Link>
           <span>/</span>
           <Link
             href={`/products?category=${product.category}`}
-            className="hover:text-white transition-colors capitalize"
+            className="hover:text-ink transition-colors capitalize"
           >
             {product.category}
           </Link>
           <span>/</span>
-          <span className="text-white/60 truncate max-w-[150px]">{product.name}</span>
+          <span className="text-ink/60 truncate max-w-[150px]">{product.name}</span>
         </div>
 
         {/* Product presentation */}
@@ -114,7 +114,7 @@ export default function ProductDetailPage({
               productName={product.name}
               videoUrl={product.video || '/assets/videos/hero-bg.webm'}
             />
-            <p className="text-[10px] text-white/30 text-center uppercase tracking-widest">
+            <p className="text-[10px] text-ink/30 text-center uppercase tracking-widest">
               Use mode toggle above to switch between 3D Veo Video turntable and Interactive 3D Canvas
             </p>
           </div>
@@ -129,28 +129,28 @@ export default function ProductDetailPage({
                       ? 'badge-sale'
                       : product.badge === 'hot'
                         ? 'badge-hot'
-                        : 'bg-white/10 text-white'
+                        : 'bg-ink/10 text-ink'
                   }`}
                 >
                   {product.badge}
                 </span>
               )}
 
-              <h1 className="text-3xl font-extrabold text-white tracking-tight leading-tight mb-2">
+              <h1 className="text-3xl font-extrabold text-ink tracking-tight leading-tight mb-2">
                 {product.name}
               </h1>
-              <p className="text-white/50 text-base leading-relaxed">{product.tagline}</p>
+              <p className="text-ink/50 text-base leading-relaxed">{product.tagline}</p>
             </div>
 
             {/* Price section */}
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl space-y-4">
+            <div className="p-6 bg-ink/[0.02] border border-line/5 rounded-3xl space-y-4">
               <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-extrabold text-white tracking-tight">
+                <span className="text-3xl font-extrabold text-ink tracking-tight">
                   {formatPrice(product.price)}
                 </span>
                 {product.originalPrice && (
                   <>
-                    <span className="text-base text-white/30 line-through">
+                    <span className="text-base text-ink/30 line-through">
                       {formatPrice(product.originalPrice)}
                     </span>
                     <span className="px-2 py-0.5 bg-beso-red/10 border border-beso-red/20 text-beso-red text-xs font-bold rounded-full">
@@ -164,7 +164,7 @@ export default function ProductDetailPage({
                   </>
                 )}
               </div>
-              <div className="text-[11px] text-white/40 tracking-wide">
+              <div className="text-[11px] text-ink/40 tracking-wide">
                 Inclusive of all taxes. Free shipping across India.
               </div>
             </div>
@@ -174,10 +174,10 @@ export default function ProductDetailPage({
               <span className="text-beso-gold text-sm">
                 {'\u2605'.repeat(Math.floor(product.rating))}
               </span>
-              <span className="text-xs font-bold text-white">
+              <span className="text-xs font-bold text-ink">
                 {product.rating}
               </span>
-              <span className="text-xs text-white/30 font-medium">
+              <span className="text-xs text-ink/30 font-medium">
                 ({product.reviews} verified reviews)
               </span>
             </div>
@@ -189,9 +189,9 @@ export default function ProductDetailPage({
                 { title: '5-Year Warranty', desc: 'Full core coverage' },
                 { title: 'Free Assembly', desc: 'Pan-India setup' }
               ].map((h, i) => (
-                <div key={i} className="p-3 bg-white/[0.01] border border-white/5 rounded-2xl text-center space-y-1">
-                  <div className="text-[11px] font-bold text-white">{h.title}</div>
-                  <div className="text-[9px] text-white/40 font-medium leading-none">{h.desc}</div>
+                <div key={i} className="p-3 bg-ink/[0.01] border border-line/5 rounded-2xl text-center space-y-1">
+                  <div className="text-[11px] font-bold text-ink">{h.title}</div>
+                  <div className="text-[9px] text-ink/40 font-medium leading-none">{h.desc}</div>
                 </div>
               ))}
             </div>
@@ -226,7 +226,7 @@ export default function ProductDetailPage({
             />
 
             {/* Product SKU */}
-            <div className="text-[10px] text-white/20 uppercase tracking-widest font-mono">
+            <div className="text-[10px] text-ink/20 uppercase tracking-widest font-mono">
               SKU: {product.sku}
             </div>
           </div>
@@ -237,15 +237,15 @@ export default function ProductDetailPage({
           <div id="specs" className="mt-20 max-w-3xl">
             <div className="mb-6">
               <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Precision Engineering</span>
-              <h2 className="text-2xl font-extrabold text-white tracking-tight mt-1">Technical Specifications</h2>
+              <h2 className="text-2xl font-extrabold text-ink tracking-tight mt-1">Technical Specifications</h2>
             </div>
-            <div className="bg-black/20 rounded-3xl border border-white/5 overflow-hidden">
+            <div className="bg-ink/5 rounded-3xl border border-line/5 overflow-hidden">
               <table className="w-full text-sm">
                 <tbody>
                   {specs.map(([key, val]) => (
-                    <tr key={key} className="border-b border-white/5 last:border-0 hover:bg-white/[0.01] transition-colors">
-                      <td className="px-6 py-4 text-white/40 capitalize font-medium">{key.replace(/_/g, ' ')}</td>
-                      <td className="px-6 py-4 text-white font-bold text-right sm:text-left">{String(val)}</td>
+                    <tr key={key} className="border-b border-line/5 last:border-0 hover:bg-ink/[0.01] transition-colors">
+                      <td className="px-6 py-4 text-ink/40 capitalize font-medium">{key.replace(/_/g, ' ')}</td>
+                      <td className="px-6 py-4 text-ink font-bold text-right sm:text-left">{String(val)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -256,13 +256,13 @@ export default function ProductDetailPage({
 
         {/* Related Products */}
         {related.length > 0 && (
-          <div className="mt-24 border-t border-white/5 pt-16">
+          <div className="mt-24 border-t border-line/5 pt-16">
             <div className="flex items-end justify-between mb-8">
               <div>
                 <span className="text-xs font-bold text-beso-lime tracking-widest uppercase mb-1 block">Similar Fits</span>
-                <h2 className="text-2xl font-extrabold text-white tracking-tight">Related Ergonomics</h2>
+                <h2 className="text-2xl font-extrabold text-ink tracking-tight">Related Ergonomics</h2>
               </div>
-              <Link href="/products" className="text-xs font-semibold uppercase tracking-wider text-beso-lime hover:text-white transition-colors">
+              <Link href="/products" className="text-xs font-semibold uppercase tracking-wider text-beso-lime hover:text-ink transition-colors">
                 View All
               </Link>
             </div>

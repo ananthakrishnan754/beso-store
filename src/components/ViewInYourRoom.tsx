@@ -87,7 +87,7 @@ export function ViewInYourRoom({
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         className={`${btnClasses} ${pad} text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 ${align === 'center' ? 'w-full' : ''}`}
-        style={{ background: variant === 'solid' ? 'var(--beso-lime)' : undefined }}
+        style={{ background: variant === 'solid' ? 'var(--accent)' : undefined }}
       >
         {arIcon()}
         <span>{label}</span>
@@ -102,16 +102,16 @@ export function ViewInYourRoom({
           onClick={close}
         >
           <div
-            className="w-full h-[100dvh] sm:h-auto sm:max-h-[85vh] sm:max-w-5xl bg-beso-card sm:rounded-3xl border border-white/10 overflow-hidden flex flex-col relative shadow-2xl"
+            className="w-full h-[100dvh] sm:h-auto sm:max-h-[85vh] sm:max-w-5xl bg-beso-card sm:rounded-3xl border border-line/10 overflow-hidden flex flex-col relative shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] shrink-0">
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-line/6 shrink-0">
               <div className="flex items-center gap-3 min-w-0">
                 <span className="text-beso-lime shrink-0">{arIcon()}</span>
                 <div className="min-w-0">
-                  <div className="text-sm font-bold text-white truncate">{productName}</div>
-                  <div className="text-[10px] text-white/40 uppercase tracking-wide">
+                  <div className="text-sm font-bold text-ink truncate">{productName}</div>
+                  <div className="text-[10px] text-ink/40 uppercase tracking-wide">
                     3D Preview · AR on mobile
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export function ViewInYourRoom({
                 type="button"
                 onClick={close}
                 aria-label="Close"
-                className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors shrink-0"
+                className="w-9 h-9 rounded-full bg-ink/5 hover:bg-ink/10 border border-line/10 flex items-center justify-center text-ink/70 hover:text-ink transition-colors shrink-0"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.3 5.7a1 1 0 0 1 0 1.4L13.4 12l4.9 4.9a1 1 0 1 1-1.4 1.4L12 13.4l-4.9 4.9a1 1 0 0 1-1.4-1.4l4.9-4.9-4.9-4.9a1 1 0 0 1 1.4-1.4l4.9 4.9 4.9-4.9a1 1 0 0 1 1.4 0z" /></svg>
               </button>
@@ -158,7 +158,7 @@ export function ViewInYourRoom({
                   )
                 )
               ) : viewer === 'error' ? (
-                <div className="flex items-center justify-center h-full text-sm text-white/50">
+                <div className="flex items-center justify-center h-full text-sm text-ink/50">
                   Couldn&apos;t load the 3D viewer.
                 </div>
               ) : (
@@ -169,8 +169,8 @@ export function ViewInYourRoom({
             </div>
 
             {/* Footer instructions */}
-            <div className="px-5 py-3.5 border-t border-white/[0.06] text-center shrink-0 bg-beso-card">
-              <p className="text-[11px] text-white/40 leading-relaxed max-w-lg mx-auto">
+            <div className="px-5 py-3.5 border-t border-line/6 text-center shrink-0 bg-beso-card">
+              <p className="text-[11px] text-ink/40 leading-relaxed max-w-lg mx-auto">
                 On your phone, tap <span className="text-beso-lime font-semibold">View in your space</span> to place{' '}
                 {productName} in real size. Point your camera at the floor and move around to preview it in your room.
               </p>

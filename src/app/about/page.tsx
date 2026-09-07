@@ -44,10 +44,10 @@ export default function AboutPage() {
         <p className="text-beso-lime text-sm font-semibold tracking-widest uppercase mb-3">
           About BESO
         </p>
-        <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
+        <h1 className="text-3xl md:text-5xl font-bold text-ink mb-6">
           Furniture That <span className="text-gradient">Defines Your Space</span>
         </h1>
-        <p className="text-white/50 text-lg leading-relaxed">
+        <p className="text-ink/50 text-lg leading-relaxed">
           BESO was founded with a simple mission: to make premium, ergonomic
           furniture accessible to every Indian home and office. We believe great
           furniture should not only look beautiful but also support your body and
@@ -56,9 +56,9 @@ export default function AboutPage() {
       </div>
 
       {/* Mission */}
-      <div className="bg-beso-card rounded-3xl border border-white/[0.06] p-8 md:p-12 mb-16">
-        <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
-        <p className="text-white/50 leading-relaxed max-w-3xl">
+      <div className="bg-beso-card rounded-3xl border border-line/6 p-8 md:p-12 mb-16">
+        <h2 className="text-2xl font-bold text-ink mb-4">Our Mission</h2>
+        <p className="text-ink/50 leading-relaxed max-w-3xl">
           We are on a mission to transform how India works and lives. From
           executive offices to gaming setups, from dining rooms to home offices
           — we design and deliver furniture that inspires. Every BESO product is
@@ -71,34 +71,34 @@ export default function AboutPage() {
         {STATS.map((s) => (
           <div
             key={s.label}
-            className="bg-beso-card rounded-2xl border border-white/[0.06] p-6 text-center"
+            className="bg-beso-card rounded-2xl border border-line/6 p-6 text-center"
           >
             <div className="text-2xl font-bold text-beso-lime mb-1">{s.val}</div>
-            <div className="text-sm text-white/40">{s.label}</div>
+            <div className="text-sm text-ink/40">{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* Values */}
       <div className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-8">Our Values</h2>
+        <h2 className="text-2xl font-bold text-ink mb-8">Our Values</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {VALUES.map((v) => (
             <div
               key={v.title}
-              className="bg-beso-card rounded-2xl border border-white/[0.06] p-6"
+              className="bg-beso-card rounded-2xl border border-line/6 p-6"
             >
               <span className="text-3xl mb-3 block">{v.icon}</span>
-              <h3 className="font-semibold text-white mb-2">{v.title}</h3>
-              <p className="text-sm text-white/40">{v.desc}</p>
+              <h3 className="font-semibold text-ink mb-2">{v.title}</h3>
+              <p className="text-sm text-ink/40">{v.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Certifications */}
-      <div className="bg-beso-card rounded-3xl border border-white/[0.06] p-8 md:p-12">
-        <h2 className="text-2xl font-bold text-white mb-6">Certifications & Compliance</h2>
+      <div className="bg-beso-card rounded-3xl border border-line/6 p-8 md:p-12">
+        <h2 className="text-2xl font-bold text-ink mb-6">Certifications & Compliance</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             {icon: '\u{1F6E1}\uFE0F', title: 'BIFMA Certified', desc: 'Meets international furniture standards for safety and durability.'},
@@ -109,8 +109,8 @@ export default function AboutPage() {
             <div key={c.title} className="flex gap-4 items-start">
               <span className="text-2xl mt-1">{c.icon}</span>
               <div>
-                <h3 className="font-semibold text-white">{c.title}</h3>
-                <p className="text-sm text-white/40">{c.desc}</p>
+                <h3 className="font-semibold text-ink">{c.title}</h3>
+                <p className="text-sm text-ink/40">{c.desc}</p>
               </div>
             </div>
           ))}

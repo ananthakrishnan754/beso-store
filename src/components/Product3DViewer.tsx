@@ -18,6 +18,14 @@ interface Product3DViewerProps {
   videoUrl?: string;
 }
 
+function cssVar(name: string, fallback: string) {
+  if (typeof window === 'undefined') return fallback;
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue(name)
+    .trim();
+  return value || fallback;
+}
+
 export function Product3DViewer({ subcategory, productName, videoUrl }: Product3DViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -108,6 +116,12 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Theme-aware colors (re-read each frame so switching themes recolors live)
+    const accent = cssVar('--accent-rgb', '163 230 53');
+    const inkT = cssVar('--ink-rgb', '255 255 255');
+    const appT = cssVar('--app-rgb', '16 16 16');
+    const rgbaC = (rgb: string, a: number) => `rgba(${rgb} / ${a})`;
+
     // Set canvas resolution with high DPI support
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
@@ -149,7 +163,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
     };
 
     // Draw grid floor (SuperErgo luxury vibe)
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
+    ctx.strokeStyle = rgbaC(inkT, 0.02);
     ctx.lineWidth = 1;
     for (let i = -5; i <= 5; i++) {
       const p1 = project(i * 15, 80, -75);
@@ -191,7 +205,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ];
 
       // Draw desktop panels
-      ctx.fillStyle = 'rgba(163, 230, 53, 0.05)';
+      ctx.fillStyle = rgbaC(accent, 0.05);
       ctx.beginPath();
       ctx.moveTo(topCorners[0].x, topCorners[0].y);
       for (let i = 1; i < 4; i++) ctx.lineTo(topCorners[i].x, topCorners[i].y);
@@ -199,7 +213,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.fill();
 
       // Desktop outer wireframe
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.strokeStyle = rgbaC(inkT, 0.2);
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(topCorners[0].x, topCorners[0].y);
@@ -233,7 +247,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
         { top: project(legOffset, legYStart, 0), bottom: project(legOffset, legYEnd, 0) },
       ];
 
-      ctx.strokeStyle = '#a3e635'; // BESO Lime
+      ctx.strokeStyle = `rgb(${accent})`; // BESO Lime
       ctx.lineWidth = 3;
       legs.forEach(leg => {
         ctx.beginPath();
@@ -244,7 +258,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
 
       // Desk feet (Horizontal beams)
       ctx.lineWidth = 2.5;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.strokeStyle = rgbaC(inkT, 0.4);
       const leftFootStart = project(-legOffset, legYEnd, -15);
       const leftFootEnd = project(-legOffset, legYEnd, 15);
       ctx.beginPath();
@@ -262,7 +276,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
     } else {
       // ─── DRAW CHAIR ───
       // 1. Headrest
-      ctx.strokeStyle = '#a3e635';
+      ctx.strokeStyle = `rgb(${accent})`;
       ctx.lineWidth = 2.5;
       const hrLeft = project(-12, -75, 0);
       const hrRight = project(12, -75, 0);
@@ -280,7 +294,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // Headrest mount stem
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.strokeStyle = rgbaC(inkT, 0.3);
       ctx.lineWidth = 2;
       const hrStemTop = project(0, -68, -2);
       const hrStemBot = project(0, -56, -4);
@@ -290,7 +304,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // 2. Backrest (Contoured Mesh Grid)
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+      ctx.strokeStyle = rgbaC(inkT, 0.25);
       ctx.lineWidth = 1;
       
       const backSegmentsY = 10;
@@ -335,7 +349,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       }
 
       // Backrest outer frame
-      ctx.strokeStyle = '#a3e635';
+      ctx.strokeStyle = `rgb(${accent})`;
       ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(backPoints[0][0].x, backPoints[0][0].y);
@@ -351,7 +365,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // Spine spine frame (thick back brace)
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.strokeStyle = rgbaC(inkT, 0.4);
       ctx.lineWidth = 3;
       const spineTop = project(0, -56, -6);
       const spineMid = project(0, -20, -11);
@@ -382,9 +396,9 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ];
 
       // Draw seat cushion wireframe
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.strokeStyle = rgbaC(inkT, 0.4);
       ctx.lineWidth = 1.5;
-      ctx.fillStyle = 'rgba(28, 28, 28, 0.6)';
+      ctx.fillStyle = rgbaC(appT, 0.6);
       
       // Top face
       ctx.beginPath();
@@ -409,7 +423,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       }
 
       // 4. Armrests
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.strokeStyle = rgbaC(inkT, 0.3);
       ctx.lineWidth = 2.5;
 
       // Left Armrest
@@ -423,7 +437,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.lineTo(laSupportEnd.x, laSupportEnd.y);
       ctx.stroke();
 
-      ctx.strokeStyle = '#a3e635';
+      ctx.strokeStyle = `rgb(${accent})`;
       ctx.lineWidth = 4;
       ctx.beginPath();
       ctx.moveTo(laPadStart.x, laPadStart.y);
@@ -431,7 +445,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // Right Armrest
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.strokeStyle = rgbaC(inkT, 0.3);
       ctx.lineWidth = 2.5;
       const raSupportStart = project(seatW + 1, seatY + 3, 0);
       const raSupportEnd = project(seatW + 2, seatY - 10, 2);
@@ -443,7 +457,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.lineTo(raSupportEnd.x, raSupportEnd.y);
       ctx.stroke();
 
-      ctx.strokeStyle = '#a3e635';
+      ctx.strokeStyle = `rgb(${accent})`;
       ctx.lineWidth = 4;
       ctx.beginPath();
       ctx.moveTo(raPadStart.x, raPadStart.y);
@@ -451,7 +465,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // 5. Gas Lift Cylinder / Column
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.strokeStyle = rgbaC(inkT, 0.6);
       ctx.lineWidth = 3.5;
       const cylTop = project(0, seatY + seatThickness, 0);
       const cylBot = project(0, 50, 0);
@@ -461,7 +475,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // 6. Five-star Base Spokes
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.strokeStyle = rgbaC(inkT, 0.35);
       ctx.lineWidth = 2.5;
       const baseCenter = project(0, 52, 0);
       
@@ -482,7 +496,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
         ctx.stroke();
 
         // Castors (wheels)
-        ctx.fillStyle = '#a3e635';
+        ctx.fillStyle = `rgb(${accent})`;
         ctx.beginPath();
         ctx.arc(spokeEnd.x, spokeEnd.y + 3, 3, 0, 2 * Math.PI);
         ctx.fill();
@@ -506,21 +520,21 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       if (!pt.visible) return;
 
       // Draw Pulse Dot on the chair point
-      ctx.fillStyle = '#a3e635';
+      ctx.fillStyle = `rgb(${accent})`;
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, 4, 0, 2 * Math.PI);
       ctx.fill();
 
       // Ripple effect
       const rippleSize = 4 + (Date.now() % 1000) / 125;
-      ctx.strokeStyle = 'rgba(163, 230, 53, 0.3)';
+      ctx.strokeStyle = rgbaC(accent, 0.3);
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, rippleSize, 0, 2 * Math.PI);
       ctx.stroke();
 
       // Lead line to text box
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      ctx.strokeStyle = rgbaC(inkT, 0.15);
       ctx.lineWidth = 1;
       ctx.setLineDash([2, 2]);
       ctx.beginPath();
@@ -533,8 +547,8 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.setLineDash([]); // reset
 
       // Text box border and backing
-      ctx.fillStyle = 'rgba(16, 16, 16, 0.8)';
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.fillStyle = rgbaC(appT, 0.8);
+      ctx.strokeStyle = rgbaC(inkT, 0.12);
       ctx.lineWidth = 1;
 
       const paddingX = 12;
@@ -552,7 +566,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       ctx.stroke();
 
       // Text inside box
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = `rgb(${inkT})`;
       ctx.fillText(hs.text, boxX + paddingX, boxY + 15);
     });
 
@@ -719,7 +733,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-square md:aspect-[4/3] bg-black/40 border border-white/[0.04] rounded-3xl overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing select-none group"
+      className="relative w-full aspect-square md:aspect-[4/3] bg-app/60 border border-line/4 rounded-3xl overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing select-none group"
       onMouseDown={viewMode === 'canvas' ? handleMouseDown : handleVideoMouseDown}
       onMouseMove={viewMode === 'canvas' ? handleMouseMove : handleVideoMouseMove}
       onMouseUp={viewMode === 'canvas' ? handleMouseUp : handleVideoMouseUp}
@@ -751,7 +765,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       )}
 
       {/* Guide text */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 text-[10px] text-white/40 tracking-widest uppercase flex items-center gap-2 pointer-events-none bg-black/50 px-3 py-1 rounded-full border border-white/10 backdrop-blur-md">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 text-[10px] text-ink/50 tracking-widest uppercase flex items-center gap-2 pointer-events-none bg-app/60 px-3 py-1 rounded-full border border-line/10 backdrop-blur-md">
         <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-beso-lime animate-pulse">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
         </svg>
@@ -759,7 +773,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
       </div>
 
       {/* Floating Tag */}
-      <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-white/70 tracking-wider backdrop-blur-sm pointer-events-none font-medium flex items-center gap-2">
+      <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-ink/5 border border-line/10 rounded-full text-[10px] text-ink/70 tracking-wider backdrop-blur-sm pointer-events-none font-medium flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-beso-lime animate-ping" />
         {productName} 3D Engine
       </div>

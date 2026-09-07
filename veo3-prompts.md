@@ -86,3 +86,29 @@ Once you generate the video file with Veo 3:
    ```
 
 3. The product detail page at `/products/<slug>` will automatically play the 3D video rotation with an interactive toggle switch for customer viewing!
+
+---
+
+## 🎞️ 4. Themed Hero Background Variants (Text-to-Video)
+
+Same subject + same camera move as the hero clip, only lighting/color theme differs.
+WebM preferred, MP4 fallback. Wired per-theme via `heroVideo` in `src/lib/themes.ts`
+(swapped automatically by `src/components/HeroVideo.tsx` on the active `data-theme`).
+
+| Theme slug | WebM / MP4 base path |
+|---|---|
+| `night-luxe` (default) | `public/assets/videos/hero-bg.webm/.mp4` (existing) |
+| `ivory-minimal` | `public/assets/videos/hero-bg-ivory.webm/.mp4` |
+| `walnut-midcentury` | `public/assets/videos/hero-bg-walnut.webm/.mp4` |
+| `industrial-loft` | `public/assets/videos/hero-bg-loft.webm/.mp4` |
+
+**Bulk generation:** `GEMINI_API_KEY=... node scripts/generate-hero-videos.mjs` (Veo 3 REST API; `--only <slug>` for a single clip; `VEO_MODEL` to override the model id).
+
+**Ivory Minimal:**
+> A cinematic ultra-wide 16:9 studio film of a modern ergonomic executive office chair in a bright, airy minimalist room. Warm ivory linen walls and floor, soft diffused morning daylight flooding in, gentle soft shadows, airy negative space. Chair in matte black and warm greige upholstery. Low contrast, calm, clean, hotel-lounge feel. Seamless loop, photorealistic, 8k, 60fps.
+
+**Walnut Mid-Century:**
+> A cinematic ultra-wide 16:9 studio film of a modern ergonomic executive office chair in a warm mid-century room. Cream walls, walnut wood paneling and furniture accents, terrazzo floor. Golden-hour light with burnt-orange and amber rim glow wrapping the chair edges. Warm, rich, premium vintage-moderne mood. Seamless loop, photorealistic, 8k, 60fps.
+
+**Industrial Loft:**
+> A cinematic ultra-wide 16:9 studio film of a modern ergonomic executive office chair in a dark industrial loft. Raw charcoal concrete walls, exposed steel beams, utility amber sodium lighting casting deep hard shadows, faint fog at the floor. Chair accents in black leather and brushed metal. Gritty, high-drama, editorial. Seamless loop, photorealistic, 8k, 60fps.

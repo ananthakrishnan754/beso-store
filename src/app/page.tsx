@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HeroVideo from '@/components/HeroVideo';
 import products from '@/data/products.json';
 import { ProductCard } from '@/components/ProductCard';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
@@ -27,22 +28,13 @@ export default function HomePage() {
   const prestigeChair = flagships.find(p => p.id === 4) || products[3];
 
   return (
-    <div className="bg-beso-dark text-white overflow-hidden min-h-screen flex flex-col">
+    <div className="bg-beso-dark text-ink overflow-hidden min-h-screen flex flex-col">
 
       {/* ─── Hero Section with Video Loop ─── */}
       <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-90"
-          >
-            <source src="/assets/videos/hero-bg.webm" type="video/webm" />
-            <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-          </video>
+          <HeroVideo />
           {/* Vignette & Gradients */}
           <div className="absolute inset-0 bg-gradient-to-t from-beso-dark via-beso-dark/20 to-transparent" />
           <div className="absolute inset-0 bg-black/15" />
@@ -53,13 +45,13 @@ export default function HomePage() {
         <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-white/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink">
             Pain-Free Working.<br />
             <span className="text-gradient">Max Productivity.</span><br />
             Healthier Living.
           </h1>
           
-          <p className="text-white/60 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
+          <p className="text-ink/60 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
             We design state-of-the-art office chairs and height-adjustable desks tailored to support your posture, improve focus, and elevate your space.
           </p>
 
@@ -83,8 +75,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── Marquee Banner ─── */}
-      <div className="border-y border-white/5 bg-black/40 py-5 overflow-hidden select-none">
-        <div className="animate-marquee whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] text-white/30">
+      <div className="border-y border-line/5 bg-ink/5 py-5 overflow-hidden select-none">
+        <div className="animate-marquee whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] text-ink/25">
           {MARQUEE_TEXT} {MARQUEE_TEXT}
         </div>
       </div>
@@ -93,10 +85,10 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 space-y-16">
         <div className="text-center space-y-3 mb-16">
           <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">The Flagship Line</span>
-          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-ink tracking-tight">
             Engineered for <span className="text-gradient">Ultimate Comfort</span>
           </h2>
-          <p className="text-white/40 max-w-xl mx-auto text-sm">
+          <p className="text-ink/40 max-w-xl mx-auto text-sm">
             Discover the three pillars of premium work ergonomics from BESO.
           </p>
         </div>
@@ -229,7 +221,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── AR Meeting Room Demo ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-white/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#101c10] to-[#060a06] border border-beso-lime/15 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
           <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-beso-lime/5 rounded-full blur-[100px] pointer-events-none" />
           <div className="lg:col-span-7 space-y-5 z-10">
@@ -276,15 +268,15 @@ export default function HomePage() {
       </section>
 
       {/* ─── Featured Picks Grid ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-white/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <span className="text-xs font-bold text-beso-lime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight animate-fade-in">
+            <h2 className="text-3xl font-extrabold text-ink tracking-tight animate-fade-in">
               Featured <span className="text-gradient">Collections</span>
             </h2>
           </div>
-          <Link href="/products" className="text-sm font-bold text-beso-lime hover:text-white transition-colors flex items-center gap-1">
+          <Link href="/products" className="text-sm font-bold text-beso-lime hover:text-ink transition-colors flex items-center gap-1">
             Browse Entire Store <span>→</span>
           </Link>
         </div>
@@ -298,7 +290,7 @@ export default function HomePage() {
 
       {/* ─── Real-time Trust Badges Section ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20">
-        <div className="bg-black/40 border border-white/10 rounded-[2.5rem] p-8 sm:p-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 backdrop-blur-sm">
+        <div className="bg-ink/4 border border-line/10 rounded-[2.5rem] p-8 sm:p-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 backdrop-blur-sm">
           {[
             { icon: '🚚', title: 'Free PAN-India Shipping', desc: 'Secure doorstep delivery for all orders' },
             { icon: '🛡️', title: '5-Year Brand Warranty', desc: 'Comprehensive coverage on materials' },
@@ -307,8 +299,8 @@ export default function HomePage() {
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center space-y-3">
               <span className="text-4xl">{item.icon}</span>
-              <h3 className="font-bold text-white text-base">{item.title}</h3>
-              <p className="text-xs text-white/40 max-w-[200px] leading-relaxed">{item.desc}</p>
+              <h3 className="font-bold text-ink text-base">{item.title}</h3>
+              <p className="text-xs text-ink/40 max-w-[200px] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -316,12 +308,12 @@ export default function HomePage() {
 
       {/* ─── Contact/WhatsApp Expert CTA ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-24">
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-beso-lime/10 via-black to-black border border-beso-lime/20 p-8 sm:p-12 md:p-16 overflow-hidden text-center space-y-6">
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-beso-lime/10 via-app to-app border border-beso-lime/20 p-8 sm:p-12 md:p-16 overflow-hidden text-center space-y-6">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none" />
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-ink tracking-tight">
             Furnishing a Workspace?
           </h2>
-          <p className="text-white/50 max-w-md mx-auto text-sm leading-relaxed">
+          <p className="text-ink/50 max-w-md mx-auto text-sm leading-relaxed">
             Get personalized consultations, bespoke design configurations, and bulk discounts of up to 25% starting from 5+ units.
           </p>
           <a

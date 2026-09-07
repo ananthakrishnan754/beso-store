@@ -101,7 +101,7 @@ export function ProductCard({product}: {product: Product}) {
                 ? 'badge-sale'
                 : product.badge === 'hot'
                   ? 'badge-hot'
-                  : 'bg-white/10 text-white'
+                  : 'bg-ink/10 text-ink'
             }`}
           >
             {product.badge}
@@ -122,22 +122,22 @@ export function ProductCard({product}: {product: Product}) {
         </p>
 
         {/* Product name */}
-        <h3 className="text-sm font-semibold text-white mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
+        <h3 className="text-sm font-semibold text-ink mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
           {product.name}
         </h3>
 
         {/* Tagline - always visible */}
-        <p className="text-xs text-white/40 mb-3 line-clamp-1">
+        <p className="text-xs text-ink/40 mb-3 line-clamp-1">
           {product.tagline}
         </p>
 
         {/* Price + stars - hidden on mobile */}
         <div className="hidden sm:flex items-center gap-2">
-          <span className="text-base font-bold text-white">
+          <span className="text-base font-bold text-ink">
             {formatPrice(product.price)}
           </span>
           {product.originalPrice && (
-            <span className="text-sm text-white/30 line-through">
+            <span className="text-sm text-ink/30 line-through">
               {formatPrice(product.originalPrice)}
             </span>
           )}
@@ -146,12 +146,12 @@ export function ProductCard({product}: {product: Product}) {
           <span className="text-beso-gold text-xs">
             {'\u2605'.repeat(Math.floor(product.rating))}
           </span>
-          <span className="text-xs text-white/30">({product.reviews})</span>
+          <span className="text-xs text-ink/30">({product.reviews})</span>
         </div>
 
         {/* Mobile CTA */}
         <div className="sm:hidden flex items-center justify-between mt-1">
-          <span className="text-sm font-bold text-white">
+          <span className="text-sm font-bold text-ink">
             {formatPrice(product.price)}
           </span>
           <span className="text-[10px] font-bold text-beso-lime uppercase tracking-wider">
