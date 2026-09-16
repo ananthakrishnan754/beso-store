@@ -40,9 +40,8 @@ export function Header() {
           </button>
 
           {/* Logo */}
-          <Link href="/" className="font-extrabold text-xl tracking-tighter text-ink flex items-center gap-1.5 group">
-            <span className="w-6.5 h-6.5 rounded-lg bg-accent text-onAccent flex items-center justify-center font-black text-sm tracking-normal shadow-glow-strong group-hover:scale-105 transition-transform duration-300">B</span>
-            <span className="group-hover:text-beso-lime transition-colors duration-300">BESO</span>
+          <Link href="/" className="flex items-center gap-1.5 group" aria-label="BESO home">
+            <span className="site-logo" role="img" aria-label="BESO" />
           </Link>
 
           {/* Desktop nav */}

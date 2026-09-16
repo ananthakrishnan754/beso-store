@@ -325,6 +325,54 @@ html.theme-switching *::after {
   -webkit-backdrop-filter: blur(20px);
 }
 
+/* ─── Header Brand Logo ────────────────────────────────────────────────────
+ * Per-theme BESO wordmark lockups (designer-made, exact color-matched to each
+ * theme). Swapped purely via the `<html>` `data-theme` attribute, so no JS or
+ * re-render is needed — the swap is instant on theme change.
+ * ───────────────────────────────────────────────────────────────────────── */
+.site-logo {
+  height: 1.9rem;
+  width: auto;
+  aspect-ratio: 2228 / 801;
+  display: block;
+  background-image: url('/assets/images/beso-night-luxe.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.footer-logo {
+  height: 2.5rem;
+  width: auto;
+  aspect-ratio: 2228 / 801;
+  display: block;
+  background-image: url('/assets/images/beso-night-luxe.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+[data-theme="ivory-minimal"] .site-logo { background-image: url('/assets/images/beso-ivory-minimal.png'); }
+[data-theme="nordic-white"] .site-logo { background-image: url('/assets/images/beso-nordic-white.png'); }
+[data-theme="walnut-midcentury"] .site-logo { background-image: url('/assets/images/beso-walnut-midcentury.png'); }
+[data-theme="oak-clean-modern"] .site-logo { background-image: url('/assets/images/beso-oak-clean-modern.png'); }
+[data-theme="coastal-breeze"] .site-logo { background-image: url('/assets/images/beso-coastal-breeze.png'); }
+[data-theme="industrial-loft"] .site-logo { background-image: url('/assets/images/beso-industrial-loft.png'); }
+[data-theme="forest-calm"] .site-logo { background-image: url('/assets/images/beso-forest-calm.png'); }
+[data-theme="bordeaux-velvet"] .site-logo { background-image: url('/assets/images/beso-bordeaux-velvet.png'); }
+[data-theme="graphite-mono"] .site-logo { background-image: url('/assets/images/beso-graphite-mono.png'); }
+
+.footer-logo { background-image: url('/assets/images/beso-night-luxe.png'); }
+[data-theme="ivory-minimal"] .footer-logo { background-image: url('/assets/images/beso-ivory-minimal.png'); }
+[data-theme="nordic-white"] .footer-logo { background-image: url('/assets/images/beso-nordic-white.png'); }
+[data-theme="walnut-midcentury"] .footer-logo { background-image: url('/assets/images/beso-walnut-midcentury.png'); }
+[data-theme="oak-clean-modern"] .footer-logo { background-image: url('/assets/images/beso-oak-clean-modern.png'); }
+[data-theme="coastal-breeze"] .footer-logo { background-image: url('/assets/images/beso-coastal-breeze.png'); }
+[data-theme="industrial-loft"] .footer-logo { background-image: url('/assets/images/beso-industrial-loft.png'); }
+[data-theme="forest-calm"] .footer-logo { background-image: url('/assets/images/beso-forest-calm.png'); }
+[data-theme="bordeaux-velvet"] .footer-logo { background-image: url('/assets/images/beso-bordeaux-velvet.png'); }
+[data-theme="graphite-mono"] .footer-logo { background-image: url('/assets/images/beso-graphite-mono.png'); }
+
 /* ─── Text Gradient ──────────────────────────────────────────────────────── */
 .text-gradient {
   background: linear-gradient(135deg, rgb(var(--ink-rgb)) 0%, rgb(var(--accent-rgb)) 100%);
