@@ -1,13 +1,26 @@
 import Link from 'next/link';
+import fs from 'node:fs';
+import path from 'node:path';
 import products from '@/data/products.json';
 import { notFound } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { Product3DViewer } from '@/components/Product3DViewer';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
+import { productModelUrl } from '@/lib/arModels';
 import type { Metadata } from 'next';
 
 function getProduct(slug: string) {
   return (products as any[]).find((p) => p.slug === slug);
+}
+
+function getModelUrl(slug: string): string | undefined {
+  const url = productModelUrl(slug);
+  const file = path.join(process.cwd(), 'public', url);
+  try {
+    return fs.existsSync(file) ? url : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 function formatPrice(amount: number) {
@@ -113,9 +126,10 @@ export default function ProductDetailPage({
               subcategory={product.subcategory}
               productName={product.name}
               videoUrl={product.video || '/assets/videos/hero-bg.webm'}
+              modelUrl={getModelUrl(product.slug)}
             />
             <p className="text-[10px] text-ink/30 text-center uppercase tracking-widest">
-              Use mode toggle above to switch between 3D Veo Video turntable and Interactive 3D Canvas
+              Use mode toggle above to switch between 3D Veo Video turntable, Interactive 3D Model and 3D Canvas
             </p>
           </div>
 

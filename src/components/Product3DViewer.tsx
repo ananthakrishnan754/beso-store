@@ -16,6 +16,7 @@ interface Product3DViewerProps {
   subcategory: string;
   productName: string;
   videoUrl?: string;
+  modelUrl?: string;
 }
 
 function cssVar(name: string, fallback: string) {
@@ -26,7 +27,7 @@ function cssVar(name: string, fallback: string) {
   return value || fallback;
 }
 
-export function Product3DViewer({ subcategory, productName, videoUrl }: Product3DViewerProps) {
+export function Product3DViewer({ subcategory, productName, videoUrl, modelUrl }: Product3DViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -35,7 +36,24 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
-  const [viewMode, setViewMode] = useState<'canvas' | 'video'>(videoUrl ? 'video' : 'canvas');
+  const [viewMode, setViewMode] = useState<'model' | 'video' | 'canvas'>(videoUrl ? 'video' : 'canvas');
+  const [modelLoaded, setModelLoaded] = useState<boolean | null>(null);
+
+  // Lazy-load @google/model-viewer so it registers <model-viewer> on demand.
+  useEffect(() => {
+    if (viewMode !== 'model') return;
+    let cancelled = false;
+    import('@google/model-viewer')
+      .then(() => {
+        if (!cancelled) setModelLoaded((v) => (v === null ? null : v));
+      })
+      .catch(() => {
+        if (!cancelled) setModelLoaded(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [viewMode]);
 
   const isTable = subcategory.includes('table');
 
@@ -745,6 +763,44 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
     >
       {/* Visual background details */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-beso-lime/10 transition-all duration-500" />
+
+      {/* Mode toggle */}
+      <div className="absolute top-4 right-4 z-30 flex items-center gap-1 rounded-full bg-surface/90 border border-line/10 p-1 shadow-card backdrop-blur-md">
+        {(modelUrl || videoUrl) && (
+          <button
+            type="button"
+            onClick={() => setViewMode('model')}
+            className={`px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider transition ${
+              viewMode === 'model' ? 'bg-accent text-onAccent' : 'text-soft hover:text-ink'
+            }`}
+            aria-pressed={viewMode === 'model'}
+          >
+            3D Model
+          </button>
+        )}
+        {videoUrl && (
+          <button
+            type="button"
+            onClick={() => setViewMode('video')}
+            className={`px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider transition ${
+              viewMode === 'video' ? 'bg-accent text-onAccent' : 'text-soft hover:text-ink'
+            }`}
+            aria-pressed={viewMode === 'video'}
+          >
+            3D Video
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={() => setViewMode('canvas')}
+          className={`px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider transition ${
+            viewMode === 'canvas' ? 'bg-accent text-onAccent' : 'text-soft hover:text-ink'
+          }`}
+          aria-pressed={viewMode === 'canvas'}
+        >
+          Wireframe
+        </button>
+      </div>
       
       {viewMode === 'video' && videoUrl ? (
         <video
@@ -754,6 +810,25 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
           muted
           playsInline
           className="w-full h-full object-cover z-10 rounded-3xl pointer-events-none"
+        />
+      ) : viewMode === 'model' && modelUrl ? (
+        <model-viewer
+          src={modelUrl}
+          alt={productName}
+          auto-rotate
+          rotation-per-second="12deg"
+          camera-controls
+          camera-orbit="20deg 78deg 105%"
+          min-camera-orbit="auto 40deg auto"
+          max-camera-orbit="auto 85deg auto"
+          shadow-intensity="1.2"
+          shadow-softness="0.9"
+          environment-image="neutral"
+          exposure="1.1"
+          className="w-full h-full z-10 rounded-3xl"
+          style={{ backgroundColor: 'transparent' }}
+          onLoad={() => setModelLoaded(true)}
+          onError={() => setModelLoaded(false)}
         />
       ) : (
         /* 3D Canvas element */
@@ -769,7 +844,7 @@ export function Product3DViewer({ subcategory, productName, videoUrl }: Product3
         <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-beso-lime animate-pulse">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
         </svg>
-        {viewMode === 'video' ? 'Interactive 3D Video (Drag or let auto-bounce)' : 'Drag or swipe to rotate 360°'}
+        {viewMode === 'video' ? 'Interactive 3D Video (Drag or let auto-bounce)' : viewMode === 'model' ? (modelLoaded === false ? '3D model failed to load — drag to rotate 360°' : 'Drag to orbit · Scroll to zoom') : 'Drag or swipe to rotate 360°'}
       </div>
 
       {/* Floating Tag */}

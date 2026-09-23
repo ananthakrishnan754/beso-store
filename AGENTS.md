@@ -192,3 +192,65 @@ Verify video playback at:
 - [ ] Upload all videos to correct paths
 - [ ] Update `src/data/products.json` with video paths
 - [ ] Verify video playback on product pages
+
+---
+
+## Phase 5: Realistic 3D Product Models (SF3D image-to-3D)
+
+### 5.1 What this is
+
+Per-product GLB models generated from the client's **real product photos** using
+Stability AI's **Stable Fast 3D (SF3D)** — single-image → textured mesh with
+UV-unwrapped PBR materials (baseColor / metallic / roughness), exported as glTF
+binary. Outputs land at `public/assets/models/products/<slug>.glb`.
+
+**Front-end wiring (DONE):**
+- `src/app/products/[slug]/page.tsx` checks `fs` for `public/assets/models/products/<slug>.glb` and passes `modelUrl` to `Product3DViewer`.
+- `Product3DViewer` gained a **`model` view mode** rendered with `<model-viewer>` (lazy-imported `@google/model-viewer`, already a dependency), alongside the existing `video` and `canvas` (wireframe) modes, with a mode-toggle overlay.
+- Custom element JSX types declared in `src/types/model-viewer.d.ts`.
+- Fallback: products without a GLB simply don't show the "3D Model" toggle (wireframe/video remain).
+
+### 5.2 Approach: procedural CAD-style models (chosen — not AI)
+
+Single-image AI reconstruction (SF3D) was evaluated and **rejected**: the back half
+of furniture is hallucinated from one photo → mushy "blobby" geometry. Final
+approach is **procedural CAD** — clean primitives + PBR materials built in
+Three.js and exported to GLB by `scripts/generate-models.mjs`:
+
+- 13 subcategory builders: executive/manager/staff/visitor/gaming chairs,
+  dining chairs, bar stools, executive/manager/staff/center/height-adjustable
+  tables, and sofa.
+- Consistent premium material palette per subcategory (matte fabric / PU /
+  chrome / brushed steel / walnut / oak / light-oak / marble / brass).
+- `node scripts/generate-models.mjs`            → all 79 products
+- `node scripts/generate-models.mjs --only beso-crown-executive-chair` → one
+- Output: `public/assets/models/products/<slug>.glb` (≈30–60KB each).
+- Models rotate 115° so the camera shows a ¾ front, matching the hero photos.
+- Node 24 has no `FileReader`, which GLTFExporter needs for binary GLB — the
+  script polyfills it via `Blob.arrayBuffer()`.
+
+### 5.3 Regenerate
+
+```bash
+cd /home/ananthakrishnan/oc/beso-store
+node scripts/generate-models.mjs
+npm run build
+# restart next start (see §5.4) so new GLBs are served
+```
+
+### 5.4 Post-generation (IMPORTANT — `next start` snapshots static files)
+
+`next start` only serves static files that existed at startup; global rebuild +
+restart after adding GLBs or they 404:
+```bash
+kill -9 $(ss -ltnp | grep ':3001' | grep -oP 'pid=\K[0-9]+'); \
+  (setsid nohup env PORT=3001 npm start > nohup.out 2>&1 < /dev/null &)
+```
+
+### 5.5 Notes / pitfalls
+
+- Keep the UI's "3D Model" toggle hidden (`modelUrl` undefined) unless the
+  GLB exists — page.tsx checks `fs` before wiring it.
+- SF3D toolchain still exists on the big partition
+  (`/media/ananthakrishnan/C88AA8DB8AA8C6F21/3d-work/`) if richer AI meshes are
+  wanted later (needs waste-free single-angle photos — not the current set).
