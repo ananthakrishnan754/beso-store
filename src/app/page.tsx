@@ -6,6 +6,60 @@ import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { Reveal } from '@/components/Reveal';
 import { MEETING_ROOM } from '@/lib/arModels';
 
+/* ─── Why Choose Us — custom crafted line icons ─── */
+function WhyChooseIcon({ name }: { name: string }) {
+  const common = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    viewBox: '0 0 24 24',
+    className: 'w-5 h-5',
+    'aria-hidden': true,
+  };
+  switch (name) {
+    case 'tag':
+      return (
+        <svg {...common}>
+          <path d="M12.5 3.5h7v7L12 18l-6-6 6.5-8.5z" />
+          <circle cx="16.4" cy="7.6" r="1.2" fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case 'briefcase':
+      return (
+        <svg {...common}>
+          <rect x="3.5" y="8" width="17" height="11.5" rx="2" />
+          <path d="M9 8V6.6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2V8" />
+          <path d="M3.5 12.5h17" />
+        </svg>
+      );
+    case 'body':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="4.6" r="2" />
+          <path d="M5.5 8.5 12 6.5l6.5 2" />
+          <path d="M12 6.5V11l-2.5 3m2.5-3 2.5 3M9.5 14l-1 6.5m-1-6.5L6 20.5M14.5 14l1 6.5m1-6.5 2.5 6.5" />
+        </svg>
+      );
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M12 7.5V12l3 2" />
+        </svg>
+      );
+    case 'shield':
+    default:
+      return (
+        <svg {...common}>
+          <path d="M12 3l7 2.8v5.4c0 4.4-3 8-7 9.8-4-1.8-7-5.4-7-9.8V5.8L12 3z" />
+          <path d="M9.2 12.2l1.9 1.9 3.7-3.7" />
+        </svg>
+      );
+  }
+}
+
 const MARQUEE_TEXT = '✦  ERGO-TECH INNOVATION  ✦  FREE PAN-INDIA DELIVERY  ✦  5-YEAR COMPREHENSIVE WARRANTY  ✦  BIFMA CERTIFIED  ✦  10-DAY RETURN POLICY  ✦  CUSTOMISABLE SETUPS  ✦';
 
 function getFeatured() {
@@ -316,34 +370,84 @@ export default function HomePage() {
 
       {/* ─── Why Choose Us Section ─── */}
       <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 border-t border-line/5">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
-            Why Choose Us
-          </span>
-          <h2 className="text-3xl md:text-4xl font-black text-ink tracking-tight mt-3">
-            Built for serious <span className="text-gradient">procurement</span>
-          </h2>
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div className="max-w-xl">
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
+              Why Choose Us
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-ink tracking-tight leading-tight">
+              Built for serious <span className="text-gradient">procurement</span>
+            </h2>
+            <p className="text-ink/55 text-sm md:text-base mt-4 leading-relaxed">
+              From direct-import pricing to white-glove after-sales, every part of
+              the BESO supply chain is engineered around enterprise furniture buying.
+            </p>
+          </div>
+          <div className="hidden md:flex items-center gap-6 shrink-0">
+            <div className="text-right">
+              <div className="text-3xl font-display font-bold text-ink">12,000<span className="text-brandLime">+</span></div>
+              <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Sq ft warehouse</div>
+            </div>
+            <span className="w-px h-10 bg-line/10" aria-hidden="true" />
+            <div className="text-right">
+              <div className="text-3xl font-display font-bold text-ink">48<span className="text-brandLime">hr</span></div>
+              <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Dispatch turnaround</div>
+            </div>
+            <span className="w-px h-10 bg-line/10" aria-hidden="true" />
+            <div className="text-right">
+              <div className="text-3xl font-display font-bold text-ink">2</div>
+              <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Hyderabad showrooms</div>
+            </div>
+          </div>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {[
-            { title: 'Direct-Import Savings', desc: 'Eliminate middlemen, secure wholesale pricing on premium office and home furniture, boosting your procurement ROI.' },
-            { title: 'B2B-Focused Procurement', desc: 'Streamlined corporate onboarding, flexible credit terms, and custom purchase orders tailored for large-scale fit-outs.' },
-            { title: 'Ergonomic Performance', desc: 'Science-backed chairs and sit-stand desks enhance employee well-being, reduce fatigue, and drive sustained productivity.' },
-            { title: '48-Hour Turnaround', desc: 'With two Hyderabad showrooms and a 12,000 sq ft warehouse, we dispatch and install most orders within two business days.' },
-            { title: 'Dedicated Account Management', desc: 'A single point of contact for order tracking, priority support, and white-glove after-sales care, so your bulk procurements run flawlessly.' },
+            {
+              title: 'Direct-Import Savings',
+              desc: 'Eliminate middlemen and secure wholesale pricing on premium office and home furniture — boosting your procurement ROI.',
+              icon: 'tag',
+              featured: true,
+            },
+            {
+              title: 'B2B-Focused Procurement',
+              desc: 'Streamlined corporate onboarding, flexible credit terms, and custom POs for large-scale fit-outs.',
+              icon: 'briefcase',
+            },
+            {
+              title: 'Ergonomic Performance',
+              desc: 'Science-backed chairs and sit-stand desks that reduce fatigue and drive sustained productivity.',
+              icon: 'body',
+            },
+            {
+              title: '48-Hour Turnaround',
+              desc: 'Dispatch and install most orders within two business days from stock across both showrooms.',
+              icon: 'clock',
+            },
+            {
+              title: 'Dedicated Account Management',
+              desc: 'One point of contact for order tracking, priority support, and white-glove after-sales care.',
+              icon: 'shield',
+            },
           ].map((item, i) => (
-            <div key={i} className="why-card group relative bg-surface border border-line/8 rounded-3xl p-6 transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
-              <div className="flex items-start gap-4">
-                <span className="why-index mt-0.5 w-9 h-9 shrink-0 rounded-full bg-brandLime/10 text-brandLime flex items-center justify-center text-sm font-black transition-transform duration-300 group-hover:scale-110">
-                  {String(i + 1).padStart(2, '0')}
+            <div
+              key={i}
+              className={`why-card group relative bg-surface border border-line/8 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
+                item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-end p-8' : 'p-6'
+              }`}
+            >
+              {item.featured && (
+                <div className="pointer-events-none absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brandLime/8 blur-[70px] transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
+              )}
+              <div className="why-icon relative my-5 inline-flex">
+                <span className="w-11 h-11 rounded-2xl bg-brandLime/10 text-brandLime flex items-center justify-center transition-all duration-300 group-hover:bg-brandLime group-hover:text-[#0c0e10] group-hover:scale-105">
+                  <WhyChooseIcon name={item.icon} />
                 </span>
-                <div>
-                  <h3 className="font-bold text-ink text-base mb-1.5">{item.title}</h3>
-                  <p className="text-xs text-ink/55 leading-relaxed">{item.desc}</p>
-                </div>
               </div>
+              <h3 className="font-bold text-ink text-lg mb-2">{item.title}</h3>
+              <p className="text-sm text-ink/55 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
