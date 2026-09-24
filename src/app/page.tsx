@@ -3,6 +3,7 @@ import HeroVideo from '@/components/HeroVideo';
 import products from '@/data/products.json';
 import { ProductCard } from '@/components/ProductCard';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
+import { Reveal } from '@/components/Reveal';
 import { MEETING_ROOM } from '@/lib/arModels';
 
 const MARQUEE_TEXT = '✦  ERGO-TECH INNOVATION  ✦  FREE PAN-INDIA DELIVERY  ✦  5-YEAR COMPREHENSIVE WARRANTY  ✦  BIFMA CERTIFIED  ✦  10-DAY RETURN POLICY  ✦  CUSTOMISABLE SETUPS  ✦';
@@ -35,27 +36,27 @@ export default function HomePage() {
         {/* Background Video */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <HeroVideo />
-          {/* Vignette & Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-beso-dark via-beso-dark/20 to-transparent" />
-          <div className="absolute inset-0 bg-black/15" />
+          {/* Vignette & Gradients — theme-aware (light video on light themes) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-app via-app/20 to-transparent" />
+          <div className="absolute inset-0 bg-ink/[0.04]" />
         </div>
 
         {/* Ambient background glows */}
-        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-beso-lime/5 rounded-full blur-[140px] pointer-events-none z-0" />
-        <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-white/5 rounded-full blur-[120px] pointer-events-none z-0" />
+        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/10 rounded-full blur-[140px] pointer-events-none z-0" />
+        <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-ink/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink animate-fade-up" style={{animationDelay: '0.05s'}}>
             Pain-Free Working.<br />
             <span className="text-gradient">Max Productivity.</span><br />
             Healthier Living.
           </h1>
           
-          <p className="text-ink/60 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
+          <p className="text-ink/60 text-sm md:text-lg max-w-2xl font-light leading-relaxed animate-fade-up" style={{animationDelay: '0.2s'}}>
             We design state-of-the-art office chairs and height-adjustable desks tailored to support your posture, improve focus, and elevate your space.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center animate-fade-up" style={{animationDelay: '0.35s'}}>
             <Link href="/products" className="btn-beso px-8 py-4 text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center">
               Explore Shop
             </Link>
@@ -75,28 +76,32 @@ export default function HomePage() {
       </section>
 
       {/* ─── Marquee Banner ─── */}
-      <div className="border-y border-line/5 bg-ink/5 py-5 overflow-hidden select-none">
-        <div className="animate-marquee whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] text-ink/25">
+      <div className="border-y border-line/5 bg-ink/4 py-5 overflow-hidden select-none">
+        <div className="animate-marquee whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] text-ink/30">
           {MARQUEE_TEXT} {MARQUEE_TEXT}
         </div>
       </div>
 
       {/* ─── Flagship Spotlight Showcase Cards ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 space-y-16">
-        <div className="text-center space-y-3 mb-16">
-          <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">The Flagship Line</span>
+        <Reveal className="text-center space-y-3 mb-16">
+          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
+            The Flagship Line
+          </span>
           <h2 className="text-3xl md:text-5xl font-black text-ink tracking-tight">
             Engineered for <span className="text-gradient">Ultimate Comfort</span>
           </h2>
           <p className="text-ink/40 max-w-xl mx-auto text-sm">
             Discover the three pillars of premium work ergonomics from BESO.
           </p>
-        </div>
+        </Reveal>
 
         {/* Card 1: BESO Crown (Text Left, Image Right) */}
+        <Reveal>
         <div className="bg-gradient-to-br from-[#122A26] to-[#040C0B] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Signature Flagship Chair</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Signature Flagship Chair</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{crownChair.name}</h3>
             <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Designed for peak performance. Features custom double-layer high-elasticity mesh backing, active pelvic lumbar support, 3D adjustable armrests, and an integrated memory-foam seating pad to cushion long work sessions.
@@ -125,7 +130,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
-            <div className="absolute inset-0 bg-beso-lime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/assets/images/products/executive-chair-07.png" 
@@ -134,11 +139,13 @@ export default function HomePage() {
             />
           </div>
         </div>
+        </Reveal>
 
         {/* Card 2: BESO FlexRise (Image Left, Text Right) */}
+        <Reveal>
         <div className="bg-gradient-to-br from-[#2D1B10] to-[#120B06] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
           <div className="lg:col-span-6 lg:order-2 space-y-6 z-10">
-            <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Smart Standing Desks</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Smart Standing Desks</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{flexRiseTable.name}</h3>
             <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Transform your productivity by switching between sitting and standing seamlessly. Engineered with quiet dual-motors, anti-collision sensors, an elegant solid walnut desktop, and a 4-preset memory digital controller.
@@ -167,7 +174,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
-            <div className="absolute inset-0 bg-beso-lime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-brandLime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/assets/images/products/height-table-01.png" 
@@ -176,11 +183,13 @@ export default function HomePage() {
             />
           </div>
         </div>
+        </Reveal>
 
         {/* Card 3: BESO Prestige (Text Left, Image Right) */}
+        <Reveal>
         <div className="bg-gradient-to-br from-[#241B15] to-[#0F0A08] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Premium Luxury Support</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Premium Luxury Support</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{prestigeChair.name}</h3>
             <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Crafted for leaders. Upholstered in select full-grain Italian leather, featuring adjustable contoured structural segments, luxury padded armrests, and beautiful dark walnut wood spokes lining the polished steel base.
@@ -209,7 +218,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
-            <div className="absolute inset-0 bg-beso-lime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/assets/images/products/executive-chair-04.png" 
@@ -218,14 +227,16 @@ export default function HomePage() {
             />
           </div>
         </div>
+        </Reveal>
       </section>
 
       {/* ─── AR Meeting Room Demo ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#101c10] to-[#060a06] border border-beso-lime/15 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
-          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-beso-lime/5 rounded-full blur-[100px] pointer-events-none" />
+        <Reveal>
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#101c10] to-[#060a06] border border-brandLime/15 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
+          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-brandLime/5 rounded-full blur-[100px] pointer-events-none" />
           <div className="lg:col-span-7 space-y-5 z-10">
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-beso-lime uppercase tracking-[0.25em]">
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-brandLime uppercase tracking-[0.25em]">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>
               New · AR Experience
             </span>
@@ -256,7 +267,7 @@ export default function HomePage() {
               ['Try before you buy', 'Fit the whole setup in your room first'],
             ].map(([title, desc]) => (
               <div key={title} className="flex items-start gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <span className="mt-0.5 w-2 h-2 rounded-full bg-beso-lime shrink-0" />
+                <span className="mt-0.5 w-2 h-2 rounded-full bg-brandLime shrink-0" />
                 <div>
                   <div className="font-semibold text-white text-sm">{title}</div>
                   <div className="text-xs text-white/40">{desc}</div>
@@ -265,30 +276,34 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        </Reveal>
       </section>
 
       {/* ─── Featured Picks Grid ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="text-xs font-bold text-beso-lime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
-            <h2 className="text-3xl font-extrabold text-ink tracking-tight animate-fade-in">
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
+            <h2 className="text-3xl font-extrabold text-ink tracking-tight">
               Featured <span className="text-gradient">Collections</span>
             </h2>
           </div>
-          <Link href="/products" className="text-sm font-bold text-beso-lime hover:text-ink transition-colors flex items-center gap-1">
+          <Link href="/products" className="text-sm font-bold text-brandLime hover:text-ink transition-colors flex items-center gap-1">
             Browse Entire Store <span>→</span>
           </Link>
-        </div>
+        </Reveal>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featured.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <Reveal key={product.id} delay={0.08 * featured.indexOf(product)}>
+              <ProductCard product={product} />
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* ─── Real-time Trust Badges Section ─── */}
+      <Reveal>
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20">
         <div className="bg-ink/4 border border-line/10 rounded-[2.5rem] p-8 sm:p-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 backdrop-blur-sm">
           {[
@@ -297,19 +312,21 @@ export default function HomePage() {
             { icon: '🔁', title: '10-Day Free Returns', desc: 'Zero hassle, standard policy applies' },
             { icon: '🛠️', title: 'Free Expert Setup', desc: 'Hassle-free professional assembly' }
           ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center text-center space-y-3">
-              <span className="text-4xl">{item.icon}</span>
+            <div key={i} className="flex flex-col items-center text-center space-y-3" style={{ ['--d' as string]: `${i * 0.08}s` }}>
+              <span className="text-4xl animate-float" style={{ animationDelay: `${i * 0.4}s` }}>{item.icon}</span>
               <h3 className="font-bold text-ink text-base">{item.title}</h3>
               <p className="text-xs text-ink/40 max-w-[200px] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
+      </Reveal>
 
       {/* ─── Contact/WhatsApp Expert CTA ─── */}
+      <Reveal>
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-24">
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-beso-lime/10 via-app to-app border border-beso-lime/20 p-8 sm:p-12 md:p-16 overflow-hidden text-center space-y-6">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none" />
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-brandLime/10 via-app to-app border border-brandLime/20 p-8 sm:p-12 md:p-16 overflow-hidden text-center space-y-6">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-brandLime/5 rounded-full blur-[80px] pointer-events-none" />
           <h2 className="text-3xl md:text-4xl font-extrabold text-ink tracking-tight">
             Furnishing a Workspace?
           </h2>
@@ -329,6 +346,7 @@ export default function HomePage() {
           </a>
         </div>
       </section>
+      </Reveal>
     </div>
   );
 }

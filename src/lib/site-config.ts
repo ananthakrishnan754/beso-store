@@ -7,7 +7,7 @@ import type {ThemeId} from './themes';
  */
 export const SITE_CONFIG = {
   storeName: 'BESO',
-  defaultTheme: 'night-luxe' as ThemeId,
+  defaultTheme: 'ivory-minimal' as ThemeId,
   themeStorageKey: 'beso-theme',
 };
 

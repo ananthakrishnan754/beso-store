@@ -6,3 +6,4 @@ node_modules/
 .vercel
 Generated Video*.mp4
 .env*
+nohup.out

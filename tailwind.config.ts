@@ -36,6 +36,9 @@ const config: Config = {
         line: 'rgb(var(--line-rgb) / <alpha-value>)',
         'line-strong': 'rgb(var(--line-strong-rgb) / <alpha-value>)',
         glass: 'rgb(var(--glass-rgb) / <alpha-value>)',
+        // Fixed BESO signature lime — independent of theme accent (used on the
+        // dark flagship feature panels that stay dark in every theme).
+        brandLime: 'rgb(var(--brand-lime) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
@@ -51,6 +54,12 @@ const config: Config = {
         marquee: 'marquee 30s linear infinite',
         float: 'float 3s ease-in-out infinite',
         'fade-in': 'fadeIn 0.5s ease-out',
+        'fade-up': 'fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-down': 'fadeDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-scale': 'fadeScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'shimmer': 'shimmer 2.4s linear infinite',
+        'spin-slow': 'spin 8s linear infinite',
+        'pulse-ring': 'pulseRing 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         marquee: {
@@ -64,6 +73,27 @@ const config: Config = {
         fadeIn: {
           '0%': {opacity: '0', transform: 'translateY(20px)'},
           '100%': {opacity: '1', transform: 'translateY(0)'},
+        },
+        fadeUp: {
+          '0%': {opacity: '0', transform: 'translateY(28px)'},
+          '100%': {opacity: '1', transform: 'translateY(0)'},
+        },
+        fadeDown: {
+          '0%': {opacity: '0', transform: 'translateY(-20px)'},
+          '100%': {opacity: '1', transform: 'translateY(0)'},
+        },
+        fadeScale: {
+          '0%': {opacity: '0', transform: 'scale(0.94)'},
+          '100%': {opacity: '1', transform: 'scale(1)'},
+        },
+        shimmer: {
+          '0%': {backgroundPosition: '-200% 0'},
+          '100%': {backgroundPosition: '200% 0'},
+        },
+        pulseRing: {
+          '0%': {boxShadow: '0 0 0 0 var(--glow-strong)'},
+          '70%': {boxShadow: '0 0 0 14px rgba(255,255,255,0)'},
+          '100%': {boxShadow: '0 0 0 0 rgba(255,255,255,0)'},
         },
       },
     },
