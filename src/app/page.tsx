@@ -32,7 +32,7 @@ export default function HomePage() {
     <div className="bg-beso-dark text-ink overflow-hidden min-h-screen flex flex-col">
 
       {/* ─── Hero Section with Video Loop ─── */}
-      <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden">
+      <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden -mt-20">
         {/* Background Video */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <HeroVideo />
