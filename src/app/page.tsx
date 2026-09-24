@@ -2,7 +2,6 @@ import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import products from '@/data/products.json';
 import { ProductCard } from '@/components/ProductCard';
-import { ProductModel3D } from '@/components/ProductModel3D';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { Reveal } from '@/components/Reveal';
 import { MEETING_ROOM } from '@/lib/arModels';
@@ -191,9 +190,11 @@ export default function HomePage() {
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
             <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
-              <ProductModel3D
-                src="/assets/models/products/beso-crown-executive-chair.glb"
-                alt={`${crownChair.name} — interactive 3D model`}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/assets/images/products/executive-chair-07.png" 
+                alt={crownChair.name} 
+                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
               />
             </div>
           </div>
@@ -236,9 +237,11 @@ export default function HomePage() {
           <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
             <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
-              <ProductModel3D
-                src="/assets/models/products/beso-flexrise-height-adjustable-table.glb"
-                alt={`${flexRiseTable.name} — interactive 3D model`}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/assets/images/products/height-table-01.png" 
+                alt={flexRiseTable.name} 
+                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
               />
             </div>
           </div>
@@ -281,9 +284,11 @@ export default function HomePage() {
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
             <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
-              <ProductModel3D
-                src="/assets/models/products/beso-prestige-executive-chair.glb"
-                alt={`${prestigeChair.name} — interactive 3D model`}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/assets/images/products/executive-chair-04.png" 
+                alt={prestigeChair.name} 
+                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
               />
             </div>
           </div>
