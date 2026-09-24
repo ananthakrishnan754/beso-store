@@ -65,7 +65,7 @@ export function ProductCard({product}: {product: Product}) {
       className="product-card group block"
     >
       {/* Image area */}
-      <div className="product-image aspect-square bg-beso-card flex items-center justify-center relative overflow-hidden">
+      <div className="product-image aspect-square bg-[#F4EFE6] flex items-center justify-center relative overflow-hidden">
         {imageSrc ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -117,23 +117,23 @@ export function ProductCard({product}: {product: Product}) {
       {/* Info - Desktop: full details, Mobile: compact */}
       <div className="p-4">
         {/* Subcategory label - hidden on mobile */}
-        <p className="hidden sm:block text-[10px] text-beso-muted uppercase tracking-wider mb-1">
+        <p className="hidden sm:block text-[10px] text-ink/60 uppercase tracking-wider mb-1">
           {product.subcategory.replace(/-/g, ' ')}
         </p>
 
         {/* Product name */}
-        <h3 className="text-sm font-semibold text-ink mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
+        <h3 className="text-sm font-medium text-ink mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
           {product.name}
         </h3>
 
         {/* Tagline - always visible */}
-        <p className="text-xs text-ink/40 mb-3 line-clamp-1">
+        <p className="text-xs text-ink/55 mb-3 line-clamp-1">
           {product.tagline}
         </p>
 
         {/* Price + stars - hidden on mobile */}
-        <div className="hidden sm:flex items-center gap-2">
-          <span className="text-base font-bold text-ink">
+        <div className="hidden sm:flex items-center gap-2 mt-2">
+          <span className="text-base font-semibold text-ink">
             {formatPrice(product.price)}
           </span>
           {product.originalPrice && (
@@ -143,7 +143,7 @@ export function ProductCard({product}: {product: Product}) {
           )}
         </div>
         <div className="hidden sm:flex items-center gap-1 mt-2">
-          <span className="text-beso-gold text-xs">
+          <span className="text-[#D97706] text-xs">
             {'\u2605'.repeat(Math.floor(product.rating))}
           </span>
           <span className="text-xs text-ink/30">({product.reviews})</span>

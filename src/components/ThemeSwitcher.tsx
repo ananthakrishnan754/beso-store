@@ -34,10 +34,23 @@ function Swatch({theme, size = 22}: {theme: Theme; size?: number}) {
   );
 }
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher({variant = 'inline'}: {variant?: 'float' | 'dock' | 'inline'}) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<ThemeId>(DEFAULT_THEME);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  // dock: inline in the desktop header (large screens). inline: usable inside
+  // the mobile drawer. float: legacy bottom pill (no longer rendered).
+  const containerCls =
+    variant === 'dock'
+      ? 'hidden lg:block relative z-[60]'
+      : 'relative z-[60]';
+  const panelCls =
+    variant === 'dock'
+      ? 'absolute right-0 top-full mt-3 w-[19rem] max-h-[min(70vh,560px)] overflow-y-auto rounded-2xl border border-line/10 bg-surface p-2 shadow-card-hover'
+      : 'absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-[19rem] max-h-[min(70vh,560px)] overflow-y-auto rounded-2xl border border-line/10 bg-surface p-2 shadow-card-hover';
+
+  
 
   useEffect(() => {
     const current = typeof document !== 'undefined' ? document.documentElement.dataset.theme : undefined;
@@ -103,14 +116,14 @@ export function ThemeSwitcher() {
 
   return (
     <div
-      className="fixed bottom-5 right-5 z-[60]"
+      className={containerCls}
       ref={panelRef}
     >
       {open && (
         <div
           role="dialog"
           aria-label="Choose a theme"
-          className="absolute bottom-full right-0 mb-3 w-[19rem] max-h-[min(70vh,560px)] overflow-y-auto rounded-2xl border border-line/10 bg-surface p-2 shadow-card-hover"
+          className={panelCls}
         >
           <div className="px-3 pb-2 pt-3">
             <p className="text-sm font-semibold text-ink">Look &amp; feel</p>
@@ -189,7 +202,9 @@ export function ThemeSwitcher() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label="Change theme"
-        className="flex items-center gap-2 rounded-full border border-line/10 bg-surface py-2 pl-3 pr-4 shadow-card-hover transition hover:border-line/20 hover:-translate-y-0.5"
+        className={`flex items-center gap-2 rounded-full border border-line/10 bg-surface shadow-card-hover transition hover:border-line/20 ${
+          variant === 'dock' ? 'h-8 px-3 hover:-translate-y-0.5' : 'w-full py-2.5 pl-3 pr-4'
+        }`}
       >
         <span className="flex items-center -space-x-1.5">
           {THEMES.slice(0, 3).map((t) => (
@@ -200,7 +215,7 @@ export function ThemeSwitcher() {
             />
           ))}
         </span>
-        <span className="text-sm font-medium text-ink">Theme</span>
+        <span className={`text-sm font-medium text-ink ${variant === 'dock' ? 'hidden' : ''}`}>Theme</span>
         <svg
           viewBox="0 0 12 12"
           className={`size-3 text-soft transition-transform ${open ? 'rotate-180' : ''}`}

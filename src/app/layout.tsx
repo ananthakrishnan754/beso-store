@@ -2,7 +2,6 @@ import type {Metadata} from 'next';
 import './globals.css';
 import {Header} from '@/components/Header';
 import {Footer} from '@/components/Footer';
-import {ThemeSwitcher} from '@/components/ThemeSwitcher';
 import {THEMES, type ThemeId} from '@/lib/themes';
 import {DEFAULT_THEME, THEME_STORAGE_KEY} from '@/lib/site-config';
 
@@ -91,7 +90,8 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
-        <ThemeSwitcher />
+        {/* Theme switcher: docked in the desktop header; embedded in the mobile
+            drawer (Header) — no floating pill on any viewport. */}
       </body>
     </html>
   );

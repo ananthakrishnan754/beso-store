@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
+import {ThemeSwitcher} from '@/components/ThemeSwitcher';
 
 const NAV_ITEMS = [
   {label: 'Office', href: '/products?category=office'},
@@ -15,10 +16,30 @@ const NAV_ITEMS = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount] = useState(0);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+
+  // Auto-hide on scroll-down, reveal on scroll-up (desktop). Keeps the slim
+  // floating pill off the content while reading long pages.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const dy = y - lastY.current;
+      if (Math.abs(dy) < 8 || y < 120) {
+        setHidden(false);
+      } else {
+        setHidden(dy > 0);
+      }
+      lastY.current = y;
+    };
+    window.addEventListener('scroll', onScroll, {passive: true});
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <>
-      <header className="glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300">
+      <header className={`glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300 ${hidden ? '-translate-y-[130%]' : ''}`}>
         <div className="w-full flex items-center justify-between">
           {/* Mobile menu button */}
           <button
@@ -59,6 +80,8 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-2">
+            {/* Theme dock — desktop only (mobile keeps the floating pill) */}
+            <ThemeSwitcher variant="dock" />
             {/* Search icon */}
             <Link
               href="/products"
@@ -95,7 +118,7 @@ export function Header() {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <nav className="absolute top-16 left-0 right-0 bg-surface border-b border-line/6 p-6 flex flex-col gap-4">
+          <nav className="absolute top-16 left-0 right-0 bg-surface border-b border-line/6 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
@@ -106,6 +129,9 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <div className="mt-2 border-t border-line/6 pt-4">
+              <ThemeSwitcher variant="dock" />
+            </div>
           </nav>
         </div>
       )}

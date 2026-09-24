@@ -12,6 +12,22 @@ function getUniqueSubcategories() {
   return subs.sort();
 }
 
+const SUB_LABELS: Record<string, string> = {
+  'executive-chair': 'Executive',
+  'manager-chair': 'Manager',
+  'staff-chair': 'Staff',
+  'visitor-chair': 'Visitor',
+  'gaming-chair': 'Gaming',
+  'dining-chair': 'Dining',
+  'bar-stool': 'Stools',
+  'executive-table': 'Exec. Tables',
+  'manager-table': 'Manager Desks',
+  'staff-table': 'Staff Desks',
+  'center-table': 'Center Tables',
+  'height-adjustable-table': 'Standing Desks',
+  sofa: 'Sofas',
+};
+
 export default function ProductsPage({
   searchParams,
 }: {
@@ -49,11 +65,11 @@ export default function ProductsPage({
         </p>
       </div>
 
-      {/* Filter tags */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      {/* Filter tags — horizontal scrollable rail with edge bleed + snap */}
+      <div className="flex gap-2 mb-8 overflow-x-auto px-1 pb-2 -mx-1 no-scrollbar snap-x snap-mandatory scroll-pl-2 scroll-pr-6 [-webkit-overflow-scrolling:touch]">
         <a
           href="/products"
-          className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
+          className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
             !searchParams.category && !searchParams.subcategory
               ? 'bg-beso-lime text-onAccent'
               : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
@@ -63,7 +79,7 @@ export default function ProductsPage({
         </a>
         <a
           href="/products?category=office"
-          className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
+          className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
             searchParams.category === 'office' && !searchParams.subcategory
               ? 'bg-beso-lime text-onAccent'
               : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
@@ -73,7 +89,7 @@ export default function ProductsPage({
         </a>
         <a
           href="/products?category=home"
-          className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
+          className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
             searchParams.category === 'home' && !searchParams.subcategory
               ? 'bg-beso-lime text-onAccent'
               : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
@@ -85,13 +101,13 @@ export default function ProductsPage({
           <a
             key={sub}
             href={`/products?subcategory=${sub}`}
-            className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
+            className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
               searchParams.subcategory === sub
                 ? 'bg-beso-lime text-onAccent'
                 : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
             }`}
           >
-            {sub.replace(/-/g, ' ')}
+            {SUB_LABELS[sub] ?? sub.replace(/-/g, ' ')}
           </a>
         ))}
       </div>

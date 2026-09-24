@@ -25,6 +25,7 @@ const config: Config = {
         app: 'rgb(var(--app-rgb) / <alpha-value>)',
         surface: 'rgb(var(--surface-rgb) / <alpha-value>)',
         'surface-2': 'rgb(var(--surface-2-rgb) / <alpha-value>)',
+        surfaceSubtle: 'rgb(var(--surface-subtle-rgb) / <alpha-value>)',
         ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
         soft: 'rgb(var(--soft-rgb) / <alpha-value>)',
         faint: 'rgb(var(--faint-rgb) / <alpha-value>)',

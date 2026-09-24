@@ -45,6 +45,9 @@ export default function HomePage() {
         <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/10 rounded-full blur-[140px] pointer-events-none z-0" />
         <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-ink/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
+        {/* Mobile-only soft scrim so hero copy stays readable over the chair video */}
+        <div className="md:hidden absolute inset-x-0 bottom-0 h-[85%] z-0 pointer-events-none bg-gradient-to-t from-app via-app/70 to-transparent" />
+
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink animate-fade-up" style={{animationDelay: '0.05s'}}>
             Pain-Free Working.<br />
@@ -52,19 +55,19 @@ export default function HomePage() {
             Healthier Living.
           </h1>
           
-          <p className="text-ink/60 text-sm md:text-lg max-w-2xl font-light leading-relaxed animate-fade-up" style={{animationDelay: '0.2s'}}>
+          <p className="text-ink/70 text-sm md:text-lg max-w-2xl font-light leading-relaxed animate-fade-up" style={{animationDelay: '0.2s'}}>
             We design state-of-the-art office chairs and height-adjustable desks tailored to support your posture, improve focus, and elevate your space.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center animate-fade-up" style={{animationDelay: '0.35s'}}>
-            <Link href="/products" className="btn-beso px-8 py-4 text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center">
+            <Link href="/products" className="bg-ink text-app px-8 py-4 rounded-full text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.98] shadow-card-hover">
               Explore Shop
             </Link>
             <a
               href="https://wa.me/919876543210?text=Hi%20BESO!%20I'm%20interested%20in%20a%20workspace%20consultation."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-pill-outline px-8 py-4 text-xs uppercase tracking-widest font-bold min-w-[200px] inline-flex items-center justify-center gap-2 backdrop-blur-sm"
+              className="border border-ink/20 text-ink/80 px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold min-w-[200px] inline-flex items-center justify-center gap-2 bg-white/50 backdrop-blur-md transition-all hover:bg-white/80 hover:border-ink/35 hover:text-ink"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current shrink-0">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -99,26 +102,27 @@ export default function HomePage() {
 
         {/* Card 1: BESO Crown (Text Left, Image Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#122A26] to-[#040C0B] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
             <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Signature Flagship Chair</span>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{crownChair.name}</h3>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{crownChair.name}</h3>
+            <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Designed for peak performance. Features custom double-layer high-elasticity mesh backing, active pelvic lumbar support, 3D adjustable armrests, and an integrated memory-foam seating pad to cushion long work sessions.
             </p>
-            <p className="text-white/50 text-xs sm:hidden">{crownChair.tagline}</p>
-            <div className="hidden sm:grid grid-cols-2 gap-4 py-2">
-              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <div className="text-[10px] text-white/40 uppercase mb-1">Lumbar support</div>
-                <div className="text-xs md:text-sm font-semibold text-white">Active Synchro-Tracking</div>
+            <p className="text-ink/50 text-xs sm:hidden">{crownChair.tagline}</p>
+            <div className="hidden sm:flex items-center gap-4 py-2">
+              <div className="shrink-0">
+                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Lumbar support</div>
+                <div className="text-xs md:text-sm font-semibold text-ink">Active Synchro-Tracking</div>
               </div>
-              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <div className="text-[10px] text-white/40 uppercase mb-1">Base load</div>
-                <div className="text-xs md:text-sm font-semibold text-white">Up to 150 Kilograms</div>
+              <span className="w-px h-8 bg-line/[0.06]" aria-hidden="true" />
+              <div className="shrink-0">
+                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Base load</div>
+                <div className="text-xs md:text-sm font-semibold text-ink">Up to 150 Kilograms</div>
               </div>
             </div>
             <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${crownChair.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
+              <Link href={`/products/${crownChair.slug}`} className="bg-ink text-app px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wider font-extrabold inline-flex items-center justify-center transition-transform hover:scale-[1.03]">
                 Explore Crown • ₹{crownChair.price.toLocaleString('en-IN')}
               </Link>
               <ViewInYourRoom
@@ -131,38 +135,41 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/assets/images/products/executive-chair-07.png" 
-              alt={crownChair.name} 
-              className="w-full max-w-[420px] object-contain rounded-3xl group-hover:scale-105 transition-transform duration-700 filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-            />
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/assets/images/products/executive-chair-07.png" 
+                alt={crownChair.name} 
+                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
+              />
+            </div>
           </div>
         </div>
         </Reveal>
 
         {/* Card 2: BESO FlexRise (Image Left, Text Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#2D1B10] to-[#120B06] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
           <div className="lg:col-span-6 lg:order-2 space-y-6 z-10">
             <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Smart Standing Desks</span>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{flexRiseTable.name}</h3>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{flexRiseTable.name}</h3>
+            <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Transform your productivity by switching between sitting and standing seamlessly. Engineered with quiet dual-motors, anti-collision sensors, an elegant solid walnut desktop, and a 4-preset memory digital controller.
             </p>
-            <p className="text-white/50 text-xs sm:hidden">{flexRiseTable.tagline}</p>
-            <div className="hidden sm:grid grid-cols-2 gap-4 py-2">
-              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <div className="text-[10px] text-white/40 uppercase mb-1">Height Range</div>
-                <div className="text-xs md:text-sm font-semibold text-white">70 cm to 120 cm</div>
+            <p className="text-ink/50 text-xs sm:hidden">{flexRiseTable.tagline}</p>
+            <div className="hidden sm:flex items-center gap-4 py-2">
+              <div className="shrink-0">
+                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Height Range</div>
+                <div className="text-xs md:text-sm font-semibold text-ink">70 cm to 120 cm</div>
               </div>
-              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <div className="text-[10px] text-white/40 uppercase mb-1">Drive System</div>
-                <div className="text-xs md:text-sm font-semibold text-white">Dual Quiet Motors</div>
+              <span className="w-px h-8 bg-line/[0.06]" aria-hidden="true" />
+              <div className="shrink-0">
+                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Drive System</div>
+                <div className="text-xs md:text-sm font-semibold text-ink">Dual Quiet Motors</div>
               </div>
             </div>
             <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${flexRiseTable.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
+              <Link href={`/products/${flexRiseTable.slug}`} className="bg-ink text-app px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wider font-extrabold inline-flex items-center justify-center transition-transform hover:scale-[1.03]">
                 Configure Setup • ₹{flexRiseTable.price.toLocaleString('en-IN')}
               </Link>
               <ViewInYourRoom
@@ -175,38 +182,41 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/assets/images/products/height-table-01.png" 
-              alt={flexRiseTable.name} 
-              className="w-full max-w-[420px] object-contain rounded-3xl group-hover:scale-105 transition-transform duration-700 filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-            />
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/assets/images/products/height-table-01.png" 
+                alt={flexRiseTable.name} 
+                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
+              />
+            </div>
           </div>
         </div>
         </Reveal>
 
         {/* Card 3: BESO Prestige (Text Left, Image Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#241B15] to-[#0F0A08] border border-white/5 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-glow transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
             <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Premium Luxury Support</span>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight">{prestigeChair.name}</h3>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed hidden sm:block">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{prestigeChair.name}</h3>
+            <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Crafted for leaders. Upholstered in select full-grain Italian leather, featuring adjustable contoured structural segments, luxury padded armrests, and beautiful dark walnut wood spokes lining the polished steel base.
             </p>
-            <p className="text-white/50 text-xs sm:hidden">{prestigeChair.tagline}</p>
-            <div className="hidden sm:grid grid-cols-2 gap-4 py-2">
-              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <div className="text-[10px] text-white/40 uppercase mb-1">Material Trim</div>
-                <div className="text-xs md:text-sm font-semibold text-white">Full-grain Leather</div>
+            <p className="text-ink/50 text-xs sm:hidden">{prestigeChair.tagline}</p>
+            <div className="hidden sm:flex items-center gap-4 py-2">
+              <div className="shrink-0">
+                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Material Trim</div>
+                <div className="text-xs md:text-sm font-semibold text-ink">Full-grain Leather</div>
               </div>
-              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
-                <div className="text-[10px] text-white/40 uppercase mb-1">Details</div>
-                <div className="text-xs md:text-sm font-semibold text-white">Teak & Walnut Accents</div>
+              <span className="w-px h-8 bg-line/[0.06]" aria-hidden="true" />
+              <div className="shrink-0">
+                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Details</div>
+                <div className="text-xs md:text-sm font-semibold text-ink">Teak & Walnut Accents</div>
               </div>
             </div>
             <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${prestigeChair.slug}`} className="btn-beso px-6 sm:px-8 py-3 sm:py-3.5 text-[10px] sm:text-xs uppercase tracking-wider font-extrabold">
+              <Link href={`/products/${prestigeChair.slug}`} className="bg-ink text-app px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wider font-extrabold inline-flex items-center justify-center transition-transform hover:scale-[1.03]">
                 Explore Prestige • ₹{prestigeChair.price.toLocaleString('en-IN')}
               </Link>
               <ViewInYourRoom
@@ -219,12 +229,14 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/assets/images/products/executive-chair-04.png" 
-              alt={prestigeChair.name} 
-              className="w-full max-w-[420px] object-contain rounded-3xl group-hover:scale-105 transition-transform duration-700 filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-            />
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/assets/images/products/executive-chair-04.png" 
+                alt={prestigeChair.name} 
+                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
+              />
+            </div>
           </div>
         </div>
         </Reveal>
@@ -233,17 +245,17 @@ export default function HomePage() {
       {/* ─── AR Meeting Room Demo ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal>
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#101c10] to-[#060a06] border border-brandLime/15 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
-          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-brandLime/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
+          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-brandLime/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="lg:col-span-7 space-y-5 z-10">
             <span className="inline-flex items-center gap-2 text-[10px] font-bold text-brandLime uppercase tracking-[0.25em]">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>
               New · AR Experience
             </span>
-            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-ink tracking-tight">
               Preview a BESO <span className="text-gradient">Meeting Room</span> in Your Own Space
             </h2>
-            <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
+            <p className="text-ink/60 text-sm md:text-base leading-relaxed max-w-xl">
               See a full conference setup — ergonomic chairs around a flagship table — placed at real scale in your
               boardroom, office, or home. Point your phone camera at the floor and walk around it.
             </p>
@@ -255,7 +267,7 @@ export default function HomePage() {
                 size="lg"
                 label="View Meeting Setup in AR"
               />
-              <span className="text-[10px] text-white/30 uppercase tracking-widest">
+              <span className="text-[10px] text-ink/45 uppercase tracking-widest">
                 Works on phone · No app needed
               </span>
             </div>
@@ -266,11 +278,11 @@ export default function HomePage() {
               ['Rotate & inspect', 'Drag to spin — zoom into materials'],
               ['Try before you buy', 'Fit the whole setup in your room first'],
             ].map(([title, desc]) => (
-              <div key={title} className="flex items-start gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-sm">
+              <div key={title} className="flex items-start gap-3 p-4 bg-surface-2/60 border border-line/8 rounded-2xl">
                 <span className="mt-0.5 w-2 h-2 rounded-full bg-brandLime shrink-0" />
                 <div>
-                  <div className="font-semibold text-white text-sm">{title}</div>
-                  <div className="text-xs text-white/40">{desc}</div>
+                  <div className="font-semibold text-ink text-sm">{title}</div>
+                  <div className="text-xs text-ink/50">{desc}</div>
                 </div>
               </div>
             ))}
