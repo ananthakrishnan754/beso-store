@@ -121,8 +121,8 @@ export function ProductCard({product}: {product: Product}) {
           {product.subcategory.replace(/-/g, ' ')}
         </p>
 
-        {/* Product name */}
-        <h3 className="text-sm font-medium text-ink mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
+        {/* Product name — serif display voice for character */}
+        <h3 className="card-title font-display text-base font-semibold text-ink mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
           {product.name}
         </h3>
 
@@ -133,7 +133,7 @@ export function ProductCard({product}: {product: Product}) {
 
         {/* Price + stars - hidden on mobile */}
         <div className="hidden sm:flex items-center gap-2 mt-2">
-          <span className="text-base font-semibold text-ink">
+          <span className="product-price text-base font-bold text-ink">
             {formatPrice(product.price)}
           </span>
           {product.originalPrice && (
@@ -142,11 +142,11 @@ export function ProductCard({product}: {product: Product}) {
             </span>
           )}
         </div>
-        <div className="hidden sm:flex items-center gap-1 mt-2">
-          <span className="text-[#D97706] text-xs">
+        <div className="hidden sm:flex items-center gap-2 mt-2">
+          <span className="text-[#D97706] text-sm">
             {'\u2605'.repeat(Math.floor(product.rating))}
           </span>
-          <span className="text-xs text-ink/30">({product.reviews})</span>
+          <span className="text-xs font-medium text-ink/60">({product.reviews})</span>
         </div>
 
         {/* Mobile CTA */}

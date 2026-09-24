@@ -406,11 +406,15 @@ html.theme-switching *::after {
 
 /* ─── Glass Header ───────────────────────────────────────────────────────── */
 .glass-header {
-  background: rgb(255 255 255 / 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgb(27 28 30 / 0.06);
-  box-shadow: 0 8px 24px rgb(27 28 30 / 0.05);
+  background: rgb(255 255 255 / 0.45);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgb(27 28 30 / 0.08);
+  box-shadow: 0 8px 24px rgb(27 28 30 / 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-header:hover {
+  background: rgb(255 255 255 / 0.62);
 }
 
 /* ─── Header Brand Logo ────────────────────────────────────────────────────
@@ -527,7 +531,7 @@ html.theme-switching *::after {
   background: rgb(var(--surface-rgb));
   border: 1px solid rgb(var(--line-rgb) / 0.07);
   border-radius: 1.5rem;
-  transition: all 0.3s ease;
+  transition: border-color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   overflow: hidden;
 }
 .product-card:hover {
@@ -546,6 +550,64 @@ html.theme-switching *::after {
 }
 .product-card:hover .product-image .overlay {
   opacity: 1;
+}
+
+/* Part B · Product image 'pop' on hover — springy but refined */
+.product-card .product-image img.product-img-element,
+.product-card .product-image .fallback-icon {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+.product-card:hover .product-image img.product-img-element {
+  transform: scale(1.035);
+}
+.product-card:hover .product-image .fallback-icon {
+  transform: scale(1.06);
+}
+
+/* Part B · Price/title 'glance' sharpening on hover */
+.product-card .product-price,
+.product-card .card-title {
+  transition: text-shadow 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.product-card:hover .product-price,
+.product-card:hover .card-title {
+  text-shadow: 0 0 1px rgb(0 0 0 / 0.18);
+}
+
+/* Part B · Header link underline — enter/exit ease */
+.header-link {
+  position: relative;
+}
+.header-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgb(var(--accent-rgb));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.header-link:hover::after,
+.header-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Part B · Feature/service icon — pulsing depth on hover */
+.why-card .why-index,
+.feat-tile .feat-icon {
+  transition: transform 0.3s ease-out, opacity 0.3s linear;
+}
+.why-card:hover .why-index,
+.feat-tile:hover .feat-icon {
+  transform: scale(1.1);
+}
+
+/* Part B · Footer link — soft 200ms fade */
+.footer-link {
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 /* ─── Badge ──────────────────────────────────────────────────────────────── */

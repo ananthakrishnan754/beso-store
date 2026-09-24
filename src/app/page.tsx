@@ -29,12 +29,12 @@ export default function HomePage() {
   const prestigeChair = flagships.find(p => p.id === 4) || products[3];
 
   return (
-    <div className="bg-beso-dark text-ink overflow-hidden min-h-screen flex flex-col">
+    <div className="bg-beso-dark text-ink min-h-screen flex flex-col overflow-x-clip">
 
       {/* ─── Hero Section with Video Loop ─── */}
       <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden -mt-20">
         {/* Background Video */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
+        <div className="absolute inset-0 z-[1] select-none pointer-events-none">
           <HeroVideo />
           {/* Vignette & Gradients — theme-aware (light video on light themes) */}
           <div className="absolute inset-0 bg-gradient-to-t from-app via-app/20 to-transparent" />
@@ -314,20 +314,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── Real-time Trust Badges Section ─── */}
+      {/* ─── Why Choose Us Section ─── */}
       <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20">
-        <div className="bg-ink/4 border border-line/10 rounded-[2.5rem] p-8 sm:p-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 backdrop-blur-sm">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 border-t border-line/5">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
+            Why Choose Us
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-ink tracking-tight mt-3">
+            Built for serious <span className="text-gradient">procurement</span>
+          </h2>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
-            { icon: '🚚', title: 'Free PAN-India Shipping', desc: 'Secure doorstep delivery for all orders' },
-            { icon: '🛡️', title: '5-Year Brand Warranty', desc: 'Comprehensive coverage on materials' },
-            { icon: '🔁', title: '10-Day Free Returns', desc: 'Zero hassle, standard policy applies' },
-            { icon: '🛠️', title: 'Free Expert Setup', desc: 'Hassle-free professional assembly' }
+            { title: 'Direct-Import Savings', desc: 'Eliminate middlemen, secure wholesale pricing on premium office and home furniture, boosting your procurement ROI.' },
+            { title: 'B2B-Focused Procurement', desc: 'Streamlined corporate onboarding, flexible credit terms, and custom purchase orders tailored for large-scale fit-outs.' },
+            { title: 'Ergonomic Performance', desc: 'Science-backed chairs and sit-stand desks enhance employee well-being, reduce fatigue, and drive sustained productivity.' },
+            { title: '48-Hour Turnaround', desc: 'With two Hyderabad showrooms and a 12,000 sq ft warehouse, we dispatch and install most orders within two business days.' },
+            { title: 'Dedicated Account Management', desc: 'A single point of contact for order tracking, priority support, and white-glove after-sales care, so your bulk procurements run flawlessly.' },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center text-center space-y-3" style={{ ['--d' as string]: `${i * 0.08}s` }}>
-              <span className="text-4xl animate-float" style={{ animationDelay: `${i * 0.4}s` }}>{item.icon}</span>
-              <h3 className="font-bold text-ink text-base">{item.title}</h3>
-              <p className="text-xs text-ink/40 max-w-[200px] leading-relaxed">{item.desc}</p>
+            <div key={i} className="why-card group relative bg-surface border border-line/8 rounded-3xl p-6 transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
+              <div className="flex items-start gap-4">
+                <span className="why-index mt-0.5 w-9 h-9 shrink-0 rounded-full bg-brandLime/10 text-brandLime flex items-center justify-center text-sm font-black transition-transform duration-300 group-hover:scale-110">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="font-bold text-ink text-base mb-1.5">{item.title}</h3>
+                  <p className="text-xs text-ink/55 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      </Reveal>
+
+      {/* ─── Reviews / Testimonials ─── */}
+      <Reveal>
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 border-t border-line/5">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
+            Client Reviews
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-ink tracking-tight mt-3">
+            Trusted by <span className="text-gradient">workspaces</span>
+          </h2>
+          <p className="text-ink/55 text-sm mt-3 max-w-xl mx-auto">
+            Real feedback from offices, studios, and teams who furnished with BESO.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { name: 'Rohit Sharma', role: 'Facilities Head · IT Company', quote: 'Ordered 40 ergonomic chairs for our Bengaluru office. White-glove install in two days, invoicing was seamless — clearly a B2B-first partner.', rating: 5 },
+            { name: 'Shreya Iyer', role: 'Studio Owner · Design Firm', quote: 'The FlexRise desks transformed our workstations. Quiet motors, solid walnut, and the team handled fit-out details we never expected.', rating: 5 },
+            { name: 'Arjun Mehta', role: 'Procurement Lead · Consulting', quote: '48-hour turnaround was real. Dedicated point of contact, priority support, and the bulk pricing genuinely beat the market.', rating: 5 },
+          ].map((r, i) => (
+            <div key={i} className="group relative bg-surface border border-line/8 rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
+              <div className="flex items-center gap-1 text-[#D97706]">
+                {Array.from({length: r.rating}).map((_, s) => (
+                  <svg key={s} viewBox="0 0 20 20" className="w-4 h-4 fill-current"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15.3l-5.3 2.8 1-5.8L1.5 7.7l5.9-.9z"/></svg>
+                ))}
+              </div>
+              <p className="text-sm text-ink/70 leading-relaxed">&ldquo;{r.quote}&rdquo;</p>
+              <div className="mt-auto flex items-center gap-3 pt-2 border-t border-line/6">
+                <span className="w-10 h-10 rounded-full bg-surface-2 text-ink/60 flex items-center justify-center font-bold text-sm">
+                  {r.name.split(' ').map((n) => n[0]).join('')}
+                </span>
+                <div>
+                  <div className="text-sm font-bold text-ink">{r.name}</div>
+                  <div className="text-[10px] text-ink/45 uppercase tracking-wide">{r.role}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

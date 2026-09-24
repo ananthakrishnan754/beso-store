@@ -71,7 +71,7 @@ export function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-xs font-semibold uppercase tracking-wider text-ink/60 hover:text-ink transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-beso-lime after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left after:duration-300"
+                className="header-link text-xs font-semibold uppercase tracking-wider text-ink/60 hover:text-ink transition-colors duration-300 py-1"
               >
                 {item.label}
               </Link>
@@ -137,7 +137,7 @@ export function Header() {
       )}
 
       {/* Spacer for fixed header */}
-      <div className="h-20" />
+      <div className="h-20 pointer-events-none" />
     </>
   );
 }

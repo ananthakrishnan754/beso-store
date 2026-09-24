@@ -40,19 +40,19 @@ export function Footer() {
           <div className="space-y-2 text-xs md:text-sm text-ink/50">
             <p>
               Phone:{' '}
-              <a href="tel:+918919317980" className="hover:text-ink transition-colors">
+              <a href="tel:+918919317980" className="footer-link hover:text-ink transition-colors">
                 089193 17980
               </a>
             </p>
             <p>
               WhatsApp:{' '}
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
                 +91 80999 52624
               </a>
             </p>
             <p>
               Store:{' '}
-              <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">
+              <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
                 5-8-91/5, Mahesh Nagar Colony, Abids
               </a>
             </p>
@@ -87,9 +87,9 @@ export function Footer() {
         <div className="space-y-4">
           <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Company</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
-            <a href="https://www.linkedin.com/company/beso-furniture/" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">About Us</a>
+            <a href="https://www.linkedin.com/company/beso-furniture/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">About Us</a>
             <Link href="/products" className="hover:text-ink transition-colors">Store</Link>
-            <a href="https://thebesostore.com/besofurniture-modular-workstation-blog/" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">Blog</a>
+            <a href="https://thebesostore.com/besofurniture-modular-workstation-blog/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Blog</a>
             <Link href="/compare" className="hover:text-ink transition-colors">Compare</Link>
           </nav>
         </div>
@@ -99,9 +99,9 @@ export function Footer() {
           <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Useful Links</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
             <Link href="/contact" className="hover:text-ink transition-colors">Contact Us</Link>
-            <a href="https://thebesostore.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">Privacy Policy</a>
-            <a href="https://thebesostore.com/refund_returns/" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">Returns</a>
-            <a href="https://thebesostore.com/terms-conditions/" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">Terms &amp; Conditions</a>
+            <a href="https://thebesostore.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Privacy Policy</a>
+            <a href="https://thebesostore.com/refund_returns/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Returns</a>
+            <a href="https://thebesostore.com/terms-conditions/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Terms &amp; Conditions</a>
           </nav>
         </div>
 
@@ -128,14 +128,14 @@ export function Footer() {
           </nav>
         </div>
 
-        {/* Column 6: Accessories */}
+        {/* Column 6: Contact/Visit */}
         <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Accessories</h4>
+          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Visit Us</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
-            <span className="text-ink/30 cursor-not-allowed">Cable Organizer</span>
-            <span className="text-ink/30 cursor-not-allowed">Ergonomic Footrest</span>
-            <span className="text-ink/30 cursor-not-allowed">Standing Mat</span>
-            <span className="text-ink/30 cursor-not-allowed">Monitor Arm</span>
+            <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Our Showroom</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">WhatsApp Us</a>
+            <Link href="/products" className="hover:text-ink transition-colors">Browse Catalog</Link>
+            <Link href="/compare" className="hover:text-ink transition-colors">Compare Furniture</Link>
           </nav>
         </div>
 
@@ -160,9 +160,9 @@ export function Footer() {
             &copy; 2025 Furniture Space. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="hover:text-ink transition-colors cursor-not-allowed">Terms & Conditions</span>
-            <span className="hover:text-ink transition-colors cursor-not-allowed">Privacy Policy</span>
-            <span className="hover:text-ink transition-colors cursor-not-allowed">Shipping Policy</span>
+            <a href="https://thebesostore.com/terms-conditions/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Terms &amp; Conditions</a>
+            <a href="https://thebesostore.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Privacy Policy</a>
+            <a href="https://thebesostore.com/refund_returns/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Shipping &amp; Returns</a>
           </div>
         </div>
       </div>

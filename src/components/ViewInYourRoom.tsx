@@ -87,7 +87,6 @@ export function ViewInYourRoom({
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         className={`${btnClasses} ${pad} text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 ${align === 'center' ? 'w-full' : ''}`}
-        style={{ background: variant === 'solid' ? 'var(--accent)' : undefined }}
       >
         {arIcon()}
         <span>{label}</span>
