@@ -36,17 +36,17 @@ export default function HomePage() {
         {/* Background Video */}
         <div className="absolute inset-0 z-[1] select-none pointer-events-none">
           <HeroVideo />
-          {/* Vignette & Gradients — theme-aware (light video on light themes) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-app via-app/20 to-transparent" />
-          <div className="absolute inset-0 bg-ink/[0.04]" />
+          {/* Vignette & Gradients — light-touch only; keeps the video vivid */}
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-app/70 via-app/10 to-transparent" />
+          <div className="absolute inset-0 bg-ink/[0.03]" />
         </div>
 
         {/* Ambient background glows */}
-        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/10 rounded-full blur-[140px] pointer-events-none z-0" />
+        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/8 rounded-full blur-[140px] pointer-events-none z-0" />
         <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-ink/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
         {/* Mobile-only soft scrim so hero copy stays readable over the chair video */}
-        <div className="md:hidden absolute inset-x-0 bottom-0 h-[85%] z-0 pointer-events-none bg-gradient-to-t from-app via-app/70 to-transparent" />
+        <div className="md:hidden absolute inset-x-0 bottom-0 h-2/3 z-0 pointer-events-none bg-gradient-to-t from-app/60 via-app/15 to-transparent" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink animate-fade-up" style={{animationDelay: '0.05s'}}>

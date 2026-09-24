@@ -418,16 +418,17 @@ html.theme-switching *::after {
 }
 
 /* ─── Header Brand Logo ────────────────────────────────────────────────────
- * Per-theme BESO wordmark lockups (designer-made, exact color-matched to each
- * theme). Swapped purely via the `<html>` `data-theme` attribute, so no JS or
- * re-render is needed — the swap is instant on theme change.
+ * Single transparent BESO wordmark (background removed from the client's real
+ * logo). Cream/ivory marks render natively on dark themes; on light themes a
+ * `brightness(0)` filter flips them to ink for contrast. Driven purely by the
+ * `<html>` `data-theme` attribute — instant, no JS.
  * ───────────────────────────────────────────────────────────────────────── */
 .site-logo {
   height: 1.9rem;
   width: auto;
   aspect-ratio: 2228 / 801;
   display: block;
-  background-image: url('/assets/images/beso-night-luxe.png');
+  background-image: url('/assets/images/beso-logo-transparent.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -438,32 +439,39 @@ html.theme-switching *::after {
   width: auto;
   aspect-ratio: 2228 / 801;
   display: block;
-  background-image: url('/assets/images/beso-night-luxe.png');
+  background-image: url('/assets/images/beso-logo-transparent.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-[data-theme="ivory-minimal"] .site-logo { background-image: url('/assets/images/beso-ivory-minimal.png'); }
-[data-theme="nordic-white"] .site-logo { background-image: url('/assets/images/beso-nordic-white.png'); }
-[data-theme="walnut-midcentury"] .site-logo { background-image: url('/assets/images/beso-walnut-midcentury.png'); }
-[data-theme="oak-clean-modern"] .site-logo { background-image: url('/assets/images/beso-oak-clean-modern.png'); }
-[data-theme="coastal-breeze"] .site-logo { background-image: url('/assets/images/beso-coastal-breeze.png'); }
-[data-theme="industrial-loft"] .site-logo { background-image: url('/assets/images/beso-industrial-loft.png'); }
-[data-theme="forest-calm"] .site-logo { background-image: url('/assets/images/beso-forest-calm.png'); }
-[data-theme="bordeaux-velvet"] .site-logo { background-image: url('/assets/images/beso-bordeaux-velvet.png'); }
-[data-theme="graphite-mono"] .site-logo { background-image: url('/assets/images/beso-graphite-mono.png'); }
+/* Light themes — recolor transparent cream marks to ink */
+[data-theme="ivory-minimal"] .site-logo,
+[data-theme="nordic-white"] .site-logo,
+[data-theme="walnut-midcentury"] .site-logo,
+[data-theme="oak-clean-modern"] .site-logo,
+[data-theme="coastal-breeze"] .site-logo,
+[data-theme="ivory-minimal"] .footer-logo,
+[data-theme="nordic-white"] .footer-logo,
+[data-theme="walnut-midcentury"] .footer-logo,
+[data-theme="oak-clean-modern"] .footer-logo,
+[data-theme="coastal-breeze"] .footer-logo {
+  filter: brightness(0) saturate(100%);
+}
 
-.footer-logo { background-image: url('/assets/images/beso-night-luxe.png'); }
-[data-theme="ivory-minimal"] .footer-logo { background-image: url('/assets/images/beso-ivory-minimal.png'); }
-[data-theme="nordic-white"] .footer-logo { background-image: url('/assets/images/beso-nordic-white.png'); }
-[data-theme="walnut-midcentury"] .footer-logo { background-image: url('/assets/images/beso-walnut-midcentury.png'); }
-[data-theme="oak-clean-modern"] .footer-logo { background-image: url('/assets/images/beso-oak-clean-modern.png'); }
-[data-theme="coastal-breeze"] .footer-logo { background-image: url('/assets/images/beso-coastal-breeze.png'); }
-[data-theme="industrial-loft"] .footer-logo { background-image: url('/assets/images/beso-industrial-loft.png'); }
-[data-theme="forest-calm"] .footer-logo { background-image: url('/assets/images/beso-forest-calm.png'); }
-[data-theme="bordeaux-velvet"] .footer-logo { background-image: url('/assets/images/beso-bordeaux-velvet.png'); }
-[data-theme="graphite-mono"] .footer-logo { background-image: url('/assets/images/beso-graphite-mono.png'); }
+/* Dark themes — keep the native cream marks */
+[data-theme="night-luxe"] .site-logo,
+[data-theme="industrial-loft"] .site-logo,
+[data-theme="forest-calm"] .site-logo,
+[data-theme="bordeaux-velvet"] .site-logo,
+[data-theme="graphite-mono"] .site-logo,
+[data-theme="night-luxe"] .footer-logo,
+[data-theme="industrial-loft"] .footer-logo,
+[data-theme="forest-calm"] .footer-logo,
+[data-theme="bordeaux-velvet"] .footer-logo,
+[data-theme="graphite-mono"] .footer-logo {
+  filter: none;
+}
 
 /* ─── Text Gradient ──────────────────────────────────────────────────────── */
 .text-gradient {
