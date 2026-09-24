@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {useEffect, useRef, useState} from 'react';
+import {useState} from 'react';
 import {ThemeSwitcher} from '@/components/ThemeSwitcher';
 
 const NAV_ITEMS = [
@@ -16,30 +16,10 @@ const NAV_ITEMS = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount] = useState(0);
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
-
-  // Auto-hide on scroll-down, reveal on scroll-up (desktop). Keeps the slim
-  // floating pill off the content while reading long pages.
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const onScroll = () => {
-      const y = window.scrollY;
-      const dy = y - lastY.current;
-      if (Math.abs(dy) < 8 || y < 120) {
-        setHidden(false);
-      } else {
-        setHidden(dy > 0);
-      }
-      lastY.current = y;
-    };
-    window.addEventListener('scroll', onScroll, {passive: true});
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   return (
     <>
-      <header className={`glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300 ${hidden ? '-translate-y-[130%]' : ''}`}>
+      <header className={`glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300`}>
         <div className="w-full flex items-center justify-between">
           {/* Mobile menu button */}
           <button
