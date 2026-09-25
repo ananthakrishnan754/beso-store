@@ -45,7 +45,7 @@ export function Product3DViewer({
   const hasModel = Boolean(modelUrl);
 
   return (
-    <div className="relative w-full aspect-square md:aspect-[4/3] bg-app/60 border border-line/4 rounded-3xl overflow-hidden select-none">
+    <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden select-none" style={{backgroundColor: '#f5f5db'}}>
       {/* subtle ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none" />
 
