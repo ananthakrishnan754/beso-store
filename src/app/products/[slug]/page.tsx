@@ -31,6 +31,11 @@ function formatPrice(amount: number) {
   }).format(amount);
 }
 
+/** Normalize a store-relative asset path to a root-relative URL. */
+function assetUrl(p: string): string {
+  return p.startsWith('/') ? p : `/${p}`;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -126,7 +131,7 @@ export default function ProductDetailPage({
               subcategory={product.subcategory}
               productName={product.name}
               modelUrl={getModelUrl(product.slug)}
-              poster={product.image}
+              poster={assetUrl(product.image)}
             />
             <p className="text-[10px] text-ink/40 text-center uppercase tracking-widest">
               Drag to rotate · {getModelUrl(product.slug) ? 'Tap 3D to explore' : ''}
@@ -233,7 +238,7 @@ export default function ProductDetailPage({
               subcategory={product.subcategory}
               slug={product.slug}
               productName={product.name}
-              poster={product.image}
+              poster={assetUrl(product.image)}
               variant="solid"
               size="lg"
               align="center"
