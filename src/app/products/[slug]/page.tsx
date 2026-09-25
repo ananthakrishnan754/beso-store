@@ -231,6 +231,7 @@ export default function ProductDetailPage({
             {/* AR: View in Your Room */}
             <ViewInYourRoom
               subcategory={product.subcategory}
+              slug={product.slug}
               productName={product.name}
               poster={product.image}
               variant="solid"

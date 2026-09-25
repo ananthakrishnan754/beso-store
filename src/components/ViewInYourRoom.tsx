@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { createElement } from 'react';
-import { getProductModel, type ARModel } from '@/lib/arModels';
+import { resolveProductModel, type ARModel } from '@/lib/arModels';
 
 type ViewInYourRoomProps = {
   /** Product subcategory — resolved to an AR model via lib/arModels. */
   subcategory?: string;
+  /** Product slug — resolved to the detailed per-product GLB when available. */
+  slug?: string;
   /** Explicit model override (e.g. the composed meeting-room scene). */
   model?: ARModel;
   productName?: string;
@@ -27,6 +29,7 @@ function arIcon() {
 
 export function ViewInYourRoom({
   subcategory,
+  slug,
   model,
   productName = 'this product',
   poster,
@@ -35,7 +38,7 @@ export function ViewInYourRoom({
   size = 'md',
   label = 'View in Your Room',
 }: ViewInYourRoomProps) {
-  const resolved: ARModel | null = model ?? (subcategory ? getProductModel(subcategory) : null);
+  const resolved: ARModel | null = model ?? resolveProductModel(slug, subcategory);
   const [open, setOpen] = useState(false);
   const [viewer, setViewer] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
 

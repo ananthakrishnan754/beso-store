@@ -181,6 +181,7 @@ export default function HomePage() {
               </Link>
               <ViewInYourRoom
                 subcategory={crownChair.subcategory}
+                slug={crownChair.slug}
                 productName={crownChair.name}
                 poster={crownChair.image}
                 label="View in Your Room"
@@ -228,6 +229,7 @@ export default function HomePage() {
               </Link>
               <ViewInYourRoom
                 subcategory={flexRiseTable.subcategory}
+                slug={flexRiseTable.slug}
                 productName={flexRiseTable.name}
                 poster={flexRiseTable.image}
                 label="View in Your Room"
@@ -275,6 +277,7 @@ export default function HomePage() {
               </Link>
               <ViewInYourRoom
                 subcategory={prestigeChair.subcategory}
+                slug={prestigeChair.slug}
                 productName={prestigeChair.name}
                 poster={prestigeChair.image}
                 label="View in Your Room"
