@@ -141,20 +141,6 @@ export default function ProductDetailPage({
           {/* Right Column: Info & Setup */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              {product.badge && (
-                <span
-                  className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 ${
-                    product.badge === 'sale'
-                      ? 'badge-sale'
-                      : product.badge === 'hot'
-                        ? 'badge-hot'
-                        : 'bg-ink/10 text-ink'
-                  }`}
-                >
-                  {product.badge}
-                </span>
-              )}
-
               <h1 className="text-3xl font-extrabold text-ink tracking-tight leading-tight mb-2">
                 {product.name}
               </h1>
