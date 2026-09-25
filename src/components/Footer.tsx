@@ -4,17 +4,8 @@ const WHATSAPP_URL =
   'https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20your%20furniture.';
 
 export function Footer() {
-  const footerMarqueeText = '#WORKBETTER #LIVEBETTER #BESOFIT #WORKBETTER #LIVEBETTER #BESOFIT #WORKBETTER #LIVEBETTER #BESOFIT';
-
   return (
     <footer className="bg-beso-dark text-ink border-t border-line/6 select-none">
-      {/* ─── Scrolling Footer Marquee ─── */}
-      <div className="border-b border-line/6 bg-ink/10 py-4 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap text-xs font-bold uppercase tracking-[0.3em] text-ink/20">
-          {footerMarqueeText} {footerMarqueeText}
-        </div>
-      </div>
-
       {/* ─── Brand Row ─── */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-2">
         <span className="footer-logo block" role="img" aria-label="BESO" />

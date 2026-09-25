@@ -50,8 +50,12 @@ export function Product3DViewer({
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none" />
 
       {!show3d ? (
-        // ── Image view (default) ──
+        // ── Image view (default) — large silhouette, floor shadow ──
         <>
+          <div
+            className="absolute inset-x-8 bottom-6 h-12 rounded-[50%] pointer-events-none"
+            style={{background: 'radial-gradient(55% 100% at 50% 50%, rgba(27,28,30,0.10), transparent 70%)'}}
+          />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={poster ?? ''}

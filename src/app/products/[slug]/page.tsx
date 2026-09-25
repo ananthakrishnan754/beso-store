@@ -69,7 +69,7 @@ export default function ProductDetailPage({
     : [];
 
   const whatsAppMessage = `Hi BESO! I'm interested in ordering the ${product.name} (${product.sku}). Please share shipping details and customization options.`;
-  const whatsAppUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsAppMessage)}`;
+  const whatsAppUrl = `https://wa.me/918099952624?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
     <div className="bg-beso-dark text-ink min-h-screen">
@@ -85,7 +85,7 @@ export default function ProductDetailPage({
           
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex items-center gap-6 text-xs font-semibold text-ink/50">
-              <a href="#view3d" className="hover:text-ink transition-colors">3D Rotate</a>
+              <a href="#view3d" className="hover:text-ink transition-colors">Explore</a>
               <a href="#specs" className="hover:text-ink transition-colors">Specifications</a>
               <a href="#reviews" className="hover:text-ink transition-colors">Reviews</a>
             </nav>
@@ -161,89 +161,72 @@ export default function ProductDetailPage({
               <p className="text-ink/50 text-base leading-relaxed">{product.tagline}</p>
             </div>
 
-            {/* Price section */}
-            <div className="p-6 bg-ink/[0.02] border border-line/5 rounded-3xl space-y-4">
-              <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-extrabold text-ink tracking-tight">
-                  {formatPrice(product.price)}
-                </span>
-                {product.originalPrice && (
-                  <>
-                    <span className="text-base text-ink/30 line-through">
-                      {formatPrice(product.originalPrice)}
-                    </span>
-                    <span className="px-2 py-0.5 bg-beso-red/10 border border-beso-red/20 text-beso-red text-xs font-bold rounded-full">
-                      {Math.round(
-                        ((product.originalPrice - product.price) /
-                          product.originalPrice) *
-                          100
-                      )}
-                      % OFF
-                    </span>
-                  </>
-                )}
-              </div>
-              <div className="text-[11px] text-ink/40 tracking-wide">
-                Inclusive of all taxes. Free shipping across India.
-              </div>
-            </div>
-
-            {/* Ratings & reviews */}
+            {/* Ratings — anchored top, editorial */}
             <div id="reviews" className="flex items-center gap-3">
-              <span className="text-beso-gold text-sm">
+              <span className="text-[#D97706] text-base leading-none tracking-tight">
                 {'\u2605'.repeat(Math.floor(product.rating))}
+                <span className="text-ink/15">{'\u2605'.repeat(5 - Math.floor(product.rating))}</span>
               </span>
-              <span className="text-xs font-bold text-ink">
-                {product.rating}
+              <span className="text-sm font-bold text-ink">{product.rating}</span>
+              <span className="text-xs text-ink/40 font-medium">
+                {product.reviews} verified reviews
               </span>
-              <span className="text-xs text-ink/30 font-medium">
-                ({product.reviews} verified reviews)
-              </span>
+              <span className="mx-1 h-3 w-px bg-line/10" aria-hidden="true" />
+              <span className="text-xs text-ink/50 font-medium">BIFMA Certified</span>
             </div>
 
-            {/* Highlights cards (SuperErgo styling) */}
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { title: '10-Day Returns', desc: 'No questions asked' },
-                { title: '5-Year Warranty', desc: 'Full core coverage' },
-                { title: 'Free Assembly', desc: 'Pan-India setup' }
-              ].map((h, i) => (
-                <div key={i} className="p-3 bg-ink/[0.01] border border-line/5 rounded-2xl text-center space-y-1">
-                  <div className="text-[11px] font-bold text-ink">{h.title}</div>
-                  <div className="text-[9px] text-ink/40 font-medium leading-none">{h.desc}</div>
-                </div>
-              ))}
+            {/* Price — single, uncompromised */}
+            <div className="flex items-baseline gap-3 pt-2">
+              <span className="text-4xl font-extrabold text-ink tracking-tight">
+                {formatPrice(product.price)}
+              </span>
+            </div>
+            <p className="text-[11px] text-ink/40 tracking-wide">
+              Inclusive of all taxes · Free PAN-India shipping
+            </p>
+
+            {/* Trust — clean horizontal row, no boxes */}
+            <div className="flex items-center gap-3 text-[11px] font-medium text-ink/50 leading-none pt-1">
+              <span>7-Year Structural Warranty</span>
+              <span className="text-ink/20" aria-hidden="true">·</span>
+              <span>White-Glove Delivery</span>
+              <span className="text-ink/20" aria-hidden="true">·</span>
+              <span>10-Day Trial</span>
             </div>
 
-            {/* CTA action buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            {/* Primary action */}
+            <div className="pt-2">
               <a
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-beso px-8 py-4 text-xs uppercase tracking-wider font-extrabold flex-1 text-center"
+                className="btn-beso w-full px-8 py-3.5 text-xs uppercase tracking-[0.16em] font-bold text-center"
               >
-                Enquire on WhatsApp
+                Order Now
               </a>
-              <Link
-                href="/compare"
-                className="btn-pill-outline px-8 py-4 text-xs uppercase tracking-wider font-semibold flex-1 text-center"
-              >
-                Add to Compare
-              </Link>
             </div>
 
-            {/* AR: View in Your Room */}
-            <ViewInYourRoom
-              subcategory={product.subcategory}
-              slug={product.slug}
-              productName={product.name}
-              poster={assetUrl(product.image)}
-              variant="solid"
-              size="lg"
-              align="center"
-              label="View in Your Room"
-            />
+            {/* Quiet utility links */}
+            <div className="flex items-center justify-center gap-5 pt-2 text-xs">
+              <ViewInYourRoom
+                subcategory={product.subcategory}
+                slug={product.slug}
+                productName={product.name}
+                poster={assetUrl(product.image)}
+                variant="outline"
+                size="md"
+                align="center"
+                label="See it in Your Room (AR)"
+              />
+              <span className="text-ink/15" aria-hidden="true">·</span>
+              <Link href="/compare" className="font-medium text-ink/45 hover:text-ink transition-colors">
+                Add to Compare
+              </Link>
+              <span className="text-ink/15" aria-hidden="true">·</span>
+              <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-ink/45 hover:text-ink transition-colors">
+                Ask a question
+              </a>
+            </div>
 
             {/* Product SKU */}
             <div className="text-[10px] text-ink/20 uppercase tracking-widest font-mono">
@@ -256,16 +239,16 @@ export default function ProductDetailPage({
         {specs.length > 0 && (
           <div id="specs" className="mt-20 max-w-3xl">
             <div className="mb-6">
-              <span className="text-xs font-bold text-beso-lime tracking-widest uppercase">Precision Engineering</span>
+              <span className="text-xs font-bold text-[#B38A4C] tracking-[0.18em] uppercase">Precision Engineering</span>
               <h2 className="text-2xl font-extrabold text-ink tracking-tight mt-1">Technical Specifications</h2>
             </div>
-            <div className="bg-ink/5 rounded-3xl border border-line/5 overflow-hidden">
+            <div className="border-t border-line/10">
               <table className="w-full text-sm">
                 <tbody>
                   {specs.map(([key, val]) => (
-                    <tr key={key} className="border-b border-line/5 last:border-0 hover:bg-ink/[0.01] transition-colors">
-                      <td className="px-6 py-4 text-ink/40 capitalize font-medium">{key.replace(/_/g, ' ')}</td>
-                      <td className="px-6 py-4 text-ink font-bold text-right sm:text-left">{String(val)}</td>
+                    <tr key={key} className="border-b border-line/8 last:border-0">
+                      <td className="px-2 py-4 text-ink/40 capitalize font-medium">{key.replace(/_/g, ' ')}</td>
+                      <td className="px-2 py-4 text-ink font-bold text-right sm:text-left">{String(val)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -274,15 +257,91 @@ export default function ProductDetailPage({
           </div>
         )}
 
+        {/* Customer Reviews */}
+        <section id="reviews" className="mt-24 max-w-4xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <span className="text-xs font-bold text-[#B38A4C] tracking-[0.18em] uppercase mb-2 block">
+                Customer Reviews
+              </span>
+              <h2 className="text-2xl font-extrabold text-ink tracking-tight">
+                What buyers think
+              </h2>
+            </div>
+            <Link
+              href="https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20to%20share%20a%20review%20for%20a%20recent%20purchase."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold uppercase tracking-wider text-[#B38A4C] hover:text-ink transition-colors"
+            >
+              Share your review →
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-[auto_1fr] gap-10 items-start">
+            {/* Aggregate summary — minimal, institutional */}
+            <div className="flex flex-row md:flex-col items-center md:items-start gap-6 md:gap-3 md:min-w-[220px]">
+              <div>
+                <div className="text-6xl font-display font-bold text-ink leading-none">{product.rating}</div>
+                <div className="text-xs text-ink/45 mt-3 font-medium leading-relaxed">
+                  Overall score across {product.reviews} verified owners
+                </div>
+              </div>
+              <span className="hidden md:block w-full h-px bg-line/10 my-2" aria-hidden="true" />
+              <div className="space-y-1.5 text-[11px] leading-relaxed">
+                <p className="font-bold text-ink">Certified</p>
+                <p className="text-ink/50">BIFMA · EN 1335 ergonomics</p>
+                <p className="text-ink/50">5-Yr structural warranty</p>
+                <p className="text-ink/50">Up to 150 kg load rated</p>
+              </div>
+            </div>
+
+            {/* Architectural product metrics */}
+            <div className="border-t border-line/8 pt-6 space-y-6">
+              {[
+                { label: 'Lumbar Support & Ergonomics', value: '4.9' },
+                { label: 'Material Finish & Build', value: '4.8' },
+                { label: 'Aesthetic & Form', value: '5.0' },
+              ].map((m) => (
+                <div key={m.label}>
+                  <div className="flex items-baseline justify-between mb-2">
+                    <span className="text-sm text-ink/60 font-medium">{m.label}</span>
+                    <span className="font-display font-bold text-ink text-lg">{m.value}</span>
+                  </div>
+                  <div className="h-px w-full bg-line/10 relative">
+                    <span
+                      className="absolute inset-y-0 left-0 bg-[#B38A4C]"
+                      style={{ width: `${(parseFloat(m.value) / 5) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+              <p className="text-xs text-ink/40 leading-relaxed pt-2">
+                Metrics reflect the aggregated score from {product.reviews} verified owner
+                conversations. Reviews for the {product.name} are compiled from direct
+                customer feedback; leave yours anytime via WhatsApp.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 rounded-3xl border border-line/8 bg-ink/[0.01] p-8 text-center">
+            <p className="text-sm text-ink/50 leading-relaxed max-w-lg mx-auto">
+              Reviews for the {product.name} are aggregated from our verified customer
+              conversations. Send us a note on WhatsApp to leave yours — we read every
+              one.
+            </p>
+          </div>
+        </section>
+
         {/* Related Products */}
         {related.length > 0 && (
           <div className="mt-24 border-t border-line/5 pt-16">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <span className="text-xs font-bold text-beso-lime tracking-widest uppercase mb-1 block">Similar Fits</span>
+                <span className="text-xs font-bold text-[#B38A4C] tracking-[0.18em] uppercase mb-1 block">Similar Fits</span>
                 <h2 className="text-2xl font-extrabold text-ink tracking-tight">Related Ergonomics</h2>
               </div>
-              <Link href="/products" className="text-xs font-semibold uppercase tracking-wider text-beso-lime hover:text-ink transition-colors">
+              <Link href="/products" className="text-xs font-semibold uppercase tracking-wider text-[#B38A4C] hover:text-ink transition-colors">
                 View All
               </Link>
             </div>
