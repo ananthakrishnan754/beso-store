@@ -56,7 +56,7 @@ export function Product3DViewer({
           <img
             src={poster ?? ''}
             alt={productName}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
           {hasModel && (
             <button
