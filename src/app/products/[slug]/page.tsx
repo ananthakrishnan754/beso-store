@@ -120,16 +120,16 @@ export default function ProductDetailPage({
 
         {/* Product presentation */}
         <div className="grid lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Interactive 3D Rotator */}
+          {/* Left Column: Product image + 3D viewer */}
           <div id="view3d" className="lg:col-span-7 space-y-4">
             <Product3DViewer
               subcategory={product.subcategory}
               productName={product.name}
-              videoUrl={product.video || '/assets/videos/hero-bg.webm'}
               modelUrl={getModelUrl(product.slug)}
+              poster={product.image}
             />
-            <p className="text-[10px] text-ink/30 text-center uppercase tracking-widest">
-              Use mode toggle above to switch between 3D Veo Video turntable, Interactive 3D Model and 3D Canvas
+            <p className="text-[10px] text-ink/40 text-center uppercase tracking-widest">
+              Drag to rotate · {getModelUrl(product.slug) ? 'Tap 3D to explore' : ''}
             </p>
           </div>
 
