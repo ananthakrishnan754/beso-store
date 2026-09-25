@@ -6,47 +6,47 @@ import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { Reveal } from '@/components/Reveal';
 import { MEETING_ROOM } from '@/lib/arModels';
 
-/* ─── Why Choose Us — custom crafted line icons ─── */
+/* ─── Why Choose Us — premium crafted line icons ─── */
 function WhyChooseIcon({ name }: { name: string }) {
   const common = {
     fill: 'none',
     stroke: 'currentColor',
-    strokeWidth: 1.6,
+    strokeWidth: 1.8,
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
     viewBox: '0 0 24 24',
-    className: 'w-5 h-5',
+    className: 'w-6 h-6',
     'aria-hidden': true,
   };
   switch (name) {
     case 'tag':
       return (
         <svg {...common}>
-          <path d="M12.5 3.5h7v7L12 18l-6-6 6.5-8.5z" />
-          <circle cx="16.4" cy="7.6" r="1.2" fill="currentColor" stroke="none" />
+          <path d="M12.5 3.5h7v7L12 17.5 5.5 11 12.5 3.5z" />
+          <circle cx="16" cy="7.2" r="1.3" fill="currentColor" stroke="none" />
         </svg>
       );
     case 'briefcase':
       return (
         <svg {...common}>
-          <rect x="3.5" y="8" width="17" height="11.5" rx="2" />
-          <path d="M9 8V6.6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2V8" />
-          <path d="M3.5 12.5h17" />
+          <rect x="3.2" y="7.8" width="17.6" height="12" rx="2.2" />
+          <path d="M8.5 7.8V6.4a2.2 2.2 0 0 1 2.2-2.2h2.6a2.2 2.2 0 0 1 2.2 2.2v1.4" />
+          <path d="M3.2 12.4h17.6M8.8 12.4v1.8h6.4v-1.8" />
         </svg>
       );
     case 'body':
       return (
         <svg {...common}>
-          <circle cx="12" cy="4.6" r="2" />
-          <path d="M5.5 8.5 12 6.5l6.5 2" />
-          <path d="M12 6.5V11l-2.5 3m2.5-3 2.5 3M9.5 14l-1 6.5m-1-6.5L6 20.5M14.5 14l1 6.5m1-6.5 2.5 6.5" />
+          <circle cx="12" cy="4.4" r="2.1" />
+          <path d="M5.4 8.6 12 6.4l6.6 2.2" />
+          <path d="M12 6.4v4.6l-2.6 3m2.6-3 2.6 3M9.4 14l-1 6.6M8.8 16l-2.6 4.6M14.6 14l1 6.6M15.2 16l2.6 4.6" />
         </svg>
       );
     case 'clock':
       return (
         <svg {...common}>
-          <circle cx="12" cy="12" r="8.5" />
-          <path d="M12 7.5V12l3 2" />
+          <circle cx="12" cy="12" r="8.8" />
+          <path d="M12 7.4V12l3.2 2.2M12 3.2v1.6M20.8 12h-1.6" />
         </svg>
       );
     case 'shield':
@@ -54,7 +54,7 @@ function WhyChooseIcon({ name }: { name: string }) {
       return (
         <svg {...common}>
           <path d="M12 3l7 2.8v5.4c0 4.4-3 8-7 9.8-4-1.8-7-5.4-7-9.8V5.8L12 3z" />
-          <path d="M9.2 12.2l1.9 1.9 3.7-3.7" />
+          <path d="M9 12.2l2 2 4-4" />
         </svg>
       );
   }
@@ -438,18 +438,27 @@ export default function HomePage() {
             <div
               key={i}
               className={`why-card group relative bg-surface border border-line/8 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
-                item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-end p-8' : 'p-6'
+                item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-end p-8' : 'p-7'
               }`}
             >
+              {/* Ghost index number watermark */}
+              <span
+                className="pointer-events-none absolute top-4 right-5 text-6xl font-display font-bold text-ink/[0.05] select-none"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
               {item.featured && (
                 <div className="pointer-events-none absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brandLime/8 blur-[70px] transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
               )}
-              <div className="why-icon relative my-5 inline-flex">
-                <span className="w-11 h-11 rounded-2xl bg-brandLime/10 text-brandLime flex items-center justify-center transition-all duration-300 group-hover:bg-brandLime group-hover:text-[#0c0e10] group-hover:scale-105">
+
+              <div className="why-icon relative inline-flex mb-6">
+                <span className="w-14 h-14 rounded-2xl bg-brandLime/10 text-brandLime flex items-center justify-center ring-1 ring-inset ring-brandLime/15 transition-all duration-300 group-hover:bg-brandLime group-hover:text-[#0c0e10] group-hover:scale-105 group-hover:shadow-[0_8px_24px_rgba(163,230,53,0.35)]">
                   <WhyChooseIcon name={item.icon} />
                 </span>
               </div>
-              <h3 className="font-bold text-ink text-lg mb-2">{item.title}</h3>
+              <h3 className="font-bold text-ink text-xl mb-2.5 leading-snug">{item.title}</h3>
               <p className="text-sm text-ink/55 leading-relaxed">{item.desc}</p>
             </div>
           ))}
