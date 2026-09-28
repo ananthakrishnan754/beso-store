@@ -98,7 +98,7 @@ export function Header() {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <nav className="absolute top-16 left-0 right-0 bg-surface border-b border-line/6 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] flex flex-col gap-4">
+          <nav className="absolute top-[4.75rem] left-0 right-0 bg-surface border-b border-line/6 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}

@@ -42,3 +42,28 @@ Media upload uses staged uploads (wired in a later pass; local files in
 ## Architecture reference
 Authoritative plan: `tech-stack-flow.html` (Shopify = source of truth; Next.js
 API routes = middleware → Zoho Books + Shiprocket).
+## ✅ LIVE STATUS (2026-09) — store online, catalog imported on OUR account
+
+Store: **beso-furniture-dev.myshopify.com** (plan: Basic App Development / free dev)
+App: **BESO Catalog Sync** (Dev Dashboard id 428438257665, Client ID `f50129b58ac29ab8fa75607e670cbd60`)
+Auth: OAuth installed — Admin API token in `.env.local` (`SHOPIFY_ADMIN_TOKEN`, `shpat_...`).
+
+**Imported:** all 79 products (+ variants priced, ACTIVE). **Images:** all 79 attached (via REST
+`/products/{id}/images.json` from `https://beso-store-v2.vercel.app/assets/...`).
+Verified via Admin GraphQL (products=79, with-image=79).
+
+### MIGRATION to the client's account (when they hand over Shopify credentials)
+1. Client creates/logs into their Shopify store; add us as collaborator (Staff), or
+   transfer ownership (Settings → Users → Transfer ownership) after handover.
+2. Recreate the app or authorize our app on their store → new `SHOPIFY_ADMIN_TOKEN`.
+3. Re-run the import against their store with the new token:
+   ```
+   SHOPIFY_SHOP=<client-shop>.myshopify.com SHOPIFY_TOKEN=<new-token> node scripts/shopify-import.mjs
+   SHOPIFY_SHOP=<client-shop> SHOPIFY_TOKEN=<new-token> node scripts/shopify-import.mjs --media
+   ```
+4. Swap `.env.local` values; redeploy. Product data lives in Shopify (source of truth);
+   `src/data/products.json` is the offline SSG fallback and matches the import.
+
+### API surface
+- `GET /api/shopify-products` → returns product list from Shopify Admin GraphQL,
+  falling back to `products.json` when no token / network error.
