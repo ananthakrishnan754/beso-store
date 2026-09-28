@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { THEMES } from '@/lib/themes';
 
-const DEFAULT_HERO_VIDEO = '/assets/videos/hero-bg.webm';
+const DEFAULT_HERO_VIDEO = '/assets/videos/hero-bg-ivory.webm';
 const DEFAULT_BASE = DEFAULT_HERO_VIDEO.replace(/\.(webm|mp4)$/i, '');
 
 const HERO_VIDEO_BY_ID = THEMES.reduce<Record<string, string>>((acc, theme) => {
