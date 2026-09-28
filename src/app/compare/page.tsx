@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import products from '@/data/products.json';
 import type {Metadata} from 'next';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
@@ -30,6 +30,14 @@ export default function ComparePage() {
   const [selected, setSelected] = useState<number[]>([]);
   const [search, setSearch] = useState('');
 
+  // Load the persisted compare list (written by "Add to Compare" on PDPs).
+  useEffect(() => {
+    try {
+      const cur = JSON.parse(localStorage.getItem('beso-compare') || '[]');
+      if (Array.isArray(cur) && cur.length) setSelected(cur.map(Number));
+    } catch { /* ignore */ }
+  }, []);
+
   const filtered = ALL.filter(
     (p) =>
       !search ||
@@ -40,13 +48,19 @@ export default function ComparePage() {
   const selectedProducts = ALL.filter((p) => selected.includes(p.id));
 
   const toggle = (id: number) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
+    setSelected((prev) => {
+      const next = prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id].slice(-4);
+      try { localStorage.setItem('beso-compare', JSON.stringify(next)); } catch { /* ignore */ }
+      return next;
+    });
   };
 
   const remove = (id: number) => {
-    setSelected((prev) => prev.filter((i) => i !== id));
+    setSelected((prev) => {
+      const next = prev.filter((i) => i !== id);
+      try { localStorage.setItem('beso-compare', JSON.stringify(next)); } catch { /* ignore */ }
+      return next;
+    });
   };
 
   return (

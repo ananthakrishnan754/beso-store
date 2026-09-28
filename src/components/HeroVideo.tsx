@@ -13,16 +13,19 @@ const HERO_VIDEO_BY_ID = THEMES.reduce<Record<string, string>>((acc, theme) => {
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [base, setBase] = useState(DEFAULT_BASE);
+  // Initialize directly from the current `data-theme` (set by the FOUC guard in
+  // the <head> BEFORE React hydrates), so the very first paint already shows the
+  // correct theme video — never a flash of the old default (hero-bg) first.
+  const resolveBase = () => {
+    if (typeof document === 'undefined') return DEFAULT_BASE;
+    const theme = document.documentElement.getAttribute('data-theme');
+    const src = (theme && HERO_VIDEO_BY_ID[theme]) || DEFAULT_HERO_VIDEO;
+    return src.replace(/\.(webm|mp4)$/i, '');
+  };
+  const [base, setBase] = useState<string>(() => resolveBase());
 
   useEffect(() => {
-    const sync = () => {
-      const theme = document.documentElement.dataset.theme;
-      const src = (theme && HERO_VIDEO_BY_ID[theme]) || DEFAULT_HERO_VIDEO;
-      const nextBase = src.replace(/\.(webm|mp4)$/i, '');
-      setBase((prev) => (prev === nextBase ? prev : nextBase));
-    };
-
+    const sync = () => setBase(resolveBase());
     sync();
     const observer = new MutationObserver(sync);
     observer.observe(document.documentElement, {
@@ -30,6 +33,7 @@ export default function HeroVideo() {
       attributeFilter: ['data-theme'],
     });
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

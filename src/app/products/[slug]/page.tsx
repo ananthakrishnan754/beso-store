@@ -5,6 +5,7 @@ import products from '@/data/products.json';
 import { notFound } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { Product3DViewer } from '@/components/Product3DViewer';
+import { CheckoutButton } from '@/components/CheckoutButton';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { productModelUrl } from '@/lib/arModels';
 import type { Metadata } from 'next';
@@ -180,16 +181,13 @@ export default function ProductDetailPage({
               <span>10-Day Trial</span>
             </div>
 
-            {/* Primary action */}
+            {/* Primary action — Shopify checkout (WhatsApp fallback until checkout is live) */}
             <div className="pt-2">
-              <a
-                href={whatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-beso w-full px-8 py-3.5 text-xs uppercase tracking-[0.16em] font-bold text-center"
-              >
-                Order Now
-              </a>
+              <CheckoutButton
+                sku={product.sku}
+                fallbackHref={whatsAppUrl}
+                label="Order Now"
+              />
             </div>
 
             {/* Quiet utility links */}
@@ -205,7 +203,20 @@ export default function ProductDetailPage({
                 label="See it in Your Room (AR)"
               />
               <span className="text-ink/15" aria-hidden="true">·</span>
-              <Link href="/compare" className="font-medium text-ink/45 hover:text-ink transition-colors">
+              <Link
+                href="/compare"
+                onClick={() => {
+                  // Persist this product in the compare list (localStorage).
+                  try {
+                    const cur = JSON.parse(localStorage.getItem('beso-compare') || '[]');
+                    if (!cur.includes(product.id)) {
+                      const next = [...cur, product.id].slice(-4);
+                      localStorage.setItem('beso-compare', JSON.stringify(next));
+                    }
+                  } catch { /* ignore */ }
+                }}
+                className="font-medium text-ink/45 hover:text-ink transition-colors"
+              >
                 Add to Compare
               </Link>
               <span className="text-ink/15" aria-hidden="true">·</span>

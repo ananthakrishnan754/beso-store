@@ -148,6 +148,20 @@ async function main() {
       done++;
       continue;
     }
+    if (process.argv.includes('--skus')) {
+      // Sync variant SKUs (needed for cart resolution + fulfillment)
+      const q = await gql(`query($h: String!){ productByHandle(handle: $h){ id variants(first: 1){ nodes { id } } } }`, { h: p.slug });
+      const prod = q.productByHandle;
+      if (!prod) { console.warn(`   ! not found: ${p.slug}`); continue; }
+      const vid = prod.variants?.nodes?.[0]?.id;
+      if (vid) {
+        const sku = p.sku ?? `BESO-${String(p.id).padStart(4, '0')}`;
+        await gql(`mutation($pid: ID!, $variants: [ProductVariantsBulkInput!]!) { productVariantsBulkUpdate(productId: $pid, variants: $variants) { productVariants { id sku } userErrors { field message } } }`, { pid: prod.id, variants: [{ id: vid, inventoryItem: { sku } }] });
+        console.log(`   ✓ ${p.slug} sku=${sku}`);
+      }
+      done++;
+      continue;
+    }
     if (!justMedia) {
       console.log(`[${done + 1}/${products.length}] ${p.slug} — ${p.name}`);
       if (dryRun) { console.log('   [dry-run]', product.title); done++; continue; }

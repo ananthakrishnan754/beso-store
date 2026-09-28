@@ -67,3 +67,58 @@ Verified via Admin GraphQL (products=79, with-image=79).
 ### API surface
 - `GET /api/shopify-products` → returns product list from Shopify Admin GraphQL,
   falling back to `products.json` when no token / network error.
+
+## ✅ GO-LIVE CHECKLIST (paid merchant plan — unlocks checkout/payments)
+
+The current store is on free **Basic App Development** — it can hold the catalog but
+**cannot process checkouts/payments** (`/cart` and `/checkout` are behind a password
+wall and payment/fulfillment APIs need merchant approval). When the client provides
+their live paid Shopify store, complete these in order:
+
+### 1. Make the store shoppable
+- Upgrade to a paid plan (Basic ₹2,899/mo or higher) OR use the client's store.
+- Remove the password wall: Settings → Store details → Online store → **Remove password**.
+
+### 2. Payments — Razorpay
+- Shopify App Store → **Razorpay** app → install → connect Razorpay merchant account.
+- Settings → Payments → set **Razorpay** as the primary payment provider
+  (activate card/UPI/netbanking). Shopify Payments works too if preferred.
+
+### 3. Storefront API token (headless checkout from this Next.js site)
+Dev Dashboard or Store admin → enable **Storefront API** → create a **Storefront access
+token** with read of product listings + cart/checkout write. Then set in `.env.local`:
+```
+SHOPIFY_STOREFRONT_URL=https://<shop>.myshopify.com/api/2025-01/graphql.json
+SHOPIFY_STOREFRONT_TOKEN=<token>
+```
+Once set, `GET /api/shopify-checkout { sku, quantity }` returns a real
+`checkoutUrl` and the **Order Now** button routes through Shopify checkout
+(Razorpay at the till) instead of the WhatsApp fallback.
+
+### 4. Zoho (CRM + ERP / invoicing + inventory)
+- **Zoho CRM** (leads/opportunities from `Explore`/WhatsApp enquires): map the
+  Shopify webhook `customers/create` + `orders/create` → Zoho CRM.
+- **Zoho Inventory / Books**: install the **Zoho Inventory–Shopify** connector
+  (app in both stores) → sync SKUs/stock between Shopify and Zoho Inventory;
+  Zoho Books for GST invoices on order webhook.
+
+### 5. Order tracking (inside Shopify + customer comms)
+- Shopify **native**: Orders → details per order → **Mark as fulfilled** → add
+  tracking number + carrier → Shopify emails/countdown to the customer
+  (Settings → Notifications → order status events).
+- **Athena/Shiprocket** "Shopify tracking integration": ships + tracking from
+  India carriers, pushes tracking to Shopify so customers see it on the order page.
+- Set default carrier + packing slips in Settings → Shipping & delivery.
+
+### 6. Re-derive tokens + re-run import on the client store
+```
+SHOPIFY_SHOP=<client-shop>.myshopify.com SHOPIFY_TOKEN=<new-admin-token> node scripts/shopify-import.mjs
+SHOPIFY_SHOP=... SHOPIFY_TOKEN=... node scripts/shopify-import.mjs --media --skus
+```
+Swap `.env.local`, redeploy to Vercel. Products/orders then all run from Shopify.
+
+### Buttons (current state)
+- **Order Now** → `POST /api/shopify-checkout` → Shopify checkout URL (live on paid
+  store); WhatsApp fallback while dev store is password-walled. ✅ wired
+- Enquire/Ask a question → WhatsApp (correct — those are enquiries, not orders).
+- Add to Compare / See it in Your Room / Explore / Reviews → in-app, working.

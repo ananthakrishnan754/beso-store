@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const WHATSAPP_URL =
-  'https://wa.me/919876543210?text=Hi%20BESO!%20I%27m%20interested%20in%20your%20furniture.';
+  'https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20your%20furniture.';
 
 const CONTACT_OPTIONS = [
   {
@@ -104,7 +104,7 @@ export default function ContactPage() {
           offer volume discounts starting at 5 units.
         </p>
         <a
-          href="https://wa.me/919876543210?text=Hi!%20I%27m%20interested%20in%20a%20bulk%20order%20for%20BESO%20furniture."
+          href="https://wa.me/918099952624?text=Hi!%20I%27m%20interested%20in%20a%20bulk%20order%20for%20BESO%20furniture."
           target="_blank"
           rel="noopener noreferrer"
           className="btn-beso px-8 py-3 text-sm inline-block"
