@@ -118,13 +118,22 @@ export default function ComparePage() {
   const [pinned, setPinned] = useState<number | null>(null);
   const tableRef = useRef<HTMLDivElement>(null);
 
-  // Load persisted compare list + ?compare=ids URL support for shareable links.
+  // Load persisted compare list + ?compare=ids + ?add=id URL support.
   useEffect(() => {
     let ids: number[] = [];
     try { ids = JSON.parse(localStorage.getItem('beso-compare') || '[]').map(Number); } catch { /* */ }
     const params = new URLSearchParams(window.location.search);
     const q = params.get('compare');
     if (q) { try { ids = q.split(',').map(Number); } catch { /* */ } }
+    const add = params.get('add');
+    if (add) {
+      const n = Number(add);
+      if (Number.isFinite(n) && !ids.includes(n)) ids = [...ids, n].slice(-MAX);
+      // Clean the ?add= param from the URL after consuming it.
+      const u = new URL(window.location.href);
+      u.searchParams.delete('add');
+      window.history.replaceState(null, '', u.toString());
+    }
     if (ids.length) setSelected(ids.slice(0, MAX));
   }, []);
 

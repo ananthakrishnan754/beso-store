@@ -204,17 +204,7 @@ export default function ProductDetailPage({
               />
               <span className="text-ink/15" aria-hidden="true">·</span>
               <Link
-                href="/compare"
-                onClick={() => {
-                  // Persist this product in the compare list (localStorage).
-                  try {
-                    const cur = JSON.parse(localStorage.getItem('beso-compare') || '[]');
-                    if (!cur.includes(product.id)) {
-                      const next = [...cur, product.id].slice(-4);
-                      localStorage.setItem('beso-compare', JSON.stringify(next));
-                    }
-                  } catch { /* ignore */ }
-                }}
+                href={`/compare?add=${product.id}`}
                 className="font-medium text-ink/45 hover:text-ink transition-colors"
               >
                 Add to Compare
