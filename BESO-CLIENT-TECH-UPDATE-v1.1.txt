@@ -1,0 +1,374 @@
+# BESO Store — Technical Implementation & Development Update
+
+Version: 1.1 · Prepared for client review
+Companion guide: this document is also stored in-repo as `SHOPIFY.md` (dev/migration notes)
+and `AGENTS.md` (pipeline documentation).
+
+================================================================================
+1. PROJECT ARCHITECTURE
+================================================================================
+
+BESO Store is a modern **headless e-commerce** architecture: the customer-facing
+storefront is fully controlled by us, while Shopify remains the **system of
+record** for catalog + commerce.
+
+Frontend stack (verified in package.json / build):
+
+  • Next.js 14 (App Router)
+  • React 18 / React Server Components (RSC)
+  • TypeScript strict
+  • Tailwind CSS (custom semantic tokens, not stock class soup)
+  • Three.js + @google/model-viewer (3D + AR)
+  • Deployed to Vercel (auto-build from Git push)
+
+Production URL:  https://beso-store-v2.vercel.app
+Repo:            beso-store (GitHub) — every change is committed and deployed.
+
+Backend-of-record:
+
+  • Shopify  — products, variants, SKUs, prices, images, inventory, status,
+               cart/checkout infrastructure, orders, fulfilment
+  • Razorpay — planned payment provider (production Shopify store)
+  • Zoho     — planned CRM / Inventory / Books (GST + accounting)
+
+Architecture flow:
+
+  Customer → Next.js Storefront → Next.js API layer → Shopify / Razorpay / Zoho
+
+================================================================================
+2. HEADLESS COMMERCE MODEL
+================================================================================
+
+We deliberately do NOT use Shopify's Liquid theme. Next.js renders 100% of the UI.
+
+Shopify owns (via Admin GraphQL):
+  products, variants, sku, price, compareAtPrice, images, inventoryPolicy,
+  status (ACTIVE/DRAFT), metafields (namespace "beso": rating, reviews,
+  subcategory)
+
+Next.js owns: presentation, UX, theming, animation, comparison, SEO metadata,
+and integration orchestration (auth, validation, credentials, error handling).
+
+Why: this gives us full control over UX/performance/discovery and makes future
+integrations (Razorpay, Zoho) a service-layer concern rather than a template
+override.
+
+================================================================================
+3. NEXT.JS APP ARCHITECTURE
+================================================================================
+
+  • App Router with a hybrid Server/Client split.
+  • React Server Components (RSC) fetch catalog data server-side — no API token
+    ever ships to the browser.
+  • Client components are used only for interactivity:
+      - theme switching (ThemeSwitcher)
+      - comparison tray + selection
+      - "Explore 3D" model-viewer mount
+      - mobile nav drawer
+      - localStorage sync
+      - animation/reveal triggers
+
+================================================================================
+4. SHOPIFY INTEGRATION (CONFIGURED, VERIFIED END-TO-END)
+================================================================================
+
+  • Dev store:  beso-furniture-dev.myshopify.com  (free Basic App Development)
+  • App:        "BESO Catalog Sync" (Dev Dashboard app id 428438257665)
+  • Auth:       OAuth installed → Admin API token
+  • Admin GraphQL: verified E2E (products, variants, images, metafields)
+
+Credentials are injected as Vercel environment variables (never client-side):
+  SHOPIFY_SHOP, SHOPIFY_ADMIN_TOKEN  (+ SHOPIFY_STOREFRONT_URL/TOKEN slots)
+
+================================================================================
+5. CATALOGUE MIGRATION — 79 PRODUCTS (COMPLETE)
+================================================================================
+
+Import tool: scripts/shopify-import.mjs (Admin GraphQL + REST)
+
+Steps executed:
+  1. productCreate                       — create product (handle = slug)
+  2. productVariantsBulkUpdate           — price, compareAtPrice, inventoryPolicy
+  3. variant SKU sync (inventoryItem)    — SKU per product (cart/fulfilment key)
+  4. status → ACTIVE
+  5. image upload (REST /products/{id}/images.json, Vercel-hosted asset)
+  6. CDN hosting (Shopify cdn.shopify.com) + re-verification
+
+Verification (Admin GraphQL):
+  products = 79
+  products with image = 79 / 79
+  products without live SKU = 0
+  sample variant: BESO-EC-001, ₹34990.00 ACTIVE
+
+Result: the storefront no longer depends on manually-maintained frontend catalog
+data; local JSON is only an offline fallback that mirrors the import.
+
+================================================================================
+6. LIVE PRODUCT DATA PIPELINE (VERIFIED)
+================================================================================
+
+Endpoint:  GET /api/shopify-products
+  → Admin GraphQL (pagination via cursor), transforms to storefront schema
+  → offline fallback to src/data/products.json on network error / missing token
+
+Resilience model:
+  Shopify GraphQL (primary) → Local JSON (fallback) → Next.js render
+
+Live check: endpoint returns the full 79-product list (names, CDN image URLs,
+prices, rating metafields) — confirmed against the deployed Vercel build.
+
+================================================================================
+7. SHOPIFY CHECKOUT ARCHITECTURE (BUILT; READY FOR PAID STORE)
+================================================================================
+
+Endpoint:  POST /api/shopify-checkout  { sku, quantity }
+Flow:
+  SKU → resolve Shopify ProductVariant (Admin GraphQL, query "sku:")
+       → cartCreate (Storefront GraphQL) → checkoutUrl → customer checkout
+
+Security: variant resolution + cart creation happen server-side; browser never
+sees Shopify credentials.
+
+Status: variant resolution verified live (returns gid://.../ProductVariant/...).
+Full checkout URL requires a Storefront API token + paid store (see §8).
+
+================================================================================
+8. DEVELOPMENT ACCOUNT LIMITATION (PLATFORM FACT, NOT ENGINEERING)
+================================================================================
+
+Shopify's free **Basic App Development** plan is password-walled and cannot
+process real payments/checkout (payment + fulfilment APIs require merchant
+approval). This is a Shopify licensing constraint, not a code gap.
+
+Go-live prerequisites (documented in SHOPIFY.md):
+  1. Client's paid Shopify store (or upgrade this one)
+  2. Production Storefront API token
+  3. Razorpay app install + set as primary payment provider
+  4. Production domain
+  5. Zoho credentials + API config
+  6. Order webhooks → Inventory/Books connector
+  7. Shiprocket/logistics config
+  8. End-to-end order + payment testing
+
+The frontend does NOT need to be rebuilt for this transition — only env values
+and a re-run of the import against the client store:
+
+  SHOPIFY_SHOP=<client-shop>.myshopify.com \
+  SHOPIFY_TOKEN=<new-admin-token> node scripts/shopify-import.mjs
+  ... node scripts/shopify-import.mjs --media --skus
+
+================================================================================
+9. RAZORPAY INTEGRATION ARCHITECTURE (PLANNED)
+================================================================================
+
+  BESO Store → Shopify Cart → Shopify Checkout → Razorpay → Order → Zoho
+
+Razorpay is a Shopify-side payment app; the headless Next.js storefront stays
+the presentation layer. Dev store currently blocks payment validation.
+
+================================================================================
+10. ZOHO CRM / ERP INTEGRATION (PLANNED)
+================================================================================
+
+  • Zoho CRM — leads from product enquiries, "Ask a question", contact forms
+  • Zoho Inventory / Books — SKU sync, stock sync, order sync, GST invoicing
+
+Planned path (integration-layer owned):
+  Shopify Order Webhook → Next.js API layer → Zoho Inventory / Books
+(credentials/transformations stay server-side)
+
+================================================================================
+11. ORDER TRACKING & FULFILMENT (PLANNED)
+================================================================================
+
+  Order → Shopify → Fulfilment → Tracking number → Customer notification
+  + Shiprocket for Indian logistics/carriers.
+
+================================================================================
+12. PRODUCT DETAIL PAGE (PDP) — HIGH-END PRESENTATION
+================================================================================
+
+Split-grid layout: large image + 3D, buy module (price/trust/CTA), specs,
+reviews, related.
+
+Image handling:
+  • object-fit: contain  (no cropping — full silhouette preserved)
+  • letterbox color matched to the studio background (#F5F5DB) so bars are
+    invisible
+  • image aspect preserved (ratio ~0.88) inside a ~1.33 frame
+
+================================================================================
+13. 3D PRODUCT VIEWER + AR
+================================================================================
+
+  • @google/model-viewer lazy-mounted on "Explore 3D"
+  • Studio backdrop + floor shadow; auto-rotate, drag/orbit, AR where supported
+  • Isolated from purchase flow — products without 3D assets simply don't show
+    the button
+  • Catalog 3D models are generated (image-to-3D pipeline) and colorized
+    per-subcategory — see AGENTS.md Phase 5
+
+================================================================================
+14. PURCHASE MODULE
+================================================================================
+
+  • Single uncompromised price (no discount pills/strikethrough)
+  • One dominant primary "Order Now" (Shopify checkout; WhatsApp fallback in dev)
+  • Trust row: 7-Year Structural Warranty · White-Glove Delivery · 10-Day Trial
+  • Quiet utilities: AR, Compare, Ask a question
+
+================================================================================
+15-18. PRODUCT COMPARISON — CUSTOM, RESEARCH-BACKED
+================================================================================
+
+  • Selection tray: sticky, thumbnails, ×remove, "n/4 selected", Clear+Compare
+  • Picker: search + category-filter pills, disabled at max 4
+  • Table: sticky "Feature" column, ☆ Best Rated badge, price+MRP, star rating
+    + review count, per-product AR + View Product CTAs
+  • Grouped spec sections: Overview / Pricing / Ratings / Specifications
+  • "Only show differences" toggle (bronze dot on differing rows)
+  • State: URL `?compare=7,4,21` + localStorage `beso-compare`
+  • Add from PDP: `?add=<id>` (server-component-safe)
+
+================================================================================
+19-21. THEME ENGINE
+================================================================================
+
+  • 10 theme configs (light/dark/mood) driven entirely by CSS custom properties
+    (--app-rgb, --ink-rgb, --accent-rgb, --surface-*, --line-*, --glass …)
+  • FOUC prevention: data-theme set in <head> before first paint
+  • Default: Ivory Minimal (bg #F7F4EF, ink #1B1C1E, bronze #B38A4C, brand lime)
+  • Serif display type, hairline rules, restrained accents — intentionally not
+    "generic AI template"
+
+================================================================================
+22-24. RESPONSIVE + HERO + MOTION
+================================================================================
+
+  • Theme control: docked in desktop header, embedded in mobile drawer
+  • Hero video: per-theme studio clip; default = light ivory on both desktop &
+    mobile (initial-state fix prevents dark-frame flash)
+  • Motion system: scroll-reveal + stagger, springy image pop, button shimmer,
+    header-underline easing, icon depth pulses — all prefers-reduced-motion safe
+
+================================================================================
+25. WHY CHOOSE US / BRAND SECTION
+================================================================================
+
+Custom section: hand-drawn icon set, ghost index numerals, enterprise stats
+band (12,000+ sq ft · 48-hr dispatch · 2 showrooms), brand messaging.
+
+================================================================================
+26-27. API MIDDLEWARE + SECURITY
+================================================================================
+
+  • All privileged calls flow: Browser → Next.js → Shopify/Razorpay/Zoho
+  • Central auth / validation / transformation / error handling / logging
+  • Shopify Admin token is a Vercel env var — never in client JS
+
+================================================================================
+28-29. PERFORMANCE + SEO
+================================================================================
+
+  • RSC + static pre-render; minimal client JS
+  • Server-side product HTML → crawlable; suited for metadata, OG, canonical,
+    JSON-LD, dynamic sitemap (metadata layer maintained at ship)
+
+================================================================================
+30. DEPLOYMENT WORKFLOW
+================================================================================
+
+  Local → Git commit/push → Vercel build → production/preview URL
+(fully automated, incremental, traceable through git history)
+
+================================================================================
+31. MAJOR ISSUES RESOLVED
+================================================================================
+
+  Product pages 500 (server-component onClick on Link) → moved to ?add=<id>
+  Hero white bar → overflow-clip + translucent glass header
+  Image cropping → object-contain + matched background
+  Mobile nav drawer overlap → header/drawer z-order + top offset
+  Mobile hero dark-frame flash → default = light ivory clip at first render
+  Stale WhatsApp number → corrected to 918099952624 everywhere
+  Dead "Add to Compare" → wired to comparison + localStorage
+  Theme/video default → Ivory Minimal across desktop + mobile
+
+================================================================================
+32. CURRENT STATUS — COMPLETED FLAG SUMMARY
+================================================================================
+
+[✓] Next.js 14 App Router + RSC + SSR/static hybrid
+[✓] Vercel auto-deploy from Git
+[✓] Shopify Admin API + GraphQL verified end-to-end
+[✓] 79 products migrated (variants, prices, ACTIVE)
+[✓] 79/79 images on Shopify CDN
+[✓] 79/79 SKUs synced
+[✓] GET /api/shopify-products  (live catalog + JSON fallback)
+[✓] POST /api/shopify-checkout  (SKU → variant → cartCreate → checkout URL)
+[✓] Responsive premium UI (10 themes, FOUC guard)
+[✓] Hero video (light ivory default desktop + mobile)
+[✓] Motion system (reduced-motion aware)
+[✓] Custom comparison (sticky tray, grouped specs, diff filter, ?compare= URLs,
+    localStorage, ?add= from PDP)
+[✓] 3D model viewer + AR integration point
+[✓] Premium PDP (image bg-match, single price, trust row, reviews, specs)
+[✓] Why-Choose-Us brand section
+[✓] Vercel env configured
+[✓] QA pass — resolved product-page 500, hero bar, cropping, nav overlap,
+    hero flash, WhatsApp number, compare CTA
+
+================================================================================
+33-34. PRODUCTION READINESS + FINAL DATA FLOW
+================================================================================
+
+Remaining go-live items are **Shopify-account/payment-side** (no frontend rebuild):
+
+  1. Client's paid Shopify store
+  2. Production Shopify credentials
+  3. Storefront API configuration
+  4. Razorpay install/config (primary payment provider)
+  5. Production domain
+  6. Zoho credentials + API config
+  7. Inventory synchronization config
+  8. GST invoicing workflow
+  9. Shopify order webhooks
+  10. Shiprocket/logistics config
+  11. Production order/fulfilment testing
+  12. Final catalogue verification
+  13. Production payment testing
+  14. End-to-end order testing
+
+Final data flow:
+
+                         ┌─────────────────────┐
+                         │      Customer       │
+                         └──────────┬──────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │   Next.js / Vercel  │
+                         │     Headless UI     │
+                         └──────────┬──────────┘
+                                    │
+                         ┌──────────▼──────────┐
+                         │   Next.js API Layer │
+                         │   Integration Layer │
+                         └──────────┬──────────┘
+                                    │
+              ┌─────────────────────┼─────────────────────┐
+              │                     │                     │
+              ▼                     ▼                     ▼
+       ┌──────────────┐      ┌──────────────┐      ┌──────────────┐
+       │    Shopify   │      │   Razorpay   │      │     Zoho     │
+       │   Commerce   │      │   Payments   │      │ CRM / ERP    │
+       └──────┬───────┘      └──────────────┘      └──────┬───────┘
+              │                                             │
+              ▼                                             ▼
+       Products / Cart                                CRM / Inventory /
+       Orders / Stock                                 Books / GST
+              │
+              ▼
+       ┌──────────────┐
+       │  Shiprocket  │
+       └──────────────┘

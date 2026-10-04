@@ -10,6 +10,60 @@
  * set inline before paint (FOUC guard in layout.tsx) to avoid flash.
  * ───────────────────────────────────────────────────────────────────────── */
 
+/* ─── Ambient depth (premium, not flat) ────────────────────────────────────
+ * The light ivory surface gets a whisper of warm radial light + a fine grain
+ * so it reads as a crafted showroom wall rather than a flat white page. Pure
+ * CSS — zero structure change, theme-aware via the tokens. */
+html {
+  background-color: rgb(var(--app-rgb));
+  background-image:
+    radial-gradient(120% 70% at 50% -8%, rgb(var(--accent-rgb) / 0.045), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgb(var(--gold-rgb) / 0.05), transparent 60%),
+    radial-gradient(80% 55% at 0% 100%, rgb(var(--gold-rgb) / 0.04), transparent 55%);
+}
+body {
+  background-color: rgb(var(--app-rgb));
+  background-image:
+    radial-gradient(120% 70% at 50% -8%, rgb(var(--accent-rgb) / 0.045), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgb(var(--gold-rgb) / 0.05), transparent 60%),
+    radial-gradient(80% 55% at 0% 100%, rgb(var(--gold-rgb) / 0.04), transparent 55%);
+}
+/* Fine film grain overlay — extremely subtle, animates slowly. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 9s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2%, 1%); }
+  40% { transform: translate(1%, -2%); }
+  60% { transform: translate(-1%, 2%); }
+  80% { transform: translate(2%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+}
+
+/* ─── Scroll progress — thin premium accent line at the very top ─────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 100;
+  background: linear-gradient(90deg, rgb(var(--gold-rgb)), rgb(var(--accent-rgb)));
+  box-shadow: 0 0 12px rgb(var(--gold-rgb) / 0.4);
+  transition: width 0.08s linear;
+}
+
 /* Default (no-JS / pre-FOUC fallback): Ivory Minute — the light theme with
    the light hero video. The FOUC guard in layout.tsx overrides this with the
    visitor's stored theme before first paint. */
@@ -363,27 +417,33 @@ html.theme-switching *::after {
 }
 
 /* Hidden until in-viewport, then revealed by the `Reveal` component
-   (adds the `is-visible` class via IntersectionObserver). */
+   (adds the `is-visible` class via IntersectionObserver). Soft 3D rise +
+   de-blur for a tactile, premium entrance. */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(26px) scale(0.992);
+  filter: blur(3px);
   transition:
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 /* Stagger helper: child reveals offset by index via inline `--d` delay. */
 .reveal-stagger > *,
 .stagger > * {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(22px) scale(0.992);
+  filter: blur(2px);
   transition:
     opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--d, 0s);
 }
 .is-visible.reveal-stagger > *,
@@ -391,7 +451,8 @@ html.theme-switching *::after {
 .reveal-stagger.is-visible > *,
 .stagger.is-visible > * {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

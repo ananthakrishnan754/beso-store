@@ -25,6 +25,22 @@ export default function HeroVideo() {
   const [base, setBase] = useState<string>(() => resolveBase());
 
   useEffect(() => {
+    // Subtle parallax: drift the video upward slightly as the user scrolls.
+    let reduced = false;
+    try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { /* */ }
+    const el = videoRef.current;
+    const onScroll = () => {
+      if (reduced || !el) return;
+      const y = Math.min(window.scrollY, window.innerHeight);
+      el.style.transform = `translateY(${y * 0.18}px) scale(1.06)`;
+      el.style.willChange = 'transform';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive: true});
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
     const sync = () => setBase(resolveBase());
     sync();
     const observer = new MutationObserver(sync);
