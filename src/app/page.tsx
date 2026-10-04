@@ -99,6 +99,13 @@ export default function HomePage() {
         <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/8 rounded-full blur-[140px] pointer-events-none z-0" />
         <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-ink/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
+        {/* Cinematic aurora — slow light-diffusion blobs behind the video */}
+        <div className="hero-aurora pointer-events-none z-0" aria-hidden="true">
+          <span className="hero-aurora-a" />
+          <span className="hero-aurora-b" />
+          <span className="hero-aurora-c" />
+        </div>
+
         {/* Mobile-only soft scrim so hero copy stays readable over the chair video */}
         <div className="md:hidden absolute inset-x-0 bottom-0 h-2/3 z-0 pointer-events-none bg-gradient-to-t from-app/60 via-app/15 to-transparent" />
 
