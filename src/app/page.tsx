@@ -149,7 +149,7 @@ export default function HomePage() {
       {/* ─── Flagship Spotlight Showcase Cards ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 space-y-16">
         <Reveal className="text-center space-y-3 mb-16">
-          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
+          <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
             The Flagship Line
           </span>
@@ -163,9 +163,9 @@ export default function HomePage() {
 
         {/* Card 1: BESO Crown (Text Left, Image Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group shadow-[0_4px_8px_-2px_rgba(35,31,24,0.06),0_24px_48px_-12px_rgba(35,31,24,0.14)] hover:shadow-[0_8px_14px_-2px_rgba(35,31,24,0.06),0_36px_64px_-16px_rgba(35,31,24,0.18)] transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Signature Flagship Chair</span>
+            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase">Signature Flagship Chair</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{crownChair.name}</h3>
             <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Designed for peak performance. Features custom double-layer high-elasticity mesh backing, active pelvic lumbar support, 3D adjustable armrests, and an integrated memory-foam seating pad to cushion long work sessions.
@@ -211,9 +211,9 @@ export default function HomePage() {
 
         {/* Card 2: BESO FlexRise (Image Left, Text Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group shadow-[0_4px_8px_-2px_rgba(35,31,24,0.06),0_24px_48px_-12px_rgba(35,31,24,0.14)] hover:shadow-[0_8px_14px_-2px_rgba(35,31,24,0.06),0_36px_64px_-16px_rgba(35,31,24,0.18)] transition-all duration-700">
           <div className="lg:col-span-6 lg:order-2 space-y-6 z-10">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Smart Standing Desks</span>
+            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase">Smart Standing Desks</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{flexRiseTable.name}</h3>
             <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Transform your productivity by switching between sitting and standing seamlessly. Engineered with quiet dual-motors, anti-collision sensors, an elegant solid walnut desktop, and a 4-preset memory digital controller.
@@ -259,9 +259,9 @@ export default function HomePage() {
 
         {/* Card 3: BESO Prestige (Text Left, Image Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group shadow-[0_4px_8px_-2px_rgba(35,31,24,0.06),0_24px_48px_-12px_rgba(35,31,24,0.14)] hover:shadow-[0_8px_14px_-2px_rgba(35,31,24,0.06),0_36px_64px_-16px_rgba(35,31,24,0.18)] transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Premium Luxury Support</span>
+            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase">Premium Luxury Support</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{prestigeChair.name}</h3>
             <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Crafted for leaders. Upholstered in select full-grain Italian leather, featuring adjustable contoured structural segments, luxury padded armrests, and beautiful dark walnut wood spokes lining the polished steel base.
@@ -312,7 +312,7 @@ export default function HomePage() {
         <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
           <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-brandLime/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="lg:col-span-7 space-y-5 z-10">
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-brandLime uppercase tracking-[0.25em]">
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-[#B38A4C] uppercase tracking-[0.25em]">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>
               New · AR Experience
             </span>
@@ -359,12 +359,12 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
+            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
             <h2 className="text-3xl font-extrabold text-ink tracking-tight">
               Featured <span className="text-gradient">Collections</span>
             </h2>
           </div>
-          <Link href="/products" className="text-sm font-bold text-brandLime hover:text-ink transition-colors flex items-center gap-1">
+          <Link href="/products" className="text-sm font-bold text-[#B38A4C] hover:text-ink transition-colors flex items-center gap-1">
             Browse Entire Store <span>→</span>
           </Link>
         </Reveal>
@@ -383,7 +383,7 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-xl">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2 mb-3">
+            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase inline-flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
               Why Choose Us
             </span>
@@ -397,12 +397,12 @@ export default function HomePage() {
           </div>
           <div className="hidden md:flex items-center gap-6 shrink-0">
             <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">12,000<span className="text-brandLime">+</span></div>
+              <div className="text-3xl font-display font-bold text-ink">12,000<span className="text-[#B38A4C]">+</span></div>
               <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Sq ft warehouse</div>
             </div>
             <span className="w-px h-10 bg-line/10" aria-hidden="true" />
             <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">48<span className="text-brandLime">hr</span></div>
+              <div className="text-3xl font-display font-bold text-ink">48<span className="text-[#B38A4C]">hr</span></div>
               <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Dispatch turnaround</div>
             </div>
             <span className="w-px h-10 bg-line/10" aria-hidden="true" />
@@ -444,7 +444,7 @@ export default function HomePage() {
           ].map((item, i) => (
             <div
               key={i}
-              className={`why-card group relative bg-surface border border-line/8 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
+              className={`why-card group relative bg-surface border border-line/[0.09] rounded-3xl overflow-hidden transition-all duration-300 shadow-[0_4px_8px_-2px_rgba(35,31,24,0.05),0_16px_32px_-10px_rgba(35,31,24,0.10)] hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
                 item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-end p-8' : 'p-7'
               }`}
             >
@@ -477,7 +477,7 @@ export default function HomePage() {
       <Reveal>
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 border-t border-line/5">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
+          <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
             Client Reviews
           </span>
@@ -494,7 +494,7 @@ export default function HomePage() {
             { name: 'Shreya Iyer', role: 'Studio Owner · Design Firm', quote: 'The FlexRise desks transformed our workstations. Quiet motors, solid walnut, and the team handled fit-out details we never expected.', rating: 5 },
             { name: 'Arjun Mehta', role: 'Procurement Lead · Consulting', quote: '48-hour turnaround was real. Dedicated point of contact, priority support, and the bulk pricing genuinely beat the market.', rating: 5 },
           ].map((r, i) => (
-            <div key={i} className="group relative bg-surface border border-line/8 rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
+            <div key={i} className="group relative bg-surface border border-line/[0.09] rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 shadow-[0_4px_8px_-2px_rgba(35,31,24,0.05),0_16px_32px_-10px_rgba(35,31,24,0.10)] hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
               <div className="flex items-center gap-1 text-[#D97706]">
                 {Array.from({length: r.rating}).map((_, s) => (
                   <svg key={s} viewBox="0 0 20 20" className="w-4 h-4 fill-current"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15.3l-5.3 2.8 1-5.8L1.5 7.7l5.9-.9z"/></svg>

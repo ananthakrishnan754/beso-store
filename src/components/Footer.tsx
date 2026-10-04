@@ -5,7 +5,7 @@ const WHATSAPP_URL =
 
 export function Footer() {
   return (
-    <footer className="bg-beso-dark text-ink border-t border-line/6 select-none">
+    <footer className="footer-dark select-none">
       {/* ─── Brand Row ─── */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-2">
         <span className="footer-logo block" role="img" aria-label="BESO" />
