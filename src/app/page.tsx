@@ -83,7 +83,7 @@ export default function HomePage() {
   const prestigeChair = flagships.find(p => p.id === 4) || products[3];
 
   return (
-    <div className="bg-beso-dark text-ink min-h-screen flex flex-col overflow-x-clip">
+    <div className="bg-transparent text-ink min-h-screen flex flex-col overflow-x-clip">
 
       {/* ─── Hero Section with Video Loop ─── */}
       <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden -mt-20">

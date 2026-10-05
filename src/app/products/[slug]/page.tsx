@@ -73,7 +73,7 @@ export default function ProductDetailPage({
   const whatsAppUrl = `https://wa.me/918099952624?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
-    <div className="bg-beso-dark text-ink min-h-screen">
+    <div className="bg-transparent text-ink min-h-screen">
       {/* ─── Secondary Sticky Header ─── */}
       <div className="sticky top-20 z-40 bg-app/80 border-y border-line/5 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
