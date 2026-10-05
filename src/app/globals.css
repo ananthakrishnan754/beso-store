@@ -531,15 +531,17 @@ html.theme-switching *::after {
 .footer-dark {
   background: #1A1917;
   color: #EDEAE4;
-  border-top: 1px solid rgb(237 234 228 / 0.08);
+  border-top: 1px solid rgb(255 255 255 / 0.12);
 }
 .footer-dark h4 {
-  color: #C6BBA6 !important;
+  color: rgb(255 255 255 / 0.45) !important;
+  font-size: 11px;
+  letter-spacing: 0.12em;
 }
 .footer-dark a,
 .footer-dark p,
 .footer-dark span {
-  color: #A89F91 !important;
+  color: rgb(255 255 255 / 0.8) !important;
 }
 .footer-dark a.rounded-full[class*="bg-ink"],
 .footer-dark a.rounded-full {
@@ -554,18 +556,27 @@ html.theme-switching *::after {
 .footer-dark .footer-logo {
   filter: none; /* cream logo stays visible on dark */
 }
+.footer-dark p.max-w-md {
+  color: rgb(255 255 255 / 0.62) !important;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.footer-dark nav a {
+  color: rgb(255 255 255 / 0.8) !important;
+  line-height: 2.2;
+}
 
 /* ─── Glass Header ───────────────────────────────────────────────────────── */
 .glass-header {
-  background: rgb(255 255 255 / 0.6);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  border: 1px solid rgb(40 36 32 / 0.12);
-  box-shadow: 0 6px 16px rgb(0 0 0 / 0.06);
+  background: rgb(248 246 240 / 0.75);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / 0.6);
+  box-shadow: 0 8px 32px rgb(44 35 25 / 0.06);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .glass-header:hover {
-  background: rgb(255 255 255 / 0.78);
+  background: rgb(250 248 243 / 0.88);
 }
 
 /* ─── Header Brand Logo ────────────────────────────────────────────────────
