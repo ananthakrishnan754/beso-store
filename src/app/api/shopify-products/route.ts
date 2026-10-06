@@ -60,10 +60,20 @@ export async function GET(req: NextRequest) {
         body: JSON.stringify({ query: QUERY, variables: { cursor } }),
       });
       const body: any = await resp.json();
+      // Surface GraphQL-level errors (expired/revoked token) so we fall back
+      // instead of silently returning an empty catalogue.
+      if (body.errors) {
+        throw new Error(`Shopify GraphQL: ${JSON.stringify(body.errors).slice(0, 200)}`);
+      }
       const { products: data } = body.data || { products: {} };
       all = all.concat(data?.edges?.map((e: any) => toLocal(e.node)) || []);
       cursor = data?.pageInfo?.hasNextPage ? data.pageInfo.endCursor : null;
     } while (cursor);
+    // Never hand back an empty catalogue when Shopify has nothing to say.
+    if (!all.length) {
+      console.error('[shopify-products] empty from Shopify — using bundled fallback');
+      return NextResponse.json(products);
+    }
     return NextResponse.json(all);
   } catch (e: any) {
     // Network/API failure → graceful fallback to bundled data.
