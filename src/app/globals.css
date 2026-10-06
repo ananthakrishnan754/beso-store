@@ -17,11 +17,11 @@
 html {
   background-color: rgb(var(--app-rgb));
   background-image:
-    radial-gradient(125% 65% at 50% -12%, rgb(var(--glow-rgb) / 0.55), transparent 58%),
-    radial-gradient(70% 55% at 12% 0%, rgb(var(--glow-rgb) / 0.40), transparent 60%),
-    radial-gradient(85% 60% at 100% 100%, rgb(var(--glow-rgb) / 0.58), transparent 62%),
-    radial-gradient(75% 55% at 0% 100%, rgb(var(--glow-rgb) / 0.48), transparent 58%),
-    radial-gradient(60% 45% at 50% 42%, rgb(var(--glow-rgb) / 0.28), transparent 65%);
+    radial-gradient(125% 65% at 50% -12%, rgb(var(--glow-rgb) / 0.62), transparent 58%),
+    radial-gradient(70% 55% at 12% 0%, rgb(var(--glow-rgb) / 0.46), transparent 60%),
+    radial-gradient(85% 60% at 100% 100%, rgb(var(--glow-rgb) / 0.64), transparent 62%),
+    radial-gradient(75% 55% at 0% 100%, rgb(var(--glow-rgb) / 0.54), transparent 58%),
+    radial-gradient(60% 45% at 50% 42%, rgb(var(--glow-rgb) / 0.32), transparent 65%);
   /* keep the warm pools anchored to the viewport, not stretched over the doc */
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -135,9 +135,9 @@ body::before {
    visitor's stored theme before first paint. */
 :root {
   color-scheme: light;
-  --app-rgb: 243 237 226;
-  --surface-rgb: 255 255 255;
-  --surface-2-rgb: 239 232 220;
+  --app-rgb: 239 231 218;
+  --surface-rgb: 251 247 240;
+  --surface-2-rgb: 232 223 208;
   --ink-rgb: 27 28 30;
   --soft-rgb: 74 70 65;
   --faint-rgb: 74 70 65;
@@ -147,7 +147,7 @@ body::before {
   --danger-rgb: 201 62 52;
   --gold-rgb: 165 121 47;
   /* warm ambient glow wash (Gemini: diffused sunlit amber) */
-  --glow-rgb: 231 214 190;
+  --glow-rgb: 227 201 163;
   --line-rgb: 27 28 30;
   --line-strong-rgb: 27 28 30;
   --glass: rgba(247, 244, 239, 0.85);
@@ -195,9 +195,9 @@ body::before {
 /* Ivory Minute — warm paper + ink + graphite CTA, global friendly */
 [data-theme="ivory-minimal"] {
   color-scheme: light;
-  --app-rgb: 243 237 226;
-  --surface-rgb: 255 255 255;
-  --surface-2-rgb: 239 232 220;
+  --app-rgb: 239 231 218;
+  --surface-rgb: 251 247 240;
+  --surface-2-rgb: 232 223 208;
   --surface-subtle-rgb: 241 235 224;
   --ink-rgb: 27 28 30;
   --soft-rgb: 74 70 65;
@@ -208,7 +208,7 @@ body::before {
   --danger-rgb: 201 62 52;
   --gold-rgb: 165 121 47;
   /* warm ambient glow wash (Gemini: diffused sunlit amber) */
-  --glow-rgb: 231 214 190;
+  --glow-rgb: 227 201 163;
   --line-rgb: 27 28 30;
   --line-strong-rgb: 27 28 30;
   --glass: rgba(247, 244, 239, 0.85);
