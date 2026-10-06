@@ -138,11 +138,9 @@ body::before {
   --app-rgb: 243 237 226;
   --surface-rgb: 255 255 255;
   --surface-2-rgb: 239 232 220;
-  /* deep obsidian, not muddy grey */
-  --ink-rgb: 23 22 21;
-  /* warm muted copy #6E6A63 */
-  --soft-rgb: 110 106 99;
-  --faint-rgb: 110 106 99;
+  --ink-rgb: 27 28 30;
+  --soft-rgb: 74 70 65;
+  --faint-rgb: 74 70 65;
   --accent-rgb: 16 20 24;
   --accent-2-rgb: 42 47 53;
   --on-accent-rgb: 253 252 250;
@@ -201,12 +199,12 @@ body::before {
   --surface-rgb: 255 255 255;
   --surface-2-rgb: 239 232 220;
   --surface-subtle-rgb: 241 235 224;
-  --ink-rgb: 23 22 21;
-  --soft-rgb: 110 106 99;
-  --faint-rgb: 110 106 99;
-  --accent-rgb: 24 23 22;
-  --accent-2-rgb: 48 46 44;
-  --on-accent-rgb: 255 255 255;
+  --ink-rgb: 27 28 30;
+  --soft-rgb: 74 70 65;
+  --faint-rgb: 74 70 65;
+  --accent-rgb: 16 20 24;
+  --accent-2-rgb: 42 47 53;
+  --on-accent-rgb: 253 252 250;
   --danger-rgb: 201 62 52;
   --gold-rgb: 165 121 47;
   /* warm ambient glow wash (Gemini: diffused sunlit amber) */
@@ -577,14 +575,15 @@ html.theme-switching *::after {
 
 /* ─── Glass Header ───────────────────────────────────────────────────────── */
 .glass-header {
-  background: rgb(248 246 242 / 0.82);
+  background: rgb(248 246 240 / 0.75);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgb(26 26 26 / 0.07);
-  transition: background-color 0.3s ease;
+  border: 1px solid rgb(255 255 255 / 0.6);
+  box-shadow: 0 8px 32px rgb(44 35 25 / 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .glass-header:hover {
-  background: rgb(250 248 244 / 0.9);
+  background: rgb(250 248 243 / 0.88);
 }
 
 /* ─── Header Brand Logo ────────────────────────────────────────────────────
@@ -656,14 +655,12 @@ html.theme-switching *::after {
   background: rgb(var(--accent-rgb));
   color: rgb(var(--on-accent-rgb));
   font-weight: 600;
-  /* architectural micro-radius (not a pill) */
-  border-radius: 4px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
   text-align: center;
   display: inline-block;
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.08em;
 }
 .btn-beso:hover {
   background: rgb(var(--accent-2-rgb));
@@ -696,11 +693,10 @@ html.theme-switching *::after {
   border: 1px solid rgb(var(--ink-rgb) / 0.18);
   color: rgb(var(--ink-rgb));
   font-weight: 500;
-  border-radius: 4px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
   text-align: center;
   display: inline-block;
-  letter-spacing: 0.08em;
 }
 .btn-pill-outline:hover {
   border-color: rgb(var(--ink-rgb) / 0.35);
@@ -711,7 +707,7 @@ html.theme-switching *::after {
 .product-card {
   background: rgb(var(--surface-rgb));
   border: 1px solid rgb(218 202 183 / 0.55);
-  border-radius: 6px;
+  border-radius: 1.5rem;
   transition: border-color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(35, 31, 24, 0.04), 0 16px 28px -4px rgba(35, 31, 24, 0.09);
@@ -813,6 +809,7 @@ html.theme-switching *::after {
 }
 ::-webkit-scrollbar-thumb {
   background: rgb(var(--ink-rgb) / 0.14);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(var(--ink-rgb) / 0.24);

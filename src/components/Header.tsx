@@ -19,8 +19,8 @@ export function Header() {
 
   return (
     <>
-      <header className="glass-header fixed top-0 left-0 right-0 z-50 h-[72px] border-b border-line/8 px-5 md:px-10 flex items-center justify-between transition-all duration-300">
-        <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
+      <header className={`glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300`}>
+        <div className="w-full flex items-center justify-between">
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -93,12 +93,12 @@ export function Header() {
 
       {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div className="fixed top-[72px] inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-40 lg:hidden">
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <nav className="absolute top-[72px] left-0 right-0 bg-surface border-b border-line/6 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] flex flex-col gap-4">
+          <nav className="absolute top-[4.75rem] left-0 right-0 bg-surface border-b border-line/6 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
@@ -117,7 +117,7 @@ export function Header() {
       )}
 
       {/* Spacer for fixed header */}
-      <div className="h-[72px] pointer-events-none" />
+      <div className="h-20 pointer-events-none" />
     </>
   );
 }
