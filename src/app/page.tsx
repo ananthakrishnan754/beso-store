@@ -97,118 +97,108 @@ export default function HomePage() {
   return (
     <div className="bg-transparent text-ink min-h-screen flex flex-col overflow-x-clip">
 
-      {/* ─── Hero — asymmetric editorial split ─── */}
-      <section className="relative min-h-[92vh] md:min-h-screen flex items-center pt-[76px] pb-14 md:pb-20 overflow-hidden -mt-[72px]">
-        {/* Background video + warm vignette */}
-        <div className="absolute inset-0 z-[1] select-none pointer-events-none overflow-hidden">
-          <div className="absolute -inset-[6%] blur-[34px] scale-105 opacity-[0.32]">
+      {/* ─── Hero — cinematic stage ─── */}
+      <section className="relative min-h-[100svh] md:min-h-[100vh] flex flex-col justify-center overflow-hidden -mt-[72px] pt-[72px]">
+        {/* Layer 1 — full-bleed video, fully visible */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+          <div className="absolute inset-0">
             <HeroVideo />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F5F2EC] via-[#F1ECE2]/60 to-[#E8E4DC]/80" />
-        </div>
-        <div className="hero-aurora pointer-events-none z-0" aria-hidden="true">
-          <span className="hero-aurora-a" />
-          <span className="hero-aurora-b" />
-          <span className="hero-aurora-c" />
+          {/* legibility scrim: only at the bottom + a whisper at the left */}
+          <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#141312]/88 via-[#141312]/35 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#141312]/45 to-transparent hidden md:block" />
+          {/* cinematic vignette */}
+          <div className="absolute inset-0 shadow-[inset_0_0_190px_45px_rgba(20,19,18,0.45)]" />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 md:px-10 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* ── Left: editorial copy ── */}
-          <div className="lg:col-span-6 flex flex-col animate-fade-up" data-fx="parallax" data-px="-0.05">
-            <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.24em] text-[#8A6A3E] mb-6">
-              <span className="w-8 h-px bg-[#8A6A3E]/50" aria-hidden="true" />
-              Ergonomic Studio · Hyderabad
+        {/* Layer 2 — letterbox hairlines (cinema frame) */}
+        <div className="absolute top-[76px] inset-x-0 z-[5] hidden md:block" aria-hidden="true">
+          <div className="mx-6 md:mx-10 h-px bg-[#F6F1E7]/25" />
+        </div>
+        <div className="absolute bottom-0 inset-x-0 z-[5] hidden md:block" aria-hidden="true">
+          <div className="mx-6 md:mx-10 h-px bg-[#F6F1E7]/25" />
+        </div>
+
+        {/* Layer 3 — corner meta (editorial details) */}
+        <div className="absolute top-[92px] inset-x-6 md:inset-x-10 z-10 hidden md:flex justify-between text-[10px] uppercase tracking-[0.28em] text-[#F6F1E7]/60 pointer-events-none">
+          <span>Est. Hyderabad</span>
+          <span>2026 · Vol. 01</span>
+        </div>
+
+        {/* Layer 4 — content */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 md:px-10 pt-20 pb-14">
+          {/* Eyebrow */}
+          <div className="flex items-center gap-4 mb-7 overflow-hidden">
+            <span className="kine-mask inline-block">
+              <span className="kine inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-[#E7C99B]">
+                <span className="w-10 h-px bg-[#E7C99B]/70" aria-hidden="true" />
+                Furniture for people who work hard
+              </span>
             </span>
-
-            <h1 className="text-[44px] sm:text-6xl lg:text-[72px] font-display font-bold leading-[0.96] tracking-[-0.02em] text-ink">
-              Sit better.
-              <br />
-              Work <span className="italic text-[#8A6A3E]">longer.</span>
-            </h1>
-
-            <p className="text-ink/70 text-[15px] md:text-lg leading-[1.65] max-w-[480px] mt-7">
-              Architect-grade ergonomic chairs and height-adjustable desks, engineered
-              in Hyderabad for the way people actually work.
-            </p>
-
-            {/* Primary CTAs */}
-            <div className="flex flex-wrap items-center gap-3 mt-9">
-              <Link
-                href="/products"
-                className="group inline-flex items-center gap-3 bg-ink text-[#F6F1E7] pl-7 pr-3 py-3.5 rounded-full text-[13px] uppercase tracking-[0.1em] font-semibold transition-all hover:shadow-[0_12px_32px_rgba(44,35,25,0.22)] hover:-translate-y-0.5"
-              >
-                Shop the collection
-                <span className="w-8 h-8 rounded-full bg-[#F6F1E7]/15 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </span>
-              </Link>
-              <a
-                href="#spaces"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-ink/25 text-ink/80 text-[13px] uppercase tracking-[0.1em] font-semibold hover:bg-ink/5 hover:border-ink/45 transition-all"
-              >
-                Explore spaces
-              </a>
-            </div>
-
-            {/* Inline proof stats */}
-            <div className="flex flex-wrap gap-x-8 gap-y-4 mt-10 pt-8 border-t border-line/10">
-              {[
-                [4.9, '', '.1', 'average rating'],
-                [79, '', '+', 'curated pieces'],
-                [48, '', 'h', 'dispatch window'],
-                [5, '', ' yr', 'warranty'],
-              ].map(([n, pre, suf, l]) => (
-                <div key={String(l)}>
-                  <div className="font-display text-2xl md:text-[28px] font-bold text-ink leading-none">
-                    <CountUp to={Number(n)} prefix={String(pre)} suffix={String(suf)} />
-                  </div>
-                  <div className="text-[10px] uppercase tracking-[0.16em] text-ink/50 mt-1.5">{l}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* ── Right: framed editorial product image ── */}
-          <div className="lg:col-span-6 relative animate-fade-scale" data-fx="parallax" data-px="0.10" style={{animationDelay: '0.25s'}}>
-            <div className="relative rounded-[2rem] overflow-hidden bg-surface border border-line/8 shadow-[0_24px_60px_-20px_rgba(44,35,25,0.28)]">
-              <div className="aspect-[4/5] sm:aspect-[4/4] lg:aspect-[4/5]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/images/editorial-hero.jpg"
-                  alt="BESO ergonomic chair in a sunlit showroom"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              </div>
-              {/* Floating material chip */}
-              <div className="absolute left-4 bottom-4 sm:left-5 sm:bottom-5 flex items-center gap-2.5 bg-[#F6F1E7]/85 backdrop-blur-md border border-white/50 rounded-full pl-2 pr-4 py-2">
-                <span className="w-9 h-9 rounded-full bg-ink flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-[#F6F1E7]" aria-hidden="true">
-                    <path d="M12 2l2.4 7.4H22l-6.1 4.4 2.3 7.4L12 16.6 5.8 21.2l2.3-7.4L2 9.4h7.6z" />
-                  </svg>
-                </span>
-                <div className="leading-tight">
-                  <div className="text-[13px] font-bold text-ink">4.9 / 5</div>
-                  <div className="text-[10px] uppercase tracking-[0.12em] text-ink/50">Verified buyers</div>
-                </div>
-              </div>
-            </div>
+          {/* Kinetic headline — line-by-line mask reveal */}
+          <h1 className="font-display font-bold text-[#F8F5EF] leading-[0.94] tracking-[-0.025em] text-[clamp(46px,9vw,118px)]">
+            <span className="kine-mask block">
+              <span className="kine block" style={{animationDelay: '0.12s'}}>Sit better.</span>
+            </span>
+            <span className="kine-mask block">
+              <span className="kine block italic text-[#E7C99B]" style={{animationDelay: '0.28s'}}>Work longer.</span>
+            </span>
+            <span className="kine-mask block">
+              <span className="kine block" style={{animationDelay: '0.44s'}}>Live easier.</span>
+            </span>
+          </h1>
 
-            {/* Floating price/AR card */}
-            <div className="absolute -bottom-5 -left-3 sm:-left-6 lg:-left-10 bg-surface border border-line/10 rounded-2xl px-5 py-4 shadow-[0_18px_40px_-14px_rgba(44,35,25,0.25)] animate-fade-up hidden sm:block" style={{animationDelay: '0.5s'}}>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-ink/45 mb-1">Starting at</div>
-              <div className="font-display text-2xl font-bold text-ink leading-none">₹24,990</div>
-            </div>
+          {/* Sub copy */}
+          <div className="kine-mask mt-7 max-w-[540px] overflow-hidden">
+            <p className="kine text-[15px] md:text-[17px] leading-[1.6] text-[#F6F1E7]/85" style={{animationDelay: '0.62s'}}>
+              Architect-grade ergonomic chairs and sit-stand desks, engineered in
+              Hyderabad for the way people actually work.
+            </p>
+          </div>
+
+          {/* CTA cluster */}
+          <div className="flex flex-wrap items-center gap-3 mt-9 kine" style={{animationDelay: '0.78s'}}>
+            <Link
+              href="/products"
+              className="group inline-flex items-center gap-3 bg-[#F6F1E7] text-[#141312] pl-7 pr-3 py-4 rounded-full text-[13px] uppercase tracking-[0.1em] font-bold transition-all duration-300 hover:shadow-[0_14px_40px_rgba(0,0,0,0.35)] hover:-translate-y-0.5"
+            >
+              Shop the collection
+              <span className="w-8 h-8 rounded-full bg-[#141312]/10 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
+            </Link>
+            <a
+              href="#spaces"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-[#F6F1E7]/40 text-[#F6F1E7] text-[13px] uppercase tracking-[0.1em] font-semibold backdrop-blur-sm bg-[#F6F1E7]/10 hover:bg-[#F6F1E7]/20 hover:border-[#F6F1E7]/70 transition-all duration-300"
+            >
+              Explore spaces
+            </a>
+          </div>
+
+          {/* Trust ribbon */}
+          <div className="flex flex-wrap gap-x-7 gap-y-3 mt-11 pt-7 border-t border-[#F6F1E7]/20 max-w-[620px] kine" style={{animationDelay: '0.92s'}}>
+            {[
+              ['4.9', 'avg rating'],
+              ['79+', 'curated pieces'],
+              ['48h', 'dispatch'],
+              ['5 yr', 'warranty'],
+            ].map(([n, l]) => (
+              <div key={l} className="flex items-baseline gap-2">
+                <span className="font-display text-xl md:text-2xl font-bold text-[#F6F1E7] leading-none">{n}</span>
+                <span className="text-[10px] uppercase tracking-[0.14em] text-[#F6F1E7]/65">{l}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Scroll cue */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2 text-ink/40">
-          <span className="text-[9px] uppercase tracking-[0.3em]">Scroll</span>
-          <span className="w-px h-8 bg-gradient-to-b from-ink/40 to-transparent" aria-hidden="true" />
+        {/* Layer 5 — scroll cue */}
+        <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2.5 pointer-events-none">
+          <span className="text-[9px] uppercase tracking-[0.34em] text-[#F6F1E7]/70">Scroll</span>
+          <span className="w-px h-10 bg-gradient-to-b from-[#F6F1E7]/70 to-transparent scroll-cue" aria-hidden="true" />
         </div>
       </section>
 

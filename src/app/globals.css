@@ -54,6 +54,51 @@ body::before {
   body::before { animation: none; }
 }
 
+
+/* ─── Kinetic type reveal (hero) ──────────────────────────────────────────
+ * Each line sits inside an overflow-hidden mask; the inner span rises from
+ * below with an expo-out curve and a staggered delay (set inline). */
+.kine-mask {
+  overflow: hidden;
+  display: block;
+}
+.kine {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  animation: kine-rise 1.15s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes kine-rise {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scroll cue: a thin line that draws itself downward, then resets */
+.scroll-cue {
+  transform-origin: top;
+  animation: cue-draw 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes cue-draw {
+  0% { transform: scaleY(0); opacity: 0; }
+  35% { transform: scaleY(1); opacity: 1; }
+  75% { transform: scaleY(1); opacity: 0; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kine {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+  .scroll-cue {
+    animation: none;
+  }
+}
+
 /* ─── Hero aurora — drifting soft-light diffusion (premium, video-free) ───── */
 .hero-aurora {
   position: absolute;
