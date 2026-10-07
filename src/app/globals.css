@@ -138,11 +138,12 @@ body::before {
   --app-rgb: 239 231 218;
   --surface-rgb: 251 247 240;
   --surface-2-rgb: 232 223 208;
-  --ink-rgb: 27 28 30;
-  --soft-rgb: 74 70 65;
-  --faint-rgb: 74 70 65;
-  --accent-rgb: 16 20 24;
-  --accent-2-rgb: 42 47 53;
+  /* strict typographic scale (Gemini / WCAG) */
+  --ink-rgb: 20 20 19;
+  --soft-rgb: 61 59 56;
+  --faint-rgb: 107 102 95;
+  --accent-rgb: 20 20 19;
+  --accent-2-rgb: 61 59 56;
   --on-accent-rgb: 253 252 250;
   --danger-rgb: 201 62 52;
   --gold-rgb: 165 121 47;
@@ -199,11 +200,12 @@ body::before {
   --surface-rgb: 251 247 240;
   --surface-2-rgb: 232 223 208;
   --surface-subtle-rgb: 241 235 224;
-  --ink-rgb: 27 28 30;
-  --soft-rgb: 74 70 65;
-  --faint-rgb: 74 70 65;
-  --accent-rgb: 16 20 24;
-  --accent-2-rgb: 42 47 53;
+  /* strict typographic scale (Gemini / WCAG) */
+  --ink-rgb: 20 20 19;
+  --soft-rgb: 61 59 56;
+  --faint-rgb: 107 102 95;
+  --accent-rgb: 20 20 19;
+  --accent-2-rgb: 61 59 56;
   --on-accent-rgb: 253 252 250;
   --danger-rgb: 201 62 52;
   --gold-rgb: 165 121 47;
@@ -534,21 +536,30 @@ html.theme-switching *::after {
   }
 }
 
+/* Sticky-nav clearance: anchored sections never hide under the 72px bar */
+section[id] {
+  scroll-margin-top: 104px;
+}
+
 /* ─── Footer — earthy dark base (grounds the page) ───────────────────────── */
 .footer-dark {
-  background: #1A1917;
-  color: #EDEAE4;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
+  background: #191816;
+  color: #E6E2DB;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
 }
 .footer-dark h4 {
-  color: rgb(255 255 255 / 0.45) !important;
+  color: rgb(255 255 255 / 0.6) !important;
   font-size: 11px;
   letter-spacing: 0.12em;
 }
 .footer-dark a,
 .footer-dark p,
 .footer-dark span {
-  color: rgb(255 255 255 / 0.8) !important;
+  color: #9E9A92 !important;
+}
+.footer-dark .text-ink\/40,
+.footer-dark a.text-ink\/40 {
+  color: #7D7972 !important;
 }
 .footer-dark a.rounded-full[class*="bg-ink"],
 .footer-dark a.rounded-full {
@@ -564,13 +575,16 @@ html.theme-switching *::after {
   filter: none; /* cream logo stays visible on dark */
 }
 .footer-dark p.max-w-md {
-  color: rgb(255 255 255 / 0.62) !important;
+  color: #8B877F !important;
   font-size: 14px;
   line-height: 1.75;
 }
 .footer-dark nav a {
-  color: rgb(255 255 255 / 0.8) !important;
+  color: #9E9A92 !important;
   line-height: 2.2;
+}
+.footer-dark nav a:hover {
+  color: #E6E2DB !important;
 }
 
 /* ─── Glass Header ───────────────────────────────────────────────────────── */
