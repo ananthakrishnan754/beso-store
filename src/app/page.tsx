@@ -4,6 +4,7 @@ import products from '@/data/products.json';
 import { ProductCard } from '@/components/ProductCard';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { Reveal } from '@/components/Reveal';
+import { CountUp } from '@/components/ScrollFX';
 import { MEETING_ROOM } from '@/lib/arModels';
 
 /* ─── Why Choose Us — premium crafted line icons ─── */
@@ -113,7 +114,7 @@ export default function HomePage() {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 md:px-10 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* ── Left: editorial copy ── */}
-          <div className="lg:col-span-6 flex flex-col animate-fade-up">
+          <div className="lg:col-span-6 flex flex-col animate-fade-up" data-fx="parallax" data-px="-0.05">
             <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.24em] text-[#8A6A3E] mb-6">
               <span className="w-8 h-px bg-[#8A6A3E]/50" aria-hidden="true" />
               Ergonomic Studio · Hyderabad
@@ -154,13 +155,15 @@ export default function HomePage() {
             {/* Inline proof stats */}
             <div className="flex flex-wrap gap-x-8 gap-y-4 mt-10 pt-8 border-t border-line/10">
               {[
-                ['4.9', 'average rating'],
-                ['79+', 'curated pieces'],
-                ['48h', 'dispatch window'],
-                ['5 yr', 'warranty'],
-              ].map(([n, l]) => (
-                <div key={l}>
-                  <div className="font-display text-2xl md:text-[28px] font-bold text-ink leading-none">{n}</div>
+                [4.9, '', '.1', 'average rating'],
+                [79, '', '+', 'curated pieces'],
+                [48, '', 'h', 'dispatch window'],
+                [5, '', ' yr', 'warranty'],
+              ].map(([n, pre, suf, l]) => (
+                <div key={String(l)}>
+                  <div className="font-display text-2xl md:text-[28px] font-bold text-ink leading-none">
+                    <CountUp to={Number(n)} prefix={String(pre)} suffix={String(suf)} />
+                  </div>
                   <div className="text-[10px] uppercase tracking-[0.16em] text-ink/50 mt-1.5">{l}</div>
                 </div>
               ))}
@@ -168,7 +171,7 @@ export default function HomePage() {
           </div>
 
           {/* ── Right: framed editorial product image ── */}
-          <div className="lg:col-span-6 relative animate-fade-scale" style={{animationDelay: '0.25s'}}>
+          <div className="lg:col-span-6 relative animate-fade-scale" data-fx="parallax" data-px="0.10" style={{animationDelay: '0.25s'}}>
             <div className="relative rounded-[2rem] overflow-hidden bg-surface border border-line/8 shadow-[0_24px_60px_-20px_rgba(44,35,25,0.28)]">
               <div className="aspect-[4/5] sm:aspect-[4/4] lg:aspect-[4/5]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -265,7 +268,7 @@ export default function HomePage() {
           </Link>
         </Reveal>
 
-        <div className="flex gap-4 md:gap-5 overflow-x-auto pb-3 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar snap-x snap-mandatory">
+        <div className="flex gap-4 md:gap-5 overflow-x-auto pb-3 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar snap-x snap-mandatory" data-fx="drift" data-px="0.05">
           {SPACES.map((sp, i) => (
             <Reveal key={sp.label} delay={i * 0.06}>
               <Link
@@ -347,7 +350,7 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]" data-fx="tilt" data-rot="3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="/assets/images/products/executive-chair-07.jpg" 
@@ -395,7 +398,7 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]" data-fx="tilt" data-rot="3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="/assets/images/products/height-table-01.jpg" 
@@ -443,7 +446,7 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]" data-fx="tilt" data-rot="3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="/assets/images/products/executive-chair-04.jpg" 
@@ -460,7 +463,7 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-28">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <Reveal className="order-2 lg:order-1">
-            <div className="relative rounded-[1.75rem] overflow-hidden border border-line/8 shadow-[0_24px_60px_-24px_rgba(44,35,25,0.25)]">
+            <div className="relative rounded-[1.75rem] overflow-hidden border border-line/8 shadow-[0_24px_60px_-24px_rgba(44,35,25,0.25)]" data-fx="parallax" data-px="0.08">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/assets/images/editorial-workspace.jpg"
@@ -493,12 +496,14 @@ export default function HomePage() {
 
             <dl className="grid grid-cols-3 gap-6 mt-9 pt-8 border-t border-line/10">
               {[
-                ['36', 'chair designs'],
-                ['34', 'desk systems'],
-                ['12k', 'sq ft warehouse'],
-              ].map(([n, l]) => (
-                <div key={l}>
-                  <dt className="font-display text-3xl md:text-4xl font-bold text-ink leading-none">{n}</dt>
+                [36, '', '', 'chair designs'],
+                [34, '', '', 'desk systems'],
+                [12, '', 'k', 'sq ft warehouse'],
+              ].map(([n, pre, suf, l]) => (
+                <div key={String(l)}>
+                  <dt className="font-display text-3xl md:text-4xl font-bold text-ink leading-none">
+                    <CountUp to={Number(n)} prefix={String(pre)} suffix={String(suf)} />
+                  </dt>
                   <dd className="text-[11px] uppercase tracking-[0.14em] text-ink/50 mt-2 leading-snug">{l}</dd>
                 </div>
               ))}

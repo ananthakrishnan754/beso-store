@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import {Header} from '@/components/Header';
+import {ScrollFX} from '@/components/ScrollFX';
 import {Footer} from '@/components/Footer';
 import {ScrollProgress} from '@/components/ScrollProgress';
 import {THEMES, type ThemeId} from '@/lib/themes';
@@ -89,6 +90,7 @@ export default function RootLayout({
       </head>
       <body className="bg-app text-ink antialiased">
         <ScrollProgress />
+        <ScrollFX />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
