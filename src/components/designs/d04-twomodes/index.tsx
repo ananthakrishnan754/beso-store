@@ -23,6 +23,18 @@ const prestige = find('beso-prestige-executive-chair');
 const money = (n?: number) => (n ? `₹${n.toLocaleString('en-IN')}` : '');
 const src = (p?: Product) => (p ? `/${p.image}` : '');
 
+const polar = (cx: number, cy: number, r: number, deg: number) => {
+  const a = (deg * Math.PI) / 180;
+  return {x: cx + r * Math.cos(a), y: cy + r * Math.sin(a)};
+};
+const arcPath = (cx: number, cy: number, r: number, a0: number, a1: number) => {
+  const p0 = polar(cx, cy, r, a0);
+  const p1 = polar(cx, cy, r, a1);
+  const large = Math.abs(a1 - a0) > 180 ? 1 : 0;
+  const sweep = a1 >= a0 ? 1 : 0;
+  return `M ${p0.x.toFixed(2)} ${p0.y.toFixed(2)} A ${r} ${r} 0 ${large} ${sweep} ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`;
+};
+
 const MODES = {
   office: {
     eyebrow: 'BESO for workplaces',
@@ -32,6 +44,7 @@ const MODES = {
     video: '/assets/videos/hero-bg-ivory',
     poster: '/assets/images/d01-hero.jpg',
     image: '/assets/images/d01-hero.jpg',
+    usp: [['Bulk quotes', 'From five units up'], ['GST invoicing', 'Clean procurement paperwork'], ['Pan-India install', 'Delivery and assembly']],
   },
   home: {
     eyebrow: 'BESO for home',
@@ -41,6 +54,7 @@ const MODES = {
     video: '/assets/videos/hero-bg',
     poster: '/assets/images/editorial-workspace.jpg',
     image: '/assets/images/editorial-workspace.jpg',
+    usp: [['Free shipping', 'Across India'], ['10-day trial', 'Live with it first'], ['AR preview', 'See it to scale']],
   },
 } as const;
 
@@ -51,7 +65,7 @@ const tiles = [
   {label: 'Bulk', title: 'Bulk quote', caption: 'Teams, floors and fit-outs.', img: '/assets/images/d01-hero.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20a%20bulk%20quote.'},
   {label: 'Expert', title: 'Talk to an ergo expert', caption: 'Find the right setup for how you sit.', img: '/assets/images/products/executive-chair-07.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20ergonomic%20advice.'},
   {label: 'Visit', title: 'Visit the showroom', caption: 'Abids, Hyderabad.', img: '/assets/images/d01-hero.jpg', href: '#showroom'},
-  {label: 'Guide', title: 'Ways to work', caption: 'Desk and posture ideas.', img: '/assets/images/editorial-workspace.jpg', href: '/products'},
+  {label: 'Offers', title: 'Bulk & bundle pricing', caption: 'Ask us about teams and floors.', img: '/assets/images/editorial-workspace.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20pricing%20for%20multiple%20units.'},
   {label: 'Newsletter', title: 'The BESO letter', caption: 'New pieces and workspace ideas.', img: '/assets/images/products/executive-chair-04.jpg', href: '#newsletter'},
 ];
 
@@ -85,6 +99,7 @@ export default function DesignTwoModes() {
   const [draft, setDraft] = useState('');
   const [news, setNews] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [hover, setHover] = useState<Mode | null>(null);
 
   // hydrate mode + name (URL wins, then local)
   useEffect(() => {
@@ -217,6 +232,18 @@ export default function DesignTwoModes() {
         </div>
       </section>
 
+      {/* ── Mode USP trio (swaps with the mode) ────────────────────────── */}
+      <section key={`usp-${mode}`} className="tm-swap border-b border-[#232220]/10 bg-[#EFEAE2]">
+        <div className="mx-auto grid max-w-[1280px] gap-px sm:grid-cols-3">
+          {M.usp.map(([t, d]) => (
+            <div key={t} className="px-5 py-7 lg:px-10">
+              <div className="text-[13px] font-semibold" style={{color: M.accent}}>{t}</div>
+              <div className="mt-1 text-[13px] leading-[1.5] text-[#232220]/55">{d}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── Editorial tiles ────────────────────────────────────────────── */}
       <section className="mx-auto max-w-[1280px] px-5 py-16 lg:px-10 lg:py-24">
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -266,8 +293,9 @@ export default function DesignTwoModes() {
                   <span className="shrink-0 text-[14px] font-semibold tabular-nums">{money(p.price)}</span>
                 </div>
                 <div className="mt-3 flex items-center gap-4 text-[13px]">
-                  <Link href={`/products/${p.slug}`} className="font-semibold underline underline-offset-4" style={{color: M.accent}}>View</Link>
-                  <a href={`https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20the%20${encodeURIComponent(p.name)}.`} target="_blank" rel="noopener noreferrer" className="text-[#232220]/60 underline underline-offset-4 hover:text-[#232220]">Enquire</a>
+                  <a href={`https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20the%20${encodeURIComponent(p.name)}.`} target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-4" style={{color: M.accent}}>Enquire</a>
+                  <Link href="#showroom" className="text-[#232220]/60 underline underline-offset-4 hover:text-[#232220]">Book a visit</Link>
+                  <Link href={`/products/${p.slug}`} className="text-[#232220]/60 underline underline-offset-4 hover:text-[#232220]">Details</Link>
                 </div>
               </article>
             ))}
@@ -292,17 +320,26 @@ export default function DesignTwoModes() {
             </dl>
           </div>
           <div className="flex justify-center">
-            <div className="relative h-[300px] w-[300px]">
-              <div className="absolute left-1/2 top-1/2 h-px w-[130px] -translate-y-1/2" style={{background: M.accent, transform: `rotate(${deg}deg)`, transformOrigin: '0 50%', transition: 'background 500ms ease-in-out'}} />
-              <svg viewBox="0 0 300 300" className="h-full w-full">
-                <circle cx="150" cy="150" r="120" fill="none" stroke="#232220" strokeOpacity="0.15" />
+            <div className="relative h-[320px] w-[320px]">
+              <svg viewBox="0 0 320 320" className="h-full w-full">
+                <circle cx="160" cy="160" r="134" fill="none" stroke="#232220" strokeOpacity="0.10" />
+                <circle cx="160" cy="160" r="120" fill="none" stroke="#232220" strokeOpacity="0.07" />
+                {/* progress arc grows with scroll (multi-part: ring + arc + pointer) */}
+                <path d={arcPath(160, 160, 134, -135, deg)} fill="none" stroke={M.accent} strokeWidth="3" strokeLinecap="round" style={{transition: 'stroke 500ms ease-in-out'}} />
                 {Array.from({length: 37}).map((_, i) => {
                   const a = (-135 + i * 7.5) * (Math.PI / 180);
-                  const r1 = 104, r2 = i % 3 === 0 ? 118 : 112;
-                  return <line key={i} x1={150 + Math.cos(a) * r1} y1={150 + Math.sin(a) * r1} x2={150 + Math.cos(a) * r2} y2={150 + Math.sin(a) * r2} stroke="#232220" strokeOpacity={i % 3 === 0 ? 0.5 : 0.22} />;
+                  const r1 = 106, r2 = i % 3 === 0 ? 118 : 112;
+                  return <line key={i} x1={160 + Math.cos(a) * r1} y1={160 + Math.sin(a) * r1} x2={160 + Math.cos(a) * r2} y2={160 + Math.sin(a) * r2} stroke="#232220" strokeOpacity={i % 3 === 0 ? 0.5 : 0.22} />;
                 })}
-                <text x="150" y="132" textAnchor="middle" className="tabular-nums" style={{fontFamily: DISPLAY, fontSize: 40, fill: '#232220'}}>{Math.round(70 + ((deg + 135) / 270) * 50)}</text>
-                <text x="150" y="158" textAnchor="middle" style={{fontFamily: MONO, fontSize: 12, letterSpacing: 2, fill: '#232220', opacity: 0.5}}>CM</text>
+                {/* rotating pointer + counterweight */}
+                <g transform={`rotate(${deg} 160 160)`}>
+                  <line x1="160" y1="160" x2="160" y2="46" stroke="#232220" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="160" y1="160" x2="160" y2="188" stroke={M.accent} strokeWidth="2" strokeLinecap="round" />
+                  <circle cx="160" cy="160" r="8" fill="#232220" />
+                  <circle cx="160" cy="160" r="3" fill={M.accent} />
+                </g>
+                <text x="160" y="142" textAnchor="middle" className="tabular-nums" style={{fontFamily: DISPLAY, fontSize: 44, fill: '#232220'}}>{Math.round(70 + ((deg + 135) / 270) * 50)}</text>
+                <text x="160" y="168" textAnchor="middle" style={{fontFamily: MONO, fontSize: 12, letterSpacing: 2, fill: '#232220', opacity: 0.5}}>CM RANGE</text>
               </svg>
             </div>
           </div>
@@ -311,13 +348,17 @@ export default function DesignTwoModes() {
 
       {/* ── Office / Home fork ─────────────────────────────────────────── */}
       <section className="mx-auto max-w-[1280px] px-5 pb-16 lg:px-10 lg:pb-24">
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="flex flex-col gap-4 md:flex-row">
           {(['office', 'home'] as Mode[]).map((m) => (
             <button
               key={m}
+              onMouseEnter={() => setHover(m)}
+              onMouseLeave={() => setHover(null)}
+              onFocus={() => setHover(m)}
+              onBlur={() => setHover(null)}
               onClick={() => { pick(m); document.getElementById('featured')?.scrollIntoView({behavior: 'smooth'}); }}
-              onMouseEnter={() => pick(m)}
               className="group relative block h-[46vh] overflow-hidden rounded-3xl text-left lg:h-[62vh]"
+              style={{flexGrow: hover === null ? 1 : hover === m ? 1.7 : 0.6, flexBasis: 0, transition: 'flex-grow 900ms cubic-bezier(0.22,1,0.36,1)'}}
             >
               <img src={MODES[m].image} alt={m} className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1100ms] ease-in-out group-hover:scale-[1.05]" />
               <div className="absolute inset-0 transition-opacity duration-700" style={{background: `linear-gradient(180deg, rgba(20,18,16,0.05), rgba(20,18,16,0.7))`, opacity: mode === m ? 1 : 0.92}} />
@@ -349,7 +390,8 @@ export default function DesignTwoModes() {
               ))}
             </div>
             <div className="grid gap-4 lg:col-span-4">
-              <img src="/assets/images/d01-hero.jpg" alt="A BESO workspace" loading="lazy" className="h-40 w-full rounded-2xl object-cover lg:h-full" />
+              <img src="/assets/images/d01-hero.jpg" alt="A BESO workspace" loading="lazy" className="h-40 w-full rounded-2xl object-cover lg:h-[calc(50%-0.5rem)]" />
+              <img src="/assets/images/editorial-workspace.jpg" alt="A BESO home setting" loading="lazy" className="h-40 w-full rounded-2xl object-cover lg:h-[calc(50%-0.5rem)]" />
             </div>
           </div>
         </div>
@@ -398,11 +440,20 @@ export default function DesignTwoModes() {
             <div><Link href="/about" className="hover:text-[#232220]">About</Link></div>
             <div><Link href="/contact" className="hover:text-[#232220]">Contact</Link></div>
           </nav>
-          <div className="space-y-2 text-[14px] text-[#232220]/70">
+          <div className="space-y-3 text-[14px] text-[#232220]/70">
             <div className="text-[11px] uppercase tracking-[0.16em] text-[#232220]/40" style={{fontFamily: MONO}}>Talk to us</div>
-            <div><a href="https://wa.me/918099952624" target="_blank" rel="noopener noreferrer" className="hover:text-[#232220]">WhatsApp expert</a></div>
-            <div><a href="mailto:hello@thebesostore.com" className="hover:text-[#232220]">Email</a></div>
-            <div className="pt-2 text-[12px] text-[#232220]/40">© 2025 Furniture Space · BESO</div>
+            <div className="flex flex-wrap items-center gap-3">
+              <a href="https://wa.me/918099952624" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp expert" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#232220]/20 transition-colors hover:bg-[#232220] hover:text-[#F4F1EE]">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.5-.3zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.4.9.9-3.3-.2-.3A9 9 0 1 1 12 21z" /></svg>
+              </a>
+              <a href="tel:+918919317980" aria-label="Call BESO" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#232220]/20 transition-colors hover:bg-[#232220] hover:text-[#F4F1EE]">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.2 2.3z" /></svg>
+              </a>
+              <a href="mailto:hello@thebesostore.com" aria-label="Email BESO" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#232220]/20 transition-colors hover:bg-[#232220] hover:text-[#F4F1EE]">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.6"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5 12 13l8.5-6.5" /></svg>
+              </a>
+            </div>
+            <div className="pt-1 text-[12px] text-[#232220]/40">© 2025 Furniture Space · BESO</div>
           </div>
         </div>
       </footer>
