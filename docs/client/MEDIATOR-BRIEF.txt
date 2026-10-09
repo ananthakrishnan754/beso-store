@@ -1,0 +1,78 @@
+================================================================================
+BESO WEBSITE — BRIEF FOR THE MEDIATOR (client meeting)
+Date: 2026-10-09
+Prepared by: the web/design team
+================================================================================
+
+PURPOSE OF THIS NOTE
+This is background and talking points for your meeting with the client. We want
+the meeting to move us forward quickly and keep the relationship positive.
+
+WHERE WE ARE
+- The storefront is built and working: 79 real BESO products, product pages,
+  compare, AR ("View in Your Room"), a 3D product viewer, and a live home page.
+- We built the home page to the structure and concept the client first agreed
+  on. The client has since told us it feels "basic".
+- We take that seriously. It is fair feedback, and it is also hard to act on
+  because "basic" does not define a target. We are not defensive about it — we
+  simply need a little more to aim at.
+- All media currently on the site is interim. The client said he would send the
+  final videos and photos, so we generated temporary media to prove the layout
+  while we wait.
+
+WHAT WE ARE DOING NOW
+- We are preparing ADDITIONAL, more distinctive home-page concepts for the
+  client to choose from. These will be ready in about 1-2 days.
+- We are not touching the current live home page while this happens.
+
+WHAT WE WOULD LIKE TO GET OUT OF THE MEETING
+Either is fine — whichever the client prefers:
+1. SELECT one of the concepts (current or the new ones), and we proceed to
+   polish it; or
+2. GIVE SPECIFIC DIRECTION, for example:
+   - 2-3 reference websites whose feel he likes (any brand);
+   - the feeling he wants (e.g. "expensive and calm", "bold", "warm", "tech");
+   - what exactly feels basic in the current page (hero, type, spacing, images,
+     colour, motion);
+   - the must-have sections and anything to remove.
+Concrete direction lets us match the quality he is expecting instead of
+guessing.
+
+CONTENT / ASSETS WE ARE WAITING ON
+- Final photography (multi-angle per product) and the final videos he mentioned.
+- The completed product sheet: the columns are right, but it currently has only
+  3 sample products and most spec/photo cells are empty. We need every column
+  filled for all products, and a defined set of photo angles.
+- For 3D: whether the manufacturer already has CAD/3D files. If yes, that is the
+  best and fastest route; if no, we model from dimensions + photos, with the
+  honest caveat that photoreal 3D from single photos of upholstered/curved
+  furniture is limited.
+
+TONE WE WANT TO KEEP
+- Respectful and collaborative. We are not blaming anyone; the earlier concept
+  was agreed and delivered, and now the client wants a different direction —
+  that is normal and we are happy to respond.
+- Honest about trade-offs (e.g. "premium" depends on real media vs generated).
+- Quality-first: we would rather do a few excellent concepts than many average
+  ones.
+
+SUGGESTED OPENING LINES FOR YOU
+- "The team has the site working and is preparing a few more, more distinctive
+  home-page options for you to choose from — they'll be ready in about 1-2 days."
+- "To make sure the next round hits the mark, it would help to know a couple of
+  sites whose look you like, and what specifically feels basic right now."
+- "On the product sheet: the format is right, but it needs to be filled in for
+  every product, and it would help to know if the manufacturers already have 3D
+  files."
+
+QUESTIONS TO BRING BACK TO US
+- Which concept does the client prefer, or what is his concrete direction?
+- Any reference links he likes?
+- Does the client have final photos/videos ready, and a timeline?
+- Do manufacturer CAD/3D files exist?
+- Which sections are must-have vs optional?
+
+We remain committed to getting this right and will keep the current site live
+and stable in the meantime.
+
+================================================================================
