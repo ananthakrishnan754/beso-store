@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
+import {Reveal} from '@/components/Reveal';
 import products from '@/data/products.json';
 
 /* Concept · "Archive" — furniture build of a streetwear-store structure
@@ -49,6 +50,28 @@ export default function DesignArchive() {
 
   useEffect(() => { const t = setInterval(() => setClip((v) => (v + 1) % CLIPS.length), 9000); return () => clearInterval(t); }, []);
 
+  // Scroll parallax on media — matches the reference's translateY-on-scroll feel.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let raf: number | null = null;
+    const els = [...document.querySelectorAll<HTMLElement>('[data-plx]')];
+    const tick = () => {
+      raf = null; const vh = window.innerHeight;
+      for (const el of els) {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -120 || r.top > vh + 120) continue;
+        const p = (vh / 2 - (r.top + r.height / 2)) / vh;
+        const s = parseFloat(el.dataset.plx || '0.1');
+        el.style.transform = `translate3d(0, ${(-p * s * 100).toFixed(1)}px, 0) scale(1.09)`;
+      }
+    };
+    const on = () => { if (raf == null) raf = requestAnimationFrame(tick); };
+    on();
+    window.addEventListener('scroll', on, {passive: true});
+    window.addEventListener('resize', on);
+    return () => { window.removeEventListener('scroll', on); window.removeEventListener('resize', on); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+
   return (
     <div className="text-[#141313]" style={{fontFamily: MONO, background: BASE}}>
       {/* ── Announcement bar ───────────────────────────────────────────── */}
@@ -86,7 +109,7 @@ export default function DesignArchive() {
           {base: '/assets/videos/bm/dark-prestige', poster: '/assets/videos/bm/dark-prestige-poster.jpg', title: 'The Home Series', cta: 'Explore', href: '/products', tint: 'rgba(10,10,10,0.42)'},
         ].map((h) => (
           <div key={h.title} className="relative h-[62svh] overflow-hidden md:h-[90svh]">
-            <video autoPlay muted loop playsInline poster={h.poster} className="absolute inset-0 h-full w-full object-cover">
+            <video data-plx="0.12" autoPlay muted loop playsInline poster={h.poster} className="absolute inset-0 h-full w-full object-cover">
               <source src={`${h.base}.webm`} type="video/webm" />
               <source src={`${h.base}.mp4`} type="video/mp4" />
             </video>
@@ -159,7 +182,7 @@ export default function DesignArchive() {
 
       {/* ── Editorial break ────────────────────────────────────────────── */}
       <section className="relative h-[64svh] overflow-hidden">
-        <video autoPlay muted loop playsInline poster="/assets/videos/bm/walnut-flexrise-poster.jpg" className="absolute inset-0 h-full w-full object-cover">
+        <video data-plx="0.16" autoPlay muted loop playsInline poster="/assets/videos/bm/walnut-flexrise-poster.jpg" className="absolute inset-0 h-full w-full object-cover">
           <source src="/assets/videos/bm/walnut-flexrise.webm" type="video/webm" />
           <source src="/assets/videos/bm/walnut-flexrise.mp4" type="video/mp4" />
         </video>

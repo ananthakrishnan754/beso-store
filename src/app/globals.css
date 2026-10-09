@@ -22,8 +22,9 @@ html {
     radial-gradient(85% 60% at 100% 100%, rgb(var(--glow-rgb) / 0.64), transparent 62%),
     radial-gradient(75% 55% at 0% 100%, rgb(var(--glow-rgb) / 0.54), transparent 58%),
     radial-gradient(60% 45% at 50% 42%, rgb(var(--glow-rgb) / 0.32), transparent 65%);
-  /* keep the warm pools anchored to the viewport, not stretched over the doc */
-  background-attachment: fixed;
+  /* keep the warm pools on the page instead of a fixed attachment, which
+     shimmered/jittered while scrolling on some displays */
+  background-attachment: scroll;
   background-repeat: no-repeat;
 }
 /* Ambient gradient lives on <html>; body + page shells stay transparent so it
@@ -31,21 +32,9 @@ html {
 body {
   background: transparent;
 }
-/* Fine film grain overlay — extremely subtle, animates slowly. */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  /* Static grain only — the previous steps() jitter read as a page-wide "shake". */
-  animation: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  body::before { animation: none; }
-}
+/* No film-grain overlay and no fixed-attachment background: the fixed grain +
+   anchored gradient produced a visible scroll "shake"/shimmer on some displays. */
+
 
 
 /* ─── Kinetic type reveal (hero) ──────────────────────────────────────────
