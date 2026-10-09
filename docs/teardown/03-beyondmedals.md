@@ -59,3 +59,28 @@ editorial break, a **gallery index list**, and a stacked footer.
 - Typography/`uppercase` and the warm-white/near-black pairing are the only
   borrowed *principles*; structure and module rhythm mirrored.
 - Videos are ffmpeg push-ins from real BESO photos (interim) — see content-gaps.
+
+## Full teardown (Playwright) — measured
+
+Output: `./teardown/` (gitignored — internal study data). Files: `structure.json/md`,
+`tokens.json`, `animations.json`, `media.json`, `hover.json`, `scroll-0001..0068.png`,
+`scroll-desktop.webm`, `scroll-mobile.webm`.
+
+**Libraries detected:** none — no GSAP, ScrollTrigger, Lenis, Locomotive, Framer
+Motion, Swiper, Lottie or three.js. `document.getAnimations()` returned **0**
+before and during scroll → motion is CSS transitions (hover) + JS inline
+`transform` parallax only.
+
+**Design tokens:**
+- Base `#FFFDFA`, ink `#141313`, **accent `#2A4EEF`** (bright blue, used sparingly).
+- Fonts: **`grotesk`** for headings (h1 32px, h2 18px, weight 400, tracking
+  −0.96px / −0.36px) + **`semimono`** for body/labels (11px, line-height 1.5).
+- Radii: **100px** (pills), 15px, 65px, 7.5px. Container max-width **1392px**.
+- Breakpoints: 767 / 1024 / 1301 (plus 1080).
+- Hero video **720×900 (4:5)**; a second movie clip 1440×810 (16:9). Product
+  images ratio **0.8 (4:5)** and **0.67 (2:3)**.
+- Header is `position: fixed` (72px) with fixed mega-menu panels; no scroll-snap.
+
+**Applied to concept 6:** accent `#2A4EEF` on nav interactions, `grotesk`
+headings (Space Grotesk) + mono body, 4:5 product frames, 1392px catalogue
+container.

@@ -11,8 +11,10 @@ import products from '@/data/products.json';
    staggered catalogue · editorial break · gallery index · stacked footer. */
 
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, "DejaVu Sans Mono", monospace';
+const GROTESK = '"Space Grotesk", ui-sans-serif, system-ui, sans-serif';
 const INK = '#141313';
 const BASE = '#FFFDFA';
+const ACCENT = '#2A4EEF';
 
 type Product = {slug: string; name: string; price: number; image: string; category?: string};
 const list = products as unknown as Product[];
@@ -83,16 +85,16 @@ export default function DesignArchive() {
       <header className="sticky top-0 z-40 border-b border-[#141313]/15 bg-[#FFFDFA]/95">
         <div className="grid grid-cols-3 items-center px-4 py-4 lg:px-6">
           <nav className="flex items-center gap-5 text-[12px] uppercase tracking-[0.14em] text-[#141313]/75">
-            <Link href="/products" className="transition-colors hover:text-[#141313]">Shop</Link>
-            <Link href="/compare" className="hidden transition-colors hover:text-[#141313] sm:inline">Explore</Link>
-            <button onClick={() => setSearchOpen((v) => !v)} className="transition-colors hover:text-[#141313]">Search</button>
+            <Link href="/products" className="transition-colors hover:text-[#2A4EEF]">Shop</Link>
+            <Link href="/compare" className="hidden transition-colors hover:text-[#2A4EEF] sm:inline">Explore</Link>
+            <button onClick={() => setSearchOpen((v) => !v)} className="transition-colors hover:text-[#2A4EEF]">Search</button>
           </nav>
           <Link href="/" className="justify-self-center">
             <img src="/assets/images/beso-logo-transparent.png" alt="BESO" className="h-5 w-auto" style={{filter: 'brightness(0)'}} />
           </Link>
           <nav className="flex items-center justify-end gap-5 text-[12px] uppercase tracking-[0.14em] text-[#141313]/75">
-            <Link href="/products" className="hidden transition-colors hover:text-[#141313] sm:inline">Archive</Link>
-            <a href="https://wa.me/918099952624" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#141313]">Enquire</a>
+            <Link href="/products" className="hidden transition-colors hover:text-[#2A4EEF] sm:inline">Archive</Link>
+            <a href="https://wa.me/918099952624" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#2A4EEF]">Enquire</a>
           </nav>
         </div>
         {searchOpen && (
@@ -115,7 +117,7 @@ export default function DesignArchive() {
             </video>
             <div className="absolute inset-0" style={{background: `linear-gradient(180deg, rgba(10,10,10,0.12), ${h.tint})`}} />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
-              <h1 className="text-[clamp(30px,4.6vw,58px)] font-bold uppercase leading-[0.92] tracking-[-0.01em] text-[#F6F3EE]">{h.title}</h1>
+              <h1 className="text-[clamp(30px,4.6vw,58px)] font-bold uppercase leading-[0.92] tracking-[-0.01em] text-[#F6F3EE]" style={{fontFamily: GROTESK}}>{h.title}</h1>
               <Link href={h.href} className="border border-[#F6F3EE]/70 bg-[#141313]/40 px-5 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F6F3EE] transition-colors hover:bg-[#F6F3EE] hover:text-[#141313]">{h.cta}</Link>
             </div>
           </div>
@@ -162,12 +164,12 @@ export default function DesignArchive() {
           <span className="text-[11px] uppercase tracking-[0.18em] text-[#141313]/50">{query ? `Search · ${filtered.length}` : 'Latest'}</span>
           <Link href="/products" className="text-[11px] uppercase tracking-[0.18em] underline underline-offset-4">See all 79</Link>
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="mx-auto mt-6 grid max-w-[1392px] grid-cols-2 gap-3 md:grid-cols-4">
           {catalog.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 4) * 60} className={i % 2 === 1 ? 'md:mt-10' : ''}>
               <Link href={`/products/${p.slug}`} className="group block">
                 <div className="overflow-hidden bg-[#F5F5DB]">
-                  <img src={pimg(p)} alt={p.name} loading="lazy" className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]" />
+                  <img src={pimg(p)} alt={p.name} loading="lazy" className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]" />
                 </div>
                 <div className="mt-2 flex items-baseline justify-between">
                   <span className="text-[10px] tracking-[0.14em] text-[#141313]/45">{String(i + 1).padStart(2, '0')}</span>
@@ -190,7 +192,7 @@ export default function DesignArchive() {
         </video>
         <div className="absolute inset-0" style={{background: 'rgba(10,10,10,0.42)'}} />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
-          <h2 className="text-[clamp(28px,6vw,84px)] font-bold uppercase leading-[0.9] tracking-[-0.01em] text-[#F6F3EE]">Built for the work day</h2>
+          <h2 className="text-[clamp(28px,6vw,84px)] font-bold uppercase leading-[0.9] tracking-[-0.01em] text-[#F6F3EE]" style={{fontFamily: GROTESK}}>Built for the work day</h2>
           <Link href="/products" className="border border-[#F6F3EE]/70 px-6 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F6F3EE] transition-colors hover:bg-[#F6F3EE] hover:text-[#141313]">Explore the collection</Link>
         </div>
       </section>
@@ -198,7 +200,7 @@ export default function DesignArchive() {
       {/* ── Gallery index ──────────────────────────────────────────────── */}
       <section className="px-4 py-14 lg:px-6 lg:py-24">
         <div className="flex items-end justify-between">
-          <h2 className="text-[clamp(20px,2.4vw,30px)] font-bold uppercase tracking-[-0.01em]">Gallery</h2>
+          <h2 className="text-[clamp(20px,2.4vw,30px)] font-bold uppercase tracking-[-0.01em]" style={{fontFamily: GROTESK}}>Gallery</h2>
           <Link href="/products" className="text-[11px] uppercase tracking-[0.18em] underline underline-offset-4">Have a look</Link>
         </div>
         <ul className="mt-6">
