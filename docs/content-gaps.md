@@ -27,3 +27,13 @@ awards or statistics — so each item needs a source, correction, or removal.
   entity name for the footer.
 - No awards or client logos have been invented, and none should be added without
   a real source.
+
+## Concept "Atelier Pro" (ceragres-inspired) — additional gaps
+| # | Item | Status | Action |
+|---|---|---|---|
+| 14 | "Bulk discounts up to 25% from 5 units" (hero H1) | **UNVERIFIED** | Confirm the real trade discount ladder |
+| 15 | BESO Pro: credit terms, custom POs, account manager, 48h, **12,000 sq ft warehouse**, **2 showrooms** | **UNVERIFIED** (warehouse size + showroom count) | Confirm facilities and programme terms |
+| 16 | Workspaces rows ("IT company · Bengaluru · 40 ergonomic chairs", etc.) | **derived from existing reviews; names/years omitted** | Confirm real project types/cities or supply anonymised case data |
+| 17 | Materials specs — dual motors 70–120 cm, up to 150 kg load, 200,000 cycles, full-grain leather, teak/walnut | **UNVERIFIED** | Confirm from the product sheet |
+| 18 | Offer counts (chairs 36, tables 35, stools 8, dining 4, gaming 5, standing 3) | **derived by keyword from the 79-product catalogue** | Confirm category taxonomy |
+| 19 | d05-hero (stone room) + hero video | **AI-generated interim** | Replace with real photography/video |

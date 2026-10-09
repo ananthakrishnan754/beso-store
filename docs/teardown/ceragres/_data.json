@@ -1,0 +1,51 @@
+{
+ "media": [],
+ "scripts": [
+  "https://www.ceragres.ca/_nuxt/swiper-vue.DJHdZmOr.css"
+ ],
+ "fonts": [
+  "\"PP Neue Book\", Helvetica, sans-serif",
+  "\"PP Neue Medium\", Helvetica, sans-serif",
+  "\"Ceragres_PP Neue Montreal Medium_V2\", Helvetica, sans-serif",
+  "\"PP Neue Mono\", Arial, sans-serif"
+ ],
+ "sections": [
+  {
+   "tag": "HEADER",
+   "h": ""
+  },
+  {
+   "tag": "HEADER",
+   "h": ""
+  },
+  {
+   "tag": "DIV",
+   "h": "Jusqu’à 30 % de rabais jusqu’au 18 octobre"
+  },
+  {
+   "tag": "HEADER",
+   "h": "Nos projets"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Notre offre"
+  },
+  {
+   "tag": "DIV",
+   "h": ""
+  },
+  {
+   "tag": "FOOTER",
+   "h": "Pour toutes questions sur nos produits et services"
+  }
+ ],
+ "titles": [],
+ "title": "Jusqu’à 30 % de rabais jusqu’au 18 octobre | Céragrès",
+ "bodyFont": "\"PP Neue Book\", Helvetica, sans-serif",
+ "bodyBg": "rgb(250, 250, 250)",
+ "bodyColor": "rgb(0, 0, 0)",
+ "h1": "JUSQU’À 30 % DE RABAIS JUSQU’AU 18 OCTOBRE",
+ "height_1440": 4547,
+ "height_768": 4440,
+ "height_390": 4728
+}
