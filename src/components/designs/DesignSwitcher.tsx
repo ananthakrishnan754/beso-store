@@ -11,18 +11,18 @@ type Props = {
 };
 
 /**
- * Bottom-centre floating "Design" switcher. One flag: delete this component
- * (and its mount in DesignShell) to remove the whole experiment.
+ * Minimal design-review rail. Deliberately understated (bottom-left, mono,
+ * translucent) so it reads as a utility layer and never pollutes the design.
+ * Keyboard: [ / ] step, 0–9 jump. Hidden on the production home (total === 0).
  */
 export function DesignSwitcher({current, total, name, go}: Props) {
   const [open, setOpen] = useState(false);
 
-  // keyboard: [ and ] to step through designs while reviewing
   useEffect(() => {
     if (total === 0) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.target && ['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
-      if (e.key === ']') go(Math.min(total, (current || total) + 1));
+      if (e.key === ']') go(Math.min(total, current + 1));
       if (e.key === '[') go(current <= 1 ? 0 : current - 1);
       if (/^[0-9]$/.test(e.key)) go(Number(e.key));
     };
@@ -30,67 +30,42 @@ export function DesignSwitcher({current, total, name, go}: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, [current, total, go]);
 
-  // No concepts registered yet — keep the live site identical to the production
-  // home. The switcher reappears automatically once a design passes the gate.
   if (total === 0) return null;
 
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const btn = 'px-2 py-1 transition-colors hover:text-white disabled:opacity-30 disabled:hover:text-[#F6F1E7]/70';
+
   return (
-    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[80] print:hidden">
-      <div className="flex items-center gap-1 rounded-full bg-ink/90 backdrop-blur-md border border-white/10 text-[#F6F1E7] shadow-[0_12px_40px_rgba(0,0,0,0.35)] pl-2 pr-1.5 py-1.5">
-        <button
-          onClick={() => go(0)}
-          aria-current={current === 0}
-          className={`px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-            current === 0 ? 'bg-[#F6F1E7] text-ink' : 'text-[#F6F1E7]/60 hover:text-[#F6F1E7]'
-          }`}
-        >
+    <div className="fixed bottom-4 left-4 z-[80] print:hidden" style={{fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace'}}>
+      <div className="relative flex items-center gap-1 rounded-sm border border-white/10 bg-black/55 px-2 py-1 text-[11px] uppercase tracking-[0.14em] text-[#F6F1E7]/70 backdrop-blur-md">
+        <button onClick={() => go(0)} aria-current={current === 0} className={`${btn} ${current === 0 ? 'text-white' : ''}`}>
           Current
         </button>
-
-        <span className="w-px h-5 bg-white/15 mx-1" aria-hidden="true" />
-
-        <button
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label="Design concepts"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.12em] text-[#E7C99B] hover:text-white transition-colors"
-        >
-          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1" />
-            <rect x="14" y="3" width="7" height="7" rx="1" />
-            <rect x="3" y="14" width="7" height="7" rx="1" />
-            <rect x="14" y="14" width="7" height="7" rx="1" />
-          </svg>
-          {current === 0 ? `Concepts ${total}` : `0${current} · ${name}`}
+        <span className="mx-1 h-4 w-px bg-white/15" aria-hidden="true" />
+        <button onClick={() => go(current <= 1 ? 0 : current - 1)} disabled={current <= 0} aria-label="Previous design" className={btn}>‹</button>
+        <button onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-label="Design concepts" className="px-1 text-[#E7C99B] transition-colors hover:text-white">
+          {current === 0 ? `${total} concepts` : `${pad(current)} · ${name}`}
         </button>
+        <button onClick={() => go(Math.min(total, current + 1))} disabled={current >= total} aria-label="Next design" className={btn}>›</button>
 
         {open && (
-          <div className="absolute bottom-full left-0 mb-3 w-[300px] rounded-2xl bg-ink/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)] p-2">
+          <div className="absolute bottom-full left-0 mb-2 w-[260px] rounded-md border border-white/10 bg-black/90 p-1.5 backdrop-blur-xl">
             <button
               onClick={() => { go(0); setOpen(false); }}
-              className={`w-full text-left px-3 py-2 rounded-xl transition-colors ${current === 0 ? 'bg-white/10' : 'hover:bg-white/5'}`}
+              className={`flex w-full items-center justify-between rounded px-3 py-2 text-left transition-colors ${current === 0 ? 'bg-white/10' : 'hover:bg-white/5'}`}
             >
-              <div className="text-[13px] font-semibold">Current</div>
-              <div className="text-[10px] text-white/45 uppercase tracking-wider">The live site</div>
+              <span className="text-[12px] normal-case tracking-normal text-[#F6F1E7]">Current</span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">Live site</span>
             </button>
-
-            <div className="my-1.5 h-px bg-white/10" />
-
             {DESIGNS.map((d) => (
               <button
                 key={d.n}
                 onClick={() => { go(d.n); setOpen(false); }}
-                className={`w-full flex items-center gap-3 text-left px-3 py-2 rounded-xl transition-colors ${
-                  current === d.n ? 'bg-white/10' : 'hover:bg-white/5'
-                }`}
+                className={`flex w-full items-center gap-3 rounded px-3 py-2 text-left transition-colors ${current === d.n ? 'bg-white/10' : 'hover:bg-white/5'}`}
               >
-                <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${
-                  current === d.n ? 'bg-[#E7C99B] text-ink' : 'bg-white/10 text-[#F6F1E7]/70'
-                }`}>{d.n}</span>
-                <span className="min-w-0">
-                  <span className="block text-[13px] font-semibold truncate">{d.name}</span>
-                  <span className="block text-[10px] text-white/45 uppercase tracking-wider truncate">{d.tag}</span>
-                </span>
+                <span className="text-[10px] text-[#E7C99B]">{pad(d.n)}</span>
+                <span className="min-w-0 flex-1 truncate text-[12px] normal-case tracking-normal text-[#F6F1E7]">{d.name}</span>
+                <span className="truncate text-[10px] uppercase tracking-[0.12em] text-white/40">{d.tag}</span>
               </button>
             ))}
           </div>

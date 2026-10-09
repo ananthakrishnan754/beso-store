@@ -32,6 +32,13 @@ export function DesignShell({current}: {current: React.ReactNode}) {
     window.history.replaceState(null, '', url);
   }, []);
 
+  // Concept previews own their chrome: hide the shared header/footer while a
+  // design is active so each one reads as an independent build.
+  useEffect(() => {
+    document.documentElement.dataset.designMode = n >= 1 ? '1' : '0';
+    return () => { document.documentElement.dataset.designMode = '0'; };
+  }, [n]);
+
   const meta = getDesign(n);
   const Design = n >= 1 && meta.folder ? lazy(() => import(`./${meta.folder}/index.tsx`)) : null;
 

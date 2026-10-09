@@ -15,7 +15,9 @@ export type DesignMeta = {
   tag: string;
 };
 
-export const DESIGNS: DesignMeta[] = [];
+export const DESIGNS: DesignMeta[] = [
+  { n: 1, folder: 'd01-atelier', name: 'Atelier', tag: 'Warm editorial' },
+];
 
 export function getDesign(n: number): DesignMeta {
   if (n >= 1 && n <= DESIGNS.length) return DESIGNS[n - 1];

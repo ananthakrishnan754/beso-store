@@ -930,3 +930,13 @@ model-viewer .ar-cta:hover {
     scroll-behavior: auto;
   }
 }
+
+/* ─── Design concept previews own their chrome ──────────────────────────────
+ * While a concept is active (?design=N), hide the shared site header, footer
+ * and scroll bar so each design reads as if a different studio built it. The
+ * production home is unaffected (the flag is only set when a design is shown). */
+html[data-design-mode='1'] .glass-header,
+html[data-design-mode='1'] .footer-dark,
+html[data-design-mode='1'] .scroll-progress {
+  display: none !important;
+}
