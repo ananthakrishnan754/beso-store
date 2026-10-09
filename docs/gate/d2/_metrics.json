@@ -1,0 +1,35 @@
+[
+ {
+  "w": 390,
+  "h1": "Weight, held in light.",
+  "overflow": false,
+  "scrollW": 390,
+  "vw": 390,
+  "height": 6393,
+  "imgs": 0,
+  "imgsTotal": 10,
+  "errors": []
+ },
+ {
+  "w": 768,
+  "h1": "Weight, held in light.",
+  "overflow": false,
+  "scrollW": 768,
+  "vw": 768,
+  "height": 4862,
+  "imgs": 0,
+  "imgsTotal": 10,
+  "errors": []
+ },
+ {
+  "w": 1440,
+  "h1": "Weight, held in light.",
+  "overflow": false,
+  "scrollW": 1440,
+  "vw": 1440,
+  "height": 4795,
+  "imgs": 0,
+  "imgsTotal": 10,
+  "errors": []
+ }
+]
