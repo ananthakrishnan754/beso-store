@@ -18,6 +18,7 @@ export type DesignMeta = {
 export const DESIGNS: DesignMeta[] = [
   { n: 1, folder: 'd01-atelier', name: 'Atelier', tag: 'Warm editorial' },
   { n: 2, folder: 'd02-monolith', name: 'Monolith', tag: 'Dark sculptural' },
+  { n: 3, folder: 'd03-anatomy', name: 'Anatomy', tag: 'Engineering spec' },
 ];
 
 export function getDesign(n: number): DesignMeta {

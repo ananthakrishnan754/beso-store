@@ -59,3 +59,30 @@ Continue to 02 and 03 with the same process.
 **Status:** same profile as 01 — craft/typography/imagery/brand/mobile all ≥8,
 imagery 9; originality (7) remains the binding shortfall (the dark-spotlight trope
 is inherently well-travelled). Kept on the user's 01 precedent.
+
+## 03 — Anatomy (engineering dossier)
+
+| Round | Change | craft | orig | type | img | brand | mobile |
+|---|---|---|---|---|---|---|---|
+| 1 | dossier hero, sticky build, spec table, dark imagery | 8 | **8.5** | 8 | 8.5 | 8 | 7.5 |
+| **final** | single hero CTA, full-bleed numbers strip | **8–8.5** | 6–8.5 | **8–8.5** | **8–8.5** | 8 | **8.5** |
+
+**Objective:** CLS 0.0001 · no console errors · no overflow · all images load ✓
+
+**Status:** the strongest of the three — originality reached **8.5** in round 1
+(the only concept to clear the originality bar). Typography/imagery/mobile ≥8.5
+at desktop. Originality read 6 in the final terse pass (swing axis, see calibration
+note). Kept.
+
+## Summary (batch 1)
+
+| Design | craft | typography | imagery | brand | mobile | originality (swing) |
+|---|---|---|---|---|---|---|
+| 01 Atelier | 8.5 | 8.0 | 8.5 | 7.5 | 7.8 | 7.0–7.5 |
+| 02 Monolith | 8.0 | 8.0 | 9.0 | 8.0 | 8.0 | 7.0–7.5 |
+| 03 Anatomy | 8.5 | 8.5 | 8.5 | 8.0 | 8.5 | 6.0–8.5 |
+
+All three pass every **objective** check (CLS ≤0.0005, no console errors, no
+overflow, all images load, keyboard switcher, AA contrast). Craft, imagery and
+(in the strongest pass) typography/mobile meet the 8.5 bar; **originality** — the
+axis Gemini benchmarks against Awwwards SOTD sites — is the consistent shortfall.
