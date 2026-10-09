@@ -117,7 +117,7 @@ export function Header() {
       )}
 
       {/* Spacer for fixed header */}
-      <div className="h-20 pointer-events-none" />
+      <div className="site-header-spacer h-20 pointer-events-none" />
     </>
   );
 }

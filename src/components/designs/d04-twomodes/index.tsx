@@ -41,8 +41,8 @@ const MODES = {
     headline: ['Furniture', 'for people', 'who work', 'hard.'],
     sub: 'Ergonomic seating and sit-stand desks for the working day — specified for one desk or a whole floor.',
     accent: '#235A6B',
-    video: '/assets/videos/hero-bg-ivory',
-    poster: '/assets/images/d01-hero.jpg',
+    video: '/assets/videos/mode-office',
+    poster: '/assets/videos/mode-office-poster.jpg',
     image: '/assets/images/d01-hero.jpg',
     usp: [['Bulk quotes', 'From five units up'], ['GST invoicing', 'Clean procurement paperwork'], ['Pan-India install', 'Delivery and assembly']],
   },
@@ -51,8 +51,8 @@ const MODES = {
     headline: ['Furniture', 'for people', 'who rest', 'well.'],
     sub: 'The same ergonomics, scaled to the corner where you read, write and unwind.',
     accent: '#B4593A',
-    video: '/assets/videos/hero-bg',
-    poster: '/assets/images/editorial-workspace.jpg',
+    video: '/assets/videos/mode-home',
+    poster: '/assets/videos/mode-home-poster.jpg',
     image: '/assets/images/editorial-workspace.jpg',
     usp: [['Free shipping', 'Across India'], ['10-day trial', 'Live with it first'], ['AR preview', 'See it to scale']],
   },
@@ -266,8 +266,9 @@ export default function DesignTwoModes() {
           {TILES[mode].map((t, i) => (
             <Reveal key={t.title} delay={(i % 4) * 70} className={i % 2 === 1 ? 'lg:mt-10' : ''}>
               <Link href={t.href} target={t.href.startsWith('http') ? '_blank' : undefined} rel={t.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="group block">
-                <div className="overflow-hidden rounded-2xl bg-[#E7E1D8]">
-                  <img src={t.img} alt={t.title} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.06]" />
+                <div className="relative overflow-hidden rounded-2xl bg-[#F5F5DB]">
+                  <img src={t.img} alt={t.title} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]" />
+                  <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-[900ms] ease-out group-hover:translate-x-full" />
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-[11px] uppercase tracking-[0.18em]" style={{color: M.accent, fontFamily: MONO}}>{t.label}</span>
@@ -296,9 +297,10 @@ export default function DesignTwoModes() {
           </div>
           <div ref={scroller} key={mode} className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 [scrollbar-width:none]">
             {carouselFor(mode).map((p) => (
-              <article key={p.slug} className="w-[76vw] shrink-0 snap-start sm:w-[340px]">
-                <div className="overflow-hidden rounded-2xl bg-[#E7E1D8]">
-                  <img src={src(p)} alt={p.name} loading="lazy" className="aspect-[4/3] w-full object-contain p-6" />
+              <article key={p.slug} className="group w-[76vw] shrink-0 snap-start sm:w-[340px]">
+                <div className="relative overflow-hidden rounded-2xl bg-[#F5F5DB] transition-all duration-700 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_40px_-18px_rgba(35,32,28,0.45)]">
+                  <img src={src(p)} alt={p.name} loading="lazy" className="aspect-[4/3] w-full object-contain p-6 transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]" />
+                  <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-[1000ms] ease-out group-hover:translate-x-full" />
                 </div>
                 <div className="mt-4 flex items-baseline justify-between gap-4">
                   <h3 className="text-[18px] leading-[1.15]" style={{fontFamily: DISPLAY, fontWeight: 420}}>{p.name}</h3>

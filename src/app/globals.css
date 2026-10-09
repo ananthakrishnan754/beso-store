@@ -936,6 +936,7 @@ model-viewer .ar-cta:hover {
  * and scroll bar so each design reads as if a different studio built it. The
  * production home is unaffected (the flag is only set when a design is shown). */
 html[data-design-mode='1'] .glass-header,
+html[data-design-mode='1'] .site-header-spacer,
 html[data-design-mode='1'] .footer-dark,
 html[data-design-mode='1'] .scroll-progress {
   display: none !important;
