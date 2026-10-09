@@ -8,4 +8,4 @@ Generated Video*.mp4
 .env*
 nohup.out
 *.bak
-teardown/
+/teardown/
