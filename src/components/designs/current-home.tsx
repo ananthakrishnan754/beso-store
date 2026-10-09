@@ -4,7 +4,6 @@ import products from '@/data/products.json';
 import { ProductCard } from '@/components/ProductCard';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { Reveal } from '@/components/Reveal';
-import { CountUp } from '@/components/ScrollFX';
 import { MEETING_ROOM } from '@/lib/arModels';
 
 /* ─── Why Choose Us — premium crafted line icons ─── */
@@ -74,17 +73,6 @@ function getFlagships() {
   return (products as any[]).filter((p) => [7, 21, 4].includes(p.id));
 }
 
-const SPACES = [
-  { label: 'Office Chairs', count: 14, image: 'assets/images/products/executive-chair-01.jpg', href: '/products?subcategory=executive-chair' },
-  { label: 'Standing Desks', count: 1, image: 'assets/images/products/height-table-01.jpg', href: '/products?subcategory=height-adjustable-table' },
-  { label: 'Executive Tables', count: 13, image: 'assets/images/products/executive-table-01.jpg', href: '/products?subcategory=executive-table' },
-  { label: 'Manager Desks', count: 10, image: 'assets/images/products/manager-table-01.jpg', href: '/products?subcategory=manager-table' },
-  { label: 'Dining', count: 4, image: 'assets/images/products/dining-chair-01.jpg', href: '/products?subcategory=dining-chair' },
-  { label: 'Bar Stools', count: 8, image: 'assets/images/products/bar-stool-01.jpg', href: '/products?subcategory=bar-stool' },
-  { label: 'Gaming', count: 5, image: 'assets/images/products/gaming-chair-01.jpg', href: '/products?subcategory=gaming-chair' },
-  { label: 'Visitor Seating', count: 13, image: 'assets/images/products/visitor-chair-01.jpg', href: '/products?subcategory=visitor-chair' },
-];
-
 export default function HomePage() {
   const featured = getFeatured();
   const flagships = getFlagships();
@@ -95,204 +83,66 @@ export default function HomePage() {
   const prestigeChair = flagships.find(p => p.id === 4) || products[3];
 
   return (
-    <div className="bg-transparent text-ink min-h-screen flex flex-col overflow-x-clip">
+    <div className="bg-beso-dark text-ink min-h-screen flex flex-col overflow-x-clip">
 
-      {/* ─── Hero — cinematic stage ─── */}
-      <section className="relative min-h-[100svh] md:min-h-[100vh] flex flex-col justify-center overflow-hidden -mt-[72px] pt-[72px]">
-        {/* Layer 1 — full-bleed video, fully visible */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
-          <div className="absolute inset-0">
-            <HeroVideo />
-          </div>
-          {/* legibility scrim: only at the bottom + a whisper at the left */}
-          <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#141312]/88 via-[#141312]/35 to-transparent" />
-          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#141312]/45 to-transparent hidden md:block" />
-          {/* cinematic vignette */}
-          <div className="absolute inset-0 shadow-[inset_0_0_190px_45px_rgba(20,19,18,0.45)]" />
+      {/* ─── Hero Section with Video Loop ─── */}
+      <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden -mt-20">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-[1] select-none pointer-events-none">
+          <HeroVideo />
+          {/* Vignette & Gradients — light-touch only; keeps the video vivid */}
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-app/70 via-app/10 to-transparent" />
+          <div className="absolute inset-0 bg-ink/[0.03]" />
         </div>
 
-        {/* Layer 2 — letterbox hairlines (cinema frame) */}
-        <div className="absolute top-[76px] inset-x-0 z-[5] hidden md:block" aria-hidden="true">
-          <div className="mx-6 md:mx-10 h-px bg-[#F6F1E7]/25" />
-        </div>
-        <div className="absolute bottom-0 inset-x-0 z-[5] hidden md:block" aria-hidden="true">
-          <div className="mx-6 md:mx-10 h-px bg-[#F6F1E7]/25" />
-        </div>
+        {/* Ambient background glows */}
+        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/8 rounded-full blur-[140px] pointer-events-none z-0" />
+        <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-ink/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
-        {/* Layer 3 — corner meta (editorial details) */}
-        <div className="absolute top-[92px] inset-x-6 md:inset-x-10 z-10 hidden md:flex justify-between text-[10px] uppercase tracking-[0.28em] text-[#F6F1E7]/60 pointer-events-none">
-          <span>Est. Hyderabad</span>
-          <span>2026 · Vol. 01</span>
-        </div>
+        {/* Mobile-only soft scrim so hero copy stays readable over the chair video */}
+        <div className="md:hidden absolute inset-x-0 bottom-0 h-2/3 z-0 pointer-events-none bg-gradient-to-t from-app/60 via-app/15 to-transparent" />
 
-        {/* Layer 4 — content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 md:px-10 pt-20 pb-14">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-4 mb-7 overflow-hidden">
-            <span className="kine-mask inline-block">
-              <span className="kine inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-[#E7C99B]">
-                <span className="w-10 h-px bg-[#E7C99B]/70" aria-hidden="true" />
-                Furniture for people who work hard
-              </span>
-            </span>
-          </div>
-
-          {/* Kinetic headline — line-by-line mask reveal */}
-          <h1 className="font-display font-bold text-[#F8F5EF] leading-[0.94] tracking-[-0.025em] text-[clamp(46px,9vw,118px)]">
-            <span className="kine-mask block">
-              <span className="kine block" style={{animationDelay: '0.12s'}}>Sit better.</span>
-            </span>
-            <span className="kine-mask block">
-              <span className="kine block italic text-[#E7C99B]" style={{animationDelay: '0.28s'}}>Work longer.</span>
-            </span>
-            <span className="kine-mask block">
-              <span className="kine block" style={{animationDelay: '0.44s'}}>Live easier.</span>
-            </span>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink animate-fade-up" style={{animationDelay: '0.05s'}}>
+            Pain-Free Working.<br />
+            <span className="text-gradient">Max Productivity.</span><br />
+            Healthier Living.
           </h1>
+          
+          <p className="text-ink/70 text-sm md:text-lg max-w-2xl font-light leading-relaxed animate-fade-up" style={{animationDelay: '0.2s'}}>
+            We design state-of-the-art office chairs and height-adjustable desks tailored to support your posture, improve focus, and elevate your space.
+          </p>
 
-          {/* Sub copy */}
-          <div className="kine-mask mt-7 max-w-[540px] overflow-hidden">
-            <p className="kine text-[15px] md:text-[17px] leading-[1.6] text-[#F6F1E7]/85" style={{animationDelay: '0.62s'}}>
-              Architect-grade ergonomic chairs and sit-stand desks, engineered in
-              Hyderabad for the way people actually work.
-            </p>
-          </div>
-
-          {/* CTA cluster */}
-          <div className="flex flex-wrap items-center gap-3 mt-9 kine" style={{animationDelay: '0.78s'}}>
-            <Link
-              href="/products"
-              className="group inline-flex items-center gap-3 bg-[#F6F1E7] text-[#141312] pl-7 pr-3 py-4 rounded-full text-[13px] uppercase tracking-[0.1em] font-bold transition-all duration-300 hover:shadow-[0_14px_40px_rgba(0,0,0,0.35)] hover:-translate-y-0.5"
-            >
-              Shop the collection
-              <span className="w-8 h-8 rounded-full bg-[#141312]/10 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </span>
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center animate-fade-up" style={{animationDelay: '0.35s'}}>
+            <Link href="/products" className="bg-ink text-app px-8 py-4 rounded-full text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.98] shadow-card-hover">
+              Explore Shop
             </Link>
             <a
-              href="#spaces"
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-[#F6F1E7]/40 text-[#F6F1E7] text-[13px] uppercase tracking-[0.1em] font-semibold backdrop-blur-sm bg-[#F6F1E7]/10 hover:bg-[#F6F1E7]/20 hover:border-[#F6F1E7]/70 transition-all duration-300"
+              href="https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20a%20workspace%20consultation."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-ink/20 text-ink/80 px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold min-w-[200px] inline-flex items-center justify-center gap-2 bg-white/50 backdrop-blur-md transition-all hover:bg-white/80 hover:border-ink/35 hover:text-ink"
             >
-              Explore spaces
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current shrink-0">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              <span>Contact Now</span>
             </a>
           </div>
-
-          {/* Trust ribbon */}
-          <div className="flex flex-wrap gap-x-7 gap-y-3 mt-11 pt-7 border-t border-[#F6F1E7]/20 max-w-[620px] kine" style={{animationDelay: '0.92s'}}>
-            {[
-              ['4.9', 'avg rating'],
-              ['79+', 'curated pieces'],
-              ['48h', 'dispatch'],
-              ['5 yr', 'warranty'],
-            ].map(([n, l]) => (
-              <div key={l} className="flex items-baseline gap-2">
-                <span className="font-display text-xl md:text-2xl font-bold text-[#F6F1E7] leading-none">{n}</span>
-                <span className="text-[10px] uppercase tracking-[0.14em] text-[#F6F1E7]/65">{l}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Layer 5 — scroll cue */}
-        <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2.5 pointer-events-none">
-          <span className="text-[9px] uppercase tracking-[0.34em] text-[#F6F1E7]/70">Scroll</span>
-          <span className="w-px h-10 bg-gradient-to-b from-[#F6F1E7]/70 to-transparent scroll-cue" aria-hidden="true" />
         </div>
       </section>
 
-      {/* ─── Trust strip (replaces generic marquee) ─── */}
-      <section className="border-y border-line/8 bg-surface/70 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 grid grid-cols-2 lg:grid-cols-4 divide-x divide-line/8">
-          {[
-            { t: 'Free Shipping', d: 'Pan-India delivery', i: 'truck' },
-            { t: '5-Year Warranty', d: 'Full structural cover', i: 'shield' },
-            { t: '10-Day Trial', d: 'Love it or return it', i: 'return' },
-            { t: 'Expert Setup', d: 'Installed for you', i: 'tools' },
-          ].map((x, i) => (
-            <div key={x.t} className={`flex items-center gap-3 py-5 px-3 sm:px-5 ${i === 0 ? '' : ''}`}>
-              <span className="shrink-0 w-9 h-9 rounded-lg bg-ink/[0.04] flex items-center justify-center text-ink/70">
-                {x.i === 'truck' && (
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
-                )}
-                {x.i === 'shield' && (
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 2.8v5.4c0 4.4-3 8-7 9.8-4-1.8-7-5.4-7-9.8V5.8L12 3z"/><path d="M9.2 12.2l1.9 1.9 3.7-3.7"/></svg>
-                )}
-                {x.i === 'return' && (
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10h10a5 5 0 010 10H9"/><path d="M4 10l4-4M4 10l4 4"/></svg>
-                )}
-                {x.i === 'tools' && (
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a4 4 0 01-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 005.4-5.4l-2.5 2.5-1.9-1.9z"/></svg>
-                )}
-              </span>
-              <div className="min-w-0">
-                <div className="text-[13px] font-bold text-ink leading-tight">{x.t}</div>
-                <div className="text-[11px] text-ink/50 leading-tight mt-0.5 truncate">{x.d}</div>
-              </div>
-            </div>
-          ))}
+      {/* ─── Marquee Banner ─── */}
+      <div className="border-y border-line/5 bg-ink/4 py-5 overflow-hidden select-none">
+        <div className="animate-marquee whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] text-ink/30">
+          {MARQUEE_TEXT} {MARQUEE_TEXT}
         </div>
-      </section>
-
-      {/* ─── Shop by Space — visual category rail ─── */}
-      <section id="spaces" className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-28 scroll-mt-20">
-        <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-          <div>
-            <span className="text-[11px] font-bold text-[#8A6A3E] tracking-[0.2em] uppercase flex items-center gap-2">
-              <span className="w-8 h-px bg-[#8A6A3E]/50" aria-hidden="true" />
-              Shop by space
-            </span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-ink tracking-tight mt-3">
-              Furnish every <span className="italic">room.</span>
-            </h2>
-          </div>
-          <Link
-            href="/products"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-ink/70 hover:text-ink transition-colors shrink-0"
-          >
-            All 79 pieces
-            <span className="w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center transition-all duration-300 group-hover:bg-ink group-hover:text-[#F6F1E7] group-hover:border-ink">
-              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </span>
-          </Link>
-        </Reveal>
-
-        <div className="flex gap-4 md:gap-5 overflow-x-auto pb-3 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar snap-x snap-mandatory" data-fx="drift" data-px="0.05">
-          {SPACES.map((sp, i) => (
-            <Reveal key={sp.label} delay={i * 0.06}>
-              <Link
-                href={sp.href}
-                className="group block w-[210px] sm:w-[240px] lg:w-[260px] shrink-0 snap-start"
-              >
-                <div className="w-full h-[200px] rounded-xl overflow-hidden bg-[#F2EFEB] border border-line/10 flex items-center justify-center p-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/${sp.image}`}
-                    alt={sp.label}
-                    className="max-h-full max-w-[88%] object-contain transition-transform duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.05]"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="mt-3 flex items-baseline justify-between gap-2">
-                  <div>
-                    <div className="text-[15px] font-medium text-ink leading-tight">{sp.label}</div>
-                    <div className="text-[12px] text-ink/60 mt-0.5">{sp.count} pieces</div>
-                  </div>
-                  <span className="w-7 h-7 rounded-full border border-ink/20 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-ink group-hover:border-ink">
-                    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      </div>
 
       {/* ─── Flagship Spotlight Showcase Cards ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-30 space-y-16 lg:space-y-24">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 space-y-16">
         <Reveal className="text-center space-y-3 mb-16">
-          <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase inline-flex items-center gap-2">
+          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
             The Flagship Line
           </span>
@@ -306,9 +156,9 @@ export default function HomePage() {
 
         {/* Card 1: BESO Crown (Text Left, Image Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group shadow-[0_4px_8px_-2px_rgba(35,31,24,0.06),0_24px_48px_-12px_rgba(35,31,24,0.14)] hover:shadow-[0_8px_14px_-2px_rgba(35,31,24,0.06),0_36px_64px_-16px_rgba(35,31,24,0.18)] transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase">Signature Flagship Chair</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Signature Flagship Chair</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{crownChair.name}</h3>
             <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Designed for peak performance. Features custom double-layer high-elasticity mesh backing, active pelvic lumbar support, 3D adjustable armrests, and an integrated memory-foam seating pad to cushion long work sessions.
@@ -340,10 +190,10 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]" data-fx="tilt" data-rot="3">
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="/assets/images/products/executive-chair-07.jpg" 
+                src="/assets/images/products/executive-chair-07.png" 
                 alt={crownChair.name} 
                 className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
               />
@@ -354,9 +204,9 @@ export default function HomePage() {
 
         {/* Card 2: BESO FlexRise (Image Left, Text Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group shadow-[0_4px_8px_-2px_rgba(35,31,24,0.06),0_24px_48px_-12px_rgba(35,31,24,0.14)] hover:shadow-[0_8px_14px_-2px_rgba(35,31,24,0.06),0_36px_64px_-16px_rgba(35,31,24,0.18)] transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
           <div className="lg:col-span-6 lg:order-2 space-y-6 z-10">
-            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase">Smart Standing Desks</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Smart Standing Desks</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{flexRiseTable.name}</h3>
             <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Transform your productivity by switching between sitting and standing seamlessly. Engineered with quiet dual-motors, anti-collision sensors, an elegant solid walnut desktop, and a 4-preset memory digital controller.
@@ -388,10 +238,10 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]" data-fx="tilt" data-rot="3">
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="/assets/images/products/height-table-01.jpg" 
+                src="/assets/images/products/height-table-01.png" 
                 alt={flexRiseTable.name} 
                 className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
               />
@@ -402,9 +252,9 @@ export default function HomePage() {
 
         {/* Card 3: BESO Prestige (Text Left, Image Right) */}
         <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group shadow-[0_4px_8px_-2px_rgba(35,31,24,0.06),0_24px_48px_-12px_rgba(35,31,24,0.14)] hover:shadow-[0_8px_14px_-2px_rgba(35,31,24,0.06),0_36px_64px_-16px_rgba(35,31,24,0.18)] transition-all duration-700">
+        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
           <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase">Premium Luxury Support</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Premium Luxury Support</span>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{prestigeChair.name}</h3>
             <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
               Crafted for leaders. Upholstered in select full-grain Italian leather, featuring adjustable contoured structural segments, luxury padded armrests, and beautiful dark walnut wood spokes lining the polished steel base.
@@ -436,10 +286,10 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-6 flex justify-center relative">
             <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]" data-fx="tilt" data-rot="3">
+            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="/assets/images/products/executive-chair-04.jpg" 
+                src="/assets/images/products/executive-chair-04.png" 
                 alt={prestigeChair.name} 
                 className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
               />
@@ -449,83 +299,20 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* ─── Editorial story band ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          <Reveal className="order-2 lg:order-1">
-            <div className="relative rounded-[1.75rem] overflow-hidden border border-line/8 shadow-[0_24px_60px_-24px_rgba(44,35,25,0.25)]" data-fx="parallax" data-px="0.08">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/images/editorial-workspace.jpg"
-                alt="A BESO standing desk and ergonomic chair in a sunlit workspace"
-                className="w-full aspect-[16/10] object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#1A1917]/20 to-transparent" />
-              <div className="absolute left-5 bottom-5 flex items-center gap-2 bg-[#F6F1E7]/90 backdrop-blur px-3.5 py-2 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#8A6A3E] animate-pulse" aria-hidden="true" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">Made in Hyderabad</span>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.12} className="order-1 lg:order-2">
-            <span className="inline-flex items-center gap-2 text-[11px] font-bold text-[#8A6A3E] tracking-[0.2em] uppercase mb-5">
-              <span className="w-8 h-px bg-[#8A6A3E]/50" aria-hidden="true" />
-              The BESO principle
-            </span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-ink leading-[1.02] tracking-tight">
-              Posture is not a<br />comfort problem.<br />
-              <span className="italic text-[#8A6A3E]">It is a design problem.</span>
-            </h2>
-            <p className="text-ink/65 text-[15px] md:text-base leading-[1.7] mt-6 max-w-[520px]">
-              Most offices sell furniture. We engineer the geometry between your spine
-              and the seat — synchro-tilt, 3D arms, breathable mesh — so the chair
-              disappears and the work gets easier.
-            </p>
-
-            <dl className="grid grid-cols-3 gap-6 mt-9 pt-8 border-t border-line/10">
-              {[
-                [36, '', '', 'chair designs'],
-                [34, '', '', 'desk systems'],
-                [12, '', 'k', 'sq ft warehouse'],
-              ].map(([n, pre, suf, l]) => (
-                <div key={String(l)}>
-                  <dt className="font-display text-3xl md:text-4xl font-bold text-ink leading-none">
-                    <CountUp to={Number(n)} prefix={String(pre)} suffix={String(suf)} />
-                  </dt>
-                  <dd className="text-[11px] uppercase tracking-[0.14em] text-ink/50 mt-2 leading-snug">{l}</dd>
-                </div>
-              ))}
-            </dl>
-
-            <Link
-              href="/about"
-              className="group inline-flex items-center gap-2 mt-9 text-sm font-semibold text-ink hover:text-[#8A6A3E] transition-colors"
-            >
-              Read our story
-              <span className="w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center transition-all duration-300 group-hover:bg-ink group-hover:text-[#F6F1E7] group-hover:border-ink">
-                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-              </span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ─── AR Meeting Room Demo ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-30 border-t border-line/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal>
         <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
           <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-brandLime/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="lg:col-span-7 space-y-5 z-10">
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-[#B38A4C] uppercase tracking-[0.25em]">
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-brandLime uppercase tracking-[0.25em]">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>
               New · AR Experience
             </span>
             <h2 className="text-3xl md:text-5xl font-black text-ink tracking-tight">
               Preview a BESO <span className="text-gradient">Meeting Room</span> in Your Own Space
             </h2>
-            <p className="text-ink/80 text-[15px] md:text-base leading-[1.65] max-w-xl">
+            <p className="text-ink/60 text-sm md:text-base leading-relaxed max-w-xl">
               See a full conference setup — ergonomic chairs around a flagship table — placed at real scale in your
               boardroom, office, or home. Point your phone camera at the floor and walk around it.
             </p>
@@ -562,15 +349,15 @@ export default function HomePage() {
       </section>
 
       {/* ─── Featured Picks Grid ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-30 border-t border-line/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
             <h2 className="text-3xl font-extrabold text-ink tracking-tight">
               Featured <span className="text-gradient">Collections</span>
             </h2>
           </div>
-          <Link href="/products" className="text-sm font-bold text-[#B38A4C] hover:text-ink transition-colors flex items-center gap-1">
+          <Link href="/products" className="text-sm font-bold text-brandLime hover:text-ink transition-colors flex items-center gap-1">
             Browse Entire Store <span>→</span>
           </Link>
         </Reveal>
@@ -586,10 +373,10 @@ export default function HomePage() {
 
       {/* ─── Why Choose Us Section ─── */}
       <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 lg:py-30 border-t border-line/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-xl">
-            <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase inline-flex items-center gap-2 mb-3">
+            <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
               Why Choose Us
             </span>
@@ -603,12 +390,12 @@ export default function HomePage() {
           </div>
           <div className="hidden md:flex items-center gap-6 shrink-0">
             <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">12,000<span className="text-[#B38A4C]">+</span></div>
+              <div className="text-3xl font-display font-bold text-ink">12,000<span className="text-brandLime">+</span></div>
               <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Sq ft warehouse</div>
             </div>
             <span className="w-px h-10 bg-line/10" aria-hidden="true" />
             <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">48<span className="text-[#B38A4C]">hr</span></div>
+              <div className="text-3xl font-display font-bold text-ink">48<span className="text-brandLime">hr</span></div>
               <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Dispatch turnaround</div>
             </div>
             <span className="w-px h-10 bg-line/10" aria-hidden="true" />
@@ -650,8 +437,8 @@ export default function HomePage() {
           ].map((item, i) => (
             <div
               key={i}
-              className={`why-card group relative bg-surface border border-line/[0.09] rounded-3xl overflow-hidden transition-all duration-300 shadow-[0_4px_8px_-2px_rgba(35,31,24,0.05),0_16px_32px_-10px_rgba(35,31,24,0.10)] hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
-                item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-center p-8' : 'p-7'
+              className={`why-card group relative bg-surface border border-line/8 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
+                item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-end p-8' : 'p-7'
               }`}
             >
               {/* Ghost index number watermark */}
@@ -681,9 +468,9 @@ export default function HomePage() {
 
       {/* ─── Reviews / Testimonials ─── */}
       <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-16 lg:py-24 border-t border-line/5">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 border-t border-line/5">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-[#B38A4C] tracking-widest uppercase inline-flex items-center gap-2">
+          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
             Client Reviews
           </span>
@@ -700,7 +487,7 @@ export default function HomePage() {
             { name: 'Shreya Iyer', role: 'Studio Owner · Design Firm', quote: 'The FlexRise desks transformed our workstations. Quiet motors, solid walnut, and the team handled fit-out details we never expected.', rating: 5 },
             { name: 'Arjun Mehta', role: 'Procurement Lead · Consulting', quote: '48-hour turnaround was real. Dedicated point of contact, priority support, and the bulk pricing genuinely beat the market.', rating: 5 },
           ].map((r, i) => (
-            <div key={i} className="group relative bg-surface border border-line/[0.09] rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 shadow-[0_4px_8px_-2px_rgba(35,31,24,0.05),0_16px_32px_-10px_rgba(35,31,24,0.10)] hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
+            <div key={i} className="group relative bg-surface border border-line/8 rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
               <div className="flex items-center gap-1 text-[#D97706]">
                 {Array.from({length: r.rating}).map((_, s) => (
                   <svg key={s} viewBox="0 0 20 20" className="w-4 h-4 fill-current"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15.3l-5.3 2.8 1-5.8L1.5 7.7l5.9-.9z"/></svg>
@@ -737,7 +524,7 @@ export default function HomePage() {
             href="https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20a%20workspace%20consultation."
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-ink text-app px-8 py-4 rounded-full text-[13px] uppercase tracking-[0.08em] font-bold inline-flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(44,35,25,0.14)] transition-all hover:scale-[1.03] active:scale-[0.98] hover:shadow-[0_10px_30px_rgba(44,35,25,0.2)] min-w-[230px] mx-auto"
+            className="bg-[#25D366] text-[#ffffff] px-8 py-4 rounded-full text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(37,211,102,0.28)] transition-all hover:scale-[1.03] active:scale-[0.98] hover:shadow-[0_10px_30px_rgba(37,211,102,0.4)] min-w-[230px] mx-auto"
           >
             <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
