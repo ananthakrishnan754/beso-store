@@ -1,0 +1,67 @@
+{
+ "media": [
+  "https://www.wanderhotels.com/files/content/media/video/HD/thevisualvein-wanderhotels-sommer-video-abend-new-slow_1.mp4",
+  "https://www.wanderhotels.com/files/content/media/video/mobile/thevisualvein-wanderhotels-sommer-video-abend-new-slow_1_mobile.mp4",
+  "https://www.wanderhotels.com/files/content/media/video/mobile/thevisualvein-wanderhotels-winter-video-abend_1_mobile.mp4"
+ ],
+ "scripts": [],
+ "xhr": [
+  "https://consentcdn.cookiebot.com/consentconfig/581539ae-8230-4292-a7ce-98a5e7126aa6/settings.json",
+  "https://consentcdn.cookiebot.com/consentconfig/581539ae-8230-4292-a7ce-98a5e7126aa6/settings.json",
+  "https://consentcdn.cookiebot.com/consentconfig/581539ae-8230-4292-a7ce-98a5e7126aa6/settings.json"
+ ],
+ "info_1440": {
+  "title": "Your quality hiking vacation in the Alps | Wanderhotels",
+  "bodyFont": "acumin-pro, sans-serif",
+  "h1": "Your hiking vacation in the Alps",
+  "fonts": [
+   "gyst-variable, sans-serif",
+   "acumin-pro, sans-serif",
+   "Arial"
+  ],
+  "modes": [
+   "Pure winter hiking",
+   "Winter hiking & wellness",
+   "Winter hiking & yoga",
+   "Summer",
+   "Winter"
+  ]
+ },
+ "height_1440": 6435,
+ "info_768": {
+  "title": "Your quality hiking vacation in the Alps | Wanderhotels",
+  "bodyFont": "acumin-pro, sans-serif",
+  "h1": "Your hiking vacation in the Alps",
+  "fonts": [
+   "gyst-variable, sans-serif",
+   "acumin-pro, sans-serif",
+   "Arial"
+  ],
+  "modes": [
+   "Pure winter hiking",
+   "Winter hiking & wellness",
+   "Winter hiking & yoga",
+   "Summer",
+   "Winter"
+  ]
+ },
+ "height_768": 7434,
+ "info_390": {
+  "title": "Your quality hiking vacation in the Alps | Wanderhotels",
+  "bodyFont": "acumin-pro, sans-serif",
+  "h1": "Your hiking vacation in the Alps",
+  "fonts": [
+   "gyst-variable, sans-serif",
+   "acumin-pro, sans-serif",
+   "Arial"
+  ],
+  "modes": [
+   "Pure winter hiking",
+   "Winter hiking & wellness",
+   "Winter hiking & yoga",
+   "Summer",
+   "Winter"
+  ]
+ },
+ "height_390": 6564
+}

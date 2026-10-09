@@ -19,6 +19,7 @@ export const DESIGNS: DesignMeta[] = [
   { n: 1, folder: 'd01-atelier', name: 'Atelier', tag: 'Warm editorial' },
   { n: 2, folder: 'd02-monolith', name: 'Monolith', tag: 'Dark sculptural' },
   { n: 3, folder: 'd03-anatomy', name: 'Anatomy', tag: 'Engineering spec' },
+  { n: 4, folder: 'd04-twomodes', name: 'Two Modes', tag: 'Office / Home switch' },
 ];
 
 export function getDesign(n: number): DesignMeta {
