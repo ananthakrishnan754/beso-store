@@ -37,3 +37,12 @@ awards or statistics — so each item needs a source, correction, or removal.
 | 17 | Materials specs — dual motors 70–120 cm, up to 150 kg load, 200,000 cycles, full-grain leather, teak/walnut | **UNVERIFIED** | Confirm from the product sheet |
 | 18 | Offer counts (chairs 36, tables 35, stools 8, dining 4, gaming 5, standing 3) | **derived by keyword from the 79-product catalogue** | Confirm category taxonomy |
 | 19 | d05-hero (stone room) + hero video | **AI-generated interim** | Replace with real photography/video |
+
+## Concept "Archive" (beyondmedals-inspired) — additional gaps
+| # | Item | Status | Action |
+|---|---|---|---|
+| 20 | Footer "Social" (ig/fb) | **PLACEHOLDER** — disabled tiles; only WhatsApp is real | Provide real social URLs or remove |
+| 21 | Footer "Payment" | **informational only** | Confirm payment methods / badges |
+| 22 | Nav "Archive" | links to `/products` (no archive page) | Confirm or rename |
+| 23 | Collection titles "The Work Series" / "The Home Series" | **our own labels** | Confirm real collection naming |
+| 24 | Grid videos (mode-office/home, d05-hero) | **interim generated** | Replace with real footage |

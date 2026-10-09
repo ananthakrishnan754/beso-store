@@ -952,3 +952,8 @@ html[data-design-mode='1'] .scroll-progress {
 @media (prefers-reduced-motion: reduce) {
   .tm-swap { animation: none; }
 }
+
+/* ─── Concept "Archive" — marquee ticker ────────────────────────────────── */
+.marquee { animation: marquee 28s linear infinite; will-change: transform; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }

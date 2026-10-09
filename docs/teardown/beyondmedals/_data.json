@@ -1,0 +1,149 @@
+{
+ "media": [
+  "https://d38vedixrlqgtp.cloudfront.net/LAST%20DANCE%20MOVIE.mp4",
+  "https://d38vedixrlqgtp.cloudfront.net/9c68c4a3-7df9-4016-9690-e16f6c141c4b/AW2627_Website_Header.mp4"
+ ],
+ "scripts": [],
+ "styles": [],
+ "title": "Beyond Medals | Beyond Medals",
+ "bodyFont": "semimono, \"semimono Fallback\"",
+ "bodyBg": "rgb(255, 253, 250)",
+ "bodyColor": "rgb(20, 19, 19)",
+ "h1": "WINTER 26/27",
+ "fonts": [
+  "sans-serif",
+  "semimono, \"semimono Fallback\""
+ ],
+ "videos": [
+  {
+   "src": "https://d38vedixrlqgtp.cloudfront.net/9c68c4a3-7df9-4016-9690-e16f6c141c4b/AW2627_Website_Header.mp4",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": true
+  },
+  {
+   "src": "https://d38vedixrlqgtp.cloudfront.net/LAST%20DANCE%20MOVIE.mp4#t=0.001",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  },
+  {
+   "src": "",
+   "poster": "",
+   "muted": true,
+   "loop": true,
+   "autoplay": false
+  }
+ ],
+ "secs": [
+  {
+   "tag": "HEADER",
+   "h": "Shop"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Shop"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Explore"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Archive"
+  },
+  {
+   "tag": "DIV",
+   "h": "WINTER 26/27"
+  },
+  {
+   "tag": "FOOTER",
+   "h": "Since 2012"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Customer Service"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Information"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Social"
+  },
+  {
+   "tag": "SECTION",
+   "h": "Payment"
+  }
+ ],
+ "imgCount": 184,
+ "height_1440": 5575,
+ "height_768": 7438,
+ "height_390": 6667
+}
