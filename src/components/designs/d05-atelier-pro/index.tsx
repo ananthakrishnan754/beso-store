@@ -74,6 +74,7 @@ export default function DesignAtelierPro() {
   const [audience, setAudience] = useState<'individual' | 'business'>('business');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [hoverImg, setHoverImg] = useState<string | null>(null);
 
   // pinned materials: scroll progress → active index (lerp-smoothed)
   const matRef = useRef<HTMLDivElement | null>(null);
@@ -94,6 +95,11 @@ export default function DesignAtelierPro() {
 
   return (
     <div className="text-[#141414]" style={{fontFamily: BODY, background: BASE}}>
+      {/* Row hover image reveal (Workspaces / Offer) */}
+      <div className="pointer-events-none fixed right-10 top-1/2 z-30 hidden h-[320px] w-[430px] -translate-y-1/2 overflow-hidden lg:block" style={{opacity: hoverImg ? 1 : 0, transition: 'opacity 400ms cubic-bezier(0.22,1,0.36,1)'}} aria-hidden="true">
+        {hoverImg && <img src={hoverImg} alt="" className="h-full w-full object-cover" />}
+      </div>
+
       {/* ── Header + mega-menu ─────────────────────────────────────────── */}
       <header className="sticky top-0 z-40 border-b border-[#141414]/12 bg-[#FAFAFA]/90 backdrop-blur-md" onMouseLeave={() => setMenuOpen(false)}>
         <div className="mx-auto flex max-w-[1320px] items-center justify-between px-6 py-5 lg:px-10">
@@ -200,7 +206,7 @@ export default function DesignAtelierPro() {
           <ul className="mt-8">
             {workspaces.map((w, i) => (
               <li key={i} className="group border-t border-[#141414]/15">
-                <Link href="/products" className="grid grid-cols-12 items-center gap-4 py-6">
+                <Link href="/products" className="grid grid-cols-12 items-center gap-4 py-6" onMouseEnter={() => setHoverImg(firstImg(w.re))} onMouseLeave={() => setHoverImg(null)}>
                   <span className="col-span-3 text-[12px] uppercase tracking-[0.14em] text-[#141414]/45" style={{fontFamily: MONO}}>{w.type}</span>
                   <span className="col-span-3 text-[12px] uppercase tracking-[0.14em] text-[#141414]/45" style={{fontFamily: MONO}}>{w.city || '—'}</span>
                   <span className="col-span-5 text-[clamp(20px,2.2vw,30px)] leading-tight transition-colors duration-300 group-hover:text-[#8A6A3B]" style={{fontFamily: DISPLAY, fontWeight: 500}}>{w.detail}</span>
@@ -223,7 +229,7 @@ export default function DesignAtelierPro() {
               const n = countOf(o.re);
               return (
                 <li key={o.label} className="group border-t border-[#141414]/15">
-                  <Link href="/products" className="flex items-baseline justify-between gap-6 py-6 lg:py-8">
+                  <Link href="/products" className="flex items-baseline justify-between gap-6 py-6 lg:py-8" onMouseEnter={() => setHoverImg(firstImg(o.re))} onMouseLeave={() => setHoverImg(null)}>
                     <span className="text-[clamp(28px,4vw,54px)] leading-none tracking-[-0.015em] transition-colors duration-300 group-hover:text-[#8A6A3B]" style={{fontFamily: DISPLAY, fontWeight: 500}}>{o.label}</span>
                     <span className="shrink-0 text-[13px] tabular-nums text-[#141414]/45" style={{fontFamily: MONO}}>{n ? `${n} pieces` : 'Enquire'}</span>
                   </Link>
