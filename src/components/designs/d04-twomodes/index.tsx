@@ -14,7 +14,7 @@ const BODY = 'Inter, ui-sans-serif, system-ui, -apple-system, sans-serif';
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
 type Mode = 'office' | 'home';
-type Product = {slug: string; name: string; price: number; image: string};
+type Product = {slug: string; name: string; price: number; image: string; category?: string};
 const list = products as unknown as Product[];
 const find = (s: string) => list.find((p) => p.slug === s);
 const crown = find('beso-crown-executive-chair');
@@ -56,6 +56,19 @@ const tiles = [
 ];
 
 const featured = [crown, flexrise, prestige].filter(Boolean) as Product[];
+
+// Mode-specific carousel: Office leads with the ergonomic flagships, Home leads
+// with the home range. Real products only.
+const carouselFor = (m: Mode) => {
+  const lead = m === 'office' ? featured : list.filter((p) => p.category === 'home').slice(0, 3);
+  const rest = list.filter((p) => p.category === m);
+  const seen = new Set<string>();
+  const out: Product[] = [];
+  for (const p of [...lead, ...rest]) {
+    if (p && !seen.has(p.slug)) { seen.add(p.slug); out.push(p); }
+  }
+  return out.slice(0, 9);
+};
 
 const reasons = [
   ['Free shipping', 'Pan-India delivery'],
@@ -160,8 +173,12 @@ export default function DesignTwoModes() {
             key={m}
             aria-hidden={mode !== m}
             autoPlay muted loop playsInline poster={MODES[m].poster}
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1000ms] ease-in-out"
-            style={{opacity: mode === m ? 1 : 0}}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{
+              opacity: mode === m ? 1 : 0,
+              clipPath: mode === m ? 'inset(0 0% 0 0%)' : 'inset(0 0% 0 100%)',
+              transition: 'opacity 700ms ease-in-out, clip-path 950ms cubic-bezier(0.7,0,0.2,1)',
+            }}
           >
             <source src={`${MODES[m].video}.webm`} type="video/webm" />
             <source src={`${MODES[m].video}.mp4`} type="video/mp4" />
@@ -169,7 +186,7 @@ export default function DesignTwoModes() {
         ))}
         <div className="absolute inset-0" style={{background: 'linear-gradient(180deg, rgba(30,28,26,0.35) 0%, rgba(30,28,26,0.05) 34%, rgba(30,28,26,0.55) 82%, rgba(30,28,26,0.85) 100%)'}} />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1280px] px-5 pb-16 pt-24 lg:px-10 lg:pb-24">
+        <div key={mode} className="tm-swap relative z-10 mx-auto w-full max-w-[1280px] px-5 pb-16 pt-24 lg:px-10 lg:pb-24">
           <span className="text-[12px] uppercase tracking-[0.2em]" style={{color: '#F4F1EE'}}>{name ? `Hi ${name} — ${M.eyebrow}` : M.eyebrow}</span>
           <h1 className="mt-4 text-[clamp(42px,7.5vw,96px)] font-light leading-[0.98] tracking-[-0.02em] text-[#F7F4F0]" style={{fontFamily: DISPLAY, fontWeight: 360}}>
             {M.headline.map((line) => (<span key={line} className="block">{line}</span>))}
@@ -238,8 +255,8 @@ export default function DesignTwoModes() {
               <button onClick={() => nudge(1)} aria-label="Next" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#232220]/20 transition-colors hover:bg-[#232220] hover:text-[#F4F1EE]">›</button>
             </div>
           </div>
-          <div ref={scroller} className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 [scrollbar-width:none]">
-            {featured.concat(list.slice(0, 6)).filter((p, i, a) => a.findIndex((x) => x.slug === p.slug) === i).slice(0, 9).map((p) => (
+          <div ref={scroller} key={mode} className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 [scrollbar-width:none]">
+            {carouselFor(mode).map((p) => (
               <article key={p.slug} className="w-[76vw] shrink-0 snap-start sm:w-[340px]">
                 <div className="overflow-hidden rounded-2xl bg-[#E7E1D8]">
                   <img src={src(p)} alt={p.name} loading="lazy" className="aspect-[4/3] w-full object-contain p-6" />

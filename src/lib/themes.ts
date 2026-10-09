@@ -46,7 +46,7 @@ export const THEMES: Theme[] = [
     sans: 'Manrope',
     display: 'DM Serif Display',
     swatch: {app: '#f7f4ef', accent: '#101418', ink: '#1b1c1e'},
-    heroVideo: '/assets/videos/hero-bg-ivory.webm',
+    heroVideo: '/assets/videos/hero-bg.webm',
   },
   {
     id: 'nordic-white',

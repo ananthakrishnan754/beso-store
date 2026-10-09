@@ -6,8 +6,8 @@
   "scrollW": 390,
   "vw": 390,
   "height": 8794,
-  "imgs": 2,
-  "imgsTotal": 21,
+  "imgs": 3,
+  "imgsTotal": 22,
   "errors": []
  },
  {
@@ -17,8 +17,8 @@
   "scrollW": 768,
   "vw": 768,
   "height": 6268,
-  "imgs": 2,
-  "imgsTotal": 21,
+  "imgs": 3,
+  "imgsTotal": 22,
   "errors": []
  },
  {
@@ -29,7 +29,7 @@
   "vw": 1440,
   "height": 5182,
   "imgs": 2,
-  "imgsTotal": 21,
+  "imgsTotal": 22,
   "errors": []
  }
 ]
