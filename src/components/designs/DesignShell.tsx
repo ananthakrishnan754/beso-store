@@ -7,9 +7,10 @@ import {DesignSwitcher} from './DesignSwitcher';
 const STORAGE = 'beso-design';
 
 /**
- * Renders the landing page: the untouched Current home, or one of the ten
- * switchable design concepts. Driven by ?design=N (shareable) with a
- * sessionStorage fallback so the choice sticks across navigation.
+ * Renders the landing page: the untouched Current home, or a registered design
+ * concept. Driven by ?design=N (shareable) with a sessionStorage fallback so the
+ * choice sticks across navigation. With no concepts registered the switcher is
+ * hidden and the production home renders exactly as before the concept work.
  */
 export function DesignShell({current}: {current: React.ReactNode}) {
   const [n, setN] = useState(0);
@@ -32,7 +33,7 @@ export function DesignShell({current}: {current: React.ReactNode}) {
   }, []);
 
   const meta = getDesign(n);
-  const Design = n >= 1 ? lazy(() => import(`./${meta.folder}/index.tsx`)) : null;
+  const Design = n >= 1 && meta.folder ? lazy(() => import(`./${meta.folder}/index.tsx`)) : null;
 
   return (
     <>

@@ -19,6 +19,7 @@ export function DesignSwitcher({current, total, name, go}: Props) {
 
   // keyboard: [ and ] to step through designs while reviewing
   useEffect(() => {
+    if (total === 0) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.target && ['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
       if (e.key === ']') go(Math.min(total, (current || total) + 1));
@@ -28,6 +29,10 @@ export function DesignSwitcher({current, total, name, go}: Props) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [current, total, go]);
+
+  // No concepts registered yet — keep the live site identical to the production
+  // home. The switcher reappears automatically once a design passes the gate.
+  if (total === 0) return null;
 
   return (
     <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[80] print:hidden">

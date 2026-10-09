@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import products from '@/data/products.json';
