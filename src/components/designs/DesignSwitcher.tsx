@@ -37,7 +37,7 @@ export function DesignSwitcher({current, total, name, go}: Props) {
 
   return (
     <div className="fixed bottom-4 left-4 z-[80] print:hidden" style={{fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace'}}>
-      <div className="relative flex items-center gap-1 rounded-sm border border-white/10 bg-black/55 px-2 py-1 text-[11px] uppercase tracking-[0.14em] text-[#F6F1E7]/70 backdrop-blur-md">
+      <div className="relative flex items-center gap-1 rounded-sm border border-white/10 bg-black/75 px-2 py-1 text-[11px] uppercase tracking-[0.14em] text-[#F6F1E7]/70">
         <button onClick={() => go(0)} aria-current={current === 0} className={`${btn} ${current === 0 ? 'text-white' : ''}`}>
           Current
         </button>
@@ -49,7 +49,7 @@ export function DesignSwitcher({current, total, name, go}: Props) {
         <button onClick={() => go(Math.min(total, current + 1))} disabled={current >= total} aria-label="Next design" className={btn}>›</button>
 
         {open && (
-          <div className="absolute bottom-full left-0 mb-2 w-[260px] rounded-md border border-white/10 bg-black/90 p-1.5 backdrop-blur-xl">
+          <div className="absolute bottom-full left-0 mb-2 w-[260px] rounded-md border border-white/10 bg-black/90 p-1.5">
             <button
               onClick={() => { go(0); setOpen(false); }}
               className={`flex w-full items-center justify-between rounded px-3 py-2 text-left transition-colors ${current === 0 ? 'bg-white/10' : 'hover:bg-white/5'}`}

@@ -80,7 +80,7 @@ export default function DesignArchive() {
       </div>
 
       {/* ── Nav — 3 zones ──────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-[#141313]/15 bg-[#FFFDFA]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#141313]/15 bg-[#FFFDFA]/95">
         <div className="grid grid-cols-3 items-center px-4 py-4 lg:px-6">
           <nav className="flex items-center gap-5 text-[12px] uppercase tracking-[0.14em] text-[#141313]/75">
             <Link href="/products" className="transition-colors hover:text-[#141313]">Shop</Link>
@@ -116,7 +116,7 @@ export default function DesignArchive() {
             <div className="absolute inset-0" style={{background: `linear-gradient(180deg, rgba(10,10,10,0.12), ${h.tint})`}} />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
               <h1 className="text-[clamp(30px,4.6vw,58px)] font-bold uppercase leading-[0.92] tracking-[-0.01em] text-[#F6F3EE]">{h.title}</h1>
-              <Link href={h.href} className="border border-[#F6F3EE]/70 bg-[#141313]/40 px-5 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F6F3EE] backdrop-blur-sm transition-colors hover:bg-[#F6F3EE] hover:text-[#141313]">{h.cta}</Link>
+              <Link href={h.href} className="border border-[#F6F3EE]/70 bg-[#141313]/40 px-5 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F6F3EE] transition-colors hover:bg-[#F6F3EE] hover:text-[#141313]">{h.cta}</Link>
             </div>
           </div>
         ))}
@@ -164,17 +164,19 @@ export default function DesignArchive() {
         </div>
         <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
           {catalog.map((p, i) => (
-            <Link key={p.slug} href={`/products/${p.slug}`} className={`group ${i % 2 === 1 ? 'md:mt-10' : ''}`}>
-              <div className="overflow-hidden bg-[#F5F5DB]">
-                <img src={pimg(p)} alt={p.name} loading="lazy" className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]" />
-              </div>
-              <div className="mt-2 flex items-baseline justify-between">
-                <span className="text-[10px] tracking-[0.14em] text-[#141313]/45">{String(i + 1).padStart(2, '0')}</span>
-                <span className="text-[10px] tracking-[0.14em] text-[#141313]/45">{p.category === 'home' ? 'Home' : 'Office'}</span>
-              </div>
-              <div className="mt-1 truncate text-[12px] uppercase tracking-[0.08em]">{p.name}</div>
-              <div className="mt-0.5 text-[11px] text-[#141313]/55">{money(p.price)}</div>
-            </Link>
+            <Reveal key={p.slug} delay={(i % 4) * 60} className={i % 2 === 1 ? 'md:mt-10' : ''}>
+              <Link href={`/products/${p.slug}`} className="group block">
+                <div className="overflow-hidden bg-[#F5F5DB]">
+                  <img src={pimg(p)} alt={p.name} loading="lazy" className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]" />
+                </div>
+                <div className="mt-2 flex items-baseline justify-between">
+                  <span className="text-[10px] tracking-[0.14em] text-[#141313]/45">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-[10px] tracking-[0.14em] text-[#141313]/45">{p.category === 'home' ? 'Home' : 'Office'}</span>
+                </div>
+                <div className="mt-1 truncate text-[12px] uppercase tracking-[0.08em]">{p.name}</div>
+                <div className="mt-0.5 text-[11px] text-[#141313]/55">{money(p.price)}</div>
+              </Link>
+            </Reveal>
           ))}
           {catalog.length === 0 && <p className="col-span-full py-8 text-[13px] uppercase tracking-[0.12em] text-[#141313]/50">No pieces match “{query}”.</p>}
         </div>

@@ -171,7 +171,7 @@ export default function DesignTwoModes() {
   return (
     <div className="text-[#232220] transition-colors duration-700" style={{fontFamily: BODY, background: M.base}}>
       {/* ── Header with mode switch ────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-[#232220]/10 backdrop-blur-md" style={{background: `${M.base}D9`}}>
+      <header className="sticky top-0 z-40 border-b border-[#232220]/10" style={{background: `${M.base}E6`}}>
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-5 py-4 lg:px-10">
           <Link href="/" className="flex items-center gap-3">
             <img src="/assets/images/beso-logo-transparent.png" alt="BESO" className="h-6 w-auto" style={{filter: 'brightness(0)'}} />

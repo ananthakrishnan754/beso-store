@@ -514,34 +514,28 @@ html.theme-switching *::after {
     stroke 0.25s ease !important;
 }
 
-/* Hidden until in-viewport, then revealed by the `Reveal` component
-   (adds the `is-visible` class via IntersectionObserver). Soft 3D rise +
-   de-blur for a tactile, premium entrance. */
+/* Hidden until in-viewport, then revealed by the `Reveal` component.
+   Opacity + translate only — no filter/scale, which repainted large layers and
+   caused a scroll shimmer/shake on some displays. */
 .reveal {
   opacity: 0;
-  transform: translateY(26px) scale(0.992);
-  filter: blur(3px);
+  transform: translateY(24px);
   transition:
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: none;
 }
 /* Stagger helper: child reveals offset by index via inline `--d` delay. */
 .reveal-stagger > *,
 .stagger > * {
   opacity: 0;
-  transform: translateY(22px) scale(0.992);
-  filter: blur(2px);
+  transform: translateY(20px);
   transition:
     opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--d, 0s);
 }
 .is-visible.reveal-stagger > *,
@@ -549,8 +543,7 @@ html.theme-switching *::after {
 .reveal-stagger.is-visible > *,
 .stagger.is-visible > * {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -616,9 +609,8 @@ section[id] {
 
 /* ─── Glass Header ───────────────────────────────────────────────────────── */
 .glass-header {
-  background: rgb(248 246 240 / 0.75);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgb(248 246 240 / 0.94);
+  /* no backdrop-filter: the blurred fixed region shimmered while scrolling */
   border: 1px solid rgb(255 255 255 / 0.6);
   box-shadow: 0 8px 32px rgb(44 35 25 / 0.06);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;

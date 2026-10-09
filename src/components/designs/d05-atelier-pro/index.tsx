@@ -101,7 +101,7 @@ export default function DesignAtelierPro() {
       </div>
 
       {/* ── Header + mega-menu ─────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-[#141414]/12 bg-[#FAFAFA]/90 backdrop-blur-md" onMouseLeave={() => setMenuOpen(false)}>
+      <header className="sticky top-0 z-40 border-b border-[#141414]/12 bg-[#FAFAFA]/95" onMouseLeave={() => setMenuOpen(false)}>
         <div className="mx-auto flex max-w-[1320px] items-center justify-between px-6 py-5 lg:px-10">
           <Link href="/" className="flex items-center">
             <img src="/assets/images/beso-logo-transparent.png" alt="BESO" className="h-5 w-auto" style={{filter: 'brightness(0)'}} />
