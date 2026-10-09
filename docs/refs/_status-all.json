@@ -1,0 +1,376 @@
+[
+ {
+  "slug": "vitra",
+  "url": "https://www.vitra.com/en-us/",
+  "status": 403,
+  "title": "Just a moment...",
+  "height": 1000,
+  "ok": true
+ },
+ {
+  "slug": "herman-miller",
+  "url": "https://www.hermanmiller.com/",
+  "status": 200,
+  "title": "Herman Miller – Modern Furnishings for Office and Workplaces",
+  "height": 2671,
+  "ok": true
+ },
+ {
+  "slug": "hem",
+  "url": "https://hem.com/en/",
+  "status": 404,
+  "title": "Imaginative designs of obsessive quality — Hem",
+  "height": 1000,
+  "ok": true
+ },
+ {
+  "slug": "muuto",
+  "url": "https://muuto.com/",
+  "status": 200,
+  "title": "MUUTO.COM",
+  "height": 8701,
+  "ok": true
+ },
+ {
+  "slug": "framery",
+  "url": "https://www.frameryacoustics.com/en/",
+  "status": 200,
+  "title": "Framery | The World's Leading Soundproof Pods & Booths",
+  "height": 17341,
+  "ok": true
+ },
+ {
+  "slug": "fully",
+  "url": "https://www.fully.com/",
+  "status": 200,
+  "title": "Fully – Herman Miller Store",
+  "height": 4408,
+  "ok": true
+ },
+ {
+  "slug": "knoll",
+  "url": "https://www.knoll.com/",
+  "status": 200,
+  "title": "Knoll - Modern Furniture Design for the Office & Home",
+  "height": 1324,
+  "ok": true
+ },
+ {
+  "slug": "usm",
+  "url": "https://www.usm.com/en/",
+  "status": 200,
+  "title": "Timeless modular design furniture | USM | USM",
+  "height": 6922,
+  "ok": true
+ },
+ {
+  "slug": "arper",
+  "url": "https://www.arper.com/en/",
+  "status": 404,
+  "title": "404 Not Found",
+  "height": 1709,
+  "ok": true
+ },
+ {
+  "slug": "poltrona-frau",
+  "url": "https://www.poltronafrau.com/en/",
+  "status": 200,
+  "title": "Poltrona Frau | Timeless craftmanship, Heritage, Sustainability",
+  "height": 6909,
+  "ok": true
+ },
+ {
+  "slug": "cassina",
+  "url": "https://www.cassina.com/en/",
+  "status": 200,
+  "title": "Cassina: italian design furniture and luxury interior design",
+  "height": 6216,
+  "ok": true
+ },
+ {
+  "slug": "boconcept",
+  "url": "https://www.boconcept.com/en/",
+  "status": 404,
+  "title": "Page not found",
+  "height": 1934,
+  "ok": true
+ },
+ {
+  "slug": "hay",
+  "url": "https://hay.dk/en/",
+  "status": 200,
+  "title": "HAY.com – latest products, designer news and retailer info",
+  "height": 2751,
+  "ok": true
+ },
+ {
+  "slug": "ferm-living",
+  "url": "https://fermliving.com/",
+  "status": 200,
+  "title": "Ferm Living | Danish design | Furniture, accessories and lamps",
+  "height": 6960,
+  "ok": true
+ },
+ {
+  "slug": "audo",
+  "url": "https://audo.com/",
+  "ok": false,
+  "err": "page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://audo.com/\nCall log:\n\u001b[2m  - navi"
+ },
+ {
+  "slug": "maruni",
+  "url": "https://www.maruni.com/en/",
+  "status": 200,
+  "title": "Maruni Wood Industry",
+  "height": 5093,
+  "ok": true
+ },
+ {
+  "slug": "okamura",
+  "url": "https://www.okamura.com/en/",
+  "status": 200,
+  "title": "Okamura｜Office furniture designed to the last detail.",
+  "height": 8306,
+  "ok": true
+ },
+ {
+  "slug": "steelcase",
+  "url": "https://www.steelcase.com/",
+  "status": 200,
+  "title": "Steelcase - Office Furniture Solutions, Education & Healthcare Furnitu",
+  "height": 2412,
+  "ok": true
+ },
+ {
+  "slug": "offecct",
+  "url": "https://www.offecct.com/",
+  "ok": false,
+  "err": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://www.offecct.com/\nCall log:\n\u001b[2m  -"
+ },
+ {
+  "slug": "flos",
+  "url": "https://flos.com/en/",
+  "status": 200,
+  "title": "Flos Official Online Store | Contemporary Lighting and Decorative Ligh",
+  "height": 7962,
+  "ok": true
+ },
+ {
+  "slug": "muji",
+  "url": "https://www.muji.com/",
+  "status": 200,
+  "title": "無印良品ネットストア",
+  "height": 8240,
+  "ok": true
+ },
+ {
+  "slug": "article",
+  "url": "https://www.article.com/",
+  "status": 200,
+  "title": "Contemporary, Mid Century & Modern Furniture | Article",
+  "height": 4394,
+  "ok": true
+ },
+ {
+  "slug": "aesop",
+  "url": "https://www.aesop.com/",
+  "status": 200,
+  "title": "Aesop USA | Formulations for Skin, Hair & Body",
+  "height": 8458,
+  "ok": true
+ },
+ {
+  "slug": "apple-macbook",
+  "url": "https://www.apple.com/macbook-pro/",
+  "status": 200,
+  "title": "MacBook Pro - Apple",
+  "height": 43347,
+  "ok": true
+ },
+ {
+  "slug": "apple-airpods",
+  "url": "https://www.apple.com/airpods-max/",
+  "status": 200,
+  "title": "AirPods Max 2 - Apple",
+  "height": 17933,
+  "ok": true
+ },
+ {
+  "slug": "godly",
+  "url": "https://godly.website/",
+  "status": 200,
+  "title": "Recent — Design Inspiration",
+  "height": 3287,
+  "ok": true
+ },
+ {
+  "slug": "land-book",
+  "url": "https://land-book.com/",
+  "status": 200,
+  "title": "Landbook - website design inspiration gallery",
+  "height": 10529,
+  "ok": true
+ },
+ {
+  "slug": "minimal-gallery",
+  "url": "https://minimal.gallery/",
+  "status": 200,
+  "title": "Minimal Gallery – Hand-picked web design inspiration, premium template",
+  "height": 3561,
+  "ok": true
+ },
+ {
+  "slug": "siteinspire",
+  "url": "https://www.siteinspire.com/",
+  "status": 200,
+  "title": "Best Website Design Inspiration | Siteinspire",
+  "height": 6440,
+  "ok": true
+ },
+ {
+  "slug": "fontsinuse",
+  "url": "https://fontsinuse.com/",
+  "status": 200,
+  "title": "Fonts In Use - Fonts In Use",
+  "height": 5143,
+  "ok": true
+ }
+][
+ {
+  "slug": "hem",
+  "url": "https://hem.com/",
+  "status": 200,
+  "title": "Imaginative designs of obsessive quality — Hem",
+  "height": 1000,
+  "ok": true
+ },
+ {
+  "slug": "arper",
+  "url": "https://www.arper.com/en-us/",
+  "status": 404,
+  "title": "404 Not Found",
+  "height": 1709,
+  "ok": true
+ },
+ {
+  "slug": "boconcept",
+  "url": "https://www.boconcept.com/en-us/",
+  "status": 200,
+  "title": "Danish Design Furniture Store and Interior Design | BoConcept",
+  "height": 9675,
+  "ok": true
+ },
+ {
+  "slug": "wilkhahn",
+  "url": "https://www.wilkhahn.com/en/",
+  "status": 200,
+  "title": "Task chairs and conference tables | Wilkhahn",
+  "height": 4473,
+  "ok": true
+ },
+ {
+  "slug": "haworth",
+  "url": "https://www.haworth.com/",
+  "status": 200,
+  "title": "Office Furniture | Haworth Asia Pacific",
+  "height": 4110,
+  "ok": true
+ },
+ {
+  "slug": "interstuhl",
+  "url": "https://www.interstuhl.com/en/",
+  "status": 404,
+  "title": "404 - File not found",
+  "height": 1000,
+  "ok": true
+ },
+ {
+  "slug": "kinnarps",
+  "url": "https://www.kinnarps.com/en/",
+  "status": 404,
+  "title": "404 | Kinnarps",
+  "height": 1130,
+  "ok": true
+ },
+ {
+  "slug": "humanscale",
+  "url": "https://www.humanscale.com/",
+  "status": 200,
+  "title": "",
+  "height": 1000,
+  "ok": true
+ },
+ {
+  "slug": "ergotron",
+  "url": "https://www.ergotron.com/en-us/",
+  "status": 200,
+  "title": "Monitor Mounts, Computer Carts, Sit to Stand Desks | Ergotron",
+  "height": 5234,
+  "ok": false,
+  "err": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b"
+ },
+ {
+  "slug": "ton",
+  "url": "https://www.ton.eu/en/",
+  "status": 200,
+  "title": "Verifying your access",
+  "height": 1000,
+  "ok": true
+ },
+ {
+  "slug": "dwr",
+  "url": "https://www.dwr.com/",
+  "status": 200,
+  "title": "Design Within Reach | The Best in Modern Furniture + Design",
+  "height": 7260,
+  "ok": true
+ },
+ {
+  "slug": "normann-copenhagen",
+  "url": "https://www.normann-copenhagen.com/",
+  "status": 200,
+  "title": "Normann Copenhagen | Scandinavian Design Furniture",
+  "height": 2818,
+  "ok": true
+ },
+ {
+  "slug": "andtradition",
+  "url": "https://andtradition.com/",
+  "ok": false,
+  "err": "page.goto: Timeout 35000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://andtradition"
+ },
+ {
+  "slug": "gubi",
+  "url": "https://gubi.com/en-us/",
+  "status": 404,
+  "title": "Page not found | GUBI",
+  "height": 1601,
+  "ok": true
+ },
+ {
+  "slug": "fritz-hansen",
+  "url": "https://fritzhansen.com/",
+  "status": 200,
+  "title": "Furniture, lighting and accessory design - Fritz Hansen",
+  "height": 5653,
+  "ok": true
+ },
+ {
+  "slug": "boss-design",
+  "url": "https://www.boss-design.com/en/",
+  "ok": false,
+  "err": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://www.boss-design.com/en/\nCall log:\n"
+ },
+ {
+  "slug": "softline",
+  "url": "https://www.softline.dk/",
+  "ok": false,
+  "err": "page.goto: Timeout 35000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.softline"
+ },
+ {
+  "slug": "inclass",
+  "url": "https://www.inclass.es/en/",
+  "ok": false,
+  "err": "page.goto: Timeout 35000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.inclass."
+ }
+]
