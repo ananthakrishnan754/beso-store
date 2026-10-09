@@ -1,0 +1,88 @@
+Video 01: Ergonomic Task Chair (Row 1)
+
+(a) Warping / Melting: Frame 1 starts as an isolated 2D cutout asset with a 5-star base. Frames 2–12 hallucinate a concrete room where the star-base morphs, the casters twist unevenly into the floor, and the armrest curvature swells unpredictably. Score: 4/10   
+JPG
++ 1
+
+(b) Flicker: Severe flash right at the start. Frame 1 is sterile cream, immediately cutting into a harsh stone wall environment with rapid shadow jittering across frames 4–8. Score: 3/10   
+JPG
++ 1
+
+(c) Lighting Consistency: Catastrophic failure. A flat studio flash on Frame 1 snaps into hard directional afternoon sunlight in Frame 2, which then dims and shifts angles unnaturally through Frame 12. Score: 2/10   
+JPG
++ 1
+
+(d) Loop Seam: Zero loop continuity. Frame 1 (isolated cream backdrop) vs. Frame 12 (marble slab wall with cast sunbeams) creates an jarring visual hard-cut. Score: 1/10   
+JPG
++ 1
+
+(e) Detail / Sharpness: Mesh texture and polished aluminum lose structural integrity; edges blur into the concrete background during motion. Score: 5/10   
+JPG
+
+VERDICT: FAIL (Axes: 4, 3, 2, 1, 5)
+
+Video 02: Mobile Standing Desk (Row 2)
+
+(a) Warping / Melting: Severe structural mutation. It begins in Frame 1 as a single-column, pneumatic mobile laptop caddy with a C-base. By Frame 3, it morphs into an office room; by Frames 6–12, it has magically turned into a dual-leg executive sit-stand desk with a completely different underframe, crossbar, and proportions. Score: 1/10   
+JPG
++ 2
+
+(b) Flicker: Background assets (sofas, partition glazing, ceiling lights) jump and pop between consecutive frames. Score: 3/10   
+JPG
+
+(c) Lighting Consistency: Background ambient exposure drifts from cool daylight to warm office interior tones between Frames 2 and 6. Score: 4/10   
+JPG
+
+(d) Loop Seam: Abysmal. A dual-column desk in an open-plan office (Frame 12) looping back to an isolated single-leg desk on cream (Frame 1). Score: 1/10   
+JPG
++ 1
+
+(e) Detail / Sharpness: The desk surface and legs smear; background objects bleed into one another. Score: 4/10   
+JPG
+
+VERDICT: FAIL (Axes: 1, 3, 4, 1, 4)
+
+Video 03: Executive Leather Chair (Row 3)
+   
+JPG
++ 2
+
+(a) Warping / Melting: Frame 1–3 show an entire upper chair floating in space with wooden armrests. Frames 4–6 zoom erratically. Frames 7–12 slam into a macro shot of the headrest/leather stitching, with seam lines twisting like melted wax. Score: 2/10   
+JPG
++ 2
+
+(b) Flicker: Disorienting camera jump cuts between Frame 3, Frame 4, and Frame 7. Not a video, but an incoherent slideshow of zooming assets. Score: 2/10   
+JPG
++ 1
+
+(c) Lighting Consistency: Relative exposure on the black leather remains moderately stable, but specular highlights on the lacquer/wood trim jitter wildly. Score: 5/10   
+JPG
+
+(d) Loop Seam: Non-existent. Macro leather texture (Frame 12) hard-cuts to a miniature full chair silhouette (Frame 1). Score: 1/10   
+JPG
++ 1
+
+(e) Detail / Sharpness: Stitching and pleating resolution in the close-ups (Frames 7–12) hold decent local contrast, but lack crisp, high-end textile definition. Score: 6/10   
+JPG
+
+VERDICT: FAIL (Axes: 2, 2, 5, 1, 6)
+
+Premium Usability Verdict
+
+None of these clips are usable.
+
+Every single video commits the fatal AI error of starting from an isolated e-commerce image on flat white/cream (Frame 1) and hallucinating an environment starting at Frame 2. In luxury furniture (Herman Miller, Vitra, Poltrona Frau), the mechanical honesty of the product is sacred:   
+JPG
+
+Video 01 melts the structural casters and changes the room out of nowhere.   
+JPG
+
+Video 02 literally transforms one product into a completely different piece of furniture mid-video.   
+JPG
+
+Video 03 features nauseating snap-zooms with warping pleat geometries.   
+JPG
+
+Putting these on BESO's hero or product pages would make the brand look like a fly-by-night drop-shipping operation running uncurated generative AI outputs. Scrap all three and render native 3D camera passes from CAD/USDZ assets.
+
+
