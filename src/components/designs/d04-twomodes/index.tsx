@@ -58,16 +58,28 @@ const MODES = {
   },
 } as const;
 
-const tiles = [
-  {label: 'Shop', title: 'Shop the collection', caption: '79 pieces across office and home.', img: '/assets/images/products/executive-chair-07.jpg', href: '/products'},
-  {label: 'Compare', title: 'Compare chairs', caption: 'Put flagships side by side.', img: '/assets/images/products/executive-chair-04.jpg', href: '/compare'},
-  {label: 'AR', title: 'Preview in AR', caption: 'Place a piece in your room.', img: '/assets/images/products/height-table-01.jpg', href: '#ar'},
-  {label: 'Bulk', title: 'Bulk quote', caption: 'Teams, floors and fit-outs.', img: '/assets/images/d01-hero.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20a%20bulk%20quote.'},
-  {label: 'Expert', title: 'Talk to an ergo expert', caption: 'Find the right setup for how you sit.', img: '/assets/images/products/executive-chair-07.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20ergonomic%20advice.'},
-  {label: 'Visit', title: 'Visit the showroom', caption: 'Abids, Hyderabad.', img: '/assets/images/d01-hero.jpg', href: '#showroom'},
-  {label: 'Offers', title: 'Bulk & bundle pricing', caption: 'Ask us about teams and floors.', img: '/assets/images/editorial-workspace.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20pricing%20for%20multiple%20units.'},
-  {label: 'Newsletter', title: 'The BESO letter', caption: 'New pieces and workspace ideas.', img: '/assets/images/products/executive-chair-04.jpg', href: '#newsletter'},
-];
+const TILES: Record<Mode, {label: string; title: string; caption: string; img: string; href: string}[]> = {
+  office: [
+    {label: 'Shop', title: 'Shop the collection', caption: '58 workplace pieces.', img: '/assets/images/products/executive-chair-07.jpg', href: '/products'},
+    {label: 'Compare', title: 'Compare chairs', caption: 'Put flagships side by side.', img: '/assets/images/products/executive-chair-04.jpg', href: '/compare'},
+    {label: 'AR', title: 'Preview in AR', caption: 'Place a piece in the office.', img: '/assets/images/products/height-table-01.jpg', href: '#ar'},
+    {label: 'Bulk', title: 'Bulk quote', caption: 'Teams, floors and fit-outs.', img: '/assets/images/d01-hero.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20a%20bulk%20quote.'},
+    {label: 'Expert', title: 'Talk to an ergo expert', caption: 'Find the right setup for how you sit.', img: '/assets/images/products/executive-chair-07.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20ergonomic%20advice.'},
+    {label: 'Visit', title: 'Visit the showroom', caption: 'Abids, Hyderabad.', img: '/assets/images/d01-hero.jpg', href: '#showroom'},
+    {label: 'Pricing', title: 'Team & bundle pricing', caption: 'Ask about multiple units.', img: '/assets/images/editorial-workspace.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20pricing%20for%20multiple%20units.'},
+    {label: 'Newsletter', title: 'The BESO letter', caption: 'New pieces and workspace ideas.', img: '/assets/images/products/executive-chair-04.jpg', href: '#newsletter'},
+  ],
+  home: [
+    {label: 'Shop', title: 'Shop the collection', caption: '21 home pieces.', img: '/assets/images/products/dining-chair-01.jpg', href: '/products'},
+    {label: 'Compare', title: 'Compare favourites', caption: 'Shortlist before you decide.', img: '/assets/images/products/executive-chair-04.jpg', href: '/compare'},
+    {label: 'AR', title: 'Preview in AR', caption: 'See it to scale at home.', img: '/assets/images/products/height-table-01.jpg', href: '#ar'},
+    {label: 'Dining', title: 'Dining & living', caption: 'Tables, chairs and stools.', img: '/assets/images/products/dining-chair-01.jpg', href: '/products'},
+    {label: 'Expert', title: 'Talk to a designer', caption: 'Furnish a room, not just a desk.', img: '/assets/images/editorial-workspace.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20help%20furnishing%20a%20room.'},
+    {label: 'Visit', title: 'Visit the showroom', caption: 'Abids, Hyderabad.', img: '/assets/images/d01-hero.jpg', href: '#showroom'},
+    {label: 'Delivery', title: 'Delivery & setup', caption: 'Assembled and placed for you.', img: '/assets/images/editorial-workspace.jpg', href: 'https://wa.me/918099952624?text=Hi%20BESO!%20A%20question%20about%20delivery%20and%20setup.'},
+    {label: 'Newsletter', title: 'The BESO letter', caption: 'New pieces and home ideas.', img: '/assets/images/products/executive-chair-04.jpg', href: '#newsletter'},
+  ],
+};
 
 const featured = [crown, flexrise, prestige].filter(Boolean) as Product[];
 
@@ -250,8 +262,8 @@ export default function DesignTwoModes() {
           <h2 className="text-[clamp(26px,3.2vw,40px)] font-light leading-[1.05] tracking-[-0.015em]" style={{fontFamily: DISPLAY, fontWeight: 380}}>Where would you like to go?</h2>
           <span className="text-[12px] uppercase tracking-[0.16em] text-[#232220]/50" style={{fontFamily: MONO}}>Eight ways in</span>
         </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {tiles.map((t, i) => (
+        <div key={mode} className="tm-swap mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {TILES[mode].map((t, i) => (
             <Reveal key={t.title} delay={(i % 4) * 70} className={i % 2 === 1 ? 'lg:mt-10' : ''}>
               <Link href={t.href} target={t.href.startsWith('http') ? '_blank' : undefined} rel={t.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="group block">
                 <div className="overflow-hidden rounded-2xl bg-[#E7E1D8]">
