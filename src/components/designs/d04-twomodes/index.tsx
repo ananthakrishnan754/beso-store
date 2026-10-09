@@ -41,6 +41,8 @@ const MODES = {
     headline: ['Furniture', 'for people', 'who work', 'hard.'],
     sub: 'Ergonomic seating and sit-stand desks for the working day — specified for one desk or a whole floor.',
     accent: '#235A6B',
+    base: '#F1F2ED',
+    panel: '#E9EAE1',
     video: '/assets/videos/mode-office',
     poster: '/assets/videos/mode-office-poster.jpg',
     image: '/assets/images/d01-hero.jpg',
@@ -51,6 +53,8 @@ const MODES = {
     headline: ['Furniture', 'for people', 'who rest', 'well.'],
     sub: 'The same ergonomics, scaled to the corner where you read, write and unwind.',
     accent: '#B4593A',
+    base: '#F6EFE4',
+    panel: '#EFE6D8',
     video: '/assets/videos/mode-home',
     poster: '/assets/videos/mode-home-poster.jpg',
     image: '/assets/images/editorial-workspace.jpg',
@@ -165,25 +169,25 @@ export default function DesignTwoModes() {
   const nudge = (dir: number) => scroller.current?.scrollBy({left: dir * 360, behavior: 'smooth'});
 
   return (
-    <div className="bg-[#F4F1EE] text-[#232220]" style={{fontFamily: BODY}}>
+    <div className="text-[#232220] transition-colors duration-700" style={{fontFamily: BODY, background: M.base}}>
       {/* ── Header with mode switch ────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-[#232220]/10 bg-[#F4F1EE]/85 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#232220]/10 backdrop-blur-md" style={{background: `${M.base}D9`}}>
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-5 py-4 lg:px-10">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/assets/images/beso-logo-transparent.png" alt="BESO" className="h-5 w-auto" style={{filter: 'brightness(0)'}} />
+            <img src="/assets/images/beso-logo-transparent.png" alt="BESO" className="h-6 w-auto" style={{filter: 'brightness(0)'}} />
           </Link>
-          <nav className="hidden items-center gap-8 text-[13px] text-[#232220]/70 md:flex">
-            <Link href="/products" className="hover:text-[#232220]">Collection</Link>
-            <Link href="/compare" className="hover:text-[#232220]">Compare</Link>
-            <Link href="#showroom" className="hover:text-[#232220]">Showroom</Link>
+          <nav className="hidden items-center gap-9 text-[15px] text-[#232220]/75 md:flex">
+            <Link href="/products" className="transition-colors hover:text-[#232220]">Collection</Link>
+            <Link href="/compare" className="transition-colors hover:text-[#232220]">Compare</Link>
+            <Link href="#showroom" className="transition-colors hover:text-[#232220]">Showroom</Link>
           </nav>
-          <div className="flex items-center gap-1 rounded-full border border-[#232220]/15 p-1 text-[12px] font-semibold uppercase tracking-[0.12em]">
+          <div className="flex items-center gap-1 rounded-full border border-[#232220]/15 p-1.5 text-[13px] font-semibold uppercase tracking-[0.12em]">
             {(['office', 'home'] as Mode[]).map((m) => (
               <button
                 key={m}
                 onClick={() => pick(m)}
                 aria-pressed={mode === m}
-                className="rounded-full px-4 py-1.5 transition-colors duration-500 ease-in-out"
+                className="rounded-full px-5 py-2 transition-colors duration-500 ease-in-out"
                 style={mode === m ? {background: MODES[m].accent, color: '#F4F1EE'} : {color: '#232220'}}
               >
                 {m}
@@ -245,7 +249,7 @@ export default function DesignTwoModes() {
       </section>
 
       {/* ── Mode USP trio (swaps with the mode) ────────────────────────── */}
-      <section key={`usp-${mode}`} className="tm-swap border-b border-[#232220]/10 bg-[#EFEAE2]">
+      <section key={`usp-${mode}`} className="tm-swap border-b border-[#232220]/10 transition-colors duration-700" style={{background: M.panel}}>
         <div className="mx-auto grid max-w-[1280px] gap-px sm:grid-cols-3">
           {M.usp.map(([t, d]) => (
             <div key={t} className="px-5 py-7 lg:px-10">
@@ -266,9 +270,8 @@ export default function DesignTwoModes() {
           {TILES[mode].map((t, i) => (
             <Reveal key={t.title} delay={(i % 4) * 70} className={i % 2 === 1 ? 'lg:mt-10' : ''}>
               <Link href={t.href} target={t.href.startsWith('http') ? '_blank' : undefined} rel={t.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="group block">
-                <div className="relative overflow-hidden rounded-2xl bg-[#F5F5DB]">
-                  <img src={t.img} alt={t.title} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]" />
-                  <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-[900ms] ease-out group-hover:translate-x-full" />
+                <div className="relative overflow-hidden rounded-2xl bg-[#F5F5DB] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[0.93]">
+                  <img src={t.img} alt={t.title} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.28]" />
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-[11px] uppercase tracking-[0.18em]" style={{color: M.accent, fontFamily: MONO}}>{t.label}</span>
@@ -283,7 +286,7 @@ export default function DesignTwoModes() {
       </section>
 
       {/* ── Featured carousel ──────────────────────────────────────────── */}
-      <section className="border-y border-[#232220]/10 bg-[#EFEAE2]">
+      <section className="border-y border-[#232220]/10 transition-colors duration-700" style={{background: M.panel}}>
         <div className="mx-auto max-w-[1280px] px-5 py-16 lg:px-10 lg:py-24">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -298,9 +301,8 @@ export default function DesignTwoModes() {
           <div ref={scroller} key={mode} className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 [scrollbar-width:none]">
             {carouselFor(mode).map((p) => (
               <article key={p.slug} className="group w-[76vw] shrink-0 snap-start sm:w-[340px]">
-                <div className="relative overflow-hidden rounded-2xl bg-[#F5F5DB] transition-all duration-700 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_40px_-18px_rgba(35,32,28,0.45)]">
-                  <img src={src(p)} alt={p.name} loading="lazy" className="aspect-[4/3] w-full object-contain p-6 transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]" />
-                  <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-[1000ms] ease-out group-hover:translate-x-full" />
+                <div className="relative overflow-hidden rounded-2xl bg-[#F5F5DB] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[0.93] group-hover:shadow-[0_18px_40px_-18px_rgba(35,32,28,0.45)]">
+                  <img src={src(p)} alt={p.name} loading="lazy" className="aspect-[4/3] w-full object-contain p-6 transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.28]" />
                 </div>
                 <div className="mt-4 flex items-baseline justify-between gap-4">
                   <h3 className="text-[18px] leading-[1.15]" style={{fontFamily: DISPLAY, fontWeight: 420}}>{p.name}</h3>
@@ -390,7 +392,7 @@ export default function DesignTwoModes() {
       </section>
 
       {/* ── Six reasons ────────────────────────────────────────────────── */}
-      <section className="border-y border-[#232220]/10 bg-[#EFEAE2]">
+      <section className="border-y border-[#232220]/10 transition-colors duration-700" style={{background: M.panel}}>
         <div className="mx-auto max-w-[1280px] px-5 py-16 lg:px-10 lg:py-24">
           <h2 className="text-[clamp(26px,3.2vw,40px)] font-light leading-[1.05]" style={{fontFamily: DISPLAY, fontWeight: 380}}>Six reasons people choose BESO</h2>
           <div className="mt-10 grid gap-8 lg:grid-cols-12">
