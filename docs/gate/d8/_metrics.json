@@ -5,12 +5,10 @@
   "overflow": false,
   "scrollW": 390,
   "vw": 390,
-  "height": 4879,
+  "height": 5063,
   "imgs": 0,
-  "imgsTotal": 6,
-  "errors": [
-   "console: Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
-  ]
+  "imgsTotal": 7,
+  "errors": []
  },
  {
   "w": 768,
@@ -18,9 +16,9 @@
   "overflow": false,
   "scrollW": 768,
   "vw": 768,
-  "height": 3820,
+  "height": 3879,
   "imgs": 0,
-  "imgsTotal": 6,
+  "imgsTotal": 7,
   "errors": []
  },
  {
@@ -29,9 +27,9 @@
   "overflow": false,
   "scrollW": 1440,
   "vw": 1440,
-  "height": 3562,
+  "height": 3598,
   "imgs": 0,
-  "imgsTotal": 6,
+  "imgsTotal": 7,
   "errors": []
  }
 ]
