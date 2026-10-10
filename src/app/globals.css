@@ -931,3 +931,10 @@ html[data-design-mode='1'] .scroll-progress {
 .marquee { animation: marquee 28s linear infinite; will-change: transform; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+
+/* ─── Concept "Funky" ──────────────────────────────────────────────────── */
+@keyframes funky-spin { to { transform: rotate(360deg); } }
+.funky-spin { animation: funky-spin 9s linear infinite; }
+@keyframes funky-bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+.funky-bob { animation: funky-bob 4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .funky-spin, .funky-bob { animation: none; } }
