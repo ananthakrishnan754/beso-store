@@ -46,3 +46,10 @@ awards or statistics — so each item needs a source, correction, or removal.
 | 22 | Nav "Archive" | links to `/products` (no archive page) | Confirm or rename |
 | 23 | Collection titles "The Work Series" / "The Home Series" | **our own labels** | Confirm real collection naming |
 | 24 | Grid videos (mode-office/home, d05-hero) | **interim generated** | Replace with real footage |
+
+## Concept "Engineered" (Simba-inspired) — additional gaps
+| # | Item | Status | Action |
+|---|---|---|---|
+| 25 | "30-day trial", "free delivery across India", "5-year cover" | **UNVERIFIED** | Confirm trial window, shipping scope and warranty |
+| 26 | "2-min quiz" copy / "Verified buyer" labels | **our wording** | Confirm or supply real review verification |
+| 27 | Layer construction copy (mesh / memory foam / steel frame / aluminium base) | **UNVERIFIED** | Confirm actual construction |
