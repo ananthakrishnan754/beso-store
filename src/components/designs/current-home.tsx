@@ -5,60 +5,13 @@ import { ProductCard } from '@/components/ProductCard';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
 import { Reveal } from '@/components/Reveal';
 import { MEETING_ROOM } from '@/lib/arModels';
+import { FeaturedSlideOverShowcase } from '@/components/FeaturedSlideOverShowcase';
+import { ShoppableRoomHotspots } from '@/components/ShoppableRoomHotspots';
+import { RelatedWorksSection } from '@/components/RelatedWorksSection';
+import { HomeTestimonials } from '@/components/HomeTestimonials';
+import { ShowroomHighlight } from '@/components/ShowroomHighlight';
 
-/* ─── Why Choose Us — premium crafted line icons ─── */
-function WhyChooseIcon({ name }: { name: string }) {
-  const common = {
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 1.8,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-    viewBox: '0 0 24 24',
-    className: 'w-6 h-6',
-    'aria-hidden': true,
-  };
-  switch (name) {
-    case 'tag':
-      return (
-        <svg {...common}>
-          <path d="M12.5 3.5h7v7L12 17.5 5.5 11 12.5 3.5z" />
-          <circle cx="16" cy="7.2" r="1.3" fill="currentColor" stroke="none" />
-        </svg>
-      );
-    case 'briefcase':
-      return (
-        <svg {...common}>
-          <rect x="3.2" y="7.8" width="17.6" height="12" rx="2.2" />
-          <path d="M8.5 7.8V6.4a2.2 2.2 0 0 1 2.2-2.2h2.6a2.2 2.2 0 0 1 2.2 2.2v1.4" />
-          <path d="M3.2 12.4h17.6M8.8 12.4v1.8h6.4v-1.8" />
-        </svg>
-      );
-    case 'body':
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="4.4" r="2.1" />
-          <path d="M5.4 8.6 12 6.4l6.6 2.2" />
-          <path d="M12 6.4v4.6l-2.6 3m2.6-3 2.6 3M9.4 14l-1 6.6M8.8 16l-2.6 4.6M14.6 14l1 6.6M15.2 16l2.6 4.6" />
-        </svg>
-      );
-    case 'clock':
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="12" r="8.8" />
-          <path d="M12 7.4V12l3.2 2.2M12 3.2v1.6M20.8 12h-1.6" />
-        </svg>
-      );
-    case 'shield':
-    default:
-      return (
-        <svg {...common}>
-          <path d="M12 3l7 2.8v5.4c0 4.4-3 8-7 9.8-4-1.8-7-5.4-7-9.8V5.8L12 3z" />
-          <path d="M9 12.2l2 2 4-4" />
-        </svg>
-      );
-  }
-}
+
 
 const MARQUEE_TEXT = '✦  ERGO-TECH INNOVATION  ✦  FREE PAN-INDIA DELIVERY  ✦  5-YEAR COMPREHENSIVE WARRANTY  ✦  BIFMA CERTIFIED  ✦  10-DAY RETURN POLICY  ✦  CUSTOMISABLE SETUPS  ✦';
 
@@ -83,45 +36,43 @@ export default function HomePage() {
   const prestigeChair = flagships.find(p => p.id === 4) || products[3];
 
   return (
-    <div className="bg-beso-dark text-ink min-h-screen flex flex-col overflow-x-clip">
+    <div className="bg-app text-ink min-h-screen flex flex-col overflow-x-clip">
 
       {/* ─── Hero Section with Video Loop ─── */}
       <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden -mt-20">
         {/* Background Video */}
         <div className="absolute inset-0 z-[1] select-none pointer-events-none">
           <HeroVideo />
-          {/* Vignette & Gradients — light-touch only; keeps the video vivid */}
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-app/70 via-app/10 to-transparent" />
-          <div className="absolute inset-0 bg-ink/[0.03]" />
+          {/* Contrasty Cinematic Scrim Layer for effortless text reading */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75" />
+          <div className="absolute inset-0 backdrop-blur-[0.5px]" />
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-app via-app/70 to-transparent" />
         </div>
 
         {/* Ambient background glows */}
-        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-brandLime/8 rounded-full blur-[140px] pointer-events-none z-0" />
-        <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-ink/5 rounded-full blur-[120px] pointer-events-none z-0" />
-
-        {/* Mobile-only soft scrim so hero copy stays readable over the chair video */}
-        <div className="md:hidden absolute inset-x-0 bottom-0 h-2/3 z-0 pointer-events-none bg-gradient-to-t from-app/60 via-app/15 to-transparent" />
+        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
+        <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-ink animate-fade-up" style={{animationDelay: '0.05s'}}>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] animate-fade-up" style={{animationDelay: '0.05s'}}>
             Pain-Free Working.<br />
-            <span className="text-gradient">Max Productivity.</span><br />
+            <span className="text-emerald-400 drop-shadow-[0_2px_16px_rgba(52,211,153,0.4)]">Max Productivity.</span><br />
             Healthier Living.
           </h1>
           
-          <p className="text-ink/70 text-sm md:text-lg max-w-2xl font-light leading-relaxed animate-fade-up" style={{animationDelay: '0.2s'}}>
+          <p className="text-white/90 text-sm md:text-lg max-w-2xl font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)] animate-fade-up" style={{animationDelay: '0.2s'}}>
             We design state-of-the-art office chairs and height-adjustable desks tailored to support your posture, improve focus, and elevate your space.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center animate-fade-up" style={{animationDelay: '0.35s'}}>
-            <Link href="/products" className="bg-ink text-app px-8 py-4 rounded-full text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.98] shadow-card-hover">
+            <Link href="/products" className="bg-white text-stone-900 hover:bg-stone-100 px-8 py-4 rounded-full text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.98] shadow-2xl">
               Explore Shop
             </Link>
             <a
               href="https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20a%20workspace%20consultation."
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-ink/20 text-ink/80 px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold min-w-[200px] inline-flex items-center justify-center gap-2 bg-white/80 transition-all hover:bg-white/80 hover:border-ink/35 hover:text-ink"
+              className="border border-white/35 text-white hover:text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold min-w-[200px] inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/60"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current shrink-0">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -139,165 +90,11 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ─── Flagship Spotlight Showcase Cards ─── */}
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 space-y-16">
-        <Reveal className="text-center space-y-3 mb-16">
-          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
-            The Flagship Line
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-ink tracking-tight">
-            Engineered for <span className="text-gradient">Ultimate Comfort</span>
-          </h2>
-          <p className="text-ink/40 max-w-xl mx-auto text-sm">
-            Discover the three pillars of premium work ergonomics from BESO.
-          </p>
-        </Reveal>
+      {/* ─── 3-Slide Vertical Slide-Up Showcase (Client Requirement) ─── */}
+      <FeaturedSlideOverShowcase />
 
-        {/* Card 1: BESO Crown (Text Left, Image Right) */}
-        <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
-          <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Signature Flagship Chair</span>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{crownChair.name}</h3>
-            <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
-              Designed for peak performance. Features custom double-layer high-elasticity mesh backing, active pelvic lumbar support, 3D adjustable armrests, and an integrated memory-foam seating pad to cushion long work sessions.
-            </p>
-            <p className="text-ink/50 text-xs sm:hidden">{crownChair.tagline}</p>
-            <div className="hidden sm:flex items-center gap-4 py-2">
-              <div className="shrink-0">
-                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Lumbar support</div>
-                <div className="text-xs md:text-sm font-semibold text-ink">Active Synchro-Tracking</div>
-              </div>
-              <span className="w-px h-8 bg-line/[0.06]" aria-hidden="true" />
-              <div className="shrink-0">
-                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Base load</div>
-                <div className="text-xs md:text-sm font-semibold text-ink">Up to 150 Kilograms</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${crownChair.slug}`} className="bg-ink text-app px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wider font-extrabold inline-flex items-center justify-center transition-transform hover:scale-[1.03]">
-                Explore Crown • ₹{crownChair.price.toLocaleString('en-IN')}
-              </Link>
-              <ViewInYourRoom
-                subcategory={crownChair.subcategory}
-                slug={crownChair.slug}
-                productName={crownChair.name}
-                poster={crownChair.image}
-                label="View in Your Room"
-              />
-            </div>
-          </div>
-          <div className="lg:col-span-6 flex justify-center relative">
-            <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/assets/images/products/executive-chair-07.png" 
-                alt={crownChair.name} 
-                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
-              />
-            </div>
-          </div>
-        </div>
-        </Reveal>
-
-        {/* Card 2: BESO FlexRise (Image Left, Text Right) */}
-        <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
-          <div className="lg:col-span-6 lg:order-2 space-y-6 z-10">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Smart Standing Desks</span>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{flexRiseTable.name}</h3>
-            <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
-              Transform your productivity by switching between sitting and standing seamlessly. Engineered with quiet dual-motors, anti-collision sensors, an elegant solid walnut desktop, and a 4-preset memory digital controller.
-            </p>
-            <p className="text-ink/50 text-xs sm:hidden">{flexRiseTable.tagline}</p>
-            <div className="hidden sm:flex items-center gap-4 py-2">
-              <div className="shrink-0">
-                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Height Range</div>
-                <div className="text-xs md:text-sm font-semibold text-ink">70 cm to 120 cm</div>
-              </div>
-              <span className="w-px h-8 bg-line/[0.06]" aria-hidden="true" />
-              <div className="shrink-0">
-                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Drive System</div>
-                <div className="text-xs md:text-sm font-semibold text-ink">Dual Quiet Motors</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${flexRiseTable.slug}`} className="bg-ink text-app px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wider font-extrabold inline-flex items-center justify-center transition-transform hover:scale-[1.03]">
-                Configure Setup • ₹{flexRiseTable.price.toLocaleString('en-IN')}
-              </Link>
-              <ViewInYourRoom
-                subcategory={flexRiseTable.subcategory}
-                slug={flexRiseTable.slug}
-                productName={flexRiseTable.name}
-                poster={flexRiseTable.image}
-                label="View in Your Room"
-              />
-            </div>
-          </div>
-          <div className="lg:col-span-6 lg:order-1 flex justify-center relative">
-            <div className="absolute inset-0 bg-brandLime/5 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/assets/images/products/height-table-01.png" 
-                alt={flexRiseTable.name} 
-                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
-              />
-            </div>
-          </div>
-        </div>
-        </Reveal>
-
-        {/* Card 3: BESO Prestige (Text Left, Image Right) */}
-        <Reveal>
-        <div className="bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 rounded-[2.5rem] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative group hover:shadow-card-hover transition-all duration-700">
-          <div className="lg:col-span-6 space-y-6 z-10">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase">Premium Luxury Support</span>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-ink tracking-tight">{prestigeChair.name}</h3>
-            <p className="text-ink/60 text-sm md:text-base leading-relaxed hidden sm:block">
-              Crafted for leaders. Upholstered in select full-grain Italian leather, featuring adjustable contoured structural segments, luxury padded armrests, and beautiful dark walnut wood spokes lining the polished steel base.
-            </p>
-            <p className="text-ink/50 text-xs sm:hidden">{prestigeChair.tagline}</p>
-            <div className="hidden sm:flex items-center gap-4 py-2">
-              <div className="shrink-0">
-                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Material Trim</div>
-                <div className="text-xs md:text-sm font-semibold text-ink">Full-grain Leather</div>
-              </div>
-              <span className="w-px h-8 bg-line/[0.06]" aria-hidden="true" />
-              <div className="shrink-0">
-                <div className="text-[10px] text-ink/45 uppercase tracking-[0.05em] mb-0.5">Details</div>
-                <div className="text-xs md:text-sm font-semibold text-ink">Teak & Walnut Accents</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 pt-2">
-              <Link href={`/products/${prestigeChair.slug}`} className="bg-ink text-app px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wider font-extrabold inline-flex items-center justify-center transition-transform hover:scale-[1.03]">
-                Explore Prestige • ₹{prestigeChair.price.toLocaleString('en-IN')}
-              </Link>
-              <ViewInYourRoom
-                subcategory={prestigeChair.subcategory}
-                slug={prestigeChair.slug}
-                productName={prestigeChair.name}
-                poster={prestigeChair.image}
-                label="View in Your Room"
-              />
-            </div>
-          </div>
-          <div className="lg:col-span-6 flex justify-center relative">
-            <div className="absolute inset-0 bg-brandLime/10 rounded-full blur-[80px] -z-10 group-hover:scale-110 transition-transform duration-700" />
-            <div className="w-full max-w-[430px] rounded-[2rem] bg-surfaceSubtle border border-line/8 p-4 sm:p-6 shadow-[inset_0_2px_10px_rgba(27,28,30,0.05),0_10px_30px_rgba(27,28,30,0.08)] transition-transform duration-700 group-hover:scale-[1.02]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/assets/images/products/executive-chair-04.png" 
-                alt={prestigeChair.name} 
-                className="w-full aspect-[4/5] object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-700"
-              />
-            </div>
-          </div>
-        </div>
-        </Reveal>
-      </section>
+      {/* ─── Shoppable Room with Interactive Product Hotspots (Client Requirement) ─── */}
+      <ShoppableRoomHotspots />
 
       {/* ─── AR Meeting Room Demo ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
@@ -371,169 +168,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── Why Choose Us Section ─── */}
-      <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-          <div className="max-w-xl">
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
-              Why Choose Us
-            </span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-ink tracking-tight leading-tight">
-              Built for serious <span className="text-gradient">procurement</span>
-            </h2>
-            <p className="text-ink/55 text-sm md:text-base mt-4 leading-relaxed">
-              From direct-import pricing to white-glove after-sales, every part of
-              the BESO supply chain is engineered around enterprise furniture buying.
-            </p>
-          </div>
-          <div className="hidden md:flex items-center gap-6 shrink-0">
-            <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">12,000<span className="text-brandLime">+</span></div>
-              <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Sq ft warehouse</div>
-            </div>
-            <span className="w-px h-10 bg-line/10" aria-hidden="true" />
-            <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">48<span className="text-brandLime">hr</span></div>
-              <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Dispatch turnaround</div>
-            </div>
-            <span className="w-px h-10 bg-line/10" aria-hidden="true" />
-            <div className="text-right">
-              <div className="text-3xl font-display font-bold text-ink">2</div>
-              <div className="text-[10px] text-ink/45 uppercase tracking-wider mt-1">Hyderabad showrooms</div>
-            </div>
-          </div>
-        </div>
+      {/* ─── Commercial Fit-Outs & Related Works (Client Requirement) ─── */}
+      <RelatedWorksSection />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            {
-              title: 'Direct-Import Savings',
-              desc: 'Eliminate middlemen and secure wholesale pricing on premium office and home furniture — boosting your procurement ROI.',
-              icon: 'tag',
-              featured: true,
-            },
-            {
-              title: 'B2B-Focused Procurement',
-              desc: 'Streamlined corporate onboarding, flexible credit terms, and custom POs for large-scale fit-outs.',
-              icon: 'briefcase',
-            },
-            {
-              title: 'Ergonomic Performance',
-              desc: 'Science-backed chairs and sit-stand desks that reduce fatigue and drive sustained productivity.',
-              icon: 'body',
-            },
-            {
-              title: '48-Hour Turnaround',
-              desc: 'Dispatch and install most orders within two business days from stock across both showrooms.',
-              icon: 'clock',
-            },
-            {
-              title: 'Dedicated Account Management',
-              desc: 'One point of contact for order tracking, priority support, and white-glove after-sales care.',
-              icon: 'shield',
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className={`why-card group relative bg-surface border border-line/8 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1 ${
-                item.featured ? 'sm:col-span-2 lg:row-span-2 flex flex-col justify-end p-8' : 'p-7'
-              }`}
-            >
-              {/* Ghost index number watermark */}
-              <span
-                className="pointer-events-none absolute top-4 right-5 text-6xl font-display font-bold text-ink/[0.05] select-none"
-                aria-hidden="true"
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
 
-              {item.featured && (
-                <div className="pointer-events-none absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brandLime/8 blur-[70px] transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
-              )}
+      {/* ─── Client Testimonials (Client Requirement) ─── */}
+      <HomeTestimonials />
 
-              <div className="why-icon relative inline-flex mb-6">
-                <span className="w-14 h-14 rounded-2xl bg-brandLime/10 text-brandLime flex items-center justify-center ring-1 ring-inset ring-brandLime/15 transition-all duration-300 group-hover:bg-brandLime group-hover:text-[#0c0e10] group-hover:scale-105 group-hover:shadow-[0_8px_24px_rgba(163,230,53,0.35)]">
-                  <WhyChooseIcon name={item.icon} />
-                </span>
-              </div>
-              <h3 className="font-bold text-ink text-xl mb-2.5 leading-snug">{item.title}</h3>
-              <p className="text-sm text-ink/55 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      </Reveal>
+      {/* ─── Flagship Showroom Feature (Location Highlighted - Client Requirement) ─── */}
+      <ShowroomHighlight />
 
-      {/* ─── Reviews / Testimonials ─── */}
-      <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-20 border-t border-line/5">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-brandLime tracking-widest uppercase inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
-            Client Reviews
-          </span>
-          <h2 className="text-3xl md:text-4xl font-black text-ink tracking-tight mt-3">
-            Trusted by <span className="text-gradient">workspaces</span>
-          </h2>
-          <p className="text-ink/55 text-sm mt-3 max-w-xl mx-auto">
-            Real feedback from offices, studios, and teams who furnished with BESO.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { name: 'Rohit Sharma', role: 'Facilities Head · IT Company', quote: 'Ordered 40 ergonomic chairs for our Bengaluru office. White-glove install in two days, invoicing was seamless — clearly a B2B-first partner.', rating: 5 },
-            { name: 'Shreya Iyer', role: 'Studio Owner · Design Firm', quote: 'The FlexRise desks transformed our workstations. Quiet motors, solid walnut, and the team handled fit-out details we never expected.', rating: 5 },
-            { name: 'Arjun Mehta', role: 'Procurement Lead · Consulting', quote: '48-hour turnaround was real. Dedicated point of contact, priority support, and the bulk pricing genuinely beat the market.', rating: 5 },
-          ].map((r, i) => (
-            <div key={i} className="group relative bg-surface border border-line/8 rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 hover:border-brandLime/40 hover:shadow-card-hover hover:-translate-y-1">
-              <div className="flex items-center gap-1 text-[#D97706]">
-                {Array.from({length: r.rating}).map((_, s) => (
-                  <svg key={s} viewBox="0 0 20 20" className="w-4 h-4 fill-current"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15.3l-5.3 2.8 1-5.8L1.5 7.7l5.9-.9z"/></svg>
-                ))}
-              </div>
-              <p className="text-sm text-ink/70 leading-relaxed">&ldquo;{r.quote}&rdquo;</p>
-              <div className="mt-auto flex items-center gap-3 pt-2 border-t border-line/6">
-                <span className="w-10 h-10 rounded-full bg-surface-2 text-ink/60 flex items-center justify-center font-bold text-sm">
-                  {r.name.split(' ').map((n) => n[0]).join('')}
-                </span>
-                <div>
-                  <div className="text-sm font-bold text-ink">{r.name}</div>
-                  <div className="text-[10px] text-ink/45 uppercase tracking-wide">{r.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      </Reveal>
 
-      {/* ─── Contact/WhatsApp Expert CTA ─── */}
-      <Reveal>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-24">
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-brandLime/10 via-app to-app border border-brandLime/20 p-8 sm:p-12 md:p-16 overflow-hidden text-center space-y-6">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-brandLime/5 rounded-full blur-[80px] pointer-events-none" />
-          <h2 className="text-3xl md:text-4xl font-extrabold text-ink tracking-tight">
-            Furnishing a Workspace?
-          </h2>
-          <p className="text-ink/50 max-w-md mx-auto text-sm leading-relaxed">
-            Get personalized consultations, bespoke design configurations, and bulk discounts of up to 25% starting from 5+ units.
-          </p>
-          <a
-            href="https://wa.me/918099952624?text=Hi%20BESO!%20I%27m%20interested%20in%20a%20workspace%20consultation."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#25D366] text-[#ffffff] px-8 py-4 rounded-full text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(37,211,102,0.28)] transition-all hover:scale-[1.03] active:scale-[0.98] hover:shadow-[0_10px_30px_rgba(37,211,102,0.4)] min-w-[230px] mx-auto"
-          >
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Speak with Ergo Expert
-          </a>
-        </div>
-      </section>
-      </Reveal>
     </div>
   );
 }

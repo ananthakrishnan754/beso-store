@@ -330,25 +330,24 @@ body {
 /* Oak — clean modern light oak + deep forest green */
 [data-theme="oak-clean-modern"] {
   color-scheme: light;
-  --app-rgb: 251 251 249;
-  --surface-rgb: 255 255 255;
-  --surface-2-rgb: 241 240 236;
-  --surface-subtle-rgb: 246 245 241;
-  --ink-rgb: 23 19 14;
-  --soft-rgb: 138 134 126;
-  --faint-rgb: 92 88 79;
-  --accent-rgb: 31 92 74;
-  --accent-2-rgb: 42 111 90;
-  --on-accent-rgb: 246 249 247;
+  --app-rgb: 245 240 231;
+  --surface-rgb: 253 251 247;
+  --surface-2-rgb: 238 231 219;
+  --surface-subtle-rgb: 242 235 224;
+  --ink-rgb: 26 21 16;
+  --soft-rgb: 98 87 74;
+  --faint-rgb: 142 131 118;
+  --accent-rgb: 28 84 66;
+  --accent-2-rgb: 40 108 86;
+  --on-accent-rgb: 248 250 249;
   --danger-rgb: 196 67 47;
-  --gold-rgb: 169 121 59;
-  --line-rgb: 23 19 14;
-  --line-strong-rgb: 23 19 14;
-  --glass: rgba(251, 251, 249, 0.85);
-  --shadow-color: rgba(23, 19, 14, 0.08);
-  --shadow-color-strong: rgba(23, 19, 14, 0.16);
-  --glow-color: rgba(31, 92, 74, 0.1);
-  --glow-strong: rgba(31, 92, 74, 0.3);
+  --gold-rgb: 184 134 58;
+  --line-rgb: 44 36 26;
+  --line-strong-rgb: 32 25 17;
+  --glass: rgba(245, 240, 231, 0.85);
+  --shadow-color: rgba(36, 29, 20, 0.08);
+  --shadow-color-strong: rgba(36, 29, 20, 0.16);
+  --brand-lime: 28 84 66;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Fraunces', Georgia, serif;
 }

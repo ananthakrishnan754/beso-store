@@ -55,6 +55,57 @@ export default function AboutPage() {
         </p>
       </div>
 
+      {/* ─── Store Video Section (Client Requirement) ─── */}
+      <div className="bg-beso-card rounded-3xl border border-line/10 p-6 sm:p-10 md:p-12 mb-16 shadow-xl space-y-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-bold text-beso-lime uppercase tracking-widest block mb-1">
+              Store &amp; Workshop Walkthrough
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+              Inside the BESO Showroom &amp; Craft Studio
+            </h2>
+            <p className="text-sm text-ink/60 mt-1 max-w-xl">
+              Take a virtual tour of our 100 Feet Road Indiranagar flagship experience centre and precision engineering facility.
+            </p>
+          </div>
+          <a
+            href="https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 rounded-full bg-ink text-app text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity self-start md:self-auto shrink-0"
+          >
+            Visit in Person ↗
+          </a>
+        </div>
+
+        {/* Responsive YouTube Embed */}
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-line/10 bg-black">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0"
+            title="Inside BESO Flagship Store and Ergonomic Workshop"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-4 pt-4 border-t border-line/8 text-xs text-ink/70">
+          <div>
+            <span className="font-bold text-ink block mb-0.5">Showroom Testing Bay</span>
+            <span>Test 40+ configured ergonomic chairs, dual-motor desks, and material swatches.</span>
+          </div>
+          <div>
+            <span className="font-bold text-ink block mb-0.5">Ergonomic Specialists</span>
+            <span>Personalized posture consults and workspace planning with certified consultants.</span>
+          </div>
+          <div>
+            <span className="font-bold text-ink block mb-0.5">Pan-India Dispatches</span>
+            <span>Direct dispatches supported by our 12,000 sq ft centralized warehousing hub.</span>
+          </div>
+        </div>
+      </div>
+
       {/* Mission */}
       <div className="bg-beso-card rounded-3xl border border-line/6 p-8 md:p-12 mb-16">
         <h2 className="text-2xl font-bold text-ink mb-4">Our Mission</h2>

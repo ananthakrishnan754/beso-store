@@ -45,17 +45,16 @@ export function ViewInYourRoom({
   // Lazy-load @google/model-viewer only when the modal opens.
   useEffect(() => {
     if (!open || viewer !== 'idle') return;
-    let cancelled = false;
-    import('@google/model-viewer')
-      .then(() => {
-        if (!cancelled) setViewer('ready');
-      })
-      .catch(() => {
-        if (!cancelled) setViewer('error');
-      });
-    return () => {
-      cancelled = true;
-    };
+    if (typeof window !== 'undefined' && customElements.get('model-viewer')) {
+      setViewer('ready');
+      return;
+    }
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js';
+    script.onload = () => setViewer('ready');
+    script.onerror = () => setViewer('error');
+    document.head.appendChild(script);
   }, [open, viewer]);
 
   // Lock page scroll + Esc to close.

@@ -85,6 +85,7 @@ export const THEMES: Theme[] = [
     sans: 'Inter',
     display: 'Fraunces',
     swatch: {app: '#fbfbf9', accent: '#1f5c4a', ink: '#17130e'},
+    heroVideo: '/assets/videos/hero-bg-oak.webm',
   },
   {
     id: 'forest-calm',

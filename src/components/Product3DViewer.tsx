@@ -28,18 +28,17 @@ export function Product3DViewer({
   // Lazy-load model-viewer only when 3D is requested.
   useEffect(() => {
     if (!show3d) return;
-    let cancelled = false;
+    if (typeof window !== 'undefined' && customElements.get('model-viewer')) {
+      setReady('ready');
+      return;
+    }
     setReady('loading');
-    import('@google/model-viewer')
-      .then(() => {
-        if (!cancelled) setReady('ready');
-      })
-      .catch(() => {
-        if (!cancelled) setReady('error');
-      });
-    return () => {
-      cancelled = true;
-    };
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js';
+    script.onload = () => setReady('ready');
+    script.onerror = () => setReady('error');
+    document.head.appendChild(script);
   }, [show3d]);
 
   const hasModel = Boolean(modelUrl);

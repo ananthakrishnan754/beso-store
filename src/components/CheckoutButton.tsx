@@ -2,6 +2,8 @@
 
 import {useState} from 'react';
 
+import {useCart} from '@/context/CartContext';
+
 type CheckoutButtonProps = {
   sku: string;
   /** WhatsApp fallback link used when Shopify checkout isn't configured yet. */
@@ -10,19 +12,26 @@ type CheckoutButtonProps = {
   label?: string;
   variant?: 'primary' | 'quiet';
   className?: string;
+  product?: any;
 };
 
 export function CheckoutButton({
   sku,
   fallbackHref,
   quantity = 1,
-  label = 'Order Now',
+  label = 'Add to Cart',
   variant = 'primary',
   className = '',
+  product,
 }: CheckoutButtonProps) {
   const [busy, setBusy] = useState(false);
+  const {addToCart} = useCart();
 
   const handleClick = async () => {
+    if (product) {
+      addToCart(product, quantity);
+      return;
+    }
     if (busy) return;
     setBusy(true);
     try {

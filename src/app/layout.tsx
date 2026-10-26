@@ -6,6 +6,8 @@ import {Footer} from '@/components/Footer';
 import {ScrollProgress} from '@/components/ScrollProgress';
 import {THEMES, type ThemeId} from '@/lib/themes';
 import {DEFAULT_THEME, THEME_STORAGE_KEY} from '@/lib/site-config';
+import {CartProvider} from '@/context/CartContext';
+import {CartDrawer} from '@/components/CartDrawer';
 
 const themeIdList = THEMES.map((t) => t.id).join(',');
 const themeMetaColors: Record<ThemeId, string> = THEMES.reduce(
@@ -56,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" data-theme="oak-clean-modern">
       <head>
         <meta
           name="theme-color"
@@ -78,24 +80,23 @@ export default function RootLayout({
               THEME_STORAGE_KEY,
             )};var ids=${JSON.stringify(themeIdList)}.split(',');var metaColors=${JSON.stringify(
               themeMetaColors,
-            )};var modes=${JSON.stringify(themeModes)};var stored=localStorage.getItem(k);var theme=stored&&ids.indexOf(stored)>-1?stored:${JSON.stringify(
+            )};var modes=${JSON.stringify(themeModes)};var stored=localStorage.getItem(k);var theme=(stored&&ids.indexOf(stored)>-1&&stored!=='ivory-minimal'&&stored!=='night-luxe')?stored:${JSON.stringify(
               DEFAULT_THEME,
-            )};var root=document.documentElement;root.setAttribute('data-theme',theme);root.style.colorScheme=modes[theme]||${JSON.stringify(
-              defaultMode,
-            )};var meta=document.querySelector('meta[name="theme-color"]');if(meta&&metaColors[theme]){meta.setAttribute('content',metaColors[theme]);}}catch(e){document.documentElement.setAttribute('data-theme',${JSON.stringify(
+            )};localStorage.setItem(k,theme);var root=document.documentElement;root.setAttribute('data-theme',theme);var mode=modes[theme]||'light';root.style.colorScheme=mode;root.className=mode;var meta=document.querySelector('meta[name="theme-color"]');if(meta&&metaColors[theme]){meta.setAttribute('content',metaColors[theme]);}}catch(e){document.documentElement.setAttribute('data-theme',${JSON.stringify(
               DEFAULT_THEME,
-            )});}})();`,
+            )});document.documentElement.className='light';}})();`,
           }}
         />
       </head>
       <body className="bg-app text-ink antialiased">
-        <ScrollProgress />
-        <ScrollFX />
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        {/* Theme switcher: docked in the desktop header; embedded in the mobile
-            drawer (Header) — no floating pill on any viewport. */}
+        <CartProvider>
+          <ScrollProgress />
+          <ScrollFX />
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

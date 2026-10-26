@@ -3,10 +3,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import products from '@/data/products.json';
 import { notFound } from 'next/navigation';
-import { ProductCard } from '@/components/ProductCard';
-import { Product3DViewer } from '@/components/Product3DViewer';
 import { CheckoutButton } from '@/components/CheckoutButton';
 import { ViewInYourRoom } from '@/components/ViewInYourRoom';
+import { ProductGalleryZoom } from '@/components/ProductGalleryZoom';
+import { ProductMeasurements } from '@/components/ProductMeasurements';
+import { ProductReviewsSection } from '@/components/ProductReviewsSection';
+import { ProductRecommendations } from '@/components/ProductRecommendations';
 import { productModelUrl } from '@/lib/arModels';
 import type { Metadata } from 'next';
 
@@ -14,14 +16,26 @@ function getProduct(slug: string) {
   return (products as any[]).find((p) => p.slug === slug);
 }
 
-function getModelUrl(slug: string): string | undefined {
+function getModelUrl(slug: string, subcategory?: string): string | undefined {
   const url = productModelUrl(slug);
   const file = path.join(process.cwd(), 'public', url);
   try {
-    return fs.existsSync(file) ? url : undefined;
-  } catch {
-    return undefined;
-  }
+    if (fs.existsSync(file)) return url;
+  } catch {}
+  const subMap: Record<string, string> = {
+    'executive-chair': '/assets/models/office-chair.glb',
+    'manager-chair': '/assets/models/office-chair.glb',
+    'staff-chair': '/assets/models/office-chair.glb',
+    'visitor-chair': '/assets/models/office-chair.glb',
+    'gaming-chair': '/assets/models/office-chair.glb',
+    'dining-chair': '/assets/models/dining-chair.glb',
+    'executive-table': '/assets/models/office-table.glb',
+    'manager-table': '/assets/models/office-table.glb',
+    'staff-table': '/assets/models/office-table.glb',
+    'height-adjustable-table': '/assets/models/office-table.glb',
+    'center-table': '/assets/models/coffee-table.glb',
+  };
+  return subcategory ? subMap[subcategory] : undefined;
 }
 
 function formatPrice(amount: number) {
@@ -33,7 +47,8 @@ function formatPrice(amount: number) {
 }
 
 /** Normalize a store-relative asset path to a root-relative URL. */
-function assetUrl(p: string): string {
+function assetUrl(p?: string): string {
+  if (!p) return '/assets/images/products/executive-chair-01.jpg';
   return p.startsWith('/') ? p : `/${p}`;
 }
 
@@ -58,35 +73,31 @@ export default function ProductDetailPage({
   const product = getProduct(params.slug);
   if (!product) notFound();
 
-  const related = (products as any[])
-    .filter(
-      (p) => p.subcategory === product.subcategory && p.id !== product.id
-    )
-    .slice(0, 4);
-
-  // Fix: product.specs instead of product.description
   const specs = product.specs
     ? Object.entries(product.specs as Record<string, string>)
     : [];
 
-  const whatsAppMessage = `Hi BESO! I'm interested in ordering the ${product.name} (${product.sku}). Please share shipping details and customization options.`;
+  const modelUrl = getModelUrl(product.slug, product.subcategory);
+
+  const whatsAppMessage = `Hi BESO! I'm interested in ordering the ${product.name} (${product.sku}). Please share delivery options and availability.`;
   const whatsAppUrl = `https://wa.me/918099952624?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
     <div className="bg-transparent text-ink min-h-screen">
       {/* ─── Secondary Sticky Header ─── */}
-      <div className="sticky top-20 z-40 bg-app/80 border-y border-line/5 backdrop-blur-md">
+      <div className="sticky top-20 z-40 bg-app/90 border-y border-line/10 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="font-extrabold text-sm tracking-tight text-ink line-clamp-1">{product.name}</span>
-            <span className="hidden sm:inline-block px-2 py-0.5 bg-beso-lime/10 border border-beso-lime/20 rounded-full text-[9px] font-bold text-beso-lime uppercase tracking-widest">
+            <span className="hidden sm:inline-block px-2.5 py-0.5 bg-beso-lime/10 border border-beso-lime/20 rounded-full text-[9px] font-bold text-beso-lime uppercase tracking-widest">
               {product.subcategory.replace(/-/g, ' ')}
             </span>
           </div>
           
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex items-center gap-6 text-xs font-semibold text-ink/50">
-              <a href="#view3d" className="hover:text-ink transition-colors">Explore</a>
+              <a href="#gallery" className="hover:text-ink transition-colors">Showcase</a>
+              <a href="#measurements" className="hover:text-ink transition-colors">Dimensions</a>
               <a href="#specs" className="hover:text-ink transition-colors">Specifications</a>
               <a href="#reviews" className="hover:text-ink transition-colors">Reviews</a>
             </nav>
@@ -94,14 +105,13 @@ export default function ProductDetailPage({
               <span className="text-sm font-bold text-ink hidden xs:inline">
                 {formatPrice(product.price)}
               </span>
-              <a
-                href={whatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <CheckoutButton
+                sku={product.sku}
+                fallbackHref={whatsAppUrl}
+                label="Add to Cart"
+                product={product}
                 className="btn-beso px-5 py-2 text-xs uppercase tracking-wider font-extrabold"
-              >
-                Buy Now
-              </a>
+              />
             </div>
           </div>
         </div>
@@ -109,7 +119,7 @@ export default function ProductDetailPage({
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-xs text-ink/30 mb-8 font-medium">
+        <div className="flex items-center gap-2 text-xs text-ink/40 mb-8 font-medium">
           <Link href="/" className="hover:text-ink transition-colors">Home</Link>
           <span>/</span>
           <Link href="/products" className="hover:text-ink transition-colors">Products</Link>
@@ -121,76 +131,92 @@ export default function ProductDetailPage({
             {product.category}
           </Link>
           <span>/</span>
-          <span className="text-ink/60 truncate max-w-[150px]">{product.name}</span>
+          <span className="text-ink/70 truncate max-w-[180px]">{product.name}</span>
         </div>
 
         {/* Product presentation */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Product image + 3D viewer */}
-          <div id="view3d" className="lg:col-span-7 space-y-4">
-            <Product3DViewer
-              subcategory={product.subcategory}
+        <div className="grid lg:grid-cols-12 gap-12 items-start" id="gallery">
+          {/* Left Column: Product image with BossesCabin-style cursor zoom, office scene, and blueprint */}
+          <div className="lg:col-span-7 space-y-4">
+            <ProductGalleryZoom
               productName={product.name}
-              modelUrl={getModelUrl(product.slug)}
-              poster={assetUrl(product.image)}
+              mainImage={assetUrl(product.image)}
+              images={product.images}
+              subcategory={product.subcategory}
+              modelUrl={modelUrl}
             />
-            <p className="text-[10px] text-ink/40 text-center uppercase tracking-widest">
-              Drag to rotate · {getModelUrl(product.slug) ? 'Tap 3D to explore' : ''}
-            </p>
           </div>
 
           {/* Right Column: Info & Setup */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <h1 className="text-3xl font-extrabold text-ink tracking-tight leading-tight mb-2">
+              <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-2">
+                {product.subcategory.replace(/-/g, ' ')}
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight leading-tight mb-2">
                 {product.name}
               </h1>
-              <p className="text-ink/50 text-base leading-relaxed">{product.tagline}</p>
+              <p className="text-ink/60 text-base leading-relaxed">{product.tagline}</p>
             </div>
 
-            {/* Ratings — anchored top, editorial */}
-            <div id="reviews" className="flex items-center gap-3">
-              <span className="text-[#D97706] text-base leading-none tracking-tight">
-                {'\u2605'.repeat(Math.floor(product.rating))}
-                <span className="text-ink/15">{'\u2605'.repeat(5 - Math.floor(product.rating))}</span>
+            {/* Ratings & reviews jump link */}
+            <div className="flex items-center gap-3">
+              <span className="text-amber-500 text-base leading-none tracking-tight">
+                {'★'.repeat(Math.floor(product.rating))}
+                <span className="text-ink/15">{'★'.repeat(5 - Math.floor(product.rating))}</span>
               </span>
               <span className="text-sm font-bold text-ink">{product.rating}</span>
-              <span className="text-xs text-ink/40 font-medium">
+              <a href="#reviews" className="text-xs text-ink/50 hover:text-ink font-medium underline underline-offset-2">
                 {product.reviews} verified reviews
-              </span>
+              </a>
               <span className="mx-1 h-3 w-px bg-line/10" aria-hidden="true" />
-              <span className="text-xs text-ink/50 font-medium">BIFMA Certified</span>
+              <span className="text-xs text-emerald-600 font-semibold">BIFMA Certified</span>
             </div>
 
-            {/* Price — single, uncompromised */}
-            <div className="flex items-baseline gap-3 pt-2">
-              <span className="text-4xl font-extrabold text-ink tracking-tight">
-                {formatPrice(product.price)}
-              </span>
-            </div>
-            <p className="text-[11px] text-ink/40 tracking-wide">
-              Inclusive of all taxes · Free PAN-India shipping
-            </p>
-
-            {/* Trust — clean horizontal row, no boxes */}
-            <div className="flex items-center gap-3 text-[11px] font-medium text-ink/50 leading-none pt-1">
-              <span>7-Year Structural Warranty</span>
-              <span className="text-ink/20" aria-hidden="true">·</span>
-              <span>White-Glove Delivery</span>
-              <span className="text-ink/20" aria-hidden="true">·</span>
-              <span>10-Day Trial</span>
+            {/* Price */}
+            <div className="space-y-1 pt-2">
+              <div className="flex items-baseline gap-3">
+                <span className="text-4xl font-black text-ink tracking-tight">
+                  {formatPrice(product.price)}
+                </span>
+                {product.originalPrice && (
+                  <span className="text-lg text-ink/35 line-through font-medium">
+                    {formatPrice(product.originalPrice)}
+                  </span>
+                )}
+              </div>
+              <p className="text-[11px] text-ink/50 tracking-wide">
+                Inclusive of GST · Free PAN-India white-glove shipping
+              </p>
             </div>
 
-            {/* Primary action — Shopify checkout (WhatsApp fallback until checkout is live) */}
-            <div className="pt-2">
+            {/* Trust highlights */}
+            <div className="grid grid-cols-3 gap-2 py-3 border-y border-line/10 text-center">
+              <div className="p-2.5 rounded-xl bg-surfaceSubtle">
+                <div className="text-xs font-bold text-ink">5–7 Years</div>
+                <div className="text-[10px] text-ink/45">Warranty</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-surfaceSubtle">
+                <div className="text-xs font-bold text-ink">48 Hours</div>
+                <div className="text-[10px] text-ink/45">Dispatch</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-surfaceSubtle">
+                <div className="text-xs font-bold text-ink">10-Day</div>
+                <div className="text-[10px] text-ink/45">Trial Return</div>
+              </div>
+            </div>
+
+            {/* Primary Action — Add to Cart (Triggers recommendation drawer) */}
+            <div className="pt-2 space-y-3">
               <CheckoutButton
                 sku={product.sku}
                 fallbackHref={whatsAppUrl}
-                label="Order Now"
+                label="Add to Cart"
+                product={product}
               />
             </div>
 
-            {/* Quiet utility links */}
+            {/* Utility links */}
             <div className="flex items-center justify-center gap-5 pt-2 text-xs">
               <ViewInYourRoom
                 subcategory={product.subcategory}
@@ -200,42 +226,70 @@ export default function ProductDetailPage({
                 variant="outline"
                 size="md"
                 align="center"
-                label="See it in Your Room (AR)"
+                label="See in Your Room (AR)"
               />
               <span className="text-ink/15" aria-hidden="true">·</span>
               <Link
                 href={`/compare?add=${product.id}`}
-                className="font-medium text-ink/45 hover:text-ink transition-colors"
+                className="font-medium text-ink/50 hover:text-ink transition-colors"
               >
                 Add to Compare
               </Link>
               <span className="text-ink/15" aria-hidden="true">·</span>
-              <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-ink/45 hover:text-ink transition-colors">
-                Ask a question
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-ink/50 hover:text-ink transition-colors"
+              >
+                Ask Ergo Specialist
               </a>
             </div>
 
             {/* Product SKU */}
-            <div className="text-[10px] text-ink/20 uppercase tracking-widest font-mono">
-              SKU: {product.sku}
+            <div className="text-[10px] text-ink/30 uppercase tracking-widest font-mono text-center">
+              SKU: {product.sku} · Direct Factory Dispatch
             </div>
           </div>
         </div>
 
-        {/* Specifications panel */}
+        {/* ─── Dimensions & Measurements Section (Client requirement) ─── */}
+        <div id="measurements" className="mt-20">
+          <ProductMeasurements
+            productName={product.name}
+            subcategory={product.subcategory}
+            specs={product.specs}
+            productImage={assetUrl(product.image)}
+          />
+        </div>
+
+        {/* ─── Specifications Table ─── */}
         {specs.length > 0 && (
-          <div id="specs" className="mt-20 max-w-3xl">
+          <div id="specs" className="mt-20 max-w-4xl">
             <div className="mb-6">
-              <span className="text-xs font-bold text-[#B38A4C] tracking-[0.18em] uppercase">Precision Engineering</span>
-              <h2 className="text-2xl font-extrabold text-ink tracking-tight mt-1">Technical Specifications</h2>
+              <span className="text-xs font-bold text-brandLime tracking-widest uppercase">
+                Materials &amp; Engineering
+              </span>
+              <h2 className="text-2xl font-extrabold text-ink tracking-tight mt-1">
+                Technical Specifications
+              </h2>
             </div>
-            <div className="border-t border-line/10">
+            <div className="border border-line/10 rounded-2xl overflow-hidden bg-surface">
               <table className="w-full text-sm">
                 <tbody>
-                  {specs.map(([key, val]) => (
-                    <tr key={key} className="border-b border-line/8 last:border-0">
-                      <td className="px-2 py-4 text-ink/40 capitalize font-medium">{key.replace(/_/g, ' ')}</td>
-                      <td className="px-2 py-4 text-ink font-bold text-right sm:text-left">{String(val)}</td>
+                  {specs.map(([key, val], i) => (
+                    <tr
+                      key={key}
+                      className={`border-b border-line/8 last:border-0 ${
+                        i % 2 === 0 ? 'bg-surface' : 'bg-surfaceSubtle/50'
+                      }`}
+                    >
+                      <td className="px-5 py-4 text-ink/50 capitalize font-medium w-1/3">
+                        {key.replace(/_/g, ' ')}
+                      </td>
+                      <td className="px-5 py-4 text-ink font-bold">
+                        {String(val)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -244,101 +298,20 @@ export default function ProductDetailPage({
           </div>
         )}
 
-        {/* Customer Reviews */}
-        <section id="reviews" className="mt-24 max-w-4xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-            <div>
-              <span className="text-xs font-bold text-[#B38A4C] tracking-[0.18em] uppercase mb-2 block">
-                Customer Reviews
-              </span>
-              <h2 className="text-2xl font-extrabold text-ink tracking-tight">
-                What buyers think
-              </h2>
-            </div>
-            <Link
-              href="https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20to%20share%20a%20review%20for%20a%20recent%20purchase."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-semibold uppercase tracking-wider text-[#B38A4C] hover:text-ink transition-colors"
-            >
-              Share your review →
-            </Link>
-          </div>
+        {/* ─── Interactive Customer Reviews Section with Form ─── */}
+        <ProductReviewsSection
+          productId={product.id}
+          productName={product.name}
+          rating={product.rating}
+          totalReviews={product.reviews}
+        />
 
-          <div className="grid md:grid-cols-[auto_1fr] gap-10 items-start">
-            {/* Aggregate summary — minimal, institutional */}
-            <div className="flex flex-row md:flex-col items-center md:items-start gap-6 md:gap-3 md:min-w-[220px]">
-              <div>
-                <div className="text-6xl font-display font-bold text-ink leading-none">{product.rating}</div>
-                <div className="text-xs text-ink/45 mt-3 font-medium leading-relaxed">
-                  Overall score across {product.reviews} verified owners
-                </div>
-              </div>
-              <span className="hidden md:block w-full h-px bg-line/10 my-2" aria-hidden="true" />
-              <div className="space-y-1.5 text-[11px] leading-relaxed">
-                <p className="font-bold text-ink">Certified</p>
-                <p className="text-ink/50">BIFMA · EN 1335 ergonomics</p>
-                <p className="text-ink/50">5-Yr structural warranty</p>
-                <p className="text-ink/50">Up to 150 kg load rated</p>
-              </div>
-            </div>
-
-            {/* Architectural product metrics */}
-            <div className="border-t border-line/8 pt-6 space-y-6">
-              {[
-                { label: 'Lumbar Support & Ergonomics', value: '4.9' },
-                { label: 'Material Finish & Build', value: '4.8' },
-                { label: 'Aesthetic & Form', value: '5.0' },
-              ].map((m) => (
-                <div key={m.label}>
-                  <div className="flex items-baseline justify-between mb-2">
-                    <span className="text-sm text-ink/60 font-medium">{m.label}</span>
-                    <span className="font-display font-bold text-ink text-lg">{m.value}</span>
-                  </div>
-                  <div className="h-px w-full bg-line/10 relative">
-                    <span
-                      className="absolute inset-y-0 left-0 bg-[#B38A4C]"
-                      style={{ width: `${(parseFloat(m.value) / 5) * 100}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-              <p className="text-xs text-ink/40 leading-relaxed pt-2">
-                Metrics reflect the aggregated score from {product.reviews} verified owner
-                conversations. Reviews for the {product.name} are compiled from direct
-                customer feedback; leave yours anytime via WhatsApp.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10 rounded-3xl border border-line/8 bg-ink/[0.01] p-8 text-center">
-            <p className="text-sm text-ink/50 leading-relaxed max-w-lg mx-auto">
-              Reviews for the {product.name} are aggregated from our verified customer
-              conversations. Send us a note on WhatsApp to leave yours — we read every
-              one.
-            </p>
-          </div>
-        </section>
-
-        {/* Related Products */}
-        {related.length > 0 && (
-          <div className="mt-24 border-t border-line/5 pt-16">
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <span className="text-xs font-bold text-[#B38A4C] tracking-[0.18em] uppercase mb-1 block">Similar Fits</span>
-                <h2 className="text-2xl font-extrabold text-ink tracking-tight">Related Ergonomics</h2>
-              </div>
-              <Link href="/products" className="text-xs font-semibold uppercase tracking-wider text-[#B38A4C] hover:text-ink transition-colors">
-                View All
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {related.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
-          </div>
-        )}
+        {/* ─── Recommendation Rails: Similar Products (like Myntra) + Customers Also Liked ─── */}
+        <ProductRecommendations
+          currentProductId={product.id}
+          category={product.category}
+          subcategory={product.subcategory}
+        />
       </div>
     </div>
   );

@@ -36,9 +36,15 @@ export function Footer() {
               </a>
             </p>
             <p>
-              Store:{' '}
+              Flagship:{' '}
+              <a href="https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors font-medium">
+                42, 100 Feet Rd, Indiranagar, Bengaluru
+              </a>
+            </p>
+            <p>
+              Logistics:{' '}
               <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
-                5-8-91/5, Mahesh Nagar Colony, Abids
+                5-8-91/5, Mahesh Nagar, Abids, Hyderabad
               </a>
             </p>
           </div>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import {useState} from 'react';
-import {ThemeSwitcher} from '@/components/ThemeSwitcher';
+import {useCart} from '@/context/CartContext';
 
 const NAV_ITEMS = [
   {label: 'Office', href: '/products?category=office'},
@@ -15,11 +15,35 @@ const NAV_ITEMS = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [cartCount] = useState(0);
+  const {cartCount, openDrawer} = useCart();
 
   return (
     <>
-      <header className={`glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300`}>
+      {/* ─── Top Location Announcement Bar ─── */}
+      <aside aria-label="Flagship Showroom location" className="fixed top-0 inset-x-0 z-50 bg-ink text-app h-7 flex items-center justify-center px-4 text-[11px] font-medium tracking-wide shadow-sm border-b border-app/10">
+        <div className="max-w-7xl w-full flex items-center justify-between">
+          <div className="flex items-center gap-2 truncate">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="truncate">
+              <strong className="font-semibold text-app">Flagship Showroom:</strong> 42, 100 Feet Road, Indiranagar, Bengaluru
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-3 shrink-0 text-app/70 text-[10px]">
+            <span>Mon–Sat: 10:00 AM – 8:00 PM</span>
+            <span className="text-app/30">|</span>
+            <a
+              href="https://maps.google.com/?q=Indiranagar+Bangalore"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-beso-lime hover:underline font-bold"
+            >
+              Get Directions ↗
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <header className={`glass-header fixed top-9 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl h-14 rounded-full border border-line/10 px-6 flex items-center justify-between shadow-2xl transition-all duration-300`}>
         <div className="w-full flex items-center justify-between">
           {/* Mobile menu button */}
           <button
@@ -60,8 +84,6 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-2">
-            {/* Theme dock — desktop only (mobile keeps the floating pill) */}
-            <ThemeSwitcher variant="dock" />
             {/* Search icon */}
             <Link
               href="/products"
@@ -75,7 +97,11 @@ export function Header() {
             </Link>
 
             {/* Cart */}
-            <button className="relative flex items-center justify-center w-8 h-8 rounded-full hover:bg-ink/5 text-ink/70 hover:text-ink transition-colors duration-300" aria-label="Cart">
+            <button
+              onClick={() => openDrawer('cart')}
+              className="relative flex items-center justify-center w-8 h-8 rounded-full hover:bg-ink/5 text-ink/70 hover:text-ink transition-colors duration-300"
+              aria-label="Cart"
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
                 <line x1="3" y1="6" x2="21" y2="6" />
@@ -109,15 +135,12 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <div className="mt-2 border-t border-line/6 pt-4">
-              <ThemeSwitcher variant="dock" />
-            </div>
           </nav>
         </div>
       )}
 
       {/* Spacer for fixed header */}
-      <div className="site-header-spacer h-20 pointer-events-none" />
+      <div className="site-header-spacer h-24 pointer-events-none" />
     </>
   );
 }

@@ -27,11 +27,19 @@ const CONTACT_OPTIONS = [
     external: false,
   },
   {
-    icon: '\u{1F4CD}',
-    title: 'Visit Us',
-    desc: 'BESO Furniture, Hyderabad, Telangana, India',
+    icon: '📍',
+    title: 'Bengaluru Flagship Showroom',
+    desc: '42, 100 Feet Road, Indiranagar, Bengaluru, Karnataka 560038',
+    action: 'https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore',
+    label: 'Open Bengaluru Map',
+    external: true,
+  },
+  {
+    icon: '🏢',
+    title: 'Hyderabad Logistics & Hub',
+    desc: '5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001',
     action: 'https://maps.google.com/?q=Hyderabad+Telangana+India',
-    label: 'View on Map',
+    label: 'Open Hyderabad Map',
     external: true,
   },
 ];
