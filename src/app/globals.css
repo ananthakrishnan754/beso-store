@@ -157,46 +157,43 @@ body {
   transition: width 0.08s linear;
 }
 
-/* Default (no-JS / pre-FOUC fallback): Ivory Minute — the light theme with
-   the light hero video. The FOUC guard in layout.tsx overrides this with the
-   visitor's stored theme before first paint. */
+/* Default / Base: Oak Clean Modern — Natural Scandinavian bleached oak,
+   warm architectural brass, and deep forest spruce green. */
 :root {
   color-scheme: light;
-  --app-rgb: 239 231 218;
-  --surface-rgb: 251 247 240;
-  --surface-2-rgb: 232 223 208;
-  /* strict typographic scale (Gemini / WCAG) */
-  --ink-rgb: 20 20 19;
-  --soft-rgb: 61 59 56;
-  --faint-rgb: 107 102 95;
-  --accent-rgb: 20 20 19;
-  --accent-2-rgb: 61 59 56;
-  --on-accent-rgb: 253 252 250;
-  --danger-rgb: 201 62 52;
-  --gold-rgb: 165 121 47;
-  /* warm ambient glow wash (Gemini: diffused sunlit amber) */
-  --glow-rgb: 227 201 163;
-  --line-rgb: 27 28 30;
-  --line-strong-rgb: 27 28 30;
-  --glass: rgba(247, 244, 239, 0.85);
-  --shadow-color: rgba(27, 28, 30, 0.08);
-  --shadow-color-strong: rgba(27, 28, 30, 0.16);
-  --glow-color: rgba(16, 20, 24, 0.06);
-  --glow-strong: rgba(16, 20, 24, 0.18);
-  --font-sans: 'Manrope', system-ui, sans-serif;
-  --font-display: 'DM Serif Display', Georgia, serif;
+  --app-rgb: 245 240 231;
+  --surface-rgb: 253 251 247;
+  --surface-2-rgb: 238 231 219;
+  --surface-subtle-rgb: 242 235 224;
+  --ink-rgb: 26 21 16;
+  --soft-rgb: 98 87 74;
+  --faint-rgb: 142 131 118;
+  --accent-rgb: 28 84 66;
+  --accent-2-rgb: 40 108 86;
+  --on-accent-rgb: 248 250 249;
+  --danger-rgb: 196 67 47;
+  --gold-rgb: 184 134 58;
+  --line-rgb: 44 36 26;
+  --line-strong-rgb: 32 25 17;
+  --glass: rgba(245, 240, 231, 0.85);
+  --shadow-color: rgba(36, 29, 20, 0.08);
+  --shadow-color-strong: rgba(36, 29, 20, 0.16);
+  --glow-color: rgba(28, 84, 66, 0.12);
+  --glow-strong: rgba(28, 84, 66, 0.35);
+  --brand-lime: 28 84 66;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
 }
 
-/* Signature lime — always the BESO brand green, independent of theme accent.
-   Used on the dark flagship feature panels (which stay dark in every theme)
-   so labels/eyebrows read as brand-lime rather than the theme's ink/accent. */
+/* Brand green accent — resolves to the rich Oak Forest Spruce green (28 84 66) */
 :root,
 [data-theme] {
-  --brand-lime: 163 230 53;
+  --brand-lime: 28 84 66;
 }
 
 [data-theme="night-luxe"] {
   color-scheme: dark;
+  --brand-lime: 163 230 53;
   --app-rgb: 16 16 16;
   --surface-rgb: 28 28 28;
   --surface-2-rgb: 38 38 38;

@@ -76,15 +76,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k=${JSON.stringify(
-              THEME_STORAGE_KEY,
-            )};var ids=${JSON.stringify(themeIdList)}.split(',');var metaColors=${JSON.stringify(
-              themeMetaColors,
-            )};var modes=${JSON.stringify(themeModes)};var stored=localStorage.getItem(k);var theme=(stored&&ids.indexOf(stored)>-1&&stored!=='ivory-minimal'&&stored!=='night-luxe')?stored:${JSON.stringify(
-              DEFAULT_THEME,
-            )};localStorage.setItem(k,theme);var root=document.documentElement;root.setAttribute('data-theme',theme);var mode=modes[theme]||'light';root.style.colorScheme=mode;root.className=mode;var meta=document.querySelector('meta[name="theme-color"]');if(meta&&metaColors[theme]){meta.setAttribute('content',metaColors[theme]);}}catch(e){document.documentElement.setAttribute('data-theme',${JSON.stringify(
-              DEFAULT_THEME,
-            )});document.documentElement.className='light';}})();`,
+            __html: `(function(){try{var k='beso-theme';var theme='oak-clean-modern';localStorage.setItem(k,theme);var root=document.documentElement;root.setAttribute('data-theme',theme);root.style.colorScheme='light';root.className='light';var meta=document.querySelector('meta[name="theme-color"]');if(meta){meta.setAttribute('content','#f5f0e7');}}catch(e){document.documentElement.setAttribute('data-theme','oak-clean-modern');document.documentElement.className='light';}})();`,
           }}
         />
       </head>

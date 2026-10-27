@@ -85,7 +85,7 @@ export function CartDrawer() {
         <div className="p-5 border-b border-line/10 flex items-center justify-between bg-surfaceSubtle">
           <div className="flex items-center gap-2">
             {drawerMode === 'added-confirmation' ? (
-              <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-xs font-bold">
+              <span className="w-5 h-5 rounded-full bg-accent/20 text-accent flex items-center justify-center text-xs font-bold">
                 ✓
               </span>
             ) : null}
@@ -257,7 +257,7 @@ export function CartDrawer() {
             <div className="space-y-1.5">
               <div className="flex items-center justify-between text-xs text-ink/60">
                 <span>Shipping</span>
-                <span className="font-semibold text-emerald-600">FREE Pan-India</span>
+                <span className="font-bold text-accent">FREE Pan-India</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="font-semibold text-ink">Subtotal</span>

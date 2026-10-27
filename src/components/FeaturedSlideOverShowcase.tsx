@@ -178,7 +178,7 @@ export function FeaturedSlideOverShowcase() {
         <div className="relative flex-1 my-1.5 flex items-center justify-center min-h-0">
           {/* ═══ SLIDE 0: BESO Crown (Glassmorphism & Depth) ═══ */}
           <div
-            className="absolute inset-0 grid lg:grid-cols-12 gap-5 lg:gap-7 items-center rounded-[2rem] p-5 sm:p-7 md:p-8 overflow-hidden bg-white/70 dark:bg-black/50 backdrop-blur-3xl border border-white/60 dark:border-white/20 shadow-[0_30px_80px_rgba(36,29,20,0.12)] ring-1 ring-inset ring-white/50 dark:ring-white/10"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/75 dark:bg-black/50 backdrop-blur-3xl border border-white/60 dark:border-white/20 shadow-[0_30px_80px_rgba(36,29,20,0.12)] ring-1 ring-inset ring-white/50 dark:ring-white/10"
             style={{
               zIndex: 10,
               transform: `scale(${slide0Scale})`,
@@ -199,7 +199,7 @@ export function FeaturedSlideOverShowcase() {
 
           {/* ═══ SLIDE 1: BESO FlexRise (Slides UP with glass depth) ═══ */}
           <div
-            className="absolute inset-0 grid lg:grid-cols-12 gap-5 lg:gap-7 items-center rounded-[2rem] p-5 sm:p-7 md:p-8 overflow-hidden bg-white/80 dark:bg-black/60 backdrop-blur-3xl border border-white/70 dark:border-white/25 shadow-[0_35px_95px_rgba(36,29,20,0.18)] ring-1 ring-inset ring-white/60 dark:ring-white/15"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/80 dark:bg-black/60 backdrop-blur-3xl border border-white/70 dark:border-white/25 shadow-[0_35px_95px_rgba(36,29,20,0.18)] ring-1 ring-inset ring-white/60 dark:ring-white/15"
             style={{
               zIndex: 20,
               transform: `translateY(${slide1Y}%) scale(${slide1Scale})`,
@@ -220,7 +220,7 @@ export function FeaturedSlideOverShowcase() {
 
           {/* ═══ SLIDE 2: BESO Prestige (Slides UP with highest depth & shadow) ═══ */}
           <div
-            className="absolute inset-0 grid lg:grid-cols-12 gap-5 lg:gap-7 items-center rounded-[2rem] p-5 sm:p-7 md:p-8 overflow-hidden bg-white/88 dark:bg-black/70 backdrop-blur-3xl border border-white/85 dark:border-white/30 shadow-[0_40px_110px_rgba(36,29,20,0.24)] ring-1 ring-inset ring-white/70 dark:ring-white/20"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/88 dark:bg-black/70 backdrop-blur-3xl border border-white/85 dark:border-white/30 shadow-[0_40px_110px_rgba(36,29,20,0.24)] ring-1 ring-inset ring-white/70 dark:ring-white/20"
             style={{
               zIndex: 30,
               transform: `translateY(${slide2Y}%)`,
@@ -267,13 +267,13 @@ function SlideContent({
   return (
     <>
       {/* Dynamic 3D depth backdrop glow */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-brandLime/15 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-brandLime/10 rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-accent/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-[110px] pointer-events-none" />
 
-      {/* Left: Product Technical Specs & Architecture */}
-      <div className="lg:col-span-7 space-y-3.5 sm:space-y-4 z-10">
+      {/* Left Column on Desktop / Bottom on Mobile: Technical Specs & Architecture */}
+      <div className="lg:col-span-7 space-y-2.5 sm:space-y-4 z-10 order-2 lg:order-1">
         <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-full bg-brandLime/20 text-brandLime text-[10px] font-black uppercase tracking-widest border border-brandLime/30 shadow-sm">
+          <span className="px-3 py-1 rounded-full bg-accent/15 text-accent text-[10px] font-black uppercase tracking-widest border border-accent/25 shadow-sm">
             {slide.badge}
           </span>
           <span className="text-amber-500 text-xs font-bold flex items-center gap-1">
@@ -282,29 +282,41 @@ function SlideContent({
         </div>
 
         <div>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-black text-ink tracking-tight leading-tight">
+          <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-black text-ink tracking-tight leading-tight">
             {slide.name}
           </h3>
-          <p className="text-xs sm:text-sm text-ink/65 font-medium mt-1 leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink/65 font-medium mt-0.5 sm:mt-1 leading-relaxed">
             {slide.tagline}
           </p>
         </div>
 
-        <p className="text-xs sm:text-sm text-ink/75 leading-relaxed max-w-xl hidden sm:block">
+        <p className="text-xs sm:text-sm text-ink/75 leading-relaxed max-w-xl hidden md:block">
           {slide.desc}
         </p>
 
-        {/* Technical Specs Glass Cards */}
-        <div className="grid grid-cols-2 gap-2 pt-0.5">
+        {/* Mobile: Horizontal scrollable spec pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar sm:hidden py-0.5">
+          {slide.specs.map((sp: any) => (
+            <span
+              key={sp.label}
+              className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/70 dark:bg-white/10 text-ink/80 whitespace-nowrap border border-white/60 shrink-0"
+            >
+              <strong className="text-ink">{sp.label}:</strong> {sp.value}
+            </span>
+          ))}
+        </div>
+
+        {/* Desktop / Tablet: Technical Specs Glass 2x2 Grid */}
+        <div className="hidden sm:grid grid-cols-2 gap-2 pt-0.5">
           {slide.specs.map((sp: any) => (
             <div
               key={sp.label}
-              className="p-2.5 sm:p-3 rounded-2xl bg-white/60 dark:bg-white/10 backdrop-blur-md border border-white/60 dark:border-white/20 hover:border-brandLime/40 hover:bg-white/80 transition-all shadow-sm"
+              className="p-2 sm:p-3 rounded-2xl bg-white/60 dark:bg-white/10 backdrop-blur-md border border-white/60 dark:border-white/20 hover:border-accent/40 hover:bg-white/80 transition-all shadow-sm"
             >
               <span className="text-[9px] font-bold text-ink/40 uppercase tracking-widest block">
                 {sp.label}
               </span>
-              <span className="text-xs font-black text-ink mt-0.5 block">
+              <span className="text-xs font-black text-ink mt-0.5 block truncate">
                 {sp.value}
               </span>
             </div>
@@ -312,10 +324,10 @@ function SlideContent({
         </div>
 
         {/* Pricing and Action Buttons Row */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 pt-2.5 border-t border-line/10">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 pt-2 border-t border-line/10">
           <div>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl sm:text-3xl font-black text-ink">
+              <span className="text-xl sm:text-3xl font-black text-ink">
                 {formatPrice(slide.price)}
               </span>
               {slide.originalPrice && (
@@ -324,7 +336,7 @@ function SlideContent({
                 </span>
               )}
             </div>
-            <span className="text-[10px] text-emerald-600 font-bold block">
+            <span className="text-[10px] text-accent font-bold block">
               Free PAN-India White-Glove Setup · 5-7 Yr Warranty
             </span>
           </div>
@@ -333,14 +345,14 @@ function SlideContent({
             <button
               type="button"
               onClick={() => onAddToCart(activeProduct, 1)}
-              className="px-6 py-2.5 sm:py-3 rounded-full bg-ink text-app text-xs uppercase tracking-wider font-extrabold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5"
+              className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-ink text-app text-xs uppercase tracking-wider font-extrabold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5"
             >
               <span>+ Add to Cart</span>
             </button>
 
             <Link
               href={`/products/${slide.slug}`}
-              className="px-4 py-2.5 sm:py-3 rounded-full border border-white/60 bg-white/60 backdrop-blur-md text-xs font-bold text-ink hover:bg-white/85 transition-all shadow-sm"
+              className="px-4 py-2.5 sm:py-3 rounded-full border border-line/20 bg-white/60 backdrop-blur-md text-xs font-bold text-ink hover:bg-white/85 transition-all shadow-sm"
             >
               Full Specs →
             </Link>
@@ -353,7 +365,7 @@ function SlideContent({
                 className={`p-2.5 sm:p-3 rounded-full border transition-all ${
                   wishlisted
                     ? 'bg-rose-50 border-rose-300 text-rose-500'
-                    : 'border-white/50 bg-white/60 backdrop-blur-md text-ink/40 hover:text-rose-500'
+                    : 'border-line/20 bg-white/60 backdrop-blur-md text-ink/40 hover:text-rose-500'
                 }`}
                 title={wishlisted ? 'In Wishlist' : 'Add to Wishlist'}
                 aria-label="Wishlist"
@@ -377,8 +389,8 @@ function SlideContent({
                 onClick={() => toggleCompare(slide.id)}
                 className={`p-2.5 sm:p-3 rounded-full border transition-all ${
                   comparing
-                    ? 'bg-brandLime/20 border-brandLime text-ink font-bold'
-                    : 'border-white/50 bg-white/60 backdrop-blur-md text-ink/40 hover:text-ink'
+                    ? 'bg-accent/20 border-accent text-accent font-bold'
+                    : 'border-line/20 bg-white/60 backdrop-blur-md text-ink/40 hover:text-ink'
                 }`}
                 title={comparing ? 'Comparing' : 'Compare'}
                 aria-label="Compare"
@@ -392,12 +404,12 @@ function SlideContent({
         </div>
       </div>
 
-      {/* Right: Architectural 3D Glass Pedestal Showcase */}
-      <div className="lg:col-span-5 flex justify-center relative z-10">
-        <div className="w-full max-w-[250px] sm:max-w-[275px] md:max-w-[290px] aspect-[4/5] rounded-[1.6rem] border border-line/15 bg-[#0e1114] relative shadow-[0_20px_50px_rgba(0,0,0,0.18)] overflow-hidden group">
+      {/* Right Column on Desktop / Top-Center on Mobile: Architectural 3D Glass Pedestal Showcase */}
+      <div className="lg:col-span-5 flex justify-center items-center relative z-10 w-full py-1 lg:py-0 order-1 lg:order-2">
+        <div className="w-full max-w-[210px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[460px] xl:max-w-[500px] aspect-[4/5] rounded-[1.6rem] sm:rounded-[2rem] border border-line/15 bg-[#0e1114] relative shadow-[0_20px_50px_rgba(0,0,0,0.22)] overflow-hidden group flex items-center justify-center">
           {/* Subtle Ambient Glow & Glass Rim */}
-          <div className="absolute inset-0 rounded-[1.6rem] ring-1 ring-inset ring-white/25 pointer-events-none z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-0 rounded-[1.6rem] sm:rounded-[2rem] ring-1 ring-inset ring-white/25 pointer-events-none z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none z-10" />
 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -406,7 +418,7 @@ function SlideContent({
               (e.currentTarget as HTMLImageElement).src = slide.fallbackImage;
             }}
             alt={slide.name}
-            className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700 relative z-0"
+            className="w-full h-full object-contain p-2 sm:p-3 group-hover:scale-105 transition-all duration-700 relative z-0"
           />
         </div>
       </div>

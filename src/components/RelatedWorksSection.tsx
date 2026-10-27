@@ -109,7 +109,7 @@ export function RelatedWorksSection() {
                 <h3 className="font-extrabold text-lg text-ink group-hover:text-beso-lime transition-colors">
                   {proj.title}
                 </h3>
-                <p className="text-xs font-bold text-emerald-600 mt-1">
+                <p className="text-xs font-bold text-accent mt-1">
                   Scope: {proj.scope}
                 </p>
                 <p className="text-xs text-ink/60 mt-2 leading-relaxed">

@@ -23,7 +23,7 @@ export function Header() {
       <aside aria-label="Flagship Showroom location" className="fixed top-0 inset-x-0 z-50 bg-ink text-app h-7 flex items-center justify-center px-4 text-[11px] font-medium tracking-wide shadow-sm border-b border-app/10">
         <div className="max-w-7xl w-full flex items-center justify-between">
           <div className="flex items-center gap-2 truncate">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0 ring-2 ring-accent/30" />
             <span className="truncate">
               <strong className="font-semibold text-app">Flagship Showroom:</strong> 42, 100 Feet Road, Indiranagar, Bengaluru
             </span>

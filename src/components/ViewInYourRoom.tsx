@@ -80,7 +80,7 @@ export function ViewInYourRoom({
     variant === 'solid'
       ? 'btn-beso'
       : 'btn-pill-outline';
-  const pad = size === 'lg' ? 'px-7 py-3.5' : 'px-5 py-2.5';
+  const pad = size === 'lg' ? 'px-6 py-3' : 'px-4 py-2';
 
   return (
     <>
@@ -88,7 +88,7 @@ export function ViewInYourRoom({
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className={`${btnClasses} ${pad} text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 ${align === 'center' ? 'w-full' : ''}`}
+        className={`${btnClasses} ${pad} text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0`}
       >
         {arIcon()}
         <span>{label}</span>
@@ -99,21 +99,21 @@ export function ViewInYourRoom({
           role="dialog"
           aria-modal="true"
           aria-label={`${productName} — View in Your Room`}
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-0 sm:p-6"
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
           onClick={close}
         >
           <div
-            className="w-full h-[100dvh] sm:h-auto sm:max-h-[85vh] sm:max-w-5xl bg-beso-card sm:rounded-3xl border border-line/10 overflow-hidden flex flex-col relative shadow-2xl"
+            className="w-full h-[90vh] sm:h-[82vh] max-h-[820px] max-w-5xl bg-beso-card rounded-3xl border border-line/10 overflow-hidden flex flex-col relative shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-line/6 shrink-0">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-line/10 shrink-0 bg-surface">
               <div className="flex items-center gap-3 min-w-0">
-                <span className="text-beso-lime shrink-0">{arIcon()}</span>
+                <span className="w-8 h-8 rounded-full bg-accent/15 text-accent flex items-center justify-center shrink-0">{arIcon()}</span>
                 <div className="min-w-0">
                   <div className="text-sm font-bold text-ink truncate">{productName}</div>
-                  <div className="text-[10px] text-ink/40 uppercase tracking-wide">
-                    3D Preview · AR on mobile
+                  <div className="text-[10px] text-ink/50 uppercase tracking-wider font-medium">
+                    Interactive 3D Preview · Mobile AR Scale
                   </div>
                 </div>
               </div>
@@ -128,7 +128,7 @@ export function ViewInYourRoom({
             </div>
 
             {/* Viewer stage */}
-            <div className="relative flex-1 min-h-0 bg-gradient-to-b from-black/40 to-black/60">
+            <div className="relative flex-1 min-h-[380px] w-full bg-gradient-to-b from-black/40 via-black/55 to-black/70 flex items-center justify-center overflow-hidden">
               {viewer === 'ready' ? (
                 createElement(
                   'model-viewer',
@@ -150,7 +150,8 @@ export function ViewInYourRoom({
                     'environment-image': 'neutral',
                     'touch-action': 'pan-y',
                     poster: poster ? `/${poster.replace(/^\//, '')}` : undefined,
-                    } as Record<string, unknown>,
+                    style: { width: '100%', height: '100%' },
+                  } as Record<string, unknown>,
                   createElement(
                     'button',
                     { slot: 'ar-button', className: 'ar-cta' },
@@ -159,21 +160,26 @@ export function ViewInYourRoom({
                   )
                 )
               ) : viewer === 'error' ? (
-                <div className="flex items-center justify-center h-full text-sm text-ink/50">
+                <div className="flex items-center justify-center h-full text-sm text-white/60">
                   Couldn&apos;t load the 3D viewer.
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-full">
-                  <div className="w-10 h-10 border-2 border-beso-lime/30 border-t-beso-lime rounded-full animate-spin" />
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-10 h-10 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+                  <span className="text-xs text-white/70 tracking-wider">Loading 3D CAD mesh…</span>
                 </div>
               )}
+
+              {/* Interaction Hint Overlay */}
+              <span className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest text-white/80 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full pointer-events-none z-10 border border-white/10 shadow-lg">
+                Drag to Rotate 360° · Scroll to Zoom
+              </span>
             </div>
 
             {/* Footer instructions */}
-            <div className="px-5 py-3.5 border-t border-line/6 text-center shrink-0 bg-beso-card">
-              <p className="text-[11px] text-ink/40 leading-relaxed max-w-lg mx-auto">
-                On your phone, tap <span className="text-beso-lime font-semibold">View in your space</span> to place{' '}
-                {productName} in real size. Point your camera at the floor and move around to preview it in your room.
+            <div className="px-6 py-4 border-t border-line/10 text-center shrink-0 bg-surface">
+              <p className="text-xs text-ink/60 leading-relaxed max-w-lg mx-auto">
+                On mobile browsers (iOS QuickLook / Android WebXR), tap <span className="text-accent font-bold">View in your space</span> to project this model at 1:1 true physical scale in your room.
               </p>
             </div>
           </div>

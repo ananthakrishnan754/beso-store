@@ -159,9 +159,9 @@ export function ProductReviewsSection({
 
       {/* ─── Success Notification ─── */}
       {successMsg && (
-        <div className="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-between text-sm animate-fade-in">
+        <div className="p-4 rounded-2xl bg-accent/15 border border-accent/30 text-accent flex items-center justify-between text-sm animate-fade-in">
           <div className="flex items-center gap-3">
-            <span className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">
+            <span className="w-6 h-6 rounded-full bg-accent text-onAccent flex items-center justify-center text-xs font-bold">
               ✓
             </span>
             <span>
@@ -303,7 +303,7 @@ export function ProductReviewsSection({
             Based on {reviewsList.length} verified customer reviews
           </p>
           <div className="pt-2">
-            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 font-bold text-[10px] tracking-wider uppercase">
+            <span className="inline-block px-3 py-1 rounded-full bg-accent/15 text-accent font-bold text-[10px] tracking-wider uppercase border border-accent/25">
               96% Recommended by Buyers
             </span>
           </div>
@@ -367,7 +367,7 @@ export function ProductReviewsSection({
               <div className="flex items-center gap-2">
                 <h5 className="font-bold text-sm text-ink">{rev.title}</h5>
                 {rev.verified && (
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/25">
                     ✓ Verified Buyer
                   </span>
                 )}

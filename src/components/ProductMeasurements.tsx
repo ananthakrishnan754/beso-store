@@ -138,7 +138,7 @@ export function ProductMeasurements({
           </div>
 
           <div className="pt-2 flex items-center gap-3 text-xs text-ink/60">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="w-2 h-2 rounded-full bg-accent" />
             <span>ANSI/BIFMA X5.1 Standard · Tolerance: ±2 mm</span>
           </div>
         </div>

@@ -166,7 +166,7 @@ export function ShoppableRoomHotspots() {
 
           {/* Showroom location tag */}
           <div className="pt-1 text-xs text-ink/50 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span>Flagship Showroom: 42, 100 Feet Road, Indiranagar, Bengaluru</span>
           </div>
         </div>

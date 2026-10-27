@@ -171,7 +171,7 @@ export function ProductRecommendations({
                 Complementary ergonomic furnishings highly rated by customers.
               </p>
             </div>
-            <span className="text-xs font-semibold text-emerald-600 hidden sm:block">
+            <span className="text-xs font-bold text-accent hidden sm:block">
               ✓ Verified Workspace Pairings
             </span>
           </div>
