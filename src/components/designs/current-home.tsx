@@ -13,8 +13,6 @@ import { ShowroomHighlight } from '@/components/ShowroomHighlight';
 
 
 
-const MARQUEE_TEXT = '✦  ERGO-TECH INNOVATION  ✦  FREE PAN-INDIA DELIVERY  ✦  5-YEAR COMPREHENSIVE WARRANTY  ✦  BIFMA CERTIFIED  ✦  10-DAY RETURN POLICY  ✦  CUSTOMISABLE SETUPS  ✦';
-
 function getFeatured() {
   return (products as any[])
     .filter((p) => p.badge === 'hot' || p.badge === 'sale')
@@ -86,13 +84,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ─── Marquee Banner ─── */}
-      <div className="border-y border-line/5 bg-ink/4 py-5 overflow-hidden select-none">
-        <div className="animate-marquee whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] text-ink/30">
-          {MARQUEE_TEXT} {MARQUEE_TEXT}
-        </div>
-      </div>
 
       {/* ─── 3-Slide Vertical Slide-Up Showcase (Client Requirement) ─── */}
       <FeaturedSlideOverShowcase />

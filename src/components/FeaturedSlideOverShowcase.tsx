@@ -446,7 +446,7 @@ const SlideContent = React.memo(function SlideContent({
               )}
             </div>
             <span className="text-[10px] text-accent font-bold block">
-              Free PAN-India White-Glove Setup · 5-7 Yr Warranty
+              PAN-India White-Glove Setup · 5-7 Yr Warranty
             </span>
           </div>
 

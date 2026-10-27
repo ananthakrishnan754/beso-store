@@ -257,7 +257,7 @@ export function CartDrawer() {
             <div className="space-y-1.5">
               <div className="flex items-center justify-between text-xs text-ink/60">
                 <span>Shipping</span>
-                <span className="font-bold text-accent">FREE Pan-India</span>
+                <span className="font-bold text-accent">Pan-India Delivery</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="font-semibold text-ink">Subtotal</span>

@@ -55,7 +55,7 @@ const FAQ = [
   },
   {
     q: 'Do you ship across India?',
-    a: 'Yes, we ship pan-India. Free delivery on orders above \u20B910,000. Delivery typically takes 5-10 business days depending on your location.',
+    a: 'Yes, we provide pan-India delivery. Delivery typically takes 5-10 business days depending on your location.',
   },
   {
     q: 'Can I return a product?',

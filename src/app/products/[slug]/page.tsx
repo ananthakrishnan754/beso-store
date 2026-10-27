@@ -186,7 +186,7 @@ export default function ProductDetailPage({
                 )}
               </div>
               <p className="text-[11px] text-ink/50 tracking-wide">
-                Inclusive of GST · Free PAN-India white-glove shipping
+                Inclusive of GST · PAN-India white-glove shipping
               </p>
             </div>
 
