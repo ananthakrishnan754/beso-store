@@ -94,7 +94,7 @@ function starRow(rating: number, size = 'text-sm') {
   const full = Math.floor(rating);
   const half = rating - full >= 0.4;
   return (
-    <span className={`inline-flex items-center gap-0.5 text-[#B38A4C] ${size}`} aria-label={`${rating} out of 5 stars`}>
+    <span className={`inline-flex items-center gap-0.5 text-amber-500 ${size}`} aria-label={`${rating} out of 5 stars`}>
       {Array.from({length: 5}).map((_, i) => (
         <svg key={i} viewBox="0 0 20 20" className="w-4 h-4 fill-current" aria-hidden="true">
           {i < full ? (
@@ -177,188 +177,269 @@ export default function ComparePage() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-12 pb-32">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-10 sm:py-16 pb-36">
       {/* Header */}
-      <div className="mb-10">
-        <p className="text-[#B38A4C] text-xs font-bold tracking-[0.18em] uppercase mb-2 inline-flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B38A4C] animate-pulse" />
-          Compare
+      <div className="mb-10 max-w-2xl">
+        <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-2.5 inline-flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)]" />
+          Side-By-Side Comparison
         </p>
-        <h1 className="text-3xl md:text-5xl font-display font-bold text-ink tracking-tight">
-          Side-by-side, <span className="text-gradient">simplified.</span>
+        <h1 className="text-3xl md:text-5xl font-serif font-bold text-ink tracking-tight leading-tight">
+          Calibrated Specifications, <span className="bg-gradient-to-r from-[#D98E38] via-[#C27526] to-[#A35B16] dark:from-[#F2623F] dark:via-[#E24A2B] dark:to-[#B83218] bg-clip-text text-transparent">Simplified.</span>
         </h1>
-        <p className="text-ink/50 text-sm mt-3 max-w-lg leading-relaxed">
-          Pick up to {MAX} models and see every spec, price and rating at a glance.
+        <p className="text-ink/65 text-sm md:text-base mt-3 leading-relaxed">
+          Select up to {MAX} contract-grade models to cross-examine ergonomics, dimensions, warranties, and pricing.
         </p>
       </div>
 
       {/* Picker — grouped, searchable, premium cards */}
-      <div className="mb-10">
-        <div className="flex flex-col md:flex-row md:items-center gap-3 mb-5">
+      <div className="mb-12 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="relative flex-1 max-w-md">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink/35" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-ink/40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
             </svg>
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search chairs, desks, sofas…"
-              className="w-full bg-surface border border-line/8 rounded-full pl-10 pr-4 py-3 text-sm text-ink placeholder:ink/30 focus:outline-none focus:border-[#B38A4C]/40 focus:ring-1 focus:ring-[#B38A4C]/20"
+              placeholder="Search executive chairs, smart desks, sofas…"
+              className="w-full bg-white/80 dark:bg-[#150E09] border border-white/80 dark:border-white/10 rounded-full pl-11 pr-4 py-3 text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 backdrop-blur-md shadow-sm transition-all"
             />
           </div>
-          <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
-            <button onClick={() => setGroup('all')}
-              className={`h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${group === 'all' ? 'bg-ink text-app' : 'bg-surface border border-line/8 text-ink/60 hover:text-ink'}`}>
-              All
+          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+            <button
+              onClick={() => setGroup('all')}
+              className={`h-10 px-5 rounded-full text-xs font-bold whitespace-nowrap transition-all shadow-sm ${
+                group === 'all'
+                  ? 'bg-ink text-app shadow-md'
+                  : 'bg-white/70 dark:bg-[#1A120B] border border-white/80 dark:border-white/10 text-ink/70 hover:text-ink hover:bg-white/90'
+              }`}
+            >
+              All Categories
             </button>
             {[...new Set(ALL.map((p) => p.subcategory))].sort().map((s) => (
-              <button key={s} onClick={() => setGroup(s)}
-                className={`h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${group === s ? 'bg-ink text-app' : 'bg-surface border border-line/8 text-ink/60 hover:text-ink'}`}>
+              <button
+                key={s}
+                onClick={() => setGroup(s)}
+                className={`h-10 px-5 rounded-full text-xs font-bold whitespace-nowrap transition-all shadow-sm ${
+                  group === s
+                    ? 'bg-ink text-app shadow-md'
+                    : 'bg-white/70 dark:bg-[#1A120B] border border-white/80 dark:border-white/10 text-ink/70 hover:text-ink hover:bg-white/90'
+                }`}
+              >
                 {SUB_LABELS[s] ?? s.replace(/-/g, ' ')}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 max-h-[430px] overflow-y-auto pr-1 -mx-1 px-1">
+        {/* ─── Product Cards Grid (Well Proportioned & Luxury Sized) ─── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {filtered.map((p) => {
             const isSelected = selected.includes(p.id);
             const isDisabled = !isSelected && selected.length >= MAX;
             return (
               <button
                 key={p.id}
+                type="button"
                 onClick={() => !isDisabled && toggle(p.id)}
                 disabled={isDisabled}
-                className={`group relative p-3.5 rounded-2xl border text-left transition-all duration-200 ${
+                className={`group relative p-4 sm:p-5 rounded-[2rem] border text-left transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                   isSelected
-                    ? 'bg-[#B38A4C]/[0.06] border-[#B38A4C]/40 ring-1 ring-[#B38A4C]/20 shadow-card-hover'
+                    ? 'bg-accent/10 dark:bg-accent/15 border-accent ring-2 ring-accent/30 shadow-[0_16px_36px_rgb(var(--accent-rgb)/0.25)] -translate-y-1'
                     : isDisabled
-                      ? 'bg-surface/40 border-line/[0.04] opacity-35 cursor-not-allowed'
-                      : 'bg-surface border-line/8 hover:border-line/20 hover:-translate-y-0.5 hover:shadow-card-hover'
+                      ? 'bg-surface/30 border-white/20 dark:border-white/5 opacity-40 cursor-not-allowed'
+                      : 'border-white/80 dark:border-white/10 bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/40 dark:from-[#1D140D]/90 dark:via-[#160E08]/85 dark:to-[#0E0905]/90 backdrop-blur-xl shadow-[0_10px_25px_rgba(0,0,0,0.05),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_10px_25px_rgba(0,0,0,0.5),_inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-accent/50 dark:hover:border-accent/40 hover:-translate-y-1 hover:shadow-xl'
                 }`}
               >
-                <div className="absolute top-2.5 right-2.5 flex items-center justify-center w-5 h-5 rounded-full border transition-colors ${
-                  isSelected ? 'bg-[#B38A4C] border-[#B38A4C] text-white' : 'border-line/20 bg-surface'
-                }">
-                  {isSelected && <svg viewBox="0 0 20 20" className="w-3 h-3 fill-none " stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 10l3 3 6-6" /></svg>}
+                {/* Selection Checkmark Button */}
+                <div
+                  className={`absolute top-3.5 right-3.5 z-10 flex items-center justify-center w-7 h-7 rounded-full border transition-all ${
+                    isSelected
+                      ? 'bg-accent border-accent text-white shadow-md'
+                      : 'border-white/80 dark:border-white/20 bg-white/80 dark:bg-black/50 text-transparent'
+                  }`}
+                >
+                  <svg viewBox="0 0 20 20" className="w-4 h-4 fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M5 10l3 3 6-6" />
+                  </svg>
                 </div>
-                <div className="h-16 rounded-xl bg-[#F5F5DB]/60 flex items-center justify-center mb-2.5 overflow-hidden">
-                  {p.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={`/${p.image}`} alt={p.name} className="max-h-full max-w-full object-contain" loading="lazy" />
-                  ) : (
-                    <span className="text-2xl opacity-40">{'🪑'}</span>
-                  )}
+
+                <div>
+                  {/* Generous Product Image Showcase Area */}
+                  <div className="h-40 sm:h-44 w-full rounded-2xl bg-[#F5EFE6] dark:bg-[#120B07] flex items-center justify-center p-3 sm:p-4 mb-3.5 border border-white/70 dark:border-white/5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                    {p.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={`/${p.image}`}
+                        alt={p.name}
+                        className="max-h-full max-w-full object-contain drop-shadow-md"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="text-4xl opacity-40">🪑</span>
+                    )}
+                  </div>
+
+                  <p className="text-[10px] font-bold text-accent uppercase tracking-widest">
+                    {SUB_LABELS[p.subcategory] ?? p.subcategory.replace(/-/g, ' ')}
+                  </p>
+                  <h3 className="font-serif font-bold text-ink text-sm sm:text-base leading-snug line-clamp-2 mt-1 group-hover:text-accent transition-colors">
+                    {p.name}
+                  </h3>
                 </div>
-                <p className="font-medium text-ink text-xs leading-snug line-clamp-2 group-hover:text-[#B38A4C] transition-colors">{p.name}</p>
-                <p className="text-[10px] text-ink/40 capitalize mt-0.5">{SUB_LABELS[p.subcategory] ?? p.subcategory.replace(/-/g, ' ')}</p>
-                <p className="text-xs font-bold text-ink mt-1.5">{formatPrice(p.price)}</p>
-                <p className="text-[10px] text-ink/35 flex items-center gap-1"><span className="text-[#B38A4C]">{'★'} {p.rating}</span>·{p.reviews} reviews</p>
+
+                <div className="pt-3 mt-3 border-t border-white/60 dark:border-white/10 flex items-end justify-between">
+                  <div>
+                    <span className="text-xs text-ink/40 line-through block">
+                      {p.originalPrice ? formatPrice(p.originalPrice) : ''}
+                    </span>
+                    <span className="text-base sm:text-lg font-black text-ink">
+                      {formatPrice(p.price)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs font-semibold text-ink/75">
+                    <span className="text-amber-500">★ {p.rating}</span>
+                    <span className="text-ink/40 text-[11px]">({p.reviews})</span>
+                  </div>
+                </div>
               </button>
             );
           })}
         </div>
+
         {filtered.length === 0 && (
-          <p className="text-center text-sm text-ink/30 py-10">No products match “{search}”.</p>
+          <div className="text-center py-16 rounded-3xl border border-dashed border-white/20 text-ink/50 space-y-2">
+            <p className="text-base font-semibold">No models match “{search}”</p>
+            <p className="text-xs text-ink/40">Try searching for executive chairs, manager tables, or ergonomic seating.</p>
+          </div>
         )}
       </div>
 
-      {/* Sticky compare tray */}
+      {/* ─── Sticky Floating Compare Tray ─── */}
       {selected.length > 0 && (
-        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-3xl">
-          <div className="bg-surface/95 backdrop-blur-xl border border-line/10 rounded-3xl shadow-2xl px-4 py-3 flex items-center gap-3">
-            <div className="flex -space-x-2 overflow-hidden mr-1">
-              {sortedSelected.map((p) => (
-                <div key={p.id} className="relative w-11 h-11 rounded-full border-2 border-surface bg-[#F5F5DB] overflow-hidden">
-                  {p.image
-                    // eslint-disable-next-line @next/next/no-img-element
-                    ? <img src={`/${p.image}`} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
-                    : <span className="flex items-center justify-center w-full h-full text-lg">{'🪑'}</span>}
-                  <button
-                    aria-label={`Remove ${p.name}`}
-                    onClick={() => toggle(p.id)}
-                    className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ink text-app text-[9px] flex items-center justify-center hover:bg-[#B38A4C] transition-colors"
-                  >×</button>
-                </div>
-              ))}
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-3xl">
+          <div className="rounded-full border border-white/80 dark:border-white/15 bg-white/90 dark:bg-[#140D08]/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.4),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8),_inset_0_1px_0_rgba(255,255,255,0.15)] px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex -space-x-2.5 overflow-hidden shrink-0">
+                {sortedSelected.map((p) => (
+                  <div key={p.id} className="relative w-11 h-11 rounded-full border-2 border-white dark:border-[#22170E] bg-[#F5EFE6] dark:bg-[#18110B] overflow-hidden shadow-sm">
+                    {p.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={`/${p.image}`} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+                    ) : (
+                      <span className="flex items-center justify-center w-full h-full text-base">🪑</span>
+                    )}
+                    <button
+                      aria-label={`Remove ${p.name}`}
+                      onClick={() => toggle(p.id)}
+                      className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ink text-app text-[9px] font-bold flex items-center justify-center hover:bg-accent transition-colors shadow-sm"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="text-xs font-bold text-ink whitespace-nowrap truncate">
+                <span className="text-accent">{selected.length}</span>/{MAX} selected
+              </div>
             </div>
-            <div className="text-xs text-ink/60 font-medium whitespace-nowrap mr-auto">
-              {selected.length}/{MAX} selected
+
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => setSelected([])}
+                className="text-[11px] font-bold text-ink/50 hover:text-ink transition-colors px-3 py-1.5"
+              >
+                Clear
+              </button>
+              <button
+                onClick={goToTable}
+                className="px-6 py-2.5 rounded-full bg-accent hover:bg-accent-2 text-white text-xs uppercase tracking-widest font-extrabold shadow-lg shadow-accent/25 hover:scale-105 active:scale-95 transition-all"
+              >
+                Compare Specs →
+              </button>
             </div>
-            <button
-              onClick={() => setSelected([])}
-              className="hidden sm:inline text-[11px] text-ink/40 hover:text-ink transition-colors px-2"
-            >Clear</button>
-            <button
-              onClick={goToTable}
-              className="btn-beso px-5 py-2.5 text-[11px] uppercase tracking-[0.14em] font-bold"
-            >Compare</button>
           </div>
         </div>
       )}
 
-      {/* Comparison table */}
+      {/* ─── Comparison Table ─── */}
       {sortedSelected.length >= 2 ? (
-        <div ref={tableRef} id="comparison" className="scroll-mt-24">
-          <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
-            <h2 className="text-xl md:text-2xl font-display font-bold text-ink">Full comparison</h2>
-            <label className="inline-flex items-center gap-2 text-xs text-ink/60 cursor-pointer select-none">
+        <div ref={tableRef} id="comparison" className="scroll-mt-28 space-y-6">
+          <div className="flex items-center justify-between flex-wrap gap-4 pt-8 border-t border-white/60 dark:border-white/10">
+            <div>
+              <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
+                Detailed Matrix
+              </span>
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink tracking-tight">
+                Full Technical Breakdown
+              </h2>
+            </div>
+            <label className="inline-flex items-center gap-2 text-xs font-bold text-ink/75 cursor-pointer select-none px-3.5 py-2 rounded-full border border-white/80 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md">
               <input
                 type="checkbox"
                 checked={showDiff}
                 onChange={(e) => setShowDiff(e.target.checked)}
-                className="accent-[#B38A4C] w-4 h-4 rounded"
+                className="accent-accent w-4 h-4 rounded"
               />
-              Only show differences
+              Highlight Differences Only
             </label>
           </div>
 
-          <div className="overflow-x-auto rounded-3xl border border-line/8 bg-surface">
+          <div className="overflow-x-auto rounded-[2rem] border border-white/85 dark:border-white/12 bg-white/80 dark:bg-[#140D08]/90 backdrop-blur-2xl shadow-xl">
             <table className="w-full min-w-[760px] border-collapse">
               <thead>
-                <tr className="border-b border-line/8">
-                  <th className="text-left text-[11px] uppercase tracking-wider text-ink/40 font-semibold px-4 py-4 w-44 sticky left-0 bg-surface z-10">
-                    Feature
+                <tr className="border-b border-white/60 dark:border-white/10">
+                  <th className="text-left text-xs uppercase tracking-widest text-ink/50 font-bold px-6 py-6 w-48 sticky left-0 bg-white/95 dark:bg-[#140D08]/95 backdrop-blur-md z-10">
+                    Product Specification
                   </th>
                   {sortedSelected.map((p) => (
-                    <th key={p.id} className="text-left px-4 pt-4 pb-3 min-w-[200px] align-top relative">
+                    <th key={p.id} className="text-left px-5 pt-6 pb-5 min-w-[220px] align-top relative">
                       {recommended?.id === p.id && (
-                        <span className="inline-block mb-1.5 px-2 py-0.5 rounded-full bg-[#B38A4C]/10 text-[#B38A4C] text-[9px] font-bold uppercase tracking-wider">
+                        <span className="inline-block mb-2 px-2.5 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-black uppercase tracking-wider border border-accent/25 shadow-sm">
                           ★ Best Rated
                         </span>
                       )}
                       <Link href={`/products/${p.slug}`} className="block group">
-                        <div className="h-24 rounded-xl bg-[#F5F5DB]/60 flex items-center justify-center overflow-hidden mb-2 transition-transform duration-300 group-hover:scale-[1.02]">
+                        <div className="h-40 sm:h-44 rounded-2xl bg-[#F5EFE6] dark:bg-[#160E08] border border-white/80 dark:border-white/10 flex items-center justify-center p-4 overflow-hidden mb-3 transition-transform duration-300 group-hover:scale-[1.02] shadow-sm">
                           {p.image ? (
                             // eslint-disable-next-line @next/next/no-img-element
-                            <img src={`/${p.image}`} alt={p.name} className="max-h-full max-w-full object-contain" loading="lazy" />
+                            <img src={`/${p.image}`} alt={p.name} className="max-h-full max-w-full object-contain drop-shadow-md" loading="lazy" />
                           ) : (
-                            <span className="text-3xl opacity-40">{'🪑'}</span>
+                            <span className="text-4xl opacity-40">🪑</span>
                           )}
                         </div>
-                        <p className="font-semibold text-ink text-sm leading-tight mb-1 group-hover:text-[#B38A4C] transition-colors line-clamp-2">{p.name}</p>
+                        <h4 className="font-serif font-bold text-ink text-base leading-snug mb-1 group-hover:text-accent transition-colors line-clamp-2">
+                          {p.name}
+                        </h4>
                       </Link>
-                      <div className="flex items-center gap-1.5 mb-1.5">
+                      <div className="flex items-center gap-1.5 mb-2">
                         {starRow(p.rating)}
-                        <span className="text-[11px] text-ink/50">({p.reviews})</span>
+                        <span className="text-xs text-ink/50">({p.reviews})</span>
                       </div>
-                      <div className="flex items-baseline gap-2 mb-2.5">
-                        <span className="text-base font-bold text-ink">{formatPrice(p.price)}</span>
-                        {p.originalPrice && <span className="text-[11px] text-ink/30 line-through">{formatPrice(p.originalPrice)}</span>}
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="text-lg font-black text-ink">{formatPrice(p.price)}</span>
+                        {p.originalPrice && (
+                          <span className="text-xs text-ink/35 line-through">
+                            {formatPrice(p.originalPrice)}
+                          </span>
+                        )}
                       </div>
                       <ViewInYourRoom
                         subcategory={p.subcategory}
                         productName={p.name}
                         poster={`/${p.image}`}
                         size="md"
-                        label="See in Your Room"
+                        label="See in AR"
                       />
                       <button
                         aria-label={`Remove ${p.name}`}
                         onClick={() => toggle(p.id)}
-                        className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-ink text-app text-xs flex items-center justify-center hover:bg-[#B38A4C] transition-colors"
-                      >×</button>
+                        className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/80 dark:bg-white/10 hover:bg-rose-500 hover:text-white text-ink/60 border border-white/80 dark:border-white/10 text-xs font-bold flex items-center justify-center backdrop-blur-md transition-colors shadow-sm"
+                      >
+                        ✕
+                      </button>
                     </th>
                   ))}
                 </tr>
@@ -366,9 +447,11 @@ export default function ComparePage() {
               <tbody>
                 {SECTIONS.map((section) => (
                   <Fragment key={section.key}>
-                    <tr key={`${section.key}-head`} className="border-b border-line/8">
-                      <td colSpan={sortedSelected.length + 1}
-                        className={`px-4 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold text-[#B38A4C] bg-ink/[0.02] ${section.key === 'overview' ? '' : ''}`}>
+                    <tr key={`${section.key}-head`} className="border-b border-white/60 dark:border-white/10">
+                      <td
+                        colSpan={sortedSelected.length + 1}
+                        className="px-6 py-3 text-[10px] uppercase tracking-[0.25em] font-black text-accent bg-accent/[0.04]"
+                      >
                         {section.label}
                       </td>
                     </tr>
@@ -376,11 +459,16 @@ export default function ComparePage() {
                       const differs = rowDiffers(row.key, sortedSelected);
                       if (showDiff && !differs) return null;
                       return (
-                        <tr key={`${section.key}-${row.key}`} className={`border-b border-line/5 ${differs ? 'bg-[#B38A4C]/[0.02]' : ''}`}>
-                          <td className="px-4 py-3.5 text-xs text-ink/50 font-medium sticky left-0 bg-surface">
+                        <tr
+                          key={`${section.key}-${row.key}`}
+                          className={`border-b border-white/40 dark:border-white/5 transition-colors ${
+                            differs ? 'bg-accent/[0.03]' : ''
+                          }`}
+                        >
+                          <td className="px-6 py-3.5 text-xs text-ink/60 font-semibold sticky left-0 bg-white/95 dark:bg-[#140D08]/95 backdrop-blur-md">
                             <span className="inline-flex items-center gap-1.5">
                               {row.label}
-                              {differs && <span className="w-1.5 h-1.5 rounded-full bg-[#B38A4C]" title="Differs across products" />}
+                              {differs && <span className="w-1.5 h-1.5 rounded-full bg-accent" title="Differs across models" />}
                             </span>
                           </td>
                           {sortedSelected.map((p) => {
@@ -391,9 +479,10 @@ export default function ComparePage() {
                                 ? (val != null ? formatPrice(val as number) : '—')
                                 : String(val ?? '—');
                             return (
-                              <td key={p.id} className="px-4 py-3.5 text-xs text-ink">
-                                {row.key === 'rating' ? display :
-                                  <span className={differs ? 'font-semibold text-ink' : 'text-ink/75'}>{display}</span>}
+                              <td key={p.id} className="px-5 py-3.5 text-xs text-ink">
+                                {row.key === 'rating' ? display : (
+                                  <span className={differs ? 'font-bold text-ink' : 'text-ink/80'}>{display}</span>
+                                )}
                               </td>
                             );
                           })}
@@ -402,17 +491,19 @@ export default function ComparePage() {
                     })}
                   </Fragment>
                 ))}
-                {/* CTA row */}
-                <tr className="border-t border-line/8">
-                  <td className="px-4 py-4 sticky left-0 bg-surface text-xs text-ink/40">Order</td>
+                {/* Order CTA Row */}
+                <tr className="border-t border-white/60 dark:border-white/10">
+                  <td className="px-6 py-5 sticky left-0 bg-white/95 dark:bg-[#140D08]/95 text-xs text-ink/50 font-bold">
+                    Order Model
+                  </td>
                   {sortedSelected.map((p) => (
-                    <td key={p.id} className="px-4 py-4">
+                    <td key={p.id} className="px-5 py-5">
                       <Link
                         href={`/products/${p.slug}`}
-                        className="inline-flex items-center gap-1.5 bg-ink text-app px-5 py-2.5 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold hover:scale-[1.02] transition-transform"
+                        className="inline-flex items-center gap-2 bg-accent hover:bg-accent-2 text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-extrabold shadow-md hover:scale-105 active:scale-95 transition-all"
                       >
-                        View Product
-                        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-none " stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                        <span>View Specs</span>
+                        <span>→</span>
                       </Link>
                     </td>
                   ))}
@@ -422,13 +513,15 @@ export default function ComparePage() {
           </div>
         </div>
       ) : (
-        <div className="text-center py-16 border border-dashed border-line/15 rounded-3xl">
-          <div className="text-4xl mb-3 opacity-50">{'⚖️'}</div>
-          <p className="text-ink/50 font-medium">
-            {sortedSelected.length === 0 ? 'Choose 2–4 products to compare.' : 'Pick one more product to build the comparison.'}
+        <div className="text-center py-20 border border-dashed border-white/30 dark:border-white/10 rounded-[2.5rem] bg-white/40 dark:bg-white/5 backdrop-blur-sm space-y-3">
+          <div className="text-4xl mb-2">⚖️</div>
+          <p className="text-ink font-serif font-bold text-lg">
+            {sortedSelected.length === 0 ? 'Select 2 to 4 models to build your comparison.' : 'Pick at least one more model to cross-examine.'}
           </p>
-          <p className="text-ink/30 text-xs mt-1.5">
-            {sortedSelected.length === 0 ? `The tray below fills as you select.` : `${selected.length}/4 selected — keep going, or hit “Compare”.`}
+          <p className="text-ink/50 text-xs max-w-sm mx-auto">
+            {sortedSelected.length === 0
+              ? 'Click any model card above. The tray at the bottom tracks your selection.'
+              : `${selected.length}/4 selected — click another card above to view the matrix.`}
           </p>
         </div>
       )}

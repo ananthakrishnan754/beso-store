@@ -3,40 +3,6 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 
-const STATS = [
-  { val: '20+ Years', label: 'Craftsmanship & Ergonomic Legacy' },
-  { val: '10,000+', label: 'Founder Cabins & Enterprise Workspaces' },
-  { val: '28 States', label: 'Pan-India White-Glove Direct Setup' },
-  { val: '4.9 ★', label: 'Rated by 1,400+ Verified Enterprise Clients' },
-];
-
-const PILLARS = [
-  {
-    icon: '◬',
-    title: 'Anatomical Ergonomics',
-    category: 'BIOMECHANICAL ALIGNMENT',
-    desc: 'BIFMA X5.1 certified synchro-tilt mechanisms, active spring lumbar architecture, and pressure-mapped cold-cure foam engineered to eliminate lower back and cervical spine strain across 14-hour work sprints.',
-  },
-  {
-    icon: '♧',
-    title: 'Scandinavian Oak & Pure Hides',
-    category: 'SUSTAINABLE MATERIALS',
-    desc: 'We pair solid FSC-certified blonde oak timber and non-toxic low-VOC Italian lacquers with hand-selected top-grain Italian Nappa hides that develop a rich patina over decades of daily use.',
-  },
-  {
-    icon: '△',
-    title: '100,000-Cycle Durability Testing',
-    category: 'FACTORY SPEC QUALITY',
-    desc: 'Before any chair or desk leaves our 12,000 sq ft Bengaluru engineering hub, it undergoes rigorous multi-axis drop tests, caster roll-cycle stress, and hydraulic cylinder pressure checks.',
-  },
-  {
-    icon: '♢',
-    title: 'Pan-India White-Glove Logistics',
-    category: 'ZERO-DAMAGE PROMISE',
-    desc: 'Direct dispatches with zero-transit damage guarantee. Certified BESO technicians handle doorstep unboxing, millimeter-accurate desk levelling, and complete assembly in all 28 states.',
-  },
-];
-
 const MILESTONES = [
   {
     year: '2004',
@@ -64,7 +30,6 @@ const MILESTONES = [
     desc: 'Partnered with prominent Indian enterprises, startups (Ather, Zerodha, etc.), and private founder suites delivering contract-grade ergonomic performance nationwide.',
   },
 ];
-
 
 export function AboutView() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -100,39 +65,20 @@ export function AboutView() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 py-10 sm:py-16 space-y-16 sm:space-y-24">
-        {/* ─── 1. Hero Section ─── */}
-        <section className="space-y-8 max-w-4xl">
+        {/* ─── 1. Hero Section (Quiet Editorial Entry) ─── */}
+        <section className="space-y-4 max-w-4xl">
+          <div className="flex items-center gap-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgb(var(--accent-rgb)/0.6)]" />
+            <span className="text-xs font-bold text-accent tracking-[0.25em] uppercase">
+              Philosophy &amp; Atelier
+            </span>
+          </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-serif font-bold text-ink tracking-tight leading-[1.05]">
             Furniture That Calibrates<br />
             <span className="bg-gradient-to-r from-[#D98E38] via-[#C27526] to-[#A35B16] dark:from-[#F2623F] dark:via-[#E24A2B] dark:to-[#B83218] bg-clip-text text-transparent">
               Body, Mind &amp; Space
             </span>
           </h1>
-
-          <p className="text-sm sm:text-lg text-ink/75 font-normal leading-relaxed max-w-3xl">
-            BESO began with a singular mission: to eliminate the physical toll of sedentary work through contract-grade ergonomic engineering and Scandinavian craftsmanship. For over two decades, we have designed seating and desking systems that fuse aerospace precision with the enduring warmth of natural oak.
-          </p>
-
-          {/* 4 Glassmorphic Stat Cards (matching beso-product-card.html glass style) */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-4">
-            {STATS.map((s) => (
-              <div
-                key={s.label}
-                className="relative p-5 sm:p-6 rounded-2xl border border-white/80 dark:border-white/15 bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/50 dark:from-[#1D140D]/90 dark:via-[#160E08]/85 dark:to-[#0E0905]/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(79,49,20,0.1),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.55),_inset_0_1px_0_rgba(255,255,255,0.12)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 dark:hover:border-accent/40 group overflow-hidden"
-              >
-                <div
-                  className="absolute top-0 right-0 w-24 h-24 pointer-events-none rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
-                  style={{ background: 'radial-gradient(circle, rgb(var(--accent-rgb)), transparent 70%)' }}
-                />
-                <div className="relative z-10 text-2xl sm:text-3xl font-extrabold text-accent tracking-tight">
-                  {s.val}
-                </div>
-                <div className="relative z-10 text-xs sm:text-xs text-ink/70 font-medium mt-1 leading-snug">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* ─── 2. Flagship Experience Centre & Video Walkthrough ─── */}
@@ -164,7 +110,7 @@ export function AboutView() {
                 href="https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 sm:px-6 py-3 rounded-full bg-[#2D1B10] dark:bg-[#E24A2B] text-[#FFFAF3] text-xs font-bold uppercase tracking-wider hover:translate-y-[-2px] shadow-lg transition-all"
+                className="px-6 py-3 rounded-full bg-[#1F150E] dark:bg-white text-[#FAF6F0] dark:text-[#1F150E] text-xs font-semibold uppercase tracking-wider hover:bg-[#352317] dark:hover:bg-white/90 transition-all shadow-md active:scale-95"
               >
                 Get Directions ↗
               </a>
@@ -172,9 +118,9 @@ export function AboutView() {
                 href="https://wa.me/918099952624?text=Hi%20BESO!%20I'd%20like%20to%20schedule%20a%20private%20visit%20to%20the%20Indiranagar%20experience%20centre."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-bold text-ink hover:bg-white/90 dark:hover:bg-white/15 transition-all shadow-sm"
+                className="px-6 py-3 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-semibold text-ink hover:bg-white/90 dark:hover:bg-white/15 transition-all shadow-sm active:scale-95"
               >
-                Book VIP Consult 💬
+                Book VIP Consult
               </a>
             </div>
           </div>
@@ -195,7 +141,7 @@ export function AboutView() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
             {/* Video Overlay Top Badge */}
-            <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/30 text-white text-[11px] font-bold tracking-wide shadow-lg">
+            <div className="absolute top-4 left-4 z-20 flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 text-white/95 text-[11px] font-medium tracking-wide shadow-lg">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
               <span>Live Showroom Feed · 100 Feet Rd, Indiranagar</span>
             </div>
@@ -205,18 +151,38 @@ export function AboutView() {
               <button
                 type="button"
                 onClick={togglePlay}
-                className="w-10 h-10 rounded-full bg-white/85 dark:bg-[#1A120B]/85 backdrop-blur-md border border-white/80 dark:border-white/30 text-ink flex items-center justify-center text-xs font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
+                className="w-9 h-9 rounded-full bg-black/55 backdrop-blur-xl border border-white/25 text-white flex items-center justify-center hover:bg-black/75 hover:scale-105 active:scale-95 transition-all shadow-md"
                 aria-label={isPlaying ? 'Pause video' : 'Play video'}
               >
-                {isPlaying ? '⏸' : '▶'}
+                {isPlaying ? (
+                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                ) : (
+                  <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                )}
               </button>
               <button
                 type="button"
                 onClick={toggleMute}
-                className="w-10 h-10 rounded-full bg-white/85 dark:bg-[#1A120B]/85 backdrop-blur-md border border-white/80 dark:border-white/30 text-ink flex items-center justify-center text-xs font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
+                className="w-9 h-9 rounded-full bg-black/55 backdrop-blur-xl border border-white/25 text-white flex items-center justify-center hover:bg-black/75 hover:scale-105 active:scale-95 transition-all shadow-md"
                 aria-label={isMuted ? 'Unmute video' : 'Mute video'}
               >
-                {isMuted ? '🔇' : '🔊'}
+                {isMuted ? (
+                  <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                  </svg>
+                ) : (
+                  <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
@@ -224,61 +190,30 @@ export function AboutView() {
           {/* Showroom Specs Row */}
           <div className="relative z-10 grid sm:grid-cols-3 gap-4 pt-4 border-t border-white/60 dark:border-white/10 text-xs text-ink/75">
             <div className="p-4 rounded-2xl bg-white/60 dark:bg-[#1A120B]/70 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-sm transition-all hover:bg-white/80 dark:hover:bg-[#20150D]/80">
-              <span className="font-bold text-ink block text-sm mb-1">Showroom Testing Bay</span>
-              <span>Test 40+ configured ergonomic chairs, dual-motor desks, and material swatches in person.</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-white/60 dark:bg-[#1A120B]/70 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-sm transition-all hover:bg-white/80 dark:hover:bg-[#20150D]/80">
-              <span className="font-bold text-ink block text-sm mb-1">Ergonomic Specialists</span>
-              <span>Personalized posture consults and workspace planning with certified consultants.</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-white/60 dark:bg-[#1A120B]/70 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-sm transition-all hover:bg-white/80 dark:hover:bg-[#20150D]/80">
-              <span className="font-bold text-ink block text-sm mb-1">Pan-India Dispatches</span>
-              <span>Direct dispatches supported by our 12,000 sq ft centralized warehousing hub.</span>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 3. The 4 Architectural Pillars (Inspired by beso-product-card.html) ─── */}
-        <section className="space-y-6">
-          <div>
-            <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
-              Engineered Without Compromise
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
-              The Four Pillars of BESO Architecture
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {PILLARS.map((p) => (
-              <div
-                key={p.title}
-                className="relative p-6 sm:p-7 rounded-[2rem] border border-white/80 dark:border-white/15 bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/50 dark:from-[#1D140D]/90 dark:via-[#150E08]/85 dark:to-[#0C0804]/90 backdrop-blur-2xl shadow-[0_24px_55px_rgba(79,49,20,0.1),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_24px_55px_rgba(0,0,0,0.55),_inset_0_1px_0_rgba(255,255,255,0.12)] flex flex-col justify-between hover:-translate-y-1.5 hover:border-accent/50 dark:hover:border-accent/40 transition-all duration-300 group overflow-hidden"
-              >
-                <div
-                  className="absolute top-0 right-0 w-32 h-32 pointer-events-none rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
-                  style={{ background: 'radial-gradient(circle, rgb(var(--accent-rgb)), transparent 70%)' }}
-                />
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-2xl border border-white/90 dark:border-white/20 bg-white/80 dark:bg-white/10 text-accent flex items-center justify-center text-xl font-bold shadow-sm mb-5 group-hover:scale-105 transition-transform">
-                    {p.icon}
-                  </div>
-                  <small className="block text-[10px] font-bold tracking-[0.2em] text-[#A19588] dark:text-[#C5B7A6] uppercase mb-1.5">
-                    {p.category}
-                  </small>
-                  <h3 className="text-lg font-bold text-ink mb-2 leading-tight">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs text-ink/70 leading-relaxed font-normal">
-                    {p.desc}
-                  </p>
-                </div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-bold text-ink text-sm">Showroom Testing Bay</span>
+                <span className="font-mono text-[10px] text-accent/80 font-semibold tracking-wider">01</span>
               </div>
-            ))}
+              <span className="text-ink/70">Test 40+ configured ergonomic chairs, dual-motor desks, and material swatches in person.</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/60 dark:bg-[#1A120B]/70 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-sm transition-all hover:bg-white/80 dark:hover:bg-[#20150D]/80">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-bold text-ink text-sm">Ergonomic Specialists</span>
+                <span className="font-mono text-[10px] text-accent/80 font-semibold tracking-wider">02</span>
+              </div>
+              <span className="text-ink/70">Personalized posture consults and workspace planning with certified consultants.</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/60 dark:bg-[#1A120B]/70 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-sm transition-all hover:bg-white/80 dark:hover:bg-[#20150D]/80">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-bold text-ink text-sm">Pan-India Dispatches</span>
+                <span className="font-mono text-[10px] text-accent/80 font-semibold tracking-wider">03</span>
+              </div>
+              <span className="text-ink/70">Direct dispatches supported by our 12,000 sq ft centralized warehousing hub.</span>
+            </div>
           </div>
         </section>
 
-        {/* ─── 4. Interactive 20-Year Milestones Timeline ─── */}
+        {/* ─── 3. Interactive 20-Year Milestones Timeline ─── */}
         <section className="rounded-[2.5rem] border border-white/85 dark:border-white/15 bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/50 dark:from-[#1F150D]/90 dark:via-[#170E08]/85 dark:to-[#0F0A06]/90 backdrop-blur-2xl p-6 sm:p-10 md:p-12 shadow-[0_28px_80px_rgba(79,49,20,0.12),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_28px_80px_rgba(0,0,0,0.6),_inset_0_1px_0_rgba(255,255,255,0.12)] space-y-8 relative overflow-hidden">
           <div
             className="absolute -top-24 -left-24 w-72 h-72 pointer-events-none rounded-full blur-3xl opacity-30"
@@ -353,7 +288,7 @@ export function AboutView() {
           <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
             <Link
               href="/products"
-              className="px-8 py-3.5 rounded-full bg-[#2D1B10] text-[#FFFAF3] text-xs font-extrabold uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all"
+              className="px-8 py-3.5 rounded-full bg-[#1F150E] dark:bg-white text-[#FAF6F0] dark:text-[#1F150E] text-xs font-semibold uppercase tracking-widest shadow-xl hover:bg-[#352317] dark:hover:bg-white/90 active:scale-95 transition-all"
             >
               Explore Shop →
             </Link>
@@ -361,9 +296,9 @@ export function AboutView() {
               href="https://wa.me/918099952624?text=Hi%20BESO!%20I'd%20like%20to%20discuss%20furnishing%20my%20office%20workspace."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 rounded-full bg-white/60 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-bold text-ink hover:bg-white/80 transition-all shadow-sm"
+              className="px-8 py-3.5 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-semibold text-ink hover:bg-white/90 dark:hover:bg-white/15 active:scale-95 transition-all shadow-sm"
             >
-              Consult an Ergonomist 💬
+              Consult an Ergonomist ↗
             </a>
           </div>
         </section>
