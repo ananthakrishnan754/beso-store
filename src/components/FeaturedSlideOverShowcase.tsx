@@ -581,16 +581,22 @@ const SlideContent = React.memo(function SlideContent({
             ↗
           </Link>
 
-          {/* Product Image with smooth hover scale */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={slide.image}
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = slide.fallbackImage;
-            }}
-            alt={slide.name}
-            className="w-full h-full object-contain p-3 sm:p-5 group-hover:scale-105 transition-transform duration-700 relative z-0 drop-shadow-[0_15px_30px_rgba(0,0,0,0.5)]"
-          />
+          {/* Product Image Link with smooth hover scale */}
+          <Link
+            href={`/products/${slide.slug}`}
+            className="w-full h-full flex items-center justify-center relative z-0 cursor-pointer"
+            aria-label={`View ${slide.name} specifications`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={slide.image}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = slide.fallbackImage;
+              }}
+              alt={slide.name}
+              className="w-full h-full object-contain p-3 sm:p-5 group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_15px_30px_rgba(0,0,0,0.5)]"
+            />
+          </Link>
 
           {/* Bottom Glass Footer Tag */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium tracking-wider whitespace-nowrap flex items-center gap-1.5 shadow-sm">

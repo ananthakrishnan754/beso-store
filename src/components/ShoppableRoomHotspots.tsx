@@ -116,23 +116,23 @@ export function ShoppableRoomHotspots() {
           {/* Value Proposition Highlights */}
           <div className="space-y-4 pt-1">
             {/* Feature 1: BESO Legacy */}
-            <div className="p-4 rounded-2xl bg-surfaceSubtle border border-line/10 flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-xl bg-ink text-app flex items-center justify-center shrink-0 font-black text-xs">
+            <div className="p-4 sm:p-5 rounded-[1.8rem] border border-white/80 dark:border-white/15 bg-gradient-to-br from-white/75 via-white/55 to-[#FFF7EC]/40 dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-xl shadow-[0_16px_40px_rgba(79,49,20,0.08),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.4)] flex gap-4 items-start transition-all hover:translate-y-[-2px] group">
+              <div className="w-11 h-11 rounded-full border border-white/90 dark:border-white/20 bg-white/70 dark:bg-white/15 text-accent flex items-center justify-center shrink-0 shadow-sm font-black text-xs">
                 25+
               </div>
               <div className="min-w-0">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-ink">
                   Legacy of BESO Furniture
                 </h3>
-                <p className="text-xs text-ink/60 mt-1 leading-relaxed">
+                <p className="text-xs text-ink/70 dark:text-ink/65 mt-1 leading-relaxed">
                   Crafting contract-grade executive furniture for over two decades. Trusted by 10,000+ corporate offices, founder cabins, and enterprise headquarters across India.
                 </p>
               </div>
             </div>
 
             {/* Feature 2: PAN-India Delivery */}
-            <div className="p-4 rounded-2xl bg-surfaceSubtle border border-line/10 flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-xl bg-accent/20 text-ink flex items-center justify-center shrink-0">
+            <div className="p-4 sm:p-5 rounded-[1.8rem] border border-white/80 dark:border-white/15 bg-gradient-to-br from-white/75 via-white/55 to-[#FFF7EC]/40 dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-xl shadow-[0_16px_40px_rgba(79,49,20,0.08),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.4)] flex gap-4 items-start transition-all hover:translate-y-[-2px] group">
+              <div className="w-11 h-11 rounded-full border border-white/90 dark:border-white/20 bg-white/70 dark:bg-white/10 text-accent flex items-center justify-center shrink-0 shadow-sm">
                 <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
                 </svg>
@@ -141,32 +141,32 @@ export function ShoppableRoomHotspots() {
                 <h3 className="text-xs font-bold uppercase tracking-wider text-ink">
                   PAN-India White-Glove Delivery
                 </h3>
-                <p className="text-xs text-ink/60 mt-1 leading-relaxed">
+                <p className="text-xs text-ink/70 dark:text-ink/65 mt-1 leading-relaxed">
                   Zero-transit damage guarantee to all 28 states. Includes doorstep delivery, professional unboxing, and on-site assembly by certified furniture technicians.
                 </p>
               </div>
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-2 pt-1 text-center">
-              <div className="p-2.5 rounded-xl bg-surface border border-line/8">
-                <div className="text-xs font-extrabold text-ink">BIFMA X5.1</div>
-                <div className="text-[10px] text-ink/45">Certified</div>
+            <div className="grid grid-cols-3 gap-2.5 pt-1 text-center">
+              <div className="p-3 rounded-2xl border border-white/70 dark:border-white/15 bg-gradient-to-br from-white/70 via-white/50 to-[#FFF7EC]/35 dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-xl shadow-sm hover:translate-y-[-2px] transition-all">
+                <div className="text-xs font-black text-ink">BIFMA X5.1</div>
+                <div className="text-[10px] font-bold text-accent tracking-widest uppercase mt-0.5">Certified</div>
               </div>
-              <div className="p-2.5 rounded-xl bg-surface border border-line/8">
-                <div className="text-xs font-extrabold text-ink">5–7 Years</div>
-                <div className="text-[10px] text-ink/45">Warranty</div>
+              <div className="p-3 rounded-2xl border border-white/70 dark:border-white/15 bg-gradient-to-br from-white/70 via-white/50 to-[#FFF7EC]/35 dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-xl shadow-sm hover:translate-y-[-2px] transition-all">
+                <div className="text-xs font-black text-ink">5–7 Years</div>
+                <div className="text-[10px] font-bold text-accent tracking-widest uppercase mt-0.5">Warranty</div>
               </div>
-              <div className="p-2.5 rounded-xl bg-surface border border-line/8">
-                <div className="text-xs font-extrabold text-ink">48-Hr</div>
-                <div className="text-[10px] text-ink/45">Dispatch</div>
+              <div className="p-3 rounded-2xl border border-white/70 dark:border-white/15 bg-gradient-to-br from-white/70 via-white/50 to-[#FFF7EC]/35 dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-xl shadow-sm hover:translate-y-[-2px] transition-all">
+                <div className="text-xs font-black text-ink">48-Hr</div>
+                <div className="text-[10px] font-bold text-accent tracking-widest uppercase mt-0.5">Dispatch</div>
               </div>
             </div>
           </div>
 
           {/* Showroom location tag */}
-          <div className="pt-1 text-xs text-ink/50 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <div className="pt-1 text-xs text-ink/80 dark:text-[#FAF5EC]/90 font-medium flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)]" />
             <span>Flagship Showroom: 42, 100 Feet Road, Indiranagar, Bengaluru</span>
           </div>
         </div>

@@ -17,18 +17,13 @@ export function ProductGalleryZoom({
   subcategory,
   modelUrl,
 }: ProductGalleryZoomProps) {
-  // Office space lifestyle scene images based on subcategory
-  const officeSceneImage = subcategory.includes('table')
-    ? '/assets/images/beso-industrial-loft.png'
-    : '/assets/images/beso-walnut-midcentury.png';
-
   // Combine available images
   const allImages = React.useMemo(() => {
     const list = [mainImage, ...images.filter((img) => img !== mainImage)];
     return list.map((src) => (src.startsWith('/') ? src : `/${src}`));
   }, [mainImage, images]);
 
-  const [activeTab, setActiveTab] = useState<'studio' | 'office' | '3d'>('studio');
+  const [activeTab, setActiveTab] = useState<'studio' | '3d'>('studio');
   const [selectedImgIndex, setSelectedImgIndex] = useState(0);
   const [isZooming, setIsZooming] = useState(false);
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
@@ -50,10 +45,7 @@ export function ProductGalleryZoom({
     document.head.appendChild(script);
   }, [activeTab]);
 
-  const activeSrc =
-    activeTab === 'office'
-      ? officeSceneImage
-      : allImages[selectedImgIndex] || mainImage;
+  const activeSrc = allImages[selectedImgIndex] || mainImage;
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -65,7 +57,7 @@ export function ProductGalleryZoom({
 
   return (
     <div className="space-y-4 select-none">
-      {/* ─── Mode Switcher (Studio vs In Office Space vs 3D Interactive) ─── */}
+      {/* ─── Mode Switcher (Studio vs 3D Interactive) ─── */}
       <div className="flex items-center justify-between gap-2 border-b border-line/10 pb-3">
         <div className="flex items-center gap-2 flex-wrap">
           <button
@@ -78,19 +70,6 @@ export function ProductGalleryZoom({
             }`}
           >
             Studio View
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab('office')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
-              activeTab === 'office'
-                ? 'bg-ink text-app shadow-sm'
-                : 'bg-surface hover:bg-surfaceSubtle text-ink/60 hover:text-ink border border-line/10'
-            }`}
-          >
-            <span>🏢</span>
-            <span>In Office Space</span>
           </button>
 
           {modelUrl && (
@@ -120,8 +99,6 @@ export function ProductGalleryZoom({
         <span className="hidden sm:inline-flex text-[11px] text-ink/40 font-medium">
           {activeTab === 'studio'
             ? 'Hover image to zoom 2.2x'
-            : activeTab === 'office'
-            ? 'Corporate room styling'
             : 'Drag to orbit 360°'}
         </span>
       </div>

@@ -58,11 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="oak-clean-modern">
+    <html lang="en" data-theme="dark-obsidian-oak" className="dark" style={{colorScheme: 'dark'}}>
       <head>
         <meta
           name="theme-color"
-          content={themeMetaColors[DEFAULT_THEME]}
+          content="#060504"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -76,7 +76,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k='beso-theme';var theme='oak-clean-modern';localStorage.setItem(k,theme);var root=document.documentElement;root.setAttribute('data-theme',theme);root.style.colorScheme='light';root.className='light';var meta=document.querySelector('meta[name="theme-color"]');if(meta){meta.setAttribute('content','#f5eee3');}}catch(e){document.documentElement.setAttribute('data-theme','oak-clean-modern');document.documentElement.className='light';}})();`,
+            __html: `(function(){try{var k='beso-theme';var theme=localStorage.getItem(k)||'dark-obsidian-oak';var isLight=theme==='oak-clean-modern'||theme==='ivory-minimal'||theme==='nordic-white'||theme==='walnut-midcentury'||theme==='coastal-breeze';var mode=isLight?'light':'dark';var root=document.documentElement;root.setAttribute('data-theme',theme);root.style.colorScheme=mode;root.className=mode;var meta=document.querySelector('meta[name="theme-color"]');if(meta){meta.setAttribute('content',isLight?'#f5eee3':'#060504');}}catch(e){document.documentElement.setAttribute('data-theme','dark-obsidian-oak');document.documentElement.className='dark';}})();`,
           }}
         />
       </head>

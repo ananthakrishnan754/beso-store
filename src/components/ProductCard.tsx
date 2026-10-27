@@ -66,7 +66,7 @@ export function ProductCard({product}: {product: Product}) {
   return (
     <div className="product-card group relative block">
       {/* Image area */}
-      <div className="product-image aspect-square bg-[#F4EFE6] flex items-center justify-center relative overflow-hidden rounded-2xl">
+      <div className="product-image aspect-square bg-[#F4EFE6] dark:bg-[#140E0A] flex items-center justify-center relative overflow-hidden rounded-2xl">
         <Link href={`/products/${product.slug}`} className="absolute inset-0 z-0">
           {imageSrc ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -97,12 +97,12 @@ export function ProductCard({product}: {product: Product}) {
         <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5">
           {product.badge && (
             <span
-              className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+              className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md shadow-sm border ${
                 product.badge === 'sale'
-                  ? 'badge-sale'
+                  ? 'bg-rose-500/20 text-rose-300 border-rose-500/30'
                   : product.badge === 'hot'
-                    ? 'badge-hot'
-                    : 'bg-ink/10 text-ink backdrop-blur-sm'
+                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                    : 'bg-white/80 dark:bg-black/60 text-ink border-white/80 dark:border-white/15'
               }`}
             >
               {product.badge}
@@ -117,15 +117,15 @@ export function ProductCard({product}: {product: Product}) {
               e.stopPropagation();
               toggleCompare(product);
             }}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all backdrop-blur-md ${
               compared
                 ? 'bg-accent text-white shadow-md font-bold'
-                : 'bg-white/80 hover:bg-white text-ink/70 hover:text-ink shadow-sm'
+                : 'bg-white/85 dark:bg-[#18110B]/85 hover:bg-white dark:hover:bg-[#22170E] text-ink/75 hover:text-ink border border-white/80 dark:border-white/15 shadow-sm'
             }`}
             title={compared ? 'In compare list (Click to remove)' : 'Add to compare'}
             aria-label="Compare product"
           >
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2">
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-none stroke-current stroke-2">
               <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
             </svg>
           </button>
@@ -139,17 +139,17 @@ export function ProductCard({product}: {product: Product}) {
             e.stopPropagation();
             toggleWishlist(product);
           }}
-          className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+          className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all backdrop-blur-md ${
             wishlisted
               ? 'bg-rose-500 text-white shadow-md'
-              : 'bg-white/80 hover:bg-white text-ink/60 hover:text-rose-500 shadow-sm'
+              : 'bg-white/85 dark:bg-[#18110B]/85 hover:bg-white dark:hover:bg-[#22170E] text-ink/65 hover:text-rose-500 border border-white/80 dark:border-white/15 shadow-sm'
           }`}
           aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           title={wishlisted ? 'In Wishlist' : 'Add to Wishlist'}
         >
           <svg
             viewBox="0 0 24 24"
-            className="w-4 h-4 fill-current"
+            className="w-3.5 h-3.5 fill-current"
             stroke="currentColor"
             strokeWidth={wishlisted ? '0' : '2'}
             fill={wishlisted ? 'currentColor' : 'none'}
@@ -182,10 +182,10 @@ export function ProductCard({product}: {product: Product}) {
               e.stopPropagation();
               toggleCompare(product);
             }}
-            className={`p-2 rounded-xl text-xs font-semibold shadow-lg transition-all flex items-center justify-center ${
+            className={`p-2 rounded-xl text-xs font-semibold shadow-lg transition-all flex items-center justify-center backdrop-blur-md ${
               compared
                 ? 'bg-accent text-white font-bold'
-                : 'bg-white/95 text-ink hover:bg-white'
+                : 'bg-white/95 dark:bg-[#1A120B]/90 text-ink hover:bg-white dark:hover:bg-[#251A10] border border-white/80 dark:border-white/15'
             }`}
             title={compared ? 'Remove from compare' : 'Compare product'}
             aria-label="Compare"
@@ -203,10 +203,10 @@ export function ProductCard({product}: {product: Product}) {
               e.stopPropagation();
               toggleWishlist(product);
             }}
-            className={`p-2 rounded-xl text-xs font-semibold shadow-lg transition-all flex items-center justify-center ${
+            className={`p-2 rounded-xl text-xs font-semibold shadow-lg transition-all flex items-center justify-center backdrop-blur-md ${
               wishlisted
                 ? 'bg-rose-500 text-white'
-                : 'bg-white/95 text-ink hover:bg-white hover:text-rose-500'
+                : 'bg-white/95 dark:bg-[#1A120B]/90 text-ink hover:bg-white dark:hover:bg-[#251A10] hover:text-rose-500 border border-white/80 dark:border-white/15'
             }`}
             title={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
             aria-label="Wishlist"

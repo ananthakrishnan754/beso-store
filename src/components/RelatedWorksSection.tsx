@@ -81,7 +81,7 @@ export function RelatedWorksSection() {
         {projects.map((proj) => (
           <div
             key={proj.id}
-            className="group rounded-3xl bg-surface border border-line/10 overflow-hidden hover:border-line/20 hover:shadow-card-hover transition-all flex flex-col"
+            className="group rounded-3xl border border-white/80 dark:border-white/15 bg-gradient-to-br from-white/85 via-white/65 to-[#FFF7EC]/40 dark:from-[#1D140D]/90 dark:via-[#160E08]/85 dark:to-[#0E0905]/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(79,49,20,0.08),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.55),_inset_0_1px_0_rgba(255,255,255,0.12)] overflow-hidden hover:border-accent/50 dark:hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 flex flex-col"
           >
             {/* Project Image */}
             <div className="relative aspect-[16/10] bg-[#0d1115] overflow-hidden">
@@ -95,10 +95,10 @@ export function RelatedWorksSection() {
                 alt={proj.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold">
+              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md text-white text-[10px] font-bold border border-white/20">
                 {proj.sector}
               </div>
-              <div className="absolute bottom-3 right-3 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white/80 text-[10px] font-mono">
+              <div className="absolute bottom-3 right-3 px-2.5 py-0.5 rounded-full bg-black/65 backdrop-blur-md text-white/90 text-[10px] font-mono border border-white/20">
                 {proj.city} · {proj.year}
               </div>
             </div>
@@ -112,14 +112,14 @@ export function RelatedWorksSection() {
                 <p className="text-xs font-bold text-accent mt-1">
                   Scope: {proj.scope}
                 </p>
-                <p className="text-xs text-ink/60 mt-2 leading-relaxed">
+                <p className="text-xs text-ink/70 mt-2 leading-relaxed">
                   {proj.description}
                 </p>
               </div>
 
               {/* Products Deployed */}
-              <div className="pt-3 border-t border-line/8 space-y-2">
-                <span className="text-[10px] font-bold text-ink/40 uppercase tracking-widest block">
+              <div className="pt-3 border-t border-white/60 dark:border-white/10 space-y-2">
+                <span className="text-[10px] font-bold text-ink/50 uppercase tracking-widest block">
                   Furniture Specified:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -127,7 +127,7 @@ export function RelatedWorksSection() {
                     <Link
                       key={p.slug}
                       href={`/products/${p.slug}`}
-                      className="px-2.5 py-1 rounded-full bg-surfaceSubtle text-[11px] font-medium text-ink/80 hover:text-ink hover:bg-ink/5 transition-colors"
+                      className="px-3 py-1 rounded-full bg-white/70 dark:bg-white/10 border border-white/80 dark:border-white/15 text-[11px] font-semibold text-ink hover:text-accent hover:border-accent/40 backdrop-blur-md transition-all shadow-sm"
                     >
                       {p.name} →
                     </Link>

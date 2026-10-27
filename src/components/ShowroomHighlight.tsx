@@ -50,16 +50,16 @@ export function ShowroomHighlight() {
 
           <div className="space-y-4 pt-2">
             {/* Bengaluru Flagship */}
-            <div className="p-4 rounded-2xl bg-surface border border-line/10 flex items-start gap-4">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/70 dark:bg-[#1A120B]/85 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-[0_12px_28px_rgba(0,0,0,0.06),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.4),_inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-accent/40 hover:-translate-y-0.5 transition-all flex items-start gap-4">
               <span className="text-2xl mt-0.5">📍</span>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <h4 className="font-extrabold text-sm text-ink">Bengaluru Flagship Showroom</h4>
-                  <span className="px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/20">
+                  <span className="px-2.5 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/25 shadow-[0_0_10px_rgb(var(--accent-rgb)/0.2)]">
                     Primary Showroom
                   </span>
                 </div>
-                <p className="text-xs text-ink/70">
+                <p className="text-xs text-ink/75">
                   42, 100 Feet Road, Indiranagar, Bengaluru, Karnataka – 560038
                 </p>
                 <p className="text-[11px] text-ink/50">
@@ -69,11 +69,11 @@ export function ShowroomHighlight() {
             </div>
 
             {/* Hyderabad Logistics & Warehouse */}
-            <div className="p-4 rounded-2xl bg-surface border border-line/10 flex items-start gap-4">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/70 dark:bg-[#1A120B]/85 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-[0_12px_28px_rgba(0,0,0,0.06),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.4),_inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-accent/40 hover:-translate-y-0.5 transition-all flex items-start gap-4">
               <span className="text-2xl mt-0.5">🏢</span>
               <div className="space-y-1">
                 <h4 className="font-extrabold text-sm text-ink">Hyderabad Experience &amp; 12,000 Sq Ft Warehouse</h4>
-                <p className="text-xs text-ink/70">
+                <p className="text-xs text-ink/75">
                   5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana – 500001
                 </p>
                 <p className="text-[11px] text-ink/50">

@@ -1,4 +1,5 @@
 export type ThemeId =
+  | 'dark-obsidian-oak'
   | 'night-luxe'
   | 'ivory-minimal'
   | 'nordic-white'
@@ -28,6 +29,16 @@ export interface Theme {
 }
 
 export const THEMES: Theme[] = [
+  {
+    id: 'dark-obsidian-oak',
+    name: 'Dark Obsidian Oak',
+    tagline: 'Pitch obsidian & high-contrast crimson oak',
+    mode: 'dark',
+    sans: 'Inter',
+    display: 'Fraunces',
+    swatch: {app: '#060504', accent: '#E24A2B', ink: '#FAF5EC'},
+    heroVideo: '/assets/videos/hero-bg-dark-oak.webm',
+  },
   {
     id: 'night-luxe',
     name: 'Night Luxe',

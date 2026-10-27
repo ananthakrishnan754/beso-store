@@ -94,7 +94,7 @@ export default function HomePage() {
       {/* ─── AR Meeting Room Demo ─── */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal>
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
+        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] dark:from-[#17100B] dark:to-[#0D0805] border border-line/10 dark:border-white/10 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
           <div
             className="absolute top-0 right-0 w-[380px] h-[380px] pointer-events-none"
             style={{
@@ -132,11 +132,11 @@ export default function HomePage() {
               ['Rotate & inspect', 'Drag to spin — zoom into materials'],
               ['Try before you buy', 'Fit the whole setup in your room first'],
             ].map(([title, desc]) => (
-              <div key={title} className="flex items-start gap-3 p-4 bg-surface-2/60 border border-line/8 rounded-2xl">
-                <span className="mt-0.5 w-2 h-2 rounded-full bg-accent shrink-0" />
+              <div key={title} className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/70 dark:bg-[#1A120B]/85 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.04),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.4),_inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-accent/40 transition-all">
+                <span className="mt-1 w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)] shrink-0" />
                 <div>
-                  <div className="font-semibold text-ink text-sm">{title}</div>
-                  <div className="text-xs text-ink/50">{desc}</div>
+                  <div className="font-bold text-ink text-sm leading-snug">{title}</div>
+                  <div className="text-xs text-ink/65 mt-0.5">{desc}</div>
                 </div>
               </div>
             ))}

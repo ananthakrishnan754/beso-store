@@ -6,7 +6,7 @@ import type {ThemeId} from './themes';
  */
 export const SITE_CONFIG = {
   storeName: 'BESO',
-  defaultTheme: 'oak-clean-modern' as ThemeId,
+  defaultTheme: 'dark-obsidian-oak' as ThemeId,
   themeStorageKey: 'beso-theme',
 };
 

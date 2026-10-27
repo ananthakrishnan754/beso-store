@@ -196,6 +196,34 @@ body {
   --brand-lime: 194 117 38;
 }
 
+/* Dark Obsidian Oak — Pitch-black obsidian, high-contrast crimson oak ember, smoked glass */
+[data-theme="dark-obsidian-oak"] {
+  color-scheme: dark;
+  --app-rgb: 6 5 4;
+  --surface-rgb: 15 11 8;
+  --surface-2-rgb: 25 18 13;
+  --surface-subtle-rgb: 20 14 10;
+  --ink-rgb: 250 245 236;
+  --soft-rgb: 200 189 176;
+  --faint-rgb: 133 120 108;
+  --accent-rgb: 226 74 43;
+  --accent-2-rgb: 242 98 63;
+  --on-accent-rgb: 255 255 255;
+  --danger-rgb: 226 74 43;
+  --gold-rgb: 214 139 53;
+  --line-rgb: 255 255 255;
+  --line-strong-rgb: 255 255 255;
+  --glass: rgba(15, 11, 8, 0.88);
+  --shadow-color: rgba(0, 0, 0, 0.65);
+  --shadow-color-strong: rgba(0, 0, 0, 0.85);
+  --glow-rgb: 226 74 43;
+  --glow-color: rgba(226, 74, 43, 0.25);
+  --glow-strong: rgba(242, 98, 63, 0.55);
+  --brand-lime: 226 74 43;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+}
+
 [data-theme="night-luxe"] {
   color-scheme: dark;
   --brand-lime: 163 230 53;
@@ -618,14 +646,39 @@ section[id] {
 
 /* ─── Glass Header ───────────────────────────────────────────────────────── */
 .glass-header {
-  background: rgb(248 246 240 / 0.94);
-  /* no backdrop-filter: the blurred fixed region shimmered while scrolling */
-  border: 1px solid rgb(255 255 255 / 0.6);
-  box-shadow: 0 8px 32px rgb(44 35 25 / 0.06);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 16px 40px -10px rgba(79, 49, 20, 0.12),
+              0 1px 0 0 rgba(255, 255, 255, 0.95) inset,
+              0 -1px 0 0 rgba(255, 255, 255, 0.35) inset;
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dark .glass-header {
+  background: linear-gradient(135deg, rgba(22, 15, 10, 0.65) 0%, rgba(12, 8, 5, 0.7) 100%);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75),
+              0 1px 0 0 rgba(255, 255, 255, 0.2) inset,
+              0 -1px 0 0 rgba(0, 0, 0, 0.6) inset;
 }
 .glass-header:hover {
-  background: rgb(250 248 243 / 0.88);
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 48px -8px rgba(79, 49, 20, 0.18),
+              0 1px 0 0 rgba(255, 255, 255, 1) inset;
+}
+.dark .glass-header:hover {
+  background: linear-gradient(135deg, rgba(28, 19, 13, 0.75) 0%, rgba(16, 10, 6, 0.8) 100%);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.85),
+              0 0 24px rgba(var(--accent-rgb) / 0.18),
+              0 1px 0 0 rgba(255, 255, 255, 0.28) inset;
 }
 
 /* ─── Header Brand Logo ────────────────────────────────────────────────────
@@ -671,11 +724,13 @@ section[id] {
 }
 
 /* Dark themes — keep the native cream marks */
+[data-theme="dark-obsidian-oak"] .site-logo,
 [data-theme="night-luxe"] .site-logo,
 [data-theme="industrial-loft"] .site-logo,
 [data-theme="forest-calm"] .site-logo,
 [data-theme="bordeaux-velvet"] .site-logo,
 [data-theme="graphite-mono"] .site-logo,
+[data-theme="dark-obsidian-oak"] .footer-logo,
 [data-theme="night-luxe"] .footer-logo,
 [data-theme="industrial-loft"] .footer-logo,
 [data-theme="forest-calm"] .footer-logo,
@@ -748,15 +803,25 @@ section[id] {
 /* ─── Product Card ───────────────────────────────────────────────────────── */
 .product-card {
   background: rgb(var(--surface-rgb));
-  border: 1px solid rgb(218 202 183 / 0.55);
+  border: 1px solid rgb(var(--line-rgb) / 0.12);
   border-radius: 1.5rem;
   transition: border-color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(35, 31, 24, 0.04), 0 16px 28px -4px rgba(35, 31, 24, 0.09);
+  box-shadow: 0 10px 25px -3px rgba(79, 49, 20, 0.06), 0 20px 40px -4px rgba(79, 49, 20, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.dark .product-card {
+  background: linear-gradient(135deg, rgba(29, 20, 13, 0.9) 0%, rgba(18, 12, 8, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 38px -4px rgba(0, 0, 0, 0.6), 0 24px 50px -6px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .product-card:hover {
-  border-color: rgb(var(--line-rgb) / 0.22);
-  box-shadow: 0 8px 12px -1px rgba(35, 31, 24, 0.05), 0 28px 44px -6px rgba(35, 31, 24, 0.16);
+  border-color: rgb(var(--accent-rgb) / 0.35);
+  box-shadow: 0 12px 24px -2px rgba(79, 49, 20, 0.1), 0 32px 54px -6px rgba(79, 49, 20, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transform: translateY(-4px);
+}
+.dark .product-card:hover {
+  border-color: rgb(var(--accent-rgb) / 0.5);
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.7), 0 32px 64px -6px rgba(0, 0, 0, 0.8), 0 0 24px rgba(var(--accent-rgb) / 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   transform: translateY(-4px);
 }
 
