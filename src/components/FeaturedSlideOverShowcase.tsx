@@ -13,6 +13,13 @@ function formatPrice(amount: number) {
   }).format(amount);
 }
 
+interface FeatureSpec {
+  icon: string;
+  highlight: string;
+  sub: string;
+  category: string;
+}
+
 interface FlagshipSlide {
   id: number;
   index: number;
@@ -28,6 +35,7 @@ interface FlagshipSlide {
   slug: string;
   desc: string;
   specs: { label: string; value: string }[];
+  featureSpecs: FeatureSpec[];
 }
 
 const FLAGSHIP_SLIDES: FlagshipSlide[] = [
@@ -51,6 +59,12 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
       { label: 'Armrests', value: '4D Metallic Core Pivot' },
       { label: 'Base & Cylinder', value: 'Class-4 BIFMA Certified' },
     ],
+    featureSpecs: [
+      { icon: '◬', highlight: 'Multi-Lock 135°', sub: 'Synchro Recline', category: 'TILT CHASSIS' },
+      { icon: '◎', highlight: 'Dynamic Spring', sub: 'Active Compression', category: 'LUMBAR' },
+      { icon: '▱', highlight: '4D Metallic', sub: 'Omni Pivot Core', category: 'ARMRESTS' },
+      { icon: '♢', highlight: 'Class-4 Core', sub: 'BIFMA Certified', category: 'HYDRAULICS' },
+    ],
   },
   {
     id: 21,
@@ -72,6 +86,12 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
       { label: 'Payload Capacity', value: '140 kg Heavy Duty' },
       { label: 'Control Panel', value: 'OLED Touch + USB-C' },
     ],
+    featureSpecs: [
+      { icon: '⚡', highlight: 'Dual Silent', sub: '<45 dB Whispers', category: 'MOTOR' },
+      { icon: '↕', highlight: '650–1300 mm', sub: 'Millimeter Stroke', category: 'STROKE' },
+      { icon: '△', highlight: '140 kg Heavy', sub: 'Zero-Wobble Core', category: 'PAYLOAD' },
+      { icon: '◫', highlight: 'OLED Memory', sub: '4 Touch Presets', category: 'CONTROLLER' },
+    ],
   },
   {
     id: 4,
@@ -92,6 +112,12 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
       { label: 'Foam Density', value: '65 kg/m³ Cold-Cure' },
       { label: 'Chassis', value: 'Die-Cast Polished Alloy' },
       { label: 'Warranty', value: '7 Years Comprehensive' },
+    ],
+    featureSpecs: [
+      { icon: '♧', highlight: 'Top-Grain', sub: 'Italian Nappa', category: 'LEATHER' },
+      { icon: '▱', highlight: '65 kg/m³', sub: 'Cold-Cure Foam', category: 'FOAM DENSITY' },
+      { icon: '△', highlight: 'Die-Cast Alloy', sub: 'Polished Cantilever', category: 'CHASSIS' },
+      { icon: '♢', highlight: '7 Years', sub: 'Comprehensive', category: 'WARRANTY' },
     ],
   },
 ];
@@ -269,12 +295,12 @@ export function FeaturedSlideOverShowcase() {
           </div>
         </div>
 
-        {/* ─── Card Deck Viewport: Warm Scandinavian Oak Cards ─── */}
+        {/* ─── Card Deck Viewport: Glassmorphic Scandinavian Oak Cards ─── */}
         <div className="relative flex-1 my-1.5 flex items-center justify-center min-h-0">
           {/* ═══ SLIDE 0: BESO Crown ═══ */}
           <div
             ref={card0Ref}
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-[#FAF5EC] dark:bg-[#1E1711] border border-[#E4D7C5] dark:border-[#382A1C] shadow-[0_20px_60px_rgba(45,32,20,0.08)] ring-1 ring-inset ring-white/70 dark:ring-white/10 will-change-transform"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2.2rem] p-4 sm:p-6 md:p-8 lg:p-10 overflow-y-auto lg:overflow-hidden bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/45 dark:from-[#241A12]/85 dark:via-[#1B130E]/80 dark:to-[#140D08]/85 backdrop-blur-2xl -webkit-backdrop-blur-2xl border border-white/85 dark:border-white/15 shadow-[0_28px_80px_rgba(79,49,20,0.13),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_28px_80px_rgba(0,0,0,0.5),_inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-inset ring-white/80 dark:ring-white/10 will-change-transform"
             style={{
               zIndex: 10,
               transform: 'scale3d(1, 1, 1)',
@@ -298,7 +324,7 @@ export function FeaturedSlideOverShowcase() {
           {/* ═══ SLIDE 1: BESO FlexRise ═══ */}
           <div
             ref={card1Ref}
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-[#FAF5EC] dark:bg-[#1E1711] border border-[#E4D7C5] dark:border-[#382A1C] shadow-[0_22px_65px_rgba(45,32,20,0.10)] ring-1 ring-inset ring-white/70 dark:ring-white/10 will-change-transform"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2.2rem] p-4 sm:p-6 md:p-8 lg:p-10 overflow-y-auto lg:overflow-hidden bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/45 dark:from-[#241A12]/85 dark:via-[#1B130E]/80 dark:to-[#140D08]/85 backdrop-blur-2xl -webkit-backdrop-blur-2xl border border-white/85 dark:border-white/15 shadow-[0_28px_80px_rgba(79,49,20,0.13),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_28px_80px_rgba(0,0,0,0.5),_inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-inset ring-white/80 dark:ring-white/10 will-change-transform"
             style={{
               zIndex: 20,
               transform: 'translate3d(0, 105%, 0) scale3d(1, 1, 1)',
@@ -322,7 +348,7 @@ export function FeaturedSlideOverShowcase() {
           {/* ═══ SLIDE 2: BESO Prestige ═══ */}
           <div
             ref={card2Ref}
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-[#FAF5EC] dark:bg-[#1E1711] border border-[#E4D7C5] dark:border-[#382A1C] shadow-[0_25px_70px_rgba(45,32,20,0.12)] ring-1 ring-inset ring-white/70 dark:ring-white/15 will-change-transform"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2.2rem] p-4 sm:p-6 md:p-8 lg:p-10 overflow-y-auto lg:overflow-hidden bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/45 dark:from-[#241A12]/85 dark:via-[#1B130E]/80 dark:to-[#140D08]/85 backdrop-blur-2xl -webkit-backdrop-blur-2xl border border-white/85 dark:border-white/15 shadow-[0_28px_80px_rgba(79,49,20,0.13),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_28px_80px_rgba(0,0,0,0.5),_inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-inset ring-white/80 dark:ring-white/10 will-change-transform"
             style={{
               zIndex: 30,
               transform: 'translate3d(0, 105%, 0)',
@@ -368,113 +394,128 @@ const SlideContent = React.memo(function SlideContent({
   const wishlisted = isInWishlist ? isInWishlist(slide.id) : false;
   const comparing = isInCompare ? isInCompare(slide.id) : false;
 
+  const discountPercent = slide.originalPrice
+    ? Math.round(((slide.originalPrice - slide.price) / slide.originalPrice) * 100)
+    : null;
+
   return (
     <>
-      {/* Warm Golden Oak ambient radial glow (0 GPU blur penalty) */}
+      {/* Specular glass sheen highlight & ambient corner illumination */}
       <div
-        className="absolute inset-0 pointer-events-none rounded-[2rem]"
+        className="absolute inset-0 pointer-events-none rounded-[2.2rem]"
         style={{
           background:
-            'radial-gradient(ellipse at 15% 15%, rgb(var(--accent-rgb) / 0.08), transparent 50%), radial-gradient(ellipse at 85% 85%, rgb(var(--gold-rgb) / 0.08), transparent 50%)',
+            'radial-gradient(ellipse at 6% 6%, rgba(255,255,255,0.72), transparent 48%), radial-gradient(ellipse at 92% 92%, rgb(var(--accent-rgb) / 0.09), transparent 45%)',
         }}
       />
 
-      {/* Left Column on Desktop / Bottom on Mobile: Technical Specs & Architecture */}
-      <div className="lg:col-span-7 space-y-2.5 sm:space-y-4 z-10 order-2 lg:order-1">
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-full bg-accent/15 text-accent text-[10px] font-black uppercase tracking-widest border border-accent/25 shadow-sm">
-            {slide.badge}
-          </span>
-          <span className="text-amber-600 dark:text-amber-400 text-xs font-bold flex items-center gap-1">
-            ★ {slide.rating} ({slide.reviews} verified reviews)
-          </span>
+      {/* Left Column on Desktop / Bottom on Mobile: Information & Spec Architecture */}
+      <div className="lg:col-span-7 space-y-2.5 sm:space-y-3.5 z-10 order-2 lg:order-1 w-full">
+        {/* Topline: Frosted badge with glowing dot + Rating */}
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/80 dark:border-white/20 bg-white/55 dark:bg-white/10 text-accent text-[11px] font-bold tracking-widest uppercase shadow-sm backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-[#E99A15] shadow-[0_0_0_3px_#F8E5C5] dark:shadow-[0_0_0_3px_#4A3215]" />
+            <span>{slide.badge}</span>
+          </div>
+
+          <div className="text-xs text-ink/70 dark:text-ink/60 font-medium flex items-center gap-1.5 whitespace-nowrap bg-white/45 dark:bg-white/5 px-3 py-1 rounded-full border border-white/70 dark:border-white/10 shadow-sm backdrop-blur-sm">
+            <span className="text-[#E69B19] text-base leading-none">★</span>
+            <strong className="text-ink font-bold">{slide.rating}</strong>
+            <span className="opacity-40">|</span>
+            <span>{slide.reviews} reviews</span>
+          </div>
         </div>
 
+        {/* Eyebrow, Title & Editorial Description */}
         <div>
-          <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-black text-ink tracking-tight leading-tight">
+          <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.28em] text-[#88796B] dark:text-[#A8988A] uppercase mb-1 sm:mb-1.5">
+            THE FLAGSHIP ENGINEERING LINE
+          </p>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-serif font-bold text-ink tracking-tight leading-[1.06]">
             {slide.name}
           </h3>
-          <p className="text-xs sm:text-sm text-ink/70 font-medium mt-0.5 sm:mt-1 leading-relaxed">
-            {slide.tagline}
+          <p className="text-xs sm:text-sm text-ink/75 font-normal mt-1 leading-relaxed max-w-xl">
+            {slide.desc}
           </p>
         </div>
 
-        <p className="text-xs sm:text-sm text-ink/75 leading-relaxed max-w-xl hidden md:block">
-          {slide.desc}
-        </p>
-
-        {/* Mobile: Horizontal scrollable spec pills in warm oak tone */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar sm:hidden py-0.5">
-          {slide.specs.map((sp: any) => (
-            <span
-              key={sp.label}
-              className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#F2EADC] dark:bg-[#251E16] text-ink/80 whitespace-nowrap border border-[#E2D5C3] dark:border-[#3E3022] shrink-0"
-            >
-              <strong className="text-ink">{sp.label}:</strong> {sp.value}
-            </span>
-          ))}
-        </div>
-
-        {/* Desktop / Tablet: Technical Specs Grid in warm oak timber surface */}
-        <div className="hidden sm:grid grid-cols-2 gap-2 pt-0.5">
-          {slide.specs.map((sp: any) => (
+        {/* 4 Frosted Glass Feature Tiles (Inspired by beso-product-card.html) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 my-1 sm:my-2">
+          {slide.featureSpecs.map((f: any) => (
             <div
-              key={sp.label}
-              className="p-2 sm:p-3 rounded-2xl bg-[#F2EADC]/80 dark:bg-[#251E16]/80 border border-[#E2D5C3] dark:border-[#3E3022] hover:border-accent/50 hover:bg-[#F2EADC] transition-all shadow-sm"
+              key={f.category}
+              className="min-h-[105px] sm:min-h-[120px] p-2.5 sm:p-3 text-center rounded-2xl border border-white/70 dark:border-white/15 bg-white/45 dark:bg-white/5 backdrop-blur-md shadow-[0_8px_20px_rgba(77,48,21,0.04)] flex flex-col items-center justify-between transition-all hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md"
             >
-              <span className="text-[9px] font-bold text-ink/50 uppercase tracking-widest block">
-                {sp.label}
-              </span>
-              <span className="text-xs font-black text-ink mt-0.5 block truncate">
-                {sp.value}
-              </span>
+              <div className="w-8 h-8 rounded-full border border-white/90 dark:border-white/20 bg-white/70 dark:bg-white/10 text-accent flex items-center justify-center text-xs font-bold shadow-sm">
+                {f.icon}
+              </div>
+              <div className="my-0.5">
+                <b className="block text-xs font-bold text-ink leading-tight">
+                  {f.highlight}
+                </b>
+                <span className="block text-[10px] text-ink/65 leading-tight mt-0.5">
+                  {f.sub}
+                </span>
+              </div>
+              <small className="block text-[8.5px] font-bold tracking-widest text-[#A19588] uppercase">
+                {f.category}
+              </small>
             </div>
           ))}
         </div>
 
-        {/* Pricing and Action Buttons Row */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 pt-2 border-t border-line/10">
-          <div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-xl sm:text-3xl font-black text-ink">
-                {formatPrice(slide.price)}
-              </span>
-              {slide.originalPrice && (
-                <span className="text-xs text-ink/40 line-through">
-                  {formatPrice(slide.originalPrice)}
-                </span>
-              )}
-            </div>
-            <span className="text-[10px] text-accent font-bold block">
-              PAN-India White-Glove Setup · 5-7 Yr Warranty
+        {/* Price, Shipping & Interactive Action Buttons */}
+        <div className="space-y-2 pt-2 border-t border-white/60 dark:border-white/10">
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink tracking-tight">
+              {formatPrice(slide.price)}
             </span>
+            {slide.originalPrice && (
+              <span className="text-sm text-ink/40 line-through font-medium">
+                {formatPrice(slide.originalPrice)}
+              </span>
+            )}
+            {discountPercent && (
+              <span className="px-2.5 py-0.5 rounded-full bg-[#F9DFAD] dark:bg-[#4D3517] text-[#9A5B0B] dark:text-[#EBB874] text-[11px] font-extrabold shadow-sm">
+                {discountPercent}% OFF
+              </span>
+            )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="text-xs text-ink/65 flex items-center gap-1.5 font-medium">
+            <span className="text-accent font-bold">♧</span>
+            <span>PAN-India White-Glove Setup · 5–7 Yr Warranty</span>
+          </div>
+
+          <div className="flex items-center gap-2.5 pt-1.5 flex-wrap">
+            {/* Primary Add to Cart button */}
             <button
               type="button"
               onClick={() => onAddToCart(activeProduct, 1)}
-              className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-ink text-app text-xs uppercase tracking-wider font-extrabold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5"
+              className="px-6 sm:px-8 py-3 rounded-full bg-[#2D1B10] text-[#FFFAF3] text-xs font-extrabold uppercase tracking-wider shadow-[0_10px_22px_rgba(61,37,29,0.25)] hover:translate-y-[-2px] hover:shadow-[0_14px_28px_rgba(61,37,29,0.3)] active:translate-y-0 transition-all flex items-center gap-2"
             >
-              <span>+ Add to Cart</span>
+              <span>♧</span>
+              <span>Add to Cart</span>
             </button>
 
+            {/* Secondary Full Specs glass button */}
             <Link
               href={`/products/${slide.slug}`}
-              className="px-4 py-2.5 sm:py-3 rounded-full border border-[#E2D5C3] dark:border-[#3E3022] bg-[#F2EADC] dark:bg-[#251E16] text-xs font-bold text-ink hover:bg-[#EAE0D0] transition-all shadow-sm"
+              className="px-5 py-3 rounded-full bg-white/55 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-bold text-ink hover:bg-white/75 transition-all shadow-sm flex items-center gap-1.5"
             >
-              Full Specs →
+              <span>Full Specs</span>
+              <span>→</span>
             </Link>
 
-            {/* Wishlist quick toggle */}
+            {/* Wishlist round glass button */}
             {toggleWishlist && (
               <button
                 type="button"
                 onClick={() => toggleWishlist(slide.id)}
-                className={`p-2.5 sm:p-3 rounded-full border transition-all ${
+                className={`w-11 h-11 rounded-full border backdrop-blur-md transition-all flex items-center justify-center shadow-sm ${
                   wishlisted
                     ? 'bg-rose-50 border-rose-300 text-rose-500'
-                    : 'border-[#E2D5C3] dark:border-[#3E3022] bg-[#F2EADC] dark:bg-[#251E16] text-ink/50 hover:text-rose-500'
+                    : 'bg-white/55 dark:bg-white/10 border-white/80 dark:border-white/20 text-ink/60 hover:text-rose-500 hover:bg-white/75'
                 }`}
                 title={wishlisted ? 'In Wishlist' : 'Add to Wishlist'}
                 aria-label="Wishlist"
@@ -491,15 +532,15 @@ const SlideContent = React.memo(function SlideContent({
               </button>
             )}
 
-            {/* Compare quick toggle */}
+            {/* Compare round glass button */}
             {toggleCompare && (
               <button
                 type="button"
                 onClick={() => toggleCompare(slide.id)}
-                className={`p-2.5 sm:p-3 rounded-full border transition-all ${
+                className={`w-11 h-11 rounded-full border backdrop-blur-md transition-all flex items-center justify-center shadow-sm ${
                   comparing
-                    ? 'bg-accent/20 border-accent text-accent font-bold'
-                    : 'border-[#E2D5C3] dark:border-[#3E3022] bg-[#F2EADC] dark:bg-[#251E16] text-ink/50 hover:text-ink'
+                    ? 'bg-accent/25 border-accent text-accent font-bold'
+                    : 'bg-white/55 dark:bg-white/10 border-white/80 dark:border-white/20 text-ink/60 hover:text-ink hover:bg-white/75'
                 }`}
                 title={comparing ? 'Comparing' : 'Compare'}
                 aria-label="Compare"
@@ -513,13 +554,34 @@ const SlideContent = React.memo(function SlideContent({
         </div>
       </div>
 
-      {/* Right Column on Desktop / Top-Center on Mobile: Architectural 3D Glass Pedestal Showcase */}
+      {/* Right Column on Desktop / Top-Center on Mobile: Architectural Pedestal Showcase */}
       <div className="lg:col-span-5 flex justify-center items-center relative z-10 w-full py-1 lg:py-0 order-1 lg:order-2">
-        <div className="w-full max-w-[210px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[460px] xl:max-w-[500px] aspect-[4/5] rounded-[1.6rem] sm:rounded-[2rem] border border-line/15 bg-[#0e1114] relative shadow-[0_20px_50px_rgba(0,0,0,0.22)] overflow-hidden group flex items-center justify-center">
-          {/* Subtle Ambient Glow & Glass Rim */}
-          <div className="absolute inset-0 rounded-[1.6rem] sm:rounded-[2rem] ring-1 ring-inset ring-white/25 pointer-events-none z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none z-10" />
+        <div className="w-full max-w-[220px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[450px] aspect-[4/5] rounded-[1.8rem] sm:rounded-[2.2rem] border border-white/80 dark:border-white/15 bg-gradient-to-b from-[#1C1510] to-[#0E0B08] relative shadow-[0_24px_60px_rgba(44,28,15,0.25)] overflow-hidden group flex items-center justify-center">
+          {/* Ambient Backlight inside frame */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-60"
+            style={{
+              background: 'radial-gradient(circle at 50% 50%, rgb(var(--accent-rgb) / 0.22), transparent 70%)',
+            }}
+          />
+          {/* Glass rim reflection */}
+          <div className="absolute inset-0 rounded-[1.8rem] sm:rounded-[2.2rem] ring-1 ring-inset ring-white/30 pointer-events-none z-10" />
 
+          {/* Floating Frosted Image Tag */}
+          <div className="absolute top-3.5 left-3.5 z-20 px-3 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/30 text-white text-[10px] tracking-widest font-bold uppercase shadow-sm">
+            {slide.badge}
+          </div>
+
+          {/* Floating Expand / Details Link Button */}
+          <Link
+            href={`/products/${slide.slug}`}
+            className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-white/75 backdrop-blur-md border border-white/80 text-stone-900 flex items-center justify-center text-xs hover:scale-110 transition-transform shadow-md"
+            title="View Product Specs"
+          >
+            ↗
+          </Link>
+
+          {/* Product Image with smooth hover scale */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={slide.image}
@@ -527,8 +589,14 @@ const SlideContent = React.memo(function SlideContent({
               (e.currentTarget as HTMLImageElement).src = slide.fallbackImage;
             }}
             alt={slide.name}
-            className="w-full h-full object-contain p-2 sm:p-3 group-hover:scale-105 transition-all duration-700 relative z-0"
+            className="w-full h-full object-contain p-3 sm:p-5 group-hover:scale-105 transition-transform duration-700 relative z-0 drop-shadow-[0_15px_30px_rgba(0,0,0,0.5)]"
           />
+
+          {/* Bottom Glass Footer Tag */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium tracking-wider whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            <span>Direct Factory Engineering</span>
+          </div>
         </div>
       </div>
     </>
