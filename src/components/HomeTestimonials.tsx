@@ -39,8 +39,8 @@ export function HomeTestimonials() {
   return (
     <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/10 bg-surfaceSubtle">
       <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <span className="text-xs font-bold text-brandLime uppercase tracking-widest inline-flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-brandLime animate-pulse" />
+        <span className="text-xs font-bold text-accent uppercase tracking-widest inline-flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           Client Testimonials
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-ink tracking-tight">
@@ -55,7 +55,7 @@ export function HomeTestimonials() {
         {testimonials.map((t) => (
           <div
             key={t.id}
-            className="p-8 rounded-3xl bg-surface border border-line/10 shadow-sm hover:border-brandLime/40 hover:shadow-card-hover transition-all flex flex-col justify-between space-y-6"
+            className="p-8 rounded-3xl bg-surface border border-line/10 shadow-sm hover:border-accent/40 hover:shadow-card-hover transition-all flex flex-col justify-between space-y-6"
           >
             <div className="space-y-4">
               <div className="flex items-center gap-1 text-amber-500 text-sm">
@@ -73,7 +73,7 @@ export function HomeTestimonials() {
               <div>
                 <h4 className="font-bold text-sm text-ink">{t.name}</h4>
                 <p className="text-[11px] text-ink/50">{t.role}</p>
-                <p className="text-[10px] font-semibold text-brandLime mt-0.5">{t.company}</p>
+                <p className="text-[10px] font-semibold text-accent mt-0.5">{t.company}</p>
               </div>
             </div>
           </div>

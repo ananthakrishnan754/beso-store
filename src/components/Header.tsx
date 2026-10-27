@@ -35,7 +35,7 @@ export function Header() {
               href="https://maps.google.com/?q=Indiranagar+Bangalore"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-beso-lime hover:underline font-bold"
+              className="text-accent hover:text-accent-2 hover:underline font-bold"
             >
               Get Directions ↗
             </a>

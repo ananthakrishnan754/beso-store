@@ -102,7 +102,7 @@ export function ShoppableRoomHotspots() {
         {/* Left Side: BESO Legacy, PAN-India Delivery & Craftsmanship */}
         <div className="lg:col-span-5 space-y-6">
           <div>
-            <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-2">
+            <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-2">
               Curated Spaces · Tagged Products
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-ink tracking-tight leading-tight">
@@ -132,8 +132,8 @@ export function ShoppableRoomHotspots() {
 
             {/* Feature 2: PAN-India Delivery */}
             <div className="p-4 rounded-2xl bg-surfaceSubtle border border-line/10 flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-xl bg-brandLime/20 text-ink flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 text-brandLime" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div className="w-10 h-10 rounded-xl bg-accent/20 text-ink flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
                 </svg>
               </div>
@@ -220,7 +220,7 @@ export function ShoppableRoomHotspots() {
                     <span
                       className={`absolute inset-0 rounded-full transition-opacity duration-300 ${
                         isCurrent
-                          ? 'bg-brandLime opacity-95 animate-ping'
+                          ? 'bg-accent opacity-95 animate-ping'
                           : 'bg-white opacity-40 group-hover:opacity-75'
                       }`}
                     />
@@ -228,7 +228,7 @@ export function ShoppableRoomHotspots() {
                     <span
                       className={`relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-black shadow-xl border-2 transition-all duration-300 ${
                         isCurrent
-                          ? 'bg-brandLime text-app border-app shadow-[0_0_20px_rgb(var(--brand-lime)/0.4)]'
+                          ? 'bg-accent text-white border-app shadow-[0_0_20px_rgb(var(--accent-rgb)/0.4)]'
                           : 'bg-ink/90 text-white border-white/60 backdrop-blur-md'
                       }`}
                     >
@@ -251,7 +251,7 @@ export function ShoppableRoomHotspots() {
                     >
                       {/* Top Pill / Rating row */}
                       <div className="flex items-center justify-between mb-2.5">
-                        <span className="text-[9px] font-extrabold text-brandLime uppercase tracking-wider bg-brandLime/15 px-2 py-0.5 rounded-full">
+                        <span className="text-[9px] font-extrabold text-accent uppercase tracking-wider bg-accent/15 px-2 py-0.5 rounded-full">
                           {product.subcategory.replace(/-/g, ' ')}
                         </span>
                         <span className="text-[10px] text-amber-400 font-bold flex items-center gap-1">
@@ -270,11 +270,11 @@ export function ShoppableRoomHotspots() {
                           />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-bold text-xs text-white truncate hover:text-brandLime transition-colors">
+                          <h4 className="font-bold text-xs text-white truncate hover:text-accent transition-colors">
                             <Link href={`/products/${product.slug}`}>{product.name}</Link>
                           </h4>
                           <div className="flex items-baseline gap-2 mt-1">
-                            <span className="font-black text-sm text-brandLime">
+                            <span className="font-black text-sm text-accent">
                               {formatPrice(product.price)}
                             </span>
                             {product.originalPrice && (
@@ -291,7 +291,7 @@ export function ShoppableRoomHotspots() {
                         <button
                           type="button"
                           onClick={() => addToCart(product, 1)}
-                          className="py-2 px-3 rounded-xl bg-brandLime text-ink text-[11px] font-extrabold tracking-wider hover:opacity-95 active:scale-95 transition-all text-center shadow-md shadow-brandLime/25"
+                          className="py-2 px-3 rounded-xl bg-accent text-white text-[11px] font-extrabold tracking-wider hover:opacity-95 active:scale-95 transition-all text-center shadow-md shadow-accent/25"
                         >
                           + Add to Cart
                         </button>

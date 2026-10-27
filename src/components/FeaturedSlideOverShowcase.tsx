@@ -13,6 +13,89 @@ function formatPrice(amount: number) {
   }).format(amount);
 }
 
+interface FlagshipSlide {
+  id: number;
+  index: number;
+  name: string;
+  tagline: string;
+  price: number;
+  originalPrice?: number;
+  image: string;
+  fallbackImage: string;
+  badge: string;
+  rating: number;
+  reviews: number;
+  slug: string;
+  desc: string;
+  specs: { label: string; value: string }[];
+}
+
+const FLAGSHIP_SLIDES: FlagshipSlide[] = [
+  {
+    id: 7,
+    index: 0,
+    name: 'BESO Crown Executive Chair',
+    tagline: '3D Ergonomic Mesh · Active Lumbar Architecture',
+    price: 24990,
+    originalPrice: 29990,
+    image: '/assets/images/flagship-crown.png',
+    fallbackImage: '/assets/images/products/executive-chair-07.jpg',
+    badge: 'Flagship Ergonomic',
+    rating: 4.9,
+    reviews: 32,
+    slug: 'beso-crown-executive-chair',
+    desc: 'Engineered with aerospace-grade synchro-tilt, calibrated lumbar compression, and breathable elastomeric mesh for 14+ hours of uninterrupted executive focus.',
+    specs: [
+      { label: 'Tilt Mechanism', value: 'Multi-Lock Synchro 135°' },
+      { label: 'Lumbar System', value: 'Dynamic Adaptive Spring' },
+      { label: 'Armrests', value: '4D Metallic Core Pivot' },
+      { label: 'Base & Cylinder', value: 'Class-4 BIFMA Certified' },
+    ],
+  },
+  {
+    id: 21,
+    index: 1,
+    name: 'BESO FlexRise Smart Desk',
+    tagline: 'Dual-Motor Standing Desk · Anti-Collision Gyro',
+    price: 38990,
+    originalPrice: 45990,
+    image: '/assets/images/flagship-flexrise.png',
+    fallbackImage: '/assets/images/products/executive-table-01.jpg',
+    badge: 'Ergo Innovation',
+    rating: 4.8,
+    reviews: 19,
+    slug: 'beso-flexrise-height-adjustable-table',
+    desc: 'Whisper-quiet dual electric columns capable of lifting 140kg with millimeter precision. 4 programmable memory presets and automated sedentary reminders.',
+    specs: [
+      { label: 'Motor System', value: 'Dual Silent (<45 dB)' },
+      { label: 'Height Stroke', value: '650 mm – 1300 mm' },
+      { label: 'Payload Capacity', value: '140 kg Heavy Duty' },
+      { label: 'Control Panel', value: 'OLED Touch + USB-C' },
+    ],
+  },
+  {
+    id: 4,
+    index: 2,
+    name: 'BESO Prestige Executive Chair',
+    tagline: 'Full-Grain Italian Nappa Leather · Polished Chrome Core',
+    price: 34990,
+    originalPrice: 42990,
+    image: '/assets/images/flagship-prestige.png',
+    fallbackImage: '/assets/images/products/executive-chair-04.jpg',
+    badge: 'Director Suite',
+    rating: 4.9,
+    reviews: 24,
+    slug: 'beso-prestige-executive-chair',
+    desc: 'Hand-upholstered in genuine top-grain Nappa leather with high-resilience moulded cold-cure foam and solid die-cast aluminum cantilever detailing.',
+    specs: [
+      { label: 'Leather Grade', value: 'Top-Grain Italian Nappa' },
+      { label: 'Foam Density', value: '65 kg/m³ Cold-Cure' },
+      { label: 'Chassis', value: 'Die-Cast Polished Alloy' },
+      { label: 'Warranty', value: '7 Years Comprehensive' },
+    ],
+  },
+];
+
 export function FeaturedSlideOverShowcase() {
   const { addToCart, isInWishlist, toggleWishlist, isInCompare, toggleCompare } = useCart();
   const all = products as any[];
@@ -26,89 +109,19 @@ export function FeaturedSlideOverShowcase() {
   const [activeSlideIdx, setActiveSlideIdx] = useState(0);
   const lastActiveIdx = useRef(0);
 
-  const slides = [
-    {
-      id: 7,
-      index: 0,
-      name: 'BESO Crown Executive Chair',
-      tagline: '3D Ergonomic Mesh · Active Lumbar Architecture',
-      price: 24990,
-      originalPrice: 29990,
-      image: '/assets/images/flagship-crown.png',
-      fallbackImage: '/assets/images/products/executive-chair-07.jpg',
-      badge: 'Flagship Ergonomic',
-      rating: 4.9,
-      reviews: 32,
-      slug: 'beso-crown-executive-chair',
-      desc: 'Engineered with aerospace-grade synchro-tilt, calibrated lumbar compression, and breathable elastomeric mesh for 14+ hours of uninterrupted executive focus.',
-      specs: [
-        { label: 'Tilt Mechanism', value: 'Multi-Lock Synchro 135°' },
-        { label: 'Lumbar System', value: 'Dynamic Adaptive Spring' },
-        { label: 'Armrests', value: '4D Metallic Core Pivot' },
-        { label: 'Base & Cylinder', value: 'Class-4 BIFMA Certified' },
-      ],
-    },
-    {
-      id: 21,
-      index: 1,
-      name: 'BESO FlexRise Smart Desk',
-      tagline: 'Dual-Motor Standing Desk · Anti-Collision Gyro',
-      price: 38990,
-      originalPrice: 45990,
-      image: '/assets/images/flagship-flexrise.png',
-      fallbackImage: '/assets/images/products/executive-table-01.jpg',
-      badge: 'Ergo Innovation',
-      rating: 4.8,
-      reviews: 19,
-      slug: 'beso-flexrise-height-adjustable-table',
-      desc: 'Whisper-quiet dual electric columns capable of lifting 140kg with millimeter precision. 4 programmable memory presets and automated sedentary reminders.',
-      specs: [
-        { label: 'Motor System', value: 'Dual Silent (<45 dB)' },
-        { label: 'Height Stroke', value: '650 mm – 1300 mm' },
-        { label: 'Payload Capacity', value: '140 kg Heavy Duty' },
-        { label: 'Control Panel', value: 'OLED Touch + USB-C' },
-      ],
-    },
-    {
-      id: 4,
-      index: 2,
-      name: 'BESO Prestige Executive Chair',
-      tagline: 'Full-Grain Italian Nappa Leather · Polished Chrome Core',
-      price: 34990,
-      originalPrice: 42990,
-      image: '/assets/images/flagship-prestige.png',
-      fallbackImage: '/assets/images/products/executive-chair-04.jpg',
-      badge: 'Director Suite',
-      rating: 4.9,
-      reviews: 24,
-      slug: 'beso-prestige-executive-chair',
-      desc: 'Hand-upholstered in genuine top-grain Nappa leather with high-resilience moulded cold-cure foam and solid die-cast aluminum cantilever detailing.',
-      specs: [
-        { label: 'Leather Grade', value: 'Top-Grain Italian Nappa' },
-        { label: 'Foam Density', value: '65 kg/m³ Cold-Cure' },
-        { label: 'Chassis', value: 'Die-Cast Polished Alloy' },
-        { label: 'Warranty', value: '7 Years Comprehensive' },
-      ],
-    },
-  ];
+  const slides = FLAGSHIP_SLIDES;
 
-  // High-performance rAF-throttled scroll handler without React re-renders during scroll
+  // High-performance physics-interpolated (lerp) scroll handler
+  // Transforms discrete mouse-wheel notches into a buttery-smooth 60/120fps glide
   useEffect(() => {
-    let ticking = false;
+    let targetProgress = 0;
+    let smoothProgress = 0;
+    let animId: number | null = null;
+    let isRunning = false;
 
-    const update = () => {
-      ticking = false;
-      const el = sectionRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      // Skip all computations when the section is not in the viewport
-      if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+    const smoothStep = (t: number) => t * t * (3 - 2 * t);
 
-      const totalScrollable = el.offsetHeight - window.innerHeight;
-      if (totalScrollable <= 0) return;
-      const currentScroll = -rect.top;
-      const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
-
+    const render = (progress: number) => {
       // Active slide indicator pill (only triggers state when changed)
       const newIdx = progress < 0.38 ? 0 : progress < 0.72 ? 1 : 2;
       if (newIdx !== lastActiveIdx.current) {
@@ -121,60 +134,81 @@ export function FeaturedSlideOverShowcase() {
         progressBarRef.current.style.transform = `scaleX(${progress.toFixed(4)})`;
       }
 
-      // Card 0: scale down slightly & fade; cull visibility when fully covered
+      // Card 0: scale down slightly & fade
       if (card0Ref.current) {
-        if (progress > 0.72) {
-          card0Ref.current.style.visibility = 'hidden';
-        } else {
-          card0Ref.current.style.visibility = 'visible';
-          const s0Scale = progress > 0.05 ? Math.max(0.92, 1 - progress * 0.12) : 1;
-          const s0Opacity = progress > 0.35 ? Math.max(0.2, 1 - (progress - 0.35) * 1.6) : 1;
-          card0Ref.current.style.transform = `translate3d(0, 0, 0) scale3d(${s0Scale.toFixed(4)}, ${s0Scale.toFixed(4)}, 1)`;
-          card0Ref.current.style.opacity = `${s0Opacity.toFixed(4)}`;
-        }
+        const s0Scale = progress > 0.05 ? Math.max(0.92, 1 - progress * 0.12) : 1;
+        const s0Opacity = progress > 0.35 ? Math.max(0.12, 1 - (progress - 0.35) * 1.6) : 1;
+        card0Ref.current.style.transform = `translate3d(0, 0, 0) scale3d(${s0Scale.toFixed(4)}, ${s0Scale.toFixed(4)}, 1)`;
+        card0Ref.current.style.opacity = `${s0Opacity.toFixed(4)}`;
       }
 
-      // Card 1: slides UP into view with hardware acceleration; cull when off-screen
+      // Card 1: slides UP into view with buttery smooth smoothstep translation
       if (card1Ref.current) {
-        if (progress < 0.06 || progress > 0.98) {
-          card1Ref.current.style.visibility = 'hidden';
-        } else {
-          card1Ref.current.style.visibility = 'visible';
-          const p1 = Math.max(0, Math.min(1, (progress - 0.08) / 0.42));
-          const s1Y = (1 - p1) * 105;
-          const s1Scale = progress > 0.48 ? Math.max(0.93, 1 - (progress - 0.48) * 0.1) : 1;
-          const s1Opacity = progress > 0.75 ? Math.max(0.2, 1 - (progress - 0.75) * 1.6) : 1;
-          card1Ref.current.style.transform = `translate3d(0, ${s1Y.toFixed(2)}%, 0) scale3d(${s1Scale.toFixed(4)}, ${s1Scale.toFixed(4)}, 1)`;
-          card1Ref.current.style.opacity = `${s1Opacity.toFixed(4)}`;
-        }
+        const p1 = Math.max(0, Math.min(1, (progress - 0.08) / 0.42));
+        const ease1 = smoothStep(p1);
+        const s1Y = (1 - ease1) * 102;
+        const s1Scale = progress > 0.48 ? Math.max(0.93, 1 - (progress - 0.48) * 0.1) : 1;
+        const s1Opacity = progress > 0.75 ? Math.max(0.12, 1 - (progress - 0.75) * 1.6) : 1;
+        card1Ref.current.style.transform = `translate3d(0, ${s1Y.toFixed(2)}%, 0) scale3d(${s1Scale.toFixed(4)}, ${s1Scale.toFixed(4)}, 1)`;
+        card1Ref.current.style.opacity = `${s1Opacity.toFixed(4)}`;
       }
 
-      // Card 2: slides UP into view with hardware acceleration; cull when below fold
+      // Card 2: slides UP into view with buttery smooth smoothstep translation
       if (card2Ref.current) {
-        if (progress < 0.50) {
-          card2Ref.current.style.visibility = 'hidden';
-        } else {
-          card2Ref.current.style.visibility = 'visible';
-          const p2 = Math.max(0, Math.min(1, (progress - 0.52) / 0.44));
-          const s2Y = (1 - p2) * 105;
-          card2Ref.current.style.transform = `translate3d(0, ${s2Y.toFixed(2)}%, 0)`;
-        }
+        const p2 = Math.max(0, Math.min(1, (progress - 0.50) / 0.45));
+        const ease2 = smoothStep(p2);
+        const s2Y = (1 - ease2) * 102;
+        card2Ref.current.style.transform = `translate3d(0, ${s2Y.toFixed(2)}%, 0)`;
       }
     };
 
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
+    const loop = () => {
+      const diff = targetProgress - smoothProgress;
+      if (Math.abs(diff) > 0.0002) {
+        // Snappy, silky exponential lerp damping (0.18) for zero-lag organic glide
+        smoothProgress += diff * 0.18;
+        render(smoothProgress);
+        animId = requestAnimationFrame(loop);
+      } else {
+        smoothProgress = targetProgress;
+        render(smoothProgress);
+        isRunning = false;
+        animId = null;
       }
     };
 
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
+    const onScrollOrResize = (immediate = false) => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.bottom < -100 || rect.top > vh + 100) return;
+
+      const totalScrollable = el.offsetHeight - vh;
+      if (totalScrollable <= 0) return;
+      const currentScroll = -rect.top;
+      targetProgress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+
+      if (immediate) {
+        smoothProgress = targetProgress;
+        render(smoothProgress);
+        return;
+      }
+
+      if (!isRunning) {
+        isRunning = true;
+        animId = requestAnimationFrame(loop);
+      }
+    };
+
+    onScrollOrResize(true);
+    const scrollHandler = () => onScrollOrResize(false);
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    window.addEventListener('resize', scrollHandler, { passive: true });
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('resize', scrollHandler);
+      if (animId) cancelAnimationFrame(animId);
     };
   }, []);
 
@@ -188,7 +222,7 @@ export function FeaturedSlideOverShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[280vh] border-t border-line/10 bg-app select-none"
+      className="relative w-full h-[320vh] border-t border-line/10 bg-app select-none"
     >
       {/* ─── Sticky Viewport (Pinned below fixed navbar so header never overlaps) ─── */}
       <div className="sticky top-[72px] sm:top-[84px] h-[calc(100vh-72px)] sm:h-[calc(100vh-84px)] w-full flex flex-col justify-between pt-1 pb-3 sm:pb-4 px-4 sm:px-6 md:px-10 lg:px-16 overflow-hidden">
@@ -205,8 +239,8 @@ export function FeaturedSlideOverShowcase() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Numbered Pills (01 / 02 / 03) */}
-            <div className="flex items-center gap-1.5 p-1 rounded-full bg-surface/80 backdrop-blur-md border border-line/15 shadow-md">
+            {/* Numbered Pills (01 / 02 / 03) in warm oak tone */}
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-[#F2EADC]/90 dark:bg-[#251E16]/90 backdrop-blur-md border border-[#E2D5C3] dark:border-[#3E3022] shadow-sm">
               {slides.map((s, idx) => (
                 <button
                   key={s.id}
@@ -215,7 +249,7 @@ export function FeaturedSlideOverShowcase() {
                   className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all ${
                     activeSlideIdx === idx
                       ? 'bg-ink text-app shadow-md scale-105'
-                      : 'text-ink/50 hover:text-ink hover:bg-surfaceSubtle'
+                      : 'text-ink/55 hover:text-ink hover:bg-surface'
                   }`}
                   aria-label={`Jump to slide 0${idx + 1}`}
                 >
@@ -224,8 +258,8 @@ export function FeaturedSlideOverShowcase() {
               ))}
             </div>
 
-            {/* Continuous Progress Indicator Bar */}
-            <div className="hidden sm:flex items-center gap-2 w-28 h-2 bg-surface/80 backdrop-blur-md rounded-full overflow-hidden border border-line/15 p-0.5">
+            {/* Continuous Progress Indicator Bar in warm golden oak */}
+            <div className="hidden sm:flex items-center gap-2 w-28 h-2 bg-[#F2EADC]/90 dark:bg-[#251E16]/90 backdrop-blur-md rounded-full overflow-hidden border border-[#E2D5C3] dark:border-[#3E3022] p-0.5">
               <div
                 ref={progressBarRef}
                 className="h-full w-full bg-accent rounded-full origin-left will-change-transform"
@@ -235,12 +269,12 @@ export function FeaturedSlideOverShowcase() {
           </div>
         </div>
 
-        {/* ─── Card Deck Viewport: Premium Glassmorphic Cards with Hardware Acceleration ─── */}
+        {/* ─── Card Deck Viewport: Warm Scandinavian Oak Cards ─── */}
         <div className="relative flex-1 my-1.5 flex items-center justify-center min-h-0">
           {/* ═══ SLIDE 0: BESO Crown ═══ */}
           <div
             ref={card0Ref}
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/85 dark:bg-black/65 backdrop-blur-md border border-white/60 dark:border-white/20 shadow-[0_20px_60px_rgba(36,29,20,0.1)] ring-1 ring-inset ring-white/50 dark:ring-white/10 will-change-transform"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-[#FAF5EC] dark:bg-[#1E1711] border border-[#E4D7C5] dark:border-[#382A1C] shadow-[0_20px_60px_rgba(45,32,20,0.08)] ring-1 ring-inset ring-white/70 dark:ring-white/10 will-change-transform"
             style={{
               zIndex: 10,
               transform: 'scale3d(1, 1, 1)',
@@ -264,7 +298,7 @@ export function FeaturedSlideOverShowcase() {
           {/* ═══ SLIDE 1: BESO FlexRise ═══ */}
           <div
             ref={card1Ref}
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/85 dark:bg-black/75 backdrop-blur-md border border-white/70 dark:border-white/25 shadow-[0_25px_70px_rgba(36,29,20,0.14)] ring-1 ring-inset ring-white/60 dark:ring-white/15 will-change-transform"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-[#FAF5EC] dark:bg-[#1E1711] border border-[#E4D7C5] dark:border-[#382A1C] shadow-[0_22px_65px_rgba(45,32,20,0.10)] ring-1 ring-inset ring-white/70 dark:ring-white/10 will-change-transform"
             style={{
               zIndex: 20,
               transform: 'translate3d(0, 105%, 0) scale3d(1, 1, 1)',
@@ -288,7 +322,7 @@ export function FeaturedSlideOverShowcase() {
           {/* ═══ SLIDE 2: BESO Prestige ═══ */}
           <div
             ref={card2Ref}
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/90 dark:bg-black/85 backdrop-blur-md border border-white/85 dark:border-white/30 shadow-[0_30px_80px_rgba(36,29,20,0.18)] ring-1 ring-inset ring-white/70 dark:ring-white/20 will-change-transform"
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-[#FAF5EC] dark:bg-[#1E1711] border border-[#E4D7C5] dark:border-[#382A1C] shadow-[0_25px_70px_rgba(45,32,20,0.12)] ring-1 ring-inset ring-white/70 dark:ring-white/15 will-change-transform"
             style={{
               zIndex: 30,
               transform: 'translate3d(0, 105%, 0)',
@@ -336,12 +370,12 @@ const SlideContent = React.memo(function SlideContent({
 
   return (
     <>
-      {/* Dynamic 3D depth backdrop glow using smooth radial-gradient (Zero GPU blur penalty) */}
+      {/* Warm Golden Oak ambient radial glow (0 GPU blur penalty) */}
       <div
         className="absolute inset-0 pointer-events-none rounded-[2rem]"
         style={{
           background:
-            'radial-gradient(ellipse at 15% 15%, rgb(var(--accent-rgb) / 0.10), transparent 50%), radial-gradient(ellipse at 85% 85%, rgb(var(--gold-rgb) / 0.08), transparent 50%)',
+            'radial-gradient(ellipse at 15% 15%, rgb(var(--accent-rgb) / 0.08), transparent 50%), radial-gradient(ellipse at 85% 85%, rgb(var(--gold-rgb) / 0.08), transparent 50%)',
         }}
       />
 
@@ -351,7 +385,7 @@ const SlideContent = React.memo(function SlideContent({
           <span className="px-3 py-1 rounded-full bg-accent/15 text-accent text-[10px] font-black uppercase tracking-widest border border-accent/25 shadow-sm">
             {slide.badge}
           </span>
-          <span className="text-amber-500 text-xs font-bold flex items-center gap-1">
+          <span className="text-amber-600 dark:text-amber-400 text-xs font-bold flex items-center gap-1">
             ★ {slide.rating} ({slide.reviews} verified reviews)
           </span>
         </div>
@@ -360,7 +394,7 @@ const SlideContent = React.memo(function SlideContent({
           <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-black text-ink tracking-tight leading-tight">
             {slide.name}
           </h3>
-          <p className="text-xs sm:text-sm text-ink/65 font-medium mt-0.5 sm:mt-1 leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink/70 font-medium mt-0.5 sm:mt-1 leading-relaxed">
             {slide.tagline}
           </p>
         </div>
@@ -369,26 +403,26 @@ const SlideContent = React.memo(function SlideContent({
           {slide.desc}
         </p>
 
-        {/* Mobile: Horizontal scrollable spec pills */}
+        {/* Mobile: Horizontal scrollable spec pills in warm oak tone */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar sm:hidden py-0.5">
           {slide.specs.map((sp: any) => (
             <span
               key={sp.label}
-              className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/70 dark:bg-white/10 text-ink/80 whitespace-nowrap border border-white/60 shrink-0"
+              className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#F2EADC] dark:bg-[#251E16] text-ink/80 whitespace-nowrap border border-[#E2D5C3] dark:border-[#3E3022] shrink-0"
             >
               <strong className="text-ink">{sp.label}:</strong> {sp.value}
             </span>
           ))}
         </div>
 
-        {/* Desktop / Tablet: Technical Specs Grid */}
+        {/* Desktop / Tablet: Technical Specs Grid in warm oak timber surface */}
         <div className="hidden sm:grid grid-cols-2 gap-2 pt-0.5">
           {slide.specs.map((sp: any) => (
             <div
               key={sp.label}
-              className="p-2 sm:p-3 rounded-2xl bg-white/70 dark:bg-white/10 border border-white/60 dark:border-white/20 hover:border-accent/40 hover:bg-white/90 transition-all shadow-sm"
+              className="p-2 sm:p-3 rounded-2xl bg-[#F2EADC]/80 dark:bg-[#251E16]/80 border border-[#E2D5C3] dark:border-[#3E3022] hover:border-accent/50 hover:bg-[#F2EADC] transition-all shadow-sm"
             >
-              <span className="text-[9px] font-bold text-ink/40 uppercase tracking-widest block">
+              <span className="text-[9px] font-bold text-ink/50 uppercase tracking-widest block">
                 {sp.label}
               </span>
               <span className="text-xs font-black text-ink mt-0.5 block truncate">
@@ -427,7 +461,7 @@ const SlideContent = React.memo(function SlideContent({
 
             <Link
               href={`/products/${slide.slug}`}
-              className="px-4 py-2.5 sm:py-3 rounded-full border border-line/20 bg-white/80 dark:bg-white/15 text-xs font-bold text-ink hover:bg-white transition-all shadow-sm"
+              className="px-4 py-2.5 sm:py-3 rounded-full border border-[#E2D5C3] dark:border-[#3E3022] bg-[#F2EADC] dark:bg-[#251E16] text-xs font-bold text-ink hover:bg-[#EAE0D0] transition-all shadow-sm"
             >
               Full Specs →
             </Link>
@@ -440,7 +474,7 @@ const SlideContent = React.memo(function SlideContent({
                 className={`p-2.5 sm:p-3 rounded-full border transition-all ${
                   wishlisted
                     ? 'bg-rose-50 border-rose-300 text-rose-500'
-                    : 'border-line/20 bg-white/80 dark:bg-white/15 text-ink/40 hover:text-rose-500'
+                    : 'border-[#E2D5C3] dark:border-[#3E3022] bg-[#F2EADC] dark:bg-[#251E16] text-ink/50 hover:text-rose-500'
                 }`}
                 title={wishlisted ? 'In Wishlist' : 'Add to Wishlist'}
                 aria-label="Wishlist"
@@ -465,7 +499,7 @@ const SlideContent = React.memo(function SlideContent({
                 className={`p-2.5 sm:p-3 rounded-full border transition-all ${
                   comparing
                     ? 'bg-accent/20 border-accent text-accent font-bold'
-                    : 'border-line/20 bg-white/80 dark:bg-white/15 text-ink/40 hover:text-ink'
+                    : 'border-[#E2D5C3] dark:border-[#3E3022] bg-[#F2EADC] dark:bg-[#251E16] text-ink/50 hover:text-ink'
                 }`}
                 title={comparing ? 'Comparing' : 'Compare'}
                 aria-label="Compare"

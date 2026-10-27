@@ -76,11 +76,11 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k='beso-theme';var theme='oak-clean-modern';localStorage.setItem(k,theme);var root=document.documentElement;root.setAttribute('data-theme',theme);root.style.colorScheme='light';root.className='light';var meta=document.querySelector('meta[name="theme-color"]');if(meta){meta.setAttribute('content','#f5f0e7');}}catch(e){document.documentElement.setAttribute('data-theme','oak-clean-modern');document.documentElement.className='light';}})();`,
+            __html: `(function(){try{var k='beso-theme';var theme='oak-clean-modern';localStorage.setItem(k,theme);var root=document.documentElement;root.setAttribute('data-theme',theme);root.style.colorScheme='light';root.className='light';var meta=document.querySelector('meta[name="theme-color"]');if(meta){meta.setAttribute('content','#f5eee3');}}catch(e){document.documentElement.setAttribute('data-theme','oak-clean-modern');document.documentElement.className='light';}})();`,
           }}
         />
       </head>
-      <body className="bg-app text-ink antialiased">
+      <body className="text-ink antialiased">
         <CartProvider>
           <ScrollProgress />
           <ScrollFX />

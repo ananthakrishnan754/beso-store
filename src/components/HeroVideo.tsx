@@ -82,7 +82,7 @@ export default function HeroVideo() {
       loop
       muted
       playsInline
-      className="w-full h-full object-cover opacity-90 [filter:contrast(1.12)_saturate(1.05)]"
+      className="w-full h-full object-cover opacity-100 [filter:contrast(1.08)_saturate(1.08)]"
       onError={handleError}
     >
       <source key={`${base}.webm`} src={`${base}.webm`} type="video/webm" />

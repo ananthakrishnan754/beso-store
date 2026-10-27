@@ -67,7 +67,7 @@ export function ProductRecommendations({
         <section className="space-y-6">
           <div className="flex items-end justify-between">
             <div>
-              <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-1">
+              <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
                 Comparative Fits
               </span>
               <h3 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
@@ -79,7 +79,7 @@ export function ProductRecommendations({
             </div>
             <Link
               href={`/products?subcategory=${subcategory}`}
-              className="text-xs font-bold text-brandLime hover:underline uppercase tracking-wider hidden sm:block"
+              className="text-xs font-bold text-accent hover:underline uppercase tracking-wider hidden sm:block"
             >
               View All {subcategory.replace(/-/g, ' ')} →
             </Link>
@@ -113,7 +113,7 @@ export function ProductRecommendations({
                   <button
                     type="button"
                     onClick={() => addToCart(p, 1)}
-                    className="absolute bottom-2.5 inset-x-2.5 py-2 rounded-full bg-ink text-app text-[11px] font-bold uppercase tracking-wider shadow-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1 hover:bg-beso-lime hover:text-black"
+                    className="absolute bottom-2.5 inset-x-2.5 py-2 rounded-full bg-ink text-app text-[11px] font-bold uppercase tracking-wider shadow-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1 hover:bg-accent hover:text-white"
                   >
                     <span>+ Add to Cart</span>
                   </button>
@@ -127,7 +127,7 @@ export function ProductRecommendations({
                     </span>
                     <Link
                       href={`/products/${p.slug}`}
-                      className="font-bold text-sm text-ink hover:text-beso-lime transition-colors line-clamp-1 mt-0.5"
+                      className="font-bold text-sm text-ink hover:text-accent transition-colors line-clamp-1 mt-0.5"
                     >
                       {p.name}
                     </Link>
@@ -161,7 +161,7 @@ export function ProductRecommendations({
         <section className="space-y-6">
           <div className="flex items-end justify-between">
             <div>
-              <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-1">
+              <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
                 Frequently Bought Together
               </span>
               <h3 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
@@ -180,7 +180,7 @@ export function ProductRecommendations({
             {customersAlsoLiked.map((item) => (
               <div
                 key={item.id}
-                className="group rounded-2xl bg-gradient-to-b from-surface to-surfaceSubtle border border-line/8 hover:border-brandLime/30 transition-all p-4 flex flex-col justify-between"
+                className="group rounded-2xl bg-gradient-to-b from-surface to-surfaceSubtle border border-line/8 hover:border-accent/30 transition-all p-4 flex flex-col justify-between"
               >
                 <div>
                   <div className="relative aspect-square rounded-xl bg-[#F4EFE6] overflow-hidden mb-3">
@@ -197,12 +197,12 @@ export function ProductRecommendations({
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-bold text-brandLime uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-accent uppercase tracking-wider">
                     {item.subcategory.replace(/-/g, ' ')}
                   </span>
                   <Link
                     href={`/products/${item.slug}`}
-                    className="font-bold text-sm text-ink hover:text-beso-lime transition-colors line-clamp-1 mt-0.5 block"
+                    className="font-bold text-sm text-ink hover:text-accent transition-colors line-clamp-1 mt-0.5 block"
                   >
                     {item.name}
                   </Link>

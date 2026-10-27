@@ -72,7 +72,7 @@ export default function ContactPage() {
     <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
       {/* Hero */}
       <div className="max-w-3xl mb-16">
-        <p className="text-beso-lime text-sm font-semibold tracking-widest uppercase mb-3">
+        <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-3">
           Get in Touch
         </p>
         <h1 className="text-3xl md:text-5xl font-bold text-ink mb-6">
@@ -97,13 +97,13 @@ export default function ContactPage() {
             <span className="text-3xl mb-3 block">{opt.icon}</span>
             <h3 className="font-semibold text-ink mb-1">{opt.title}</h3>
             <p className="text-sm text-ink/40 mb-4">{opt.desc}</p>
-            <span className="text-sm text-beso-lime font-medium">{opt.label} \u2192</span>
+            <span className="text-sm text-accent font-medium">{opt.label} →</span>
           </a>
         ))}
       </div>
 
       {/* Bulk orders CTA */}
-      <div className="bg-gradient-to-br from-beso-lime/10 to-app rounded-3xl border border-beso-lime/20 p-8 md:p-12 text-center mb-16">
+      <div className="bg-gradient-to-br from-accent/10 to-surface rounded-3xl border border-accent/20 p-8 md:p-12 text-center mb-16">
         <h2 className="text-2xl font-bold text-ink mb-3">
           Bulk & Corporate Orders
         </h2>

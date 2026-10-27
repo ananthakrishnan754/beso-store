@@ -56,7 +56,7 @@ export function RelatedWorksSection() {
     <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/10 bg-app">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
         <div>
-          <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-1">
+          <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
             Commercial Portfolio
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-ink tracking-tight">
@@ -106,7 +106,7 @@ export function RelatedWorksSection() {
             {/* Info */}
             <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
               <div>
-                <h3 className="font-extrabold text-lg text-ink group-hover:text-beso-lime transition-colors">
+                <h3 className="font-extrabold text-lg text-ink group-hover:text-accent transition-colors">
                   {proj.title}
                 </h3>
                 <p className="text-xs font-bold text-accent mt-1">

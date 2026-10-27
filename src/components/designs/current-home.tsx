@@ -36,17 +36,16 @@ export default function HomePage() {
   const prestigeChair = flagships.find(p => p.id === 4) || products[3];
 
   return (
-    <div className="bg-app text-ink min-h-screen flex flex-col overflow-x-clip">
+    <div className="text-ink min-h-screen flex flex-col overflow-x-clip">
 
       {/* ─── Hero Section with Video Loop ─── */}
       <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden -mt-20">
         {/* Background Video */}
         <div className="absolute inset-0 z-[1] select-none pointer-events-none">
           <HeroVideo />
-          {/* Contrasty Cinematic Scrim Layer for effortless text reading */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75" />
-          <div className="absolute inset-0 backdrop-blur-[0.5px]" />
-          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-app via-app/70 to-transparent" />
+          {/* Subtle Warm Scrim — allows natural oak wood and sunlight to shine brightly */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/35" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[rgb(var(--app-rgb))] to-transparent" />
         </div>
 
         {/* Ambient background glows via smooth radial gradients (zero GPU blur overhead) */}
@@ -54,14 +53,14 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none z-0"
           style={{
             background:
-              'radial-gradient(circle at 40% 40%, rgb(var(--brand-lime) / 0.12), transparent 50%), radial-gradient(circle at 70% 65%, rgb(var(--gold-rgb) / 0.10), transparent 50%)',
+              'radial-gradient(circle at 40% 40%, rgb(var(--accent-rgb) / 0.12), transparent 50%), radial-gradient(circle at 70% 65%, rgb(var(--gold-rgb) / 0.10), transparent 50%)',
           }}
         />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] animate-fade-up" style={{animationDelay: '0.05s'}}>
             Pain-Free Working.<br />
-            <span className="text-emerald-400 drop-shadow-[0_2px_16px_rgba(52,211,153,0.4)]">Max Productivity.</span><br />
+            <span className="bg-gradient-to-r from-[#F5D096] via-[#E2A762] to-[#C98238] bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(184,115,51,0.45)]">Max Productivity.</span><br />
             Healthier Living.
           </h1>
           
@@ -70,7 +69,7 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center items-center animate-fade-up" style={{animationDelay: '0.35s'}}>
-            <Link href="/products" className="bg-white text-stone-900 hover:bg-stone-100 px-8 py-4 rounded-full text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.98] shadow-2xl">
+            <Link href="/products" className="bg-white text-stone-900 hover:bg-[#F2EADC] px-8 py-4 rounded-full text-xs uppercase tracking-widest font-extrabold min-w-[200px] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.98] shadow-2xl">
               Explore Shop
             </Link>
             <a
@@ -108,11 +107,11 @@ export default function HomePage() {
           <div
             className="absolute top-0 right-0 w-[380px] h-[380px] pointer-events-none"
             style={{
-              background: 'radial-gradient(circle at 100% 0%, rgb(var(--brand-lime) / 0.12), transparent 70%)',
+              background: 'radial-gradient(circle at 100% 0%, rgb(var(--accent-rgb) / 0.12), transparent 70%)',
             }}
           />
           <div className="lg:col-span-7 space-y-5 z-10">
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-brandLime uppercase tracking-[0.25em]">
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-[0.25em]">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>
               New · AR Experience
             </span>
@@ -143,7 +142,7 @@ export default function HomePage() {
               ['Try before you buy', 'Fit the whole setup in your room first'],
             ].map(([title, desc]) => (
               <div key={title} className="flex items-start gap-3 p-4 bg-surface-2/60 border border-line/8 rounded-2xl">
-                <span className="mt-0.5 w-2 h-2 rounded-full bg-brandLime shrink-0" />
+                <span className="mt-0.5 w-2 h-2 rounded-full bg-accent shrink-0" />
                 <div>
                   <div className="font-semibold text-ink text-sm">{title}</div>
                   <div className="text-xs text-ink/50">{desc}</div>
@@ -159,12 +158,12 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="text-xs font-bold text-brandLime tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
+            <span className="text-xs font-bold text-accent tracking-widest uppercase mb-1 block">Selected Ergonomics</span>
             <h2 className="text-3xl font-extrabold text-ink tracking-tight">
               Featured <span className="text-gradient">Collections</span>
             </h2>
           </div>
-          <Link href="/products" className="text-sm font-bold text-brandLime hover:text-ink transition-colors flex items-center gap-1">
+          <Link href="/products" className="text-sm font-bold text-accent hover:text-ink transition-colors flex items-center gap-1">
             Browse Entire Store <span>→</span>
           </Link>
         </Reveal>

@@ -46,7 +46,7 @@ export function Product3DViewer({
   return (
     <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden select-none" style={{backgroundColor: '#f5f5db'}}>
       {/* subtle ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-beso-lime/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-accent/5 rounded-full blur-[80px] pointer-events-none" />
 
       {!show3d ? (
         // ── Image view (default) — large silhouette, floor shadow ──
@@ -146,7 +146,7 @@ export function Product3DViewer({
               Couldn&apos;t load 3D — back to image
             </button>
           ) : (
-            <div className="w-9 h-9 border-2 border-brandLime/25 border-t-brandLime rounded-full animate-spin" />
+            <div className="w-9 h-9 border-2 border-accent/25 border-t-accent rounded-full animate-spin" />
           )}
         </div>
       )}

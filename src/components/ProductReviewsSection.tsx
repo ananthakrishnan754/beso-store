@@ -136,7 +136,7 @@ export function ProductReviewsSection({
       {/* ─── Header & Write a Review CTA ─── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-1">
+          <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
             Customer Feedback
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
@@ -223,7 +223,7 @@ export function ProductReviewsSection({
                   value={formName}
                   onChange={(e) => setFormName(e.target.value)}
                   placeholder="e.g. Anand R."
-                  className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-brandLime"
+                  className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-accent"
                 />
               </div>
 
@@ -236,7 +236,7 @@ export function ProductReviewsSection({
                   value={formRole}
                   onChange={(e) => setFormRole(e.target.value)}
                   placeholder="e.g. Design Director, Bengaluru"
-                  className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-brandLime"
+                  className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-accent"
                 />
               </div>
             </div>
@@ -251,7 +251,7 @@ export function ProductReviewsSection({
                 value={formTitle}
                 onChange={(e) => setFormTitle(e.target.value)}
                 placeholder="e.g. Excellent lumbar support for long working sessions"
-                className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-brandLime"
+                className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-accent"
               />
             </div>
 
@@ -266,7 +266,7 @@ export function ProductReviewsSection({
                 value={formComment}
                 onChange={(e) => setFormComment(e.target.value)}
                 placeholder="Describe the posture comfort, build quality, assembly, and how it performs in your daily work..."
-                className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-brandLime resize-none"
+                className="w-full px-4 py-2.5 rounded-xl border border-line/15 bg-app text-ink text-sm focus:outline-none focus:border-accent resize-none"
               />
             </div>
           </div>
@@ -344,7 +344,7 @@ export function ProductReviewsSection({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-beso-lime/15 text-beso-lime font-bold text-xs flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-accent/15 text-accent font-bold text-xs flex items-center justify-center">
                     {rev.name.charAt(0)}
                   </div>
                   <div>

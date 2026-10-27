@@ -31,7 +31,12 @@ export function ShowroomHighlight() {
     <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/10 bg-app">
       <div className="relative rounded-[2.5rem] bg-gradient-to-br from-surface to-surfaceSubtle border border-line/15 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-10 items-center shadow-xl">
         {/* Ambient Glow */}
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-brandLime/10 rounded-full blur-[120px] pointer-events-none" />
+        <div
+          className="absolute top-0 right-0 w-[450px] h-[450px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at 100% 0%, rgb(var(--accent-rgb) / 0.12), transparent 70%)',
+          }}
+        />
 
         {/* Content Column */}
         <div className="lg:col-span-7 space-y-6 z-10">
@@ -50,7 +55,7 @@ export function ShowroomHighlight() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <h4 className="font-extrabold text-sm text-ink">Bengaluru Flagship Showroom</h4>
-                  <span className="px-2 py-0.5 rounded-full bg-brandLime/20 text-ink text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/20">
                     Primary Showroom
                   </span>
                 </div>
@@ -138,12 +143,12 @@ export function ShowroomHighlight() {
               <div className="flex items-center gap-1.5 mb-1">
                 <span
                   className={`h-1.5 rounded-full transition-all duration-500 ${
-                    activeClip === 'A' ? 'w-6 bg-brandLime' : 'w-2 bg-white/40'
+                    activeClip === 'A' ? 'w-6 bg-accent' : 'w-2 bg-white/40'
                   }`}
                 />
                 <span
                   className={`h-1.5 rounded-full transition-all duration-500 ${
-                    activeClip === 'B' ? 'w-6 bg-brandLime' : 'w-2 bg-white/40'
+                    activeClip === 'B' ? 'w-6 bg-accent' : 'w-2 bg-white/40'
                   }`}
                 />
               </div>

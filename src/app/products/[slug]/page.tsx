@@ -89,7 +89,7 @@ export default function ProductDetailPage({
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="font-extrabold text-sm tracking-tight text-ink line-clamp-1">{product.name}</span>
-            <span className="hidden sm:inline-block px-2.5 py-0.5 bg-beso-lime/10 border border-beso-lime/20 rounded-full text-[9px] font-bold text-beso-lime uppercase tracking-widest">
+            <span className="hidden sm:inline-block px-2.5 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-[9px] font-bold text-accent uppercase tracking-widest">
               {product.subcategory.replace(/-/g, ' ')}
             </span>
           </div>
@@ -150,7 +150,7 @@ export default function ProductDetailPage({
           {/* Right Column: Info & Setup */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <span className="text-xs font-bold text-brandLime uppercase tracking-widest block mb-2">
+              <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-2">
                 {product.subcategory.replace(/-/g, ' ')}
               </span>
               <h1 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight leading-tight mb-2">
@@ -269,7 +269,7 @@ export default function ProductDetailPage({
         {specs.length > 0 && (
           <div id="specs" className="mt-20 max-w-4xl">
             <div className="mb-6">
-              <span className="text-xs font-bold text-brandLime tracking-widest uppercase">
+              <span className="text-xs font-bold text-accent tracking-widest uppercase">
                 Materials &amp; Engineering
               </span>
               <h2 className="text-2xl font-extrabold text-ink tracking-tight mt-1">

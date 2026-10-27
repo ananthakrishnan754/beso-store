@@ -60,7 +60,7 @@ export function ProductMeasurements({
         <div className="lg:col-span-5 space-y-6">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-brandLime uppercase tracking-widest">
+              <span className="text-xs font-bold text-accent uppercase tracking-widest">
                 Technical Blueprint · Ergonomics
               </span>
 

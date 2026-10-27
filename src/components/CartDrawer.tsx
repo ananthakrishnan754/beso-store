@@ -148,7 +148,7 @@ export function CartDrawer() {
                         <Link
                           href={`/products/${item.slug}`}
                           onClick={closeDrawer}
-                          className="font-semibold text-sm text-ink truncate hover:text-beso-lime transition-colors"
+                          className="font-semibold text-sm text-ink truncate hover:text-accent transition-colors"
                         >
                           {item.name}
                         </Link>
@@ -196,7 +196,7 @@ export function CartDrawer() {
             <div className="pt-4 border-t border-line/10 space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold tracking-widest uppercase text-beso-lime block">
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-accent block">
                     Frequently Paired
                   </span>
                   <h3 className="text-sm font-bold text-ink">Customers Also Liked</h3>
@@ -208,7 +208,7 @@ export function CartDrawer() {
                 {recommendations.map((rec) => (
                   <div
                     key={rec.id}
-                    className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-surface border border-line/8 hover:border-brandLime/30 transition-all group"
+                    className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-surface border border-line/8 hover:border-accent/30 transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="w-14 h-14 rounded-xl bg-surfaceSubtle overflow-hidden shrink-0">
@@ -223,7 +223,7 @@ export function CartDrawer() {
                         <Link
                           href={`/products/${rec.slug}`}
                           onClick={closeDrawer}
-                          className="font-medium text-xs text-ink truncate block hover:text-beso-lime transition-colors"
+                          className="font-medium text-xs text-ink truncate block hover:text-accent transition-colors"
                         >
                           {rec.name}
                         </Link>

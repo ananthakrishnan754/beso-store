@@ -50,7 +50,7 @@ export default function ProductsPage({
     <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
       {/* Header */}
       <div className="mb-8">
-        <p className="text-beso-lime text-sm font-semibold tracking-widest uppercase mb-2">
+        <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-2">
           {catLabel} Collection
         </p>
         <h1 className="text-3xl md:text-4xl font-bold text-ink">
@@ -71,7 +71,7 @@ export default function ProductsPage({
           href="/products"
           className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
             !searchParams.category && !searchParams.subcategory
-              ? 'bg-beso-lime text-onAccent'
+              ? 'bg-accent text-onAccent'
               : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
           }`}
         >
@@ -81,7 +81,7 @@ export default function ProductsPage({
           href="/products?category=office"
           className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
             searchParams.category === 'office' && !searchParams.subcategory
-              ? 'bg-beso-lime text-onAccent'
+              ? 'bg-accent text-onAccent'
               : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
           }`}
         >
@@ -91,7 +91,7 @@ export default function ProductsPage({
           href="/products?category=home"
           className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
             searchParams.category === 'home' && !searchParams.subcategory
-              ? 'bg-beso-lime text-onAccent'
+              ? 'bg-accent text-onAccent'
               : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
           }`}
         >
@@ -103,7 +103,7 @@ export default function ProductsPage({
             href={`/products?subcategory=${sub}`}
             className={`snap-start h-9 px-4 rounded-full text-xs font-medium whitespace-nowrap inline-flex items-center transition-colors ${
               searchParams.subcategory === sub
-                ? 'bg-beso-lime text-onAccent'
+                ? 'bg-accent text-onAccent'
                 : 'bg-beso-card border border-line/6 text-ink/60 hover:text-ink'
             }`}
           >

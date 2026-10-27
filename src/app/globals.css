@@ -160,38 +160,40 @@ body {
   will-change: transform;
 }
 
-/* Default / Base: Oak Clean Modern — Natural Scandinavian bleached oak,
-   warm architectural brass, and deep forest spruce green. */
+/* Default / Base: Scandinavian Oak — Natural bleached oak,
+   warm architectural brass, rich golden amber timber, and smoked walnut ink.
+   Zero green accents — 100% authentic Scandinavian warm wood palette. */
 :root {
   color-scheme: light;
-  --app-rgb: 245 240 231;
-  --surface-rgb: 253 251 247;
-  --surface-2-rgb: 238 231 219;
-  --surface-subtle-rgb: 242 235 224;
-  --ink-rgb: 26 21 16;
-  --soft-rgb: 98 87 74;
-  --faint-rgb: 142 131 118;
-  --accent-rgb: 28 84 66;
-  --accent-2-rgb: 40 108 86;
-  --on-accent-rgb: 248 250 249;
+  --app-rgb: 245 238 227;
+  --surface-rgb: 252 248 241;
+  --surface-2-rgb: 238 227 210;
+  --surface-subtle-rgb: 242 232 218;
+  --ink-rgb: 36 24 16;
+  --soft-rgb: 112 86 62;
+  --faint-rgb: 158 132 106;
+  --accent-rgb: 194 117 38;
+  --accent-2-rgb: 217 142 56;
+  --on-accent-rgb: 255 255 255;
   --danger-rgb: 196 67 47;
-  --gold-rgb: 184 134 58;
-  --line-rgb: 44 36 26;
-  --line-strong-rgb: 32 25 17;
-  --glass: rgba(245, 240, 231, 0.85);
-  --shadow-color: rgba(36, 29, 20, 0.08);
-  --shadow-color-strong: rgba(36, 29, 20, 0.16);
-  --glow-color: rgba(28, 84, 66, 0.12);
-  --glow-strong: rgba(28, 84, 66, 0.35);
-  --brand-lime: 28 84 66;
+  --gold-rgb: 204 148 54;
+  --line-rgb: 60 44 30;
+  --line-strong-rgb: 42 30 20;
+  --glass: rgba(245, 238, 227, 0.92);
+  --shadow-color: rgba(45, 32, 20, 0.08);
+  --shadow-color-strong: rgba(45, 32, 20, 0.16);
+  --glow-rgb: 235 198 148;
+  --glow-color: rgba(194, 117, 38, 0.22);
+  --glow-strong: rgba(194, 117, 38, 0.45);
+  --brand-lime: 194 117 38;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Fraunces', Georgia, serif;
 }
 
-/* Brand green accent — resolves to the rich Oak Forest Spruce green (28 84 66) */
+/* Brand accent default (resolves to warm golden oak timber 184 115 51) */
 :root,
 [data-theme] {
-  --brand-lime: 28 84 66;
+  --brand-lime: 194 117 38;
 }
 
 [data-theme="night-luxe"] {
@@ -327,27 +329,30 @@ body {
   --font-display: 'Playfair Display', Georgia, serif;
 }
 
-/* Oak — clean modern light oak + deep forest green */
+/* Scandinavian Oak — Natural bleached oak, warm architectural brass, golden amber timber */
 [data-theme="oak-clean-modern"] {
   color-scheme: light;
-  --app-rgb: 245 240 231;
-  --surface-rgb: 253 251 247;
-  --surface-2-rgb: 238 231 219;
-  --surface-subtle-rgb: 242 235 224;
-  --ink-rgb: 26 21 16;
-  --soft-rgb: 98 87 74;
-  --faint-rgb: 142 131 118;
-  --accent-rgb: 28 84 66;
-  --accent-2-rgb: 40 108 86;
-  --on-accent-rgb: 248 250 249;
+  --app-rgb: 245 238 227;
+  --surface-rgb: 252 248 241;
+  --surface-2-rgb: 238 227 210;
+  --surface-subtle-rgb: 242 232 218;
+  --ink-rgb: 36 24 16;
+  --soft-rgb: 112 86 62;
+  --faint-rgb: 158 132 106;
+  --accent-rgb: 194 117 38;
+  --accent-2-rgb: 217 142 56;
+  --on-accent-rgb: 255 255 255;
   --danger-rgb: 196 67 47;
-  --gold-rgb: 184 134 58;
-  --line-rgb: 44 36 26;
-  --line-strong-rgb: 32 25 17;
-  --glass: rgba(245, 240, 231, 0.85);
-  --shadow-color: rgba(36, 29, 20, 0.08);
-  --shadow-color-strong: rgba(36, 29, 20, 0.16);
-  --brand-lime: 28 84 66;
+  --gold-rgb: 204 148 54;
+  --line-rgb: 60 44 30;
+  --line-strong-rgb: 42 30 20;
+  --glass: rgba(245, 238, 227, 0.92);
+  --shadow-color: rgba(45, 32, 20, 0.08);
+  --shadow-color-strong: rgba(45, 32, 20, 0.16);
+  --glow-rgb: 235 198 148;
+  --glow-color: rgba(194, 117, 38, 0.22);
+  --glow-strong: rgba(194, 117, 38, 0.45);
+  --brand-lime: 194 117 38;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Fraunces', Georgia, serif;
 }

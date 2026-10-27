@@ -79,12 +79,12 @@ export const THEMES: Theme[] = [
   },
   {
     id: 'oak-clean-modern',
-    name: 'Oak Clean',
-    tagline: 'Bright oak & deep forest green',
+    name: 'Scandinavian Oak',
+    tagline: 'Natural Nordic oak & warm architectural brass',
     mode: 'light',
     sans: 'Inter',
     display: 'Fraunces',
-    swatch: {app: '#fbfbf9', accent: '#1f5c4a', ink: '#17130e'},
+    swatch: {app: '#f5eee3', accent: '#c27526', ink: '#241810'},
     heroVideo: '/assets/videos/hero-bg-oak.webm',
   },
   {

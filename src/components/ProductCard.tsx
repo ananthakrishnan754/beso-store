@@ -119,7 +119,7 @@ export function ProductCard({product}: {product: Product}) {
             }}
             className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
               compared
-                ? 'bg-beso-lime text-black shadow-md font-bold'
+                ? 'bg-accent text-white shadow-md font-bold'
                 : 'bg-white/80 hover:bg-white text-ink/70 hover:text-ink shadow-sm'
             }`}
             title={compared ? 'In compare list (Click to remove)' : 'Add to compare'}
@@ -168,7 +168,7 @@ export function ProductCard({product}: {product: Product}) {
               e.stopPropagation();
               addToCart(product, 1);
             }}
-            className="flex-1 py-2 px-3 rounded-xl bg-ink text-app text-[11px] font-bold uppercase tracking-wider shadow-lg hover:bg-beso-lime hover:text-black transition-all flex items-center justify-center gap-1.5"
+            className="flex-1 py-2 px-3 rounded-xl bg-ink text-app text-[11px] font-bold uppercase tracking-wider shadow-lg hover:bg-accent hover:text-white transition-all flex items-center justify-center gap-1.5"
             title="Add to Cart"
           >
             <span>+ Add to Cart</span>
@@ -184,7 +184,7 @@ export function ProductCard({product}: {product: Product}) {
             }}
             className={`p-2 rounded-xl text-xs font-semibold shadow-lg transition-all flex items-center justify-center ${
               compared
-                ? 'bg-beso-lime text-black font-bold'
+                ? 'bg-accent text-white font-bold'
                 : 'bg-white/95 text-ink hover:bg-white'
             }`}
             title={compared ? 'Remove from compare' : 'Compare product'}
@@ -226,7 +226,7 @@ export function ProductCard({product}: {product: Product}) {
         </p>
 
         {/* Product name — serif display voice for character */}
-        <h3 className="card-title font-display text-base font-semibold text-ink mb-1 line-clamp-1 group-hover:text-beso-lime transition-colors">
+        <h3 className="card-title font-display text-base font-semibold text-ink mb-1 line-clamp-1 group-hover:text-accent transition-colors">
           {product.name}
         </h3>
 
@@ -266,7 +266,7 @@ export function ProductCard({product}: {product: Product}) {
                 e.stopPropagation();
                 toggleCompare(product);
               }}
-              className={`p-1.5 rounded-lg text-xs transition-colors ${compared ? 'bg-beso-lime text-black font-bold' : 'bg-surface border border-line/10 text-ink/60'}`}
+              className={`p-1.5 rounded-lg text-xs transition-colors ${compared ? 'bg-accent text-white font-bold' : 'bg-surface border border-line/10 text-ink/60'}`}
               title="Compare"
               aria-label="Compare"
             >
@@ -281,7 +281,7 @@ export function ProductCard({product}: {product: Product}) {
                 e.stopPropagation();
                 addToCart(product, 1);
               }}
-              className="px-3 py-1.5 rounded-full bg-ink text-app text-[10px] font-bold uppercase tracking-wider hover:bg-beso-lime hover:text-black transition-colors"
+              className="px-3 py-1.5 rounded-full bg-ink text-app text-[10px] font-bold uppercase tracking-wider hover:bg-accent hover:text-white transition-colors"
             >
               + Cart
             </button>

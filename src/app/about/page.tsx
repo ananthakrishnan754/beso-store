@@ -41,7 +41,7 @@ export default function AboutPage() {
     <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
       {/* Hero */}
       <div className="max-w-3xl mb-16">
-        <p className="text-beso-lime text-sm font-semibold tracking-widest uppercase mb-3">
+        <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-3">
           About BESO
         </p>
         <h1 className="text-3xl md:text-5xl font-bold text-ink mb-6">
@@ -59,7 +59,7 @@ export default function AboutPage() {
       <div className="bg-beso-card rounded-3xl border border-line/10 p-6 sm:p-10 md:p-12 mb-16 shadow-xl space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-bold text-beso-lime uppercase tracking-widest block mb-1">
+            <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
               Store &amp; Workshop Walkthrough
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
@@ -124,7 +124,7 @@ export default function AboutPage() {
             key={s.label}
             className="bg-beso-card rounded-2xl border border-line/6 p-6 text-center"
           >
-            <div className="text-2xl font-bold text-beso-lime mb-1">{s.val}</div>
+            <div className="text-2xl font-bold text-accent mb-1">{s.val}</div>
             <div className="text-sm text-ink/40">{s.label}</div>
           </div>
         ))}

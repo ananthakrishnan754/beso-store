@@ -21,7 +21,7 @@ export function Footer() {
         
         {/* Column 1: Contact Us */}
         <div className="col-span-2 md:col-span-1 space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Contact Us</h4>
+          <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Contact Us</h4>
           <div className="space-y-2 text-xs md:text-sm text-ink/50">
             <p>
               Phone:{' '}
@@ -78,7 +78,7 @@ export function Footer() {
 
         {/* Column 2: Company */}
         <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Company</h4>
+          <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Company</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
             <a href="https://www.linkedin.com/company/beso-furniture/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">About Us</a>
             <Link href="/products" className="hover:text-ink transition-colors">Store</Link>
@@ -89,7 +89,7 @@ export function Footer() {
 
         {/* Column 3: Support */}
         <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Useful Links</h4>
+          <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Useful Links</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
             <Link href="/contact" className="hover:text-ink transition-colors">Contact Us</Link>
             <a href="https://thebesostore.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Privacy Policy</a>
@@ -100,7 +100,7 @@ export function Footer() {
 
         {/* Column 4: Office Chairs */}
         <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Office Chairs</h4>
+          <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Office Chairs</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
             <Link href="/products/ezeebee-zig-zag-executive-chair" className="hover:text-ink transition-colors">Zig Zag Executive</Link>
             <Link href="/products/beso-crown-executive-chair" className="hover:text-ink transition-colors">BESO Crown</Link>
@@ -112,7 +112,7 @@ export function Footer() {
 
         {/* Column 5: Desks */}
         <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Desks</h4>
+          <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Desks</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
             <Link href="/products/beso-flexrise-height-adjustable-table" className="hover:text-ink transition-colors">FlexRise Standing</Link>
             <Link href="/products/beso-horizon-executive-table" className="hover:text-ink transition-colors">Horizon Executive</Link>
@@ -123,7 +123,7 @@ export function Footer() {
 
         {/* Column 6: Contact/Visit */}
         <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest text-brandLime uppercase">Visit Us</h4>
+          <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Visit Us</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
             <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Our Showroom</a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">WhatsApp Us</a>

@@ -164,7 +164,7 @@ export function ProductGalleryZoom({
             </div>
           ) : (
             <div className="flex flex-col items-center gap-3 text-white/60">
-              <div className="w-8 h-8 border-2 border-brandLime border-t-transparent rounded-full animate-spin" />
+              <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
               <span className="text-xs">Loading 3D CAD mesh…</span>
             </div>
           )}
@@ -209,7 +209,7 @@ export function ProductGalleryZoom({
           {/* Zoom Cursor Lens Indicator */}
           {isZooming && activeTab === 'studio' && (
             <div
-              className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brandLime/70 shadow-[0_0_20px_rgb(var(--brand-lime)/0.3)] pointer-events-none"
+              className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-accent/70 shadow-[0_0_20px_rgb(var(--accent-rgb)/0.3)] pointer-events-none"
               style={{ left: `${zoomPos.x}%`, top: `${zoomPos.y}%` }}
             />
           )}
@@ -226,7 +226,7 @@ export function ProductGalleryZoom({
               onClick={() => setSelectedImgIndex(idx)}
               className={`w-16 h-16 rounded-2xl overflow-hidden border p-1 bg-white dark:bg-[#121519] shrink-0 transition-all ${
                 selectedImgIndex === idx
-                  ? 'border-brandLime ring-2 ring-brandLime/30 scale-105'
+                  ? 'border-accent ring-2 ring-accent/30 scale-105'
                   : 'border-line/10 hover:border-line/30 opacity-70 hover:opacity-100'
               }`}
             >
