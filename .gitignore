@@ -9,3 +9,4 @@ Generated Video*.mp4
 nohup.out
 *.bak
 /teardown/
+*.tsbuildinfo

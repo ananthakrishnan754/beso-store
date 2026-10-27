@@ -49,9 +49,14 @@ export default function HomePage() {
           <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-app via-app/70 to-transparent" />
         </div>
 
-        {/* Ambient background glows */}
-        <div className="absolute top-1/3 left-1/3 w-[450px] h-[450px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
-        <div className="absolute bottom-1/3 right-1/3 w-[350px] h-[350px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
+        {/* Ambient background glows via smooth radial gradients (zero GPU blur overhead) */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background:
+              'radial-gradient(circle at 40% 40%, rgb(var(--brand-lime) / 0.12), transparent 50%), radial-gradient(circle at 70% 65%, rgb(var(--gold-rgb) / 0.10), transparent 50%)',
+          }}
+        />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] animate-fade-up" style={{animationDelay: '0.05s'}}>
@@ -100,7 +105,12 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-24 border-t border-line/5">
         <Reveal>
         <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#F8F3EB] to-[#EFE7D9] border border-line/10 overflow-hidden p-8 sm:p-12 md:p-16 grid lg:grid-cols-12 gap-8 items-center">
-          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-brandLime/10 rounded-full blur-[100px] pointer-events-none" />
+          <div
+            className="absolute top-0 right-0 w-[380px] h-[380px] pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle at 100% 0%, rgb(var(--brand-lime) / 0.12), transparent 70%)',
+            }}
+          />
           <div className="lg:col-span-7 space-y-5 z-10">
             <span className="inline-flex items-center gap-2 text-[10px] font-bold text-brandLime uppercase tracking-[0.25em]">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M21 8.6c0-.4-.2-.7-.5-.9L12.6 3.1c-.4-.2-.9-.2-1.3 0L3.5 7.7c-.3.2-.5.5-.5.9v6.8c0 .4.2.7.5.9l7.8 4.6c.2.1.4.2.7.2s.5-.1.7-.2l7.8-4.6c.3-.2.5-.5.5-.9V8.6zM12 4.8l5.5 3.2L12 11.2 6.5 8 12 4.8zM5.2 9.5l5.9 3.5v5.6L5.2 15v-5.5zm12.6 9.1l-5.9 3.5v-5.6l5.9-3.5v5.6z" /></svg>

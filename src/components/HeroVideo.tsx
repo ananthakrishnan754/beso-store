@@ -29,14 +29,28 @@ export default function HeroVideo() {
     let reduced = false;
     try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { /* */ }
     const el = videoRef.current;
-    const onScroll = () => {
-      if (reduced || !el) return;
-      const y = Math.min(window.scrollY, window.innerHeight);
-      el.style.transform = `translateY(${y * 0.18}px) scale(1.06)`;
-      el.style.willChange = 'transform';
+    if (reduced || !el) return;
+
+    let ticking = false;
+    el.style.willChange = 'transform';
+
+    const update = () => {
+      ticking = false;
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+      if (y > vh + 100) return; // past hero, skip calculation
+      el.style.transform = `translate3d(0, ${(y * 0.18).toFixed(1)}px, 0) scale(1.06)`;
     };
-    onScroll();
-    window.addEventListener('scroll', onScroll, {passive: true});
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 

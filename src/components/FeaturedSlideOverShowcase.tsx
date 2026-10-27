@@ -18,7 +18,13 @@ export function FeaturedSlideOverShowcase() {
   const all = products as any[];
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const card0Ref = useRef<HTMLDivElement>(null);
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  const [activeSlideIdx, setActiveSlideIdx] = useState(0);
+  const lastActiveIdx = useRef(0);
 
   const slides = [
     {
@@ -86,25 +92,91 @@ export function FeaturedSlideOverShowcase() {
     },
   ];
 
-  // Scroll tracking across 280vh track
+  // High-performance rAF-throttled scroll handler without React re-renders during scroll
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
       const el = sectionRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
+      // Skip all computations when the section is not in the viewport
+      if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+
       const totalScrollable = el.offsetHeight - window.innerHeight;
       if (totalScrollable <= 0) return;
       const currentScroll = -rect.top;
       const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
-      setScrollProgress(progress);
+
+      // Active slide indicator pill (only triggers state when changed)
+      const newIdx = progress < 0.38 ? 0 : progress < 0.72 ? 1 : 2;
+      if (newIdx !== lastActiveIdx.current) {
+        lastActiveIdx.current = newIdx;
+        setActiveSlideIdx(newIdx);
+      }
+
+      // Smooth progress bar (hardware-accelerated scaleX)
+      if (progressBarRef.current) {
+        progressBarRef.current.style.transform = `scaleX(${progress.toFixed(4)})`;
+      }
+
+      // Card 0: scale down slightly & fade; cull visibility when fully covered
+      if (card0Ref.current) {
+        if (progress > 0.72) {
+          card0Ref.current.style.visibility = 'hidden';
+        } else {
+          card0Ref.current.style.visibility = 'visible';
+          const s0Scale = progress > 0.05 ? Math.max(0.92, 1 - progress * 0.12) : 1;
+          const s0Opacity = progress > 0.35 ? Math.max(0.2, 1 - (progress - 0.35) * 1.6) : 1;
+          card0Ref.current.style.transform = `translate3d(0, 0, 0) scale3d(${s0Scale.toFixed(4)}, ${s0Scale.toFixed(4)}, 1)`;
+          card0Ref.current.style.opacity = `${s0Opacity.toFixed(4)}`;
+        }
+      }
+
+      // Card 1: slides UP into view with hardware acceleration; cull when off-screen
+      if (card1Ref.current) {
+        if (progress < 0.06 || progress > 0.98) {
+          card1Ref.current.style.visibility = 'hidden';
+        } else {
+          card1Ref.current.style.visibility = 'visible';
+          const p1 = Math.max(0, Math.min(1, (progress - 0.08) / 0.42));
+          const s1Y = (1 - p1) * 105;
+          const s1Scale = progress > 0.48 ? Math.max(0.93, 1 - (progress - 0.48) * 0.1) : 1;
+          const s1Opacity = progress > 0.75 ? Math.max(0.2, 1 - (progress - 0.75) * 1.6) : 1;
+          card1Ref.current.style.transform = `translate3d(0, ${s1Y.toFixed(2)}%, 0) scale3d(${s1Scale.toFixed(4)}, ${s1Scale.toFixed(4)}, 1)`;
+          card1Ref.current.style.opacity = `${s1Opacity.toFixed(4)}`;
+        }
+      }
+
+      // Card 2: slides UP into view with hardware acceleration; cull when below fold
+      if (card2Ref.current) {
+        if (progress < 0.50) {
+          card2Ref.current.style.visibility = 'hidden';
+        } else {
+          card2Ref.current.style.visibility = 'visible';
+          const p2 = Math.max(0, Math.min(1, (progress - 0.52) / 0.44));
+          const s2Y = (1 - p2) * 105;
+          card2Ref.current.style.transform = `translate3d(0, ${s2Y.toFixed(2)}%, 0)`;
+        }
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
 
-  const activeSlideIdx = scrollProgress < 0.38 ? 0 : scrollProgress < 0.72 ? 1 : 2;
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
 
   const scrollToSlide = (idx: number) => {
     const el = sectionRef.current;
@@ -112,18 +184,6 @@ export function FeaturedSlideOverShowcase() {
     const targetOffset = el.offsetTop + (idx * 0.45) * (el.offsetHeight - window.innerHeight);
     window.scrollTo({ top: targetOffset, behavior: 'smooth' });
   };
-
-  // Card physics for slide-over deck
-  const slide0Scale = scrollProgress > 0.05 ? Math.max(0.92, 1 - scrollProgress * 0.12) : 1;
-  const slide0Opacity = scrollProgress > 0.35 ? Math.max(0.3, 1 - (scrollProgress - 0.35) * 1.5) : 1;
-
-  const p1 = Math.max(0, Math.min(1, (scrollProgress - 0.08) / 0.42));
-  const slide1Y = (1 - p1) * 105;
-  const slide1Scale = scrollProgress > 0.48 ? Math.max(0.93, 1 - (scrollProgress - 0.48) * 0.1) : 1;
-  const slide1Opacity = scrollProgress > 0.75 ? Math.max(0.3, 1 - (scrollProgress - 0.75) * 1.5) : 1;
-
-  const p2 = Math.max(0, Math.min(1, (scrollProgress - 0.52) / 0.44));
-  const slide2Y = (1 - p2) * 105;
 
   return (
     <section
@@ -135,8 +195,8 @@ export function FeaturedSlideOverShowcase() {
         {/* Top Header with Glass Indicator & Navigation */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 z-40">
           <div>
-            <span className="text-xs font-bold text-brandLime uppercase tracking-widest inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-brandLime animate-pulse" />
+            <span className="text-xs font-bold text-accent uppercase tracking-widest inline-flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               Featured Showcase · Mouse Scroll-Driven Deck
             </span>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-ink tracking-tight mt-0.5">
@@ -146,7 +206,7 @@ export function FeaturedSlideOverShowcase() {
 
           <div className="flex items-center gap-4">
             {/* Numbered Pills (01 / 02 / 03) */}
-            <div className="flex items-center gap-1.5 p-1 rounded-full bg-surface/80 backdrop-blur-xl border border-line/15 shadow-md">
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-surface/80 backdrop-blur-md border border-line/15 shadow-md">
               {slides.map((s, idx) => (
                 <button
                   key={s.id}
@@ -167,23 +227,27 @@ export function FeaturedSlideOverShowcase() {
             {/* Continuous Progress Indicator Bar */}
             <div className="hidden sm:flex items-center gap-2 w-28 h-2 bg-surface/80 backdrop-blur-md rounded-full overflow-hidden border border-line/15 p-0.5">
               <div
-                className="h-full bg-brandLime rounded-full transition-all duration-75"
-                style={{ width: `${Math.round(scrollProgress * 100)}%` }}
+                ref={progressBarRef}
+                className="h-full w-full bg-accent rounded-full origin-left will-change-transform"
+                style={{ transform: 'scaleX(0)' }}
               />
             </div>
           </div>
         </div>
 
-        {/* ─── Card Deck Viewport: Premium Glassmorphic Cards with Depth ─── */}
+        {/* ─── Card Deck Viewport: Premium Glassmorphic Cards with Hardware Acceleration ─── */}
         <div className="relative flex-1 my-1.5 flex items-center justify-center min-h-0">
-          {/* ═══ SLIDE 0: BESO Crown (Glassmorphism & Depth) ═══ */}
+          {/* ═══ SLIDE 0: BESO Crown ═══ */}
           <div
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/75 dark:bg-black/50 backdrop-blur-3xl border border-white/60 dark:border-white/20 shadow-[0_30px_80px_rgba(36,29,20,0.12)] ring-1 ring-inset ring-white/50 dark:ring-white/10"
+            ref={card0Ref}
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/85 dark:bg-black/65 backdrop-blur-md border border-white/60 dark:border-white/20 shadow-[0_20px_60px_rgba(36,29,20,0.1)] ring-1 ring-inset ring-white/50 dark:ring-white/10 will-change-transform"
             style={{
               zIndex: 10,
-              transform: `scale(${slide0Scale})`,
-              opacity: slide0Opacity,
-              transition: 'transform 0.1s linear, opacity 0.1s linear',
+              transform: 'scale3d(1, 1, 1)',
+              opacity: 1,
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              isolation: 'isolate',
             }}
           >
             <SlideContent
@@ -197,14 +261,17 @@ export function FeaturedSlideOverShowcase() {
             />
           </div>
 
-          {/* ═══ SLIDE 1: BESO FlexRise (Slides UP with glass depth) ═══ */}
+          {/* ═══ SLIDE 1: BESO FlexRise ═══ */}
           <div
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/80 dark:bg-black/60 backdrop-blur-3xl border border-white/70 dark:border-white/25 shadow-[0_35px_95px_rgba(36,29,20,0.18)] ring-1 ring-inset ring-white/60 dark:ring-white/15"
+            ref={card1Ref}
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/85 dark:bg-black/75 backdrop-blur-md border border-white/70 dark:border-white/25 shadow-[0_25px_70px_rgba(36,29,20,0.14)] ring-1 ring-inset ring-white/60 dark:ring-white/15 will-change-transform"
             style={{
               zIndex: 20,
-              transform: `translateY(${slide1Y}%) scale(${slide1Scale})`,
-              opacity: slide1Opacity,
-              transition: 'transform 0.1s linear, opacity 0.1s linear',
+              transform: 'translate3d(0, 105%, 0) scale3d(1, 1, 1)',
+              opacity: 1,
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              isolation: 'isolate',
             }}
           >
             <SlideContent
@@ -218,13 +285,16 @@ export function FeaturedSlideOverShowcase() {
             />
           </div>
 
-          {/* ═══ SLIDE 2: BESO Prestige (Slides UP with highest depth & shadow) ═══ */}
+          {/* ═══ SLIDE 2: BESO Prestige ═══ */}
           <div
-            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/88 dark:bg-black/70 backdrop-blur-3xl border border-white/85 dark:border-white/30 shadow-[0_40px_110px_rgba(36,29,20,0.24)] ring-1 ring-inset ring-white/70 dark:ring-white/20"
+            ref={card2Ref}
+            className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center justify-between lg:justify-center rounded-[2rem] p-4 sm:p-6 md:p-8 overflow-y-auto lg:overflow-hidden bg-white/90 dark:bg-black/85 backdrop-blur-md border border-white/85 dark:border-white/30 shadow-[0_30px_80px_rgba(36,29,20,0.18)] ring-1 ring-inset ring-white/70 dark:ring-white/20 will-change-transform"
             style={{
               zIndex: 30,
-              transform: `translateY(${slide2Y}%)`,
-              transition: 'transform 0.1s linear',
+              transform: 'translate3d(0, 105%, 0)',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              isolation: 'isolate',
             }}
           >
             <SlideContent
@@ -243,7 +313,7 @@ export function FeaturedSlideOverShowcase() {
   );
 }
 
-function SlideContent({
+const SlideContent = React.memo(function SlideContent({
   slide,
   allProducts,
   onAddToCart,
@@ -266,9 +336,14 @@ function SlideContent({
 
   return (
     <>
-      {/* Dynamic 3D depth backdrop glow */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-accent/15 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-[110px] pointer-events-none" />
+      {/* Dynamic 3D depth backdrop glow using smooth radial-gradient (Zero GPU blur penalty) */}
+      <div
+        className="absolute inset-0 pointer-events-none rounded-[2rem]"
+        style={{
+          background:
+            'radial-gradient(ellipse at 15% 15%, rgb(var(--accent-rgb) / 0.10), transparent 50%), radial-gradient(ellipse at 85% 85%, rgb(var(--gold-rgb) / 0.08), transparent 50%)',
+        }}
+      />
 
       {/* Left Column on Desktop / Bottom on Mobile: Technical Specs & Architecture */}
       <div className="lg:col-span-7 space-y-2.5 sm:space-y-4 z-10 order-2 lg:order-1">
@@ -306,12 +381,12 @@ function SlideContent({
           ))}
         </div>
 
-        {/* Desktop / Tablet: Technical Specs Glass 2x2 Grid */}
+        {/* Desktop / Tablet: Technical Specs Grid */}
         <div className="hidden sm:grid grid-cols-2 gap-2 pt-0.5">
           {slide.specs.map((sp: any) => (
             <div
               key={sp.label}
-              className="p-2 sm:p-3 rounded-2xl bg-white/60 dark:bg-white/10 backdrop-blur-md border border-white/60 dark:border-white/20 hover:border-accent/40 hover:bg-white/80 transition-all shadow-sm"
+              className="p-2 sm:p-3 rounded-2xl bg-white/70 dark:bg-white/10 border border-white/60 dark:border-white/20 hover:border-accent/40 hover:bg-white/90 transition-all shadow-sm"
             >
               <span className="text-[9px] font-bold text-ink/40 uppercase tracking-widest block">
                 {sp.label}
@@ -352,7 +427,7 @@ function SlideContent({
 
             <Link
               href={`/products/${slide.slug}`}
-              className="px-4 py-2.5 sm:py-3 rounded-full border border-line/20 bg-white/60 backdrop-blur-md text-xs font-bold text-ink hover:bg-white/85 transition-all shadow-sm"
+              className="px-4 py-2.5 sm:py-3 rounded-full border border-line/20 bg-white/80 dark:bg-white/15 text-xs font-bold text-ink hover:bg-white transition-all shadow-sm"
             >
               Full Specs →
             </Link>
@@ -365,7 +440,7 @@ function SlideContent({
                 className={`p-2.5 sm:p-3 rounded-full border transition-all ${
                   wishlisted
                     ? 'bg-rose-50 border-rose-300 text-rose-500'
-                    : 'border-line/20 bg-white/60 backdrop-blur-md text-ink/40 hover:text-rose-500'
+                    : 'border-line/20 bg-white/80 dark:bg-white/15 text-ink/40 hover:text-rose-500'
                 }`}
                 title={wishlisted ? 'In Wishlist' : 'Add to Wishlist'}
                 aria-label="Wishlist"
@@ -390,7 +465,7 @@ function SlideContent({
                 className={`p-2.5 sm:p-3 rounded-full border transition-all ${
                   comparing
                     ? 'bg-accent/20 border-accent text-accent font-bold'
-                    : 'border-line/20 bg-white/60 backdrop-blur-md text-ink/40 hover:text-ink'
+                    : 'border-line/20 bg-white/80 dark:bg-white/15 text-ink/40 hover:text-ink'
                 }`}
                 title={comparing ? 'Comparing' : 'Compare'}
                 aria-label="Compare"
@@ -424,4 +499,5 @@ function SlideContent({
       </div>
     </>
   );
-}
+});
+

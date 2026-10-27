@@ -150,11 +150,14 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  width: 0%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
   z-index: 100;
   background: linear-gradient(90deg, rgb(var(--gold-rgb)), rgb(var(--accent-rgb)));
-  box-shadow: 0 0 12px rgb(var(--gold-rgb) / 0.4);
-  transition: width 0.08s linear;
+  box-shadow: 0 0 10px rgb(var(--gold-rgb) / 0.35);
+  pointer-events: none;
+  will-change: transform;
 }
 
 /* Default / Base: Oak Clean Modern — Natural Scandinavian bleached oak,
@@ -470,7 +473,12 @@ body {
 
 /* ─── Base ───────────────────────────────────────────────────────────────── */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root:has(:target) {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
