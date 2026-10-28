@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 
 const NAV_ITEMS = [
+  {label: 'Home', href: '/'},
   {label: 'Office', href: '/products?category=office'},
   {label: 'All Products', href: '/products'},
   {label: 'About', href: '/about'},
