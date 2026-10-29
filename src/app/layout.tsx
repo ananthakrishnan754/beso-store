@@ -8,6 +8,7 @@ import {THEMES, type ThemeId} from '@/lib/themes';
 import {DEFAULT_THEME, THEME_STORAGE_KEY} from '@/lib/site-config';
 import {CartProvider} from '@/context/CartContext';
 import {CartDrawer} from '@/components/CartDrawer';
+import {FloatingConcierge} from '@/components/FloatingConcierge';
 
 const themeIdList = THEMES.map((t) => t.id).join(',');
 const themeMetaColors: Record<ThemeId, string> = THEMES.reduce(
@@ -88,6 +89,7 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
           <CartDrawer />
+          <FloatingConcierge />
         </CartProvider>
       </body>
     </html>
