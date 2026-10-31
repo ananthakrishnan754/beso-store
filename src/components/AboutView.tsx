@@ -75,7 +75,7 @@ export function AboutView() {
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-['Poppins',sans-serif] font-extrabold text-ink tracking-tight leading-[1.08]">
             Furniture That Calibrates<br />
-            <span className="bg-gradient-to-r from-[#FF7A1A] via-[#FF5500] to-[#E04400] bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(255,85,0,0.3)]">
+            <span className="text-[#FF5500] drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]">
               Body, Mind &amp; Space
             </span>
           </h1>
@@ -259,10 +259,10 @@ export function AboutView() {
           />
 
           <div className="relative z-10 max-w-3xl space-y-6">
-            <span className="text-6xl text-[#FF5500] font-['Poppins',sans-serif] font-black leading-none block select-none">
+            <span className="text-5xl text-[#C27526] font-serif leading-none block select-none">
               “
             </span>
-            <blockquote className="text-xl sm:text-2xl md:text-3xl font-['Poppins',sans-serif] font-medium leading-snug text-white/95">
+            <blockquote className="text-xl sm:text-2xl md:text-3xl font-serif font-normal italic leading-snug text-white/95">
               True luxury in the modern workplace isn’t gold leaf or ornament—it is physical freedom. The quiet sensation of sitting down for nine hours and finishing the day without an ounce of neck fatigue or lower-back stiffness.
             </blockquote>
             <div className="pt-2">
