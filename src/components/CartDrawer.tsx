@@ -313,7 +313,7 @@ export function CartDrawer() {
             ) : (
               <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)]" />
             )}
-            <h2 className="font-serif font-bold text-base text-ink tracking-tight">
+            <h2 className="font-display font-bold text-base text-ink tracking-tight">
               {drawerMode === 'added-confirmation' ? 'Added to Bag' : 'Your Shopping Bag'}
             </h2>
             <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-accent/15 text-accent font-bold border border-accent/20">

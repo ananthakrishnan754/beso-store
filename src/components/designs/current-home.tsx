@@ -58,7 +58,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] animate-fade-up" style={{animationDelay: '0.05s'}}>
             Pain-Free Working.<br />
-            <span className="bg-gradient-to-r from-[#F5D096] via-[#E2A762] to-[#C98238] bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(184,115,51,0.45)]">Max Productivity.</span><br />
+            <span className="text-[#FF5500] drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]">Max Productivity.</span><br />
             Healthier Living.
           </h1>
           

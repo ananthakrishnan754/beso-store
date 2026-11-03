@@ -29,7 +29,7 @@ export function FloatingConcierge() {
           role="tooltip"
           className="hidden md:flex items-center gap-2 mr-3 px-3.5 py-1.5 rounded-full bg-[#18110B]/90 dark:bg-[#18110B]/95 text-[#FAF6F0] text-[11px] font-medium tracking-wide shadow-xl border border-white/15 backdrop-blur-xl opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 pointer-events-none whitespace-nowrap"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#D98E38]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
           <span>Flagship Showroom · 100 Feet Rd, Indiranagar</span>
         </div>
 

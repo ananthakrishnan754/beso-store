@@ -1012,3 +1012,26 @@ html[data-design-mode='1'] .scroll-progress {
 @keyframes funky-bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
 .funky-bob { animation: funky-bob 4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .funky-spin, .funky-bob { animation: none; } }
+
+/* ─── Client-approved brand identity (from the About page) ─────────────────
+ * The About page was signed off with architectural orange (#FF5500) and a
+ * Poppins display / Inter body pairing. Lock those two brand decisions across
+ * every page while leaving each theme's background and surface palette free to
+ * change — so dark/light and concept palettes still work, but the accent and
+ * typography stay consistent with the approved design.
+ * ───────────────────────────────────────────────────────────────────────── */
+:root,
+[data-theme] {
+  --accent-rgb: 255 85 0;
+  --accent-2-rgb: 255 107 0;
+  --on-accent-rgb: 255 255 255;
+  --brand-lime: 255 85 0;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+}
+
+[data-theme='dark-obsidian-oak'] {
+  --glow-rgb: 255 85 0;
+  --glow-color: rgba(255, 85, 0, 0.25);
+  --glow-strong: rgba(255, 107, 0, 0.55);
+}

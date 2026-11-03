@@ -184,8 +184,8 @@ export default function ComparePage() {
           <span className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)]" />
           Side-By-Side Comparison
         </p>
-        <h1 className="text-3xl md:text-5xl font-serif font-bold text-ink tracking-tight leading-tight">
-          Calibrated Specifications, <span className="bg-gradient-to-r from-[#D98E38] via-[#C27526] to-[#A35B16] dark:from-[#F2623F] dark:via-[#E24A2B] dark:to-[#B83218] bg-clip-text text-transparent">Simplified.</span>
+        <h1 className="text-3xl md:text-5xl font-display font-bold text-ink tracking-tight leading-tight">
+          Calibrated Specifications, <span className="bg-gradient-to-r from-[#FF7A1A] via-[#FF5500] to-[#E04400] bg-clip-text text-transparent">Simplified.</span>
         </h1>
         <p className="text-ink/65 text-sm md:text-base mt-3 leading-relaxed">
           Select up to {MAX} contract-grade models to cross-examine ergonomics, dimensions, warranties, and pricing.
@@ -285,7 +285,7 @@ export default function ComparePage() {
                   <p className="text-[10px] font-bold text-accent uppercase tracking-widest">
                     {SUB_LABELS[p.subcategory] ?? p.subcategory.replace(/-/g, ' ')}
                   </p>
-                  <h3 className="font-serif font-bold text-ink text-sm sm:text-base leading-snug line-clamp-2 mt-1 group-hover:text-accent transition-colors">
+                  <h3 className="font-display font-bold text-ink text-sm sm:text-base leading-snug line-clamp-2 mt-1 group-hover:text-accent transition-colors">
                     {p.name}
                   </h3>
                 </div>
@@ -372,7 +372,7 @@ export default function ComparePage() {
               <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
                 Detailed Matrix
               </span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-ink tracking-tight">
                 Full Technical Breakdown
               </h2>
             </div>
@@ -410,7 +410,7 @@ export default function ComparePage() {
                             <span className="text-4xl opacity-40">🪑</span>
                           )}
                         </div>
-                        <h4 className="font-serif font-bold text-ink text-base leading-snug mb-1 group-hover:text-accent transition-colors line-clamp-2">
+                        <h4 className="font-display font-bold text-ink text-base leading-snug mb-1 group-hover:text-accent transition-colors line-clamp-2">
                           {p.name}
                         </h4>
                       </Link>
@@ -515,7 +515,7 @@ export default function ComparePage() {
       ) : (
         <div className="text-center py-20 border border-dashed border-white/30 dark:border-white/10 rounded-[2.5rem] bg-white/40 dark:bg-white/5 backdrop-blur-sm space-y-3">
           <div className="text-4xl mb-2">⚖️</div>
-          <p className="text-ink font-serif font-bold text-lg">
+          <p className="text-ink font-display font-bold text-lg">
             {sortedSelected.length === 0 ? 'Select 2 to 4 models to build your comparison.' : 'Pick at least one more model to cross-examine.'}
           </p>
           <p className="text-ink/50 text-xs max-w-sm mx-auto">

@@ -414,7 +414,7 @@ const SlideContent = React.memo(function SlideContent({
         {/* Topline: Frosted badge with glowing dot + Rating */}
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/80 dark:border-white/20 bg-white/55 dark:bg-white/10 text-accent text-[11px] font-bold tracking-widest uppercase shadow-sm backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-[#E99A15] shadow-[0_0_0_3px_#F8E5C5] dark:shadow-[0_0_0_3px_#4A3215]" />
+            <span className="w-2 h-2 rounded-full bg-[#FF5500] shadow-[0_0_0_3px_rgba(255,85,0,0.2)] dark:shadow-[0_0_0_3px_rgba(255,85,0,0.28)]" />
             <span>{slide.badge}</span>
           </div>
 
@@ -431,7 +431,7 @@ const SlideContent = React.memo(function SlideContent({
           <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.28em] text-[#88796B] dark:text-[#A8988A] uppercase mb-1 sm:mb-1.5">
             THE FLAGSHIP ENGINEERING LINE
           </p>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-serif font-bold text-ink tracking-tight leading-[1.06]">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-display font-bold text-ink tracking-tight leading-[1.06]">
             {slide.name}
           </h3>
           <p className="text-xs sm:text-sm text-ink/75 font-normal mt-1 leading-relaxed max-w-xl">
