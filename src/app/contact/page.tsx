@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import {ContactForm} from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -28,18 +29,19 @@ const CONTACT_OPTIONS = [
   },
   {
     icon: '📍',
-    title: 'Bengaluru Flagship Showroom',
-    desc: '42, 100 Feet Road, Indiranagar, Bengaluru, Karnataka 560038',
-    action: 'https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore',
-    label: 'Open Bengaluru Map',
+    title: 'Hyderabad Flagship Showroom',
+    desc: '5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001',
+    action: 'https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6',
+    label: 'Open Showroom Map',
     external: true,
   },
   {
     icon: '🏢',
-    title: 'Hyderabad Logistics & Hub',
-    desc: '5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001',
-    action: 'https://maps.google.com/?q=Hyderabad+Telangana+India',
-    label: 'Open Hyderabad Map',
+    title: 'Hyderabad Warehouse & Logistics Hub',
+    desc: 'Kattedan Rd, Telangana NGOs Colony, Rajendranagar Mandal, Hyderabad, Telangana 500077',
+    action:
+      'https://maps.google.com/?q=Kattedan+Rd,+Telangana+NGOs+Colony,+Rajendranagar+Mandal,+Hyderabad,+Telangana+500077',
+    label: 'Open Warehouse Map',
     external: true,
   },
 ];
@@ -67,7 +69,11 @@ const FAQ = [
   },
 ];
 
-export default function ContactPage() {
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams: {intent?: string};
+}) {
   return (
     <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
       {/* Hero */}
@@ -85,7 +91,7 @@ export default function ContactPage() {
       </div>
 
       {/* Contact options */}
-      <div className="grid sm:grid-cols-3 gap-4 mb-16">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
         {CONTACT_OPTIONS.map((opt) => (
           <a
             key={opt.title}
@@ -100,6 +106,11 @@ export default function ContactPage() {
             <span className="text-sm text-accent font-medium">{opt.label} →</span>
           </a>
         ))}
+      </div>
+
+      {/* Contact form & consultation booking */}
+      <div className="mb-16">
+        <ContactForm defaultIntent={searchParams.intent} />
       </div>
 
       {/* Bulk orders CTA */}

@@ -11,8 +11,8 @@ export function Footer() {
         <span className="footer-logo block" role="img" aria-label="BESO" />
         <p className="mt-3 text-xs text-ink/40 max-w-md">
           BESO — a brand by Furniture Space. Premium ergonomic chairs, sit-stand
-          desks, and executive furniture in Hyderabad, with two showrooms and a
-          12,000 sq ft warehouse. Bulk B2B procurement supported.
+          desks, and executive furniture in Hyderabad, with a flagship showroom
+          and a 12,000 sq ft warehouse. Bulk B2B procurement supported.
         </p>
       </div>
 
@@ -36,15 +36,16 @@ export function Footer() {
               </a>
             </p>
             <p>
-              Flagship:{' '}
-              <a href="https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors font-medium">
-                42, 100 Feet Rd, Indiranagar, Bengaluru
+              Showroom:{' '}
+              <a href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors font-medium">
+                5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001
               </a>
             </p>
             <p>
-              Logistics:{' '}
-              <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
-                5-8-91/5, Mahesh Nagar, Abids, Hyderabad
+              Warehouse:{' '}
+              <a href="https://maps.google.com/?q=Kattedan+Rd,+Telangana+NGOs+Colony,+Rajendranagar+Mandal,+Hyderabad,+Telangana+500077" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
+                Kattedan Rd, Telangana NGOs Colony, Rajendranagar Mandal, Hyderabad,
+                Telangana 500077
               </a>
             </p>
           </div>
@@ -125,7 +126,7 @@ export function Footer() {
         <div className="space-y-4">
           <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Visit Us</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
-            <a href="https://share.google/0xRqQEi2BiKh7v6MB" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Our Showroom</a>
+            <a href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Our Showroom</a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">WhatsApp Us</a>
             <Link href="/products" className="hover:text-ink transition-colors">Browse Catalog</Link>
             <Link href="/compare" className="hover:text-ink transition-colors">Compare Furniture</Link>

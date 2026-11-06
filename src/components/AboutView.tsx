@@ -5,24 +5,24 @@ import Link from 'next/link';
 
 const MILESTONES = [
   {
-    year: '2004',
+    year: '2019',
     title: 'Bespoke Joinery Studio Founded',
-    desc: 'Started as a boutique architectural woodworking studio in Bengaluru, handcrafting custom teak and oak boardroom tables for premier law firms and architect chambers.',
+    desc: 'Started as a boutique architectural woodworking studio in Hyderabad, handcrafting custom teak and oak boardroom tables for premier law firms and architect chambers.',
   },
   {
-    year: '2011',
+    year: '2021',
     title: 'Ergonomic Engineering & BIFMA Standards',
     desc: 'Established our in-house testing facility and partnered with leading orthopedic ergonomics consultants to engineer calibrated mesh and synchronous recline mechanisms.',
   },
   {
-    year: '2018',
+    year: '2022',
     title: 'The FlexRise Smart Desking Innovation',
     desc: 'Launched India’s premier dual-motor standing desk system with anti-collision gyros and whisper-quiet (<45 dB) lifting columns for high-growth tech founders.',
   },
   {
     year: '2023',
-    title: '100 Feet Road Indiranagar Flagship Centre',
-    desc: 'Inaugurated our premier 2-floor experience centre in Bengaluru, allowing architects and founders to test 40+ configured chairs and live sit-stand workstations.',
+    title: 'Abids Hyderabad Flagship Centre',
+    desc: 'Inaugurated our premier 2-floor experience centre in Hyderabad, allowing architects and founders to test 40+ configured chairs and live sit-stand workstations.',
   },
   {
     year: 'Today',
@@ -101,27 +101,25 @@ export function AboutView() {
                 Inside the BESO Experience Centre &amp; Craft Studio
               </h2>
               <p className="text-xs sm:text-sm font-['Inter',sans-serif] text-ink/75 mt-1.5 max-w-2xl leading-relaxed">
-                Take a look inside our 100 Feet Road Indiranagar flagship showroom and 12,000 sq ft centralized engineering facility. Designed to allow founders and architects to test real-scale ergonomic environments.
+                Take a look inside our Abids Hyderabad flagship showroom and 12,000 sq ft centralized engineering facility. Designed to allow founders and architects to test real-scale ergonomic environments.
               </p>
             </div>
 
             <div className="flex items-center gap-3 self-start md:self-auto shrink-0 flex-wrap">
               <a
-                href="https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore"
+                href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full bg-[#FF5500] hover:bg-[#E04400] text-white text-xs font-['Poppins',sans-serif] font-bold uppercase tracking-wider hover:translate-y-[-2px] shadow-[0_10px_25px_rgba(255,85,0,0.35)] transition-all active:scale-95"
               >
                 Get Directions ↗
               </a>
-              <a
-                href="https://wa.me/918099952624?text=Hi%20BESO!%20I'd%20like%20to%20schedule%20a%20private%20visit%20to%20the%20Indiranagar%20experience%20centre."
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact?intent=consultation#contact-form"
                 className="px-6 py-3 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-['Poppins',sans-serif] font-semibold text-ink hover:text-[#FF5500] hover:border-[#FF5500]/40 transition-all shadow-sm active:scale-95"
               >
-                Book VIP Consult
-              </a>
+                Book Consultation
+              </Link>
             </div>
           </div>
 
@@ -143,7 +141,7 @@ export function AboutView() {
             {/* Video Overlay Top Badge */}
             <div className="absolute top-4 left-4 z-20 flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 text-white/95 text-[11px] font-['Inter',sans-serif] font-medium tracking-wide shadow-lg">
               <span className="w-2 h-2 rounded-full bg-[#FF5500] animate-pulse shadow-[0_0_10px_#FF5500]" />
-              <span>Live Showroom Feed · 100 Feet Rd, Indiranagar</span>
+              <span>Live Showroom Feed · Abids, Hyderabad</span>
             </div>
 
             {/* Video Controls Pill */}
@@ -213,7 +211,7 @@ export function AboutView() {
           </div>
         </section>
 
-        {/* ─── 3. Interactive 20-Year Milestones Timeline ─── */}
+        {/* ─── 3. Interactive Since-2019 Milestones Timeline ─── */}
         <section className="rounded-[2.5rem] border border-white/85 dark:border-white/15 bg-gradient-to-br from-white/80 via-white/60 to-[#FFF7EC]/50 dark:from-[#1F150D]/90 dark:via-[#170E08]/85 dark:to-[#0F0A06]/90 backdrop-blur-2xl p-6 sm:p-10 md:p-12 shadow-[0_28px_80px_rgba(79,49,20,0.12),_inset_0_1px_0_rgba(255,255,255,0.95)] dark:shadow-[0_28px_80px_rgba(0,0,0,0.6),_inset_0_1px_0_rgba(255,255,255,0.12)] space-y-8 relative overflow-hidden">
           <div
             className="absolute -top-24 -left-24 w-72 h-72 pointer-events-none rounded-full blur-3xl opacity-20"
@@ -222,7 +220,7 @@ export function AboutView() {
 
           <div className="relative z-10">
             <span className="text-xs font-['Poppins',sans-serif] font-bold text-[#FF5500] uppercase tracking-widest block mb-1">
-              Two Decades in the Making
+              Building Since 2019
             </span>
             <h2 className="text-2xl sm:text-4xl font-['Poppins',sans-serif] font-bold text-ink tracking-tight">
               The Evolution of BESO Furniture
@@ -270,7 +268,7 @@ export function AboutView() {
                 The BESO Design Studio
               </div>
               <div className="font-['Inter',sans-serif] text-xs text-white/60 mt-0.5">
-                Architectural Ergonomics &amp; Woodworking · Indiranagar, Bengaluru
+                Architectural Ergonomics &amp; Woodworking · Abids, Hyderabad
               </div>
             </div>
           </div>
@@ -282,7 +280,7 @@ export function AboutView() {
             Ready to Transform Your Workspace?
           </h2>
           <p className="text-sm font-['Inter',sans-serif] text-ink/70 max-w-xl mx-auto leading-relaxed">
-            Browse our full flagship line of BIFMA certified executive chairs and height-adjustable desks or consult with our Bangalore studio.
+            Browse our full flagship line of BIFMA certified executive chairs and height-adjustable desks or consult with our Hyderabad studio.
           </p>
           <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
             <Link
@@ -291,14 +289,12 @@ export function AboutView() {
             >
               Explore Shop →
             </Link>
-            <a
-              href="https://wa.me/918099952624?text=Hi%20BESO!%20I'd%20like%20to%20discuss%20furnishing%20my%20office%20workspace."
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact?intent=consultation#contact-form"
               className="px-8 py-3.5 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20 text-xs font-['Poppins',sans-serif] font-semibold text-ink hover:text-[#FF5500] hover:border-[#FF5500]/40 active:scale-95 transition-all shadow-sm"
             >
               Consult an Ergonomist ↗
-            </a>
+            </Link>
           </div>
         </section>
       </div>

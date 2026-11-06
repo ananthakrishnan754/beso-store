@@ -6,7 +6,7 @@ import React, { useState } from 'react';
  * Floating Concierge Dock
  * Provides seamless, contract-grade floating access to:
  * 1. Live WhatsApp Studio Concierge (Direct consultation with BESO ergonomists)
- * 2. Flagship Showroom Google Maps Directions (42, 100 Feet Road, Indiranagar, Bengaluru)
+ * 2. Flagship Showroom Google Maps Directions (Mahesh Nagar Colony, Abids, Hyderabad)
  *
  * Engineered with Scandinavian glassmorphism, adaptive dark/light tokens, and subtle micro-interactions.
  */
@@ -15,7 +15,7 @@ export function FloatingConcierge() {
 
   const WHATSAPP_URL =
     'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20to%20consult%20with%20your%20design%20team%20about%20furniture.';
-  const MAP_URL = 'https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore';
+  const MAP_URL = 'https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6';
 
   return (
     <aside
@@ -30,7 +30,7 @@ export function FloatingConcierge() {
           className="hidden md:flex items-center gap-2 mr-3 px-3.5 py-1.5 rounded-full bg-[#18110B]/90 dark:bg-[#18110B]/95 text-[#FAF6F0] text-[11px] font-medium tracking-wide shadow-xl border border-white/15 backdrop-blur-xl opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 pointer-events-none whitespace-nowrap"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
-          <span>Flagship Showroom · 100 Feet Rd, Indiranagar</span>
+          <span>Flagship Showroom · Abids, Hyderabad</span>
         </div>
 
         <a
@@ -40,7 +40,7 @@ export function FloatingConcierge() {
           onMouseEnter={() => setActiveTooltip('map')}
           onMouseLeave={() => setActiveTooltip(null)}
           className="relative flex items-center gap-2.5 h-11 sm:h-12 px-3.5 sm:px-4 rounded-full bg-white/80 dark:bg-[#1C130C]/85 text-ink hover:text-accent border border-white/90 dark:border-white/15 backdrop-blur-xl shadow-[0_12px_28px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_32px_rgba(0,0,0,0.55)] hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-200 active:scale-95 group/btn"
-          aria-label="Get Directions to BESO Flagship Showroom in Indiranagar Bengaluru"
+          aria-label="Get Directions to BESO Flagship Showroom in Abids Hyderabad"
         >
           {/* Compass / Location Pin SVG */}
           <div className="w-6 h-6 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-accent shrink-0 group-hover/btn:scale-110 transition-transform">

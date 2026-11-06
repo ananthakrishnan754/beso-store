@@ -196,6 +196,15 @@ export function CartSummaryModule({ subtotal, checkoutHref, onClose }: CartSumma
         </p>
       </div>
 
+      <Link
+        href="/checkout"
+        onClick={onClose}
+        className="w-full py-3.5 px-4 rounded-full bg-accent hover:bg-accent-2 text-white text-xs font-extrabold uppercase tracking-wider transition-all text-center flex items-center justify-center gap-2 shadow-lg shadow-accent/25 hover:scale-[1.01] active:scale-[0.98]"
+      >
+        <span>Place Order</span>
+        <span>→</span>
+      </Link>
+
       <div className="grid grid-cols-2 gap-2.5">
         <button
           onClick={onClose}
@@ -207,7 +216,7 @@ export function CartSummaryModule({ subtotal, checkoutHref, onClose }: CartSumma
           href={checkoutHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="py-3 px-4 rounded-full bg-accent hover:bg-accent-2 text-white text-xs font-extrabold uppercase tracking-wider transition-all text-center flex items-center justify-center gap-1.5 shadow-lg shadow-accent/25 hover:scale-[1.02] active:scale-[0.98]"
+          className="py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-extrabold uppercase tracking-wide transition-all text-center flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-600/20 hover:scale-[1.02] active:scale-[0.98]"
         >
           <span>Order via WhatsApp</span>
           <span>→</span>

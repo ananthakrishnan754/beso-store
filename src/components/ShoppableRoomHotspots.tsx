@@ -118,14 +118,14 @@ export function ShoppableRoomHotspots() {
             {/* Feature 1: BESO Legacy */}
             <div className="p-4 sm:p-5 rounded-[1.8rem] border border-white/80 dark:border-white/15 bg-gradient-to-br from-white/75 via-white/55 to-[#FFF7EC]/40 dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-xl shadow-[0_16px_40px_rgba(79,49,20,0.08),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.4)] flex gap-4 items-start transition-all hover:translate-y-[-2px] group">
               <div className="w-11 h-11 rounded-full border border-white/90 dark:border-white/20 bg-white/70 dark:bg-white/15 text-accent flex items-center justify-center shrink-0 shadow-sm font-black text-xs">
-                25+
+                2019
               </div>
               <div className="min-w-0">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-ink">
                   Legacy of BESO Furniture
                 </h3>
                 <p className="text-xs text-ink/70 dark:text-ink/65 mt-1 leading-relaxed">
-                  Crafting contract-grade executive furniture for over two decades. Trusted by 10,000+ corporate offices, founder cabins, and enterprise headquarters across India.
+                  Crafting contract-grade executive furniture since 2019. Trusted by 10,000+ corporate offices, founder cabins, and enterprise headquarters across India.
                 </p>
               </div>
             </div>
@@ -165,10 +165,15 @@ export function ShoppableRoomHotspots() {
           </div>
 
           {/* Showroom location tag */}
-          <div className="pt-1 text-xs text-ink/80 dark:text-[#FAF5EC]/90 font-medium flex items-center gap-2">
+          <a
+            href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pt-1 text-xs text-ink/80 dark:text-[#FAF5EC]/90 font-medium flex items-center gap-2 hover:text-accent transition-colors"
+          >
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)]" />
-            <span>Flagship Showroom: 42, 100 Feet Road, Indiranagar, Bengaluru</span>
-          </div>
+            <span>Flagship Showroom: 5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001</span>
+          </a>
         </div>
 
         {/* Right Side: Interactive Room Visual with Animated Hotspot Cards */}

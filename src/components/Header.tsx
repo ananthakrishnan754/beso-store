@@ -63,14 +63,14 @@ export function Header() {
           <div className="flex items-center gap-2 truncate text-white/95">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0 ring-2 ring-accent/30 shadow-[0_0_8px_rgb(var(--accent-rgb))]" />
             <span className="truncate text-white/90">
-              <strong className="font-semibold text-white">Flagship Showroom:</strong> 42, 100 Feet Road, Indiranagar, Bengaluru
+              <strong className="font-semibold text-white">Flagship Showroom:</strong> 5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001
             </span>
           </div>
           <div className="hidden sm:flex items-center gap-3 shrink-0 text-white/70 text-[10px]">
             <span>Mon–Sat: 10:00 AM – 8:00 PM</span>
             <span className="text-white/30">|</span>
             <a
-              href="https://maps.google.com/?q=Indiranagar+Bangalore"
+              href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:text-accent-2 hover:underline font-bold"

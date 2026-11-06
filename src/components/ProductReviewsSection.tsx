@@ -49,7 +49,7 @@ export function ProductReviewsSection({
       rating: 5,
       date: '1 month ago',
       title: 'Premium build quality that outshines imported brands',
-      comment: `Visited the Indiranagar flagship showroom and tried several options. The solid construction, quiet mechanics, and clean aesthetic make this piece exceptional value for money.`,
+      comment: `Visited the Abids flagship showroom and tried several options. The solid construction, quiet mechanics, and clean aesthetic make this piece exceptional value for money.`,
       verified: true,
       helpfulCount: 18,
     },
@@ -69,6 +69,7 @@ export function ProductReviewsSection({
   const [reviewsList, setReviewsList] = useState<ReviewItem[]>(defaultReviews);
   const [formOpen, setFormOpen] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
+  const [reviewIndex, setReviewIndex] = useState(0);
 
   // Form states
   const [formRating, setFormRating] = useState(5);
@@ -110,6 +111,7 @@ export function ProductReviewsSection({
 
     const updated = [newReview, ...reviewsList];
     setReviewsList(updated);
+    setReviewIndex(0);
 
     try {
       localStorage.setItem(storageKey, JSON.stringify(updated));
@@ -334,61 +336,117 @@ export function ProductReviewsSection({
         </div>
       </div>
 
-      {/* ─── List of Verified Reviews ─── */}
+      {/* ─── Verified Reviews Carousel ─── */}
       <div className="space-y-4">
-        {reviewsList.map((rev) => (
-          <div
-            key={rev.id}
-            className="p-6 rounded-2xl bg-surface border border-line/8 hover:border-line/15 transition-all space-y-3"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-accent/15 text-accent font-bold text-xs flex items-center justify-center">
-                    {rev.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm text-ink">{rev.name}</h4>
-                    <span className="text-[11px] text-ink/40">{rev.role}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-right">
-                <div className="flex items-center gap-0.5 text-amber-500 text-sm">
-                  {'★'.repeat(rev.rating)}
-                  {'☆'.repeat(5 - rev.rating)}
-                </div>
-                <span className="text-[10px] text-ink/40">{rev.date}</span>
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <h5 className="font-bold text-sm text-ink">{rev.title}</h5>
-                {rev.verified && (
-                  <span className="px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/25">
-                    ✓ Verified Buyer
-                  </span>
-                )}
-              </div>
-              <p className="text-xs sm:text-sm text-ink/70 leading-relaxed">
-                {rev.comment}
-              </p>
-            </div>
-
-            <div className="flex items-center justify-between pt-2 border-t border-line/6 text-[11px] text-ink/40">
-              <span>Was this review helpful?</span>
-              <button
-                type="button"
-                className="hover:text-ink font-semibold transition-colors flex items-center gap-1"
-              >
-                <span>👍 Helpful</span>
-                <span>({rev.helpfulCount})</span>
-              </button>
-            </div>
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
+              Verified Feedback
+            </span>
+            <h3 className="text-lg font-bold text-ink">
+              What Customers Say
+            </h3>
           </div>
-        ))}
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setReviewIndex((i) => Math.max(0, i - 1))}
+              disabled={reviewIndex === 0}
+              className="w-9 h-9 rounded-full border border-line/15 bg-surface text-ink flex items-center justify-center hover:border-accent/50 hover:text-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              aria-label="Previous review"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() => setReviewIndex((i) => Math.min(reviewsList.length - 1, i + 1))}
+              disabled={reviewIndex === reviewsList.length - 1}
+              className="w-9 h-9 rounded-full border border-line/15 bg-surface text-ink flex items-center justify-center hover:border-accent/50 hover:text-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              aria-label="Next review"
+            >
+              →
+            </button>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-2xl">
+          <div
+            className="flex w-full transition-transform duration-500 ease-out"
+            style={{transform: `translateX(-${reviewIndex * 100}%)`}}
+            aria-live="polite"
+          >
+            {reviewsList.map((rev) => (
+              <div key={rev.id} className="w-full shrink-0">
+                <div className="p-6 rounded-2xl bg-surface border border-line/8 hover:border-line/15 transition-all space-y-3 h-full">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-accent/15 text-accent font-bold text-xs flex items-center justify-center">
+                          {rev.name.charAt(0)}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm text-ink">{rev.name}</h4>
+                          <span className="text-[11px] text-ink/40">{rev.role}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-right">
+                      <div className="flex items-center gap-0.5 text-amber-500 text-sm">
+                        {'★'.repeat(rev.rating)}
+                        {'☆'.repeat(5 - rev.rating)}
+                      </div>
+                      <span className="text-[10px] text-ink/40">{rev.date}</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <h5 className="font-bold text-sm text-ink">{rev.title}</h5>
+                      {rev.verified && (
+                        <span className="px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/25">
+                          ✓ Verified Buyer
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs sm:text-sm text-ink/70 leading-relaxed">
+                      {rev.comment}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-line/6 text-[11px] text-ink/40">
+                    <span>Was this review helpful?</span>
+                    <button
+                      type="button"
+                      className="hover:text-ink font-semibold transition-colors flex items-center gap-1"
+                    >
+                      <span>👍 Helpful</span>
+                      <span>({rev.helpfulCount})</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 pt-1">
+          {reviewsList.map((rev, index) => (
+            <button
+              key={rev.id}
+              type="button"
+              onClick={() => setReviewIndex(index)}
+              aria-label={`Go to review ${index + 1}`}
+              aria-current={index === reviewIndex ? 'true' : undefined}
+              className={`h-2 rounded-full transition-all ${
+                index === reviewIndex
+                  ? 'w-6 bg-accent'
+                  : 'w-2 bg-ink/20 hover:bg-ink/40'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

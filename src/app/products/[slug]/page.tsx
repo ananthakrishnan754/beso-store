@@ -9,6 +9,7 @@ import { ProductGalleryZoom } from '@/components/ProductGalleryZoom';
 import { ProductMeasurements } from '@/components/ProductMeasurements';
 import { ProductReviewsSection } from '@/components/ProductReviewsSection';
 import { ProductRecommendations } from '@/components/ProductRecommendations';
+import { WishlistButton } from '@/components/WishlistButton';
 import { productModelUrl } from '@/lib/arModels';
 import type { Metadata } from 'next';
 
@@ -217,7 +218,7 @@ export default function ProductDetailPage({
             </div>
 
             {/* Actions / Utility row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
               <ViewInYourRoom
                 subcategory={product.subcategory}
                 slug={product.slug}
@@ -234,6 +235,7 @@ export default function ProductDetailPage({
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 20V10M12 20V4M6 20v-6" /></svg>
                 <span>Add to Compare</span>
               </Link>
+              <WishlistButton product={product} />
             </div>
 
             <div className="text-center pt-1">

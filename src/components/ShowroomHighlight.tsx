@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 export function ShowroomHighlight() {
   // Dual-video crossfade state
@@ -49,18 +50,18 @@ export function ShowroomHighlight() {
           </p>
 
           <div className="space-y-4 pt-2">
-            {/* Bengaluru Flagship */}
+            {/* Hyderabad Flagship */}
             <div className="p-4 sm:p-5 rounded-2xl bg-white/70 dark:bg-[#1A120B]/85 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-[0_12px_28px_rgba(0,0,0,0.06),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.4),_inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-accent/40 hover:-translate-y-0.5 transition-all flex items-start gap-4">
               <span className="text-2xl mt-0.5">📍</span>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <h4 className="font-extrabold text-sm text-ink">Bengaluru Flagship Showroom</h4>
+                  <h4 className="font-extrabold text-sm text-ink">Hyderabad Flagship Showroom</h4>
                   <span className="px-2.5 py-0.5 rounded-full bg-accent/15 text-accent text-[10px] font-bold border border-accent/25 shadow-[0_0_10px_rgb(var(--accent-rgb)/0.2)]">
                     Primary Showroom
                   </span>
                 </div>
                 <p className="text-xs text-ink/75">
-                  42, 100 Feet Road, Indiranagar, Bengaluru, Karnataka – 560038
+                  5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana – 500001
                 </p>
                 <p className="text-[11px] text-ink/50">
                   Mon – Sat: 10:00 AM – 8:00 PM IST (Sundays by appointment)
@@ -68,13 +69,14 @@ export function ShowroomHighlight() {
               </div>
             </div>
 
-            {/* Hyderabad Logistics & Warehouse */}
+            {/* Hyderabad Warehouse & Logistics */}
             <div className="p-4 sm:p-5 rounded-2xl bg-white/70 dark:bg-[#1A120B]/85 border border-white/80 dark:border-white/15 backdrop-blur-xl shadow-[0_12px_28px_rgba(0,0,0,0.06),_inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.4),_inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-accent/40 hover:-translate-y-0.5 transition-all flex items-start gap-4">
               <span className="text-2xl mt-0.5">🏢</span>
               <div className="space-y-1">
-                <h4 className="font-extrabold text-sm text-ink">Hyderabad Experience &amp; 12,000 Sq Ft Warehouse</h4>
+                <h4 className="font-extrabold text-sm text-ink">Hyderabad Warehouse &amp; Logistics Hub</h4>
                 <p className="text-xs text-ink/75">
-                  5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana – 500001
+                  Kattedan Rd, Telangana NGOs Colony, Rajendranagar Mandal,
+                  Hyderabad, Telangana – 500077
                 </p>
                 <p className="text-[11px] text-ink/50">
                   Mon – Sat: 10:00 AM – 7:30 PM IST · Bulk B2B Dispatches
@@ -85,7 +87,7 @@ export function ShowroomHighlight() {
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
-              href="https://maps.google.com/?q=42+100+Feet+Road+Indiranagar+Bangalore"
+              href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-full bg-ink text-app text-xs uppercase tracking-wider font-extrabold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"
@@ -93,14 +95,12 @@ export function ShowroomHighlight() {
               <span>Get Directions on Google Maps</span>
               <span>↗</span>
             </a>
-            <a
-              href="https://wa.me/918099952624?text=Hi%20BESO!%20I%20would%20like%20to%20book%20an%20in-person%20showroom%20visit."
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact?intent=consultation#contact-form"
               className="px-6 py-3.5 rounded-full border border-line/15 text-xs font-bold text-ink hover:bg-surfaceSubtle transition-all"
             >
-              Schedule Concierge Visit
-            </a>
+              Schedule Consultation
+            </Link>
           </div>
         </div>
 
