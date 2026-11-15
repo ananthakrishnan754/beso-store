@@ -31,7 +31,7 @@ const CONTACT_OPTIONS = [
     icon: '📍',
     title: 'Hyderabad Flagship Showroom',
     desc: '5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001',
-    action: 'https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6',
+    action: 'https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8',
     label: 'Open Showroom Map',
     external: true,
   },
@@ -39,8 +39,7 @@ const CONTACT_OPTIONS = [
     icon: '🏢',
     title: 'Hyderabad Warehouse & Logistics Hub',
     desc: 'Kattedan Rd, Telangana NGOs Colony, Rajendranagar Mandal, Hyderabad, Telangana 500077',
-    action:
-      'https://maps.google.com/?q=Kattedan+Rd,+Telangana+NGOs+Colony,+Rajendranagar+Mandal,+Hyderabad,+Telangana+500077',
+    action: 'https://maps.app.goo.gl/vLGV7kZhVfL5CLY39',
     label: 'Open Warehouse Map',
     external: true,
   },
@@ -90,24 +89,6 @@ export default function ContactPage({
         </p>
       </div>
 
-      {/* Contact options */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-        {CONTACT_OPTIONS.map((opt) => (
-          <a
-            key={opt.title}
-            href={opt.action}
-            target={opt.external ? '_blank' : undefined}
-            rel={opt.external ? 'noopener noreferrer' : undefined}
-            className="bg-beso-card rounded-2xl border border-line/6 p-6 hover:border-line/10 transition-colors block"
-          >
-            <span className="text-3xl mb-3 block">{opt.icon}</span>
-            <h3 className="font-semibold text-ink mb-1">{opt.title}</h3>
-            <p className="text-sm text-ink/40 mb-4">{opt.desc}</p>
-            <span className="text-sm text-accent font-medium">{opt.label} →</span>
-          </a>
-        ))}
-      </div>
-
       {/* Contact form & consultation booking */}
       <div className="mb-16">
         <ContactForm defaultIntent={searchParams.intent} />
@@ -130,6 +111,24 @@ export default function ContactPage({
         >
           Get Bulk Quote on WhatsApp
         </a>
+      </div>
+
+      {/* Contact options */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        {CONTACT_OPTIONS.map((opt) => (
+          <a
+            key={opt.title}
+            href={opt.action}
+            target={opt.external ? '_blank' : undefined}
+            rel={opt.external ? 'noopener noreferrer' : undefined}
+            className="bg-beso-card rounded-2xl border border-line/6 p-6 hover:border-line/10 transition-colors block"
+          >
+            <span className="text-3xl mb-3 block">{opt.icon}</span>
+            <h3 className="font-semibold text-ink mb-1">{opt.title}</h3>
+            <p className="text-sm text-ink/40 mb-4">{opt.desc}</p>
+            <span className="text-sm text-accent font-medium">{opt.label} →</span>
+          </a>
+        ))}
       </div>
 
       {/* FAQ */}

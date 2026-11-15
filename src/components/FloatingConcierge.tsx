@@ -15,7 +15,7 @@ export function FloatingConcierge() {
 
   const WHATSAPP_URL =
     'https://wa.me/918099952624?text=Hi%20BESO!%20I%27d%20like%20to%20consult%20with%20your%20design%20team%20about%20furniture.';
-  const MAP_URL = 'https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6';
+  const MAP_URL = 'https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8';
 
   return (
     <aside

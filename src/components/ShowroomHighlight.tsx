@@ -87,7 +87,7 @@ export function ShowroomHighlight() {
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
-              href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
+              href="https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-full bg-ink text-app text-xs uppercase tracking-wider font-extrabold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"

@@ -3,9 +3,8 @@
 import {useState} from 'react';
 
 const WHATSAPP_NUMBER = '918099952624';
-const STORE_MAP = 'https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6';
-const WAREHOUSE_MAP =
-  'https://maps.google.com/?q=Kattedan+Rd,+Telangana+NGOs+Colony,+Rajendranagar+Mandal,+Hyderabad,+Telangana+500077';
+const STORE_MAP = 'https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8';
+const WAREHOUSE_MAP = 'https://maps.app.goo.gl/vLGV7kZhVfL5CLY39';
 
 const INTENTS = [
   'General enquiry',

@@ -70,7 +70,7 @@ export function Header() {
             <span>Mon–Sat: 10:00 AM – 8:00 PM</span>
             <span className="text-white/30">|</span>
             <a
-              href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
+              href="https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:text-accent-2 hover:underline font-bold"

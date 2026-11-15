@@ -37,13 +37,13 @@ export function Footer() {
             </p>
             <p>
               Showroom:{' '}
-              <a href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors font-medium">
+              <a href="https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors font-medium">
                 5-8-91/5, Mahesh Nagar Colony, Abids, Hyderabad, Telangana 500001
               </a>
             </p>
             <p>
               Warehouse:{' '}
-              <a href="https://maps.google.com/?q=Kattedan+Rd,+Telangana+NGOs+Colony,+Rajendranagar+Mandal,+Hyderabad,+Telangana+500077" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
+              <a href="https://maps.app.goo.gl/vLGV7kZhVfL5CLY39" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">
                 Kattedan Rd, Telangana NGOs Colony, Rajendranagar Mandal, Hyderabad,
                 Telangana 500077
               </a>
@@ -109,7 +109,7 @@ export function Footer() {
         <div className="space-y-4">
           <h4 className="text-xs font-bold tracking-widest text-accent uppercase">Visit Us</h4>
           <nav className="flex flex-col gap-2 text-xs md:text-sm text-ink/50">
-            <a href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Our Showroom</a>
+            <a href="https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8" target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">Our Showroom</a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-link hover:text-ink transition-colors">WhatsApp Us</a>
             <Link href="/products" className="hover:text-ink transition-colors">Browse Catalog</Link>
             <Link href="/compare" className="hover:text-ink transition-colors">Compare Furniture</Link>

@@ -532,22 +532,23 @@ const SlideContent = React.memo(function SlideContent({
               </button>
             )}
 
-            {/* Compare round glass button */}
+            {/* Compare glass button with explicit label */}
             {toggleCompare && (
               <button
                 type="button"
                 onClick={() => toggleCompare(slide.id)}
-                className={`w-11 h-11 rounded-full border backdrop-blur-md transition-all flex items-center justify-center shadow-sm ${
+                className={`h-11 px-4 rounded-full border backdrop-blur-md transition-all inline-flex items-center justify-center gap-2 text-xs font-bold shadow-sm ${
                   comparing
-                    ? 'bg-accent/25 border-accent text-accent font-bold'
+                    ? 'bg-accent/25 border-accent text-accent'
                     : 'bg-white/55 dark:bg-white/10 border-white/80 dark:border-white/20 text-ink/60 hover:text-ink hover:bg-white/75'
                 }`}
                 title={comparing ? 'Comparing' : 'Compare'}
                 aria-label="Compare"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 20V10M12 20V4M6 20v-6" />
+                  <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
                 </svg>
+                <span>{comparing ? 'Comparing' : 'Compare'}</span>
               </button>
             )}
           </div>

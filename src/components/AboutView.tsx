@@ -107,7 +107,7 @@ export function AboutView() {
 
             <div className="flex items-center gap-3 self-start md:self-auto shrink-0 flex-wrap">
               <a
-                href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
+                href="https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full bg-[#FF5500] hover:bg-[#E04400] text-white text-xs font-['Poppins',sans-serif] font-bold uppercase tracking-wider hover:translate-y-[-2px] shadow-[0_10px_25px_rgba(255,85,0,0.35)] transition-all active:scale-95"

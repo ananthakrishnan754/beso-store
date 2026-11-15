@@ -166,7 +166,7 @@ export function ShoppableRoomHotspots() {
 
           {/* Showroom location tag */}
           <a
-            href="https://maps.app.goo.gl/qZTmBgWAgiyv4Hwi6"
+            href="https://maps.app.goo.gl/SvXdqnLb9Jdx9hBx8"
             target="_blank"
             rel="noopener noreferrer"
             className="pt-1 text-xs text-ink/80 dark:text-[#FAF5EC]/90 font-medium flex items-center gap-2 hover:text-accent transition-colors"
