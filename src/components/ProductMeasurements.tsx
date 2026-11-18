@@ -145,7 +145,7 @@ export function ProductMeasurements({
 
         {/* Right Column: Isometric Product View with CAD Extension Lines (Exact Boss's Cabin Look) */}
         <div className="lg:col-span-7 flex justify-center">
-          <div className="relative w-full max-w-[620px] aspect-[4/3] rounded-3xl bg-white dark:bg-[#121519] border border-line/10 p-6 sm:p-10 flex items-center justify-center shadow-lg select-none overflow-hidden">
+          <div className="relative w-full max-w-[620px] aspect-[4/3] rounded-3xl bg-white dark:bg-[#191919] border border-line/10 p-6 sm:p-10 flex items-center justify-center shadow-lg select-none overflow-hidden">
             {/* Subtle background drafting grid */}
             <div
               className="absolute inset-0 opacity-40 pointer-events-none"

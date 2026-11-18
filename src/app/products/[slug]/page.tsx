@@ -9,6 +9,7 @@ import { ProductGalleryZoom } from '@/components/ProductGalleryZoom';
 import { ProductMeasurements } from '@/components/ProductMeasurements';
 import { ProductReviewsSection } from '@/components/ProductReviewsSection';
 import { ProductRecommendations } from '@/components/ProductRecommendations';
+import { ProductPageTheme } from '@/components/ProductPageTheme';
 import { WishlistButton } from '@/components/WishlistButton';
 import { productModelUrl } from '@/lib/arModels';
 import type { Metadata } from 'next';
@@ -85,6 +86,7 @@ export default function ProductDetailPage({
 
   return (
     <div className="bg-transparent text-ink min-h-screen">
+      <ProductPageTheme />
       {/* ─── Secondary Sticky Header ─── */}
       <div className="sticky top-20 z-40 bg-app/90 border-y border-line/10 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">

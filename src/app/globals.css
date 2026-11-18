@@ -1035,3 +1035,57 @@ html[data-design-mode='1'] .scroll-progress {
   --glow-color: rgba(255, 85, 0, 0.25);
   --glow-strong: rgba(255, 107, 0, 0.55);
 }
+
+/* ─── Product page palette preview (client review) ────────────────────────
+ * Scoped to /products/[slug] via <ProductPageTheme /> until approved.
+ * The client palette is mapped onto the site's RGB token names so every
+ * existing utility (bg-app, bg-surface, text-ink, text-accent, border-line…)
+ * follows it without touching page markup.
+ * ───────────────────────────────────────────────────────────────────────── */
+html[data-product-theme='f36718'] {
+  color-scheme: dark;
+
+  /* Client palette */
+  --primary: #F36718;
+  --primary-hover: #FF853D;
+  --primary-active: #D9510C;
+  --secondary: #FBF4EE;
+  --bg-primary: #0B0B0B;
+  --bg-secondary: #111111;
+  --bg-card: #191919;
+  --bg-elevated: #222222;
+  --bg-input: #161616;
+  --bg-sidebar: #0D0D0D;
+  --text-primary: #FBF4EE;
+  --text-secondary: #D6D0CA;
+  --text-muted: #A39D97;
+  --text-disabled: #77716D;
+  --border-primary: #303030;
+  --border-selected: #F36718;
+  --selection-bg: #2A1A12;
+  --progress-track: #292929;
+  --progress-fill: #F36718;
+
+  /* Site token mapping */
+  --app-rgb: 11 11 11;
+  --surface-rgb: 25 25 25;
+  --surface-2-rgb: 34 34 34;
+  --surface-subtle-rgb: 17 17 17;
+  --ink-rgb: 251 244 238;
+  --soft-rgb: 214 208 202;
+  --faint-rgb: 163 157 151;
+  --accent-rgb: 243 103 24;
+  --accent-2-rgb: 255 133 61;
+  --on-accent-rgb: 251 244 238;
+  --danger-rgb: 217 81 12;
+  --gold-rgb: 243 103 24;
+  --line-rgb: 48 48 48;
+  --line-strong-rgb: 48 48 48;
+  --glass: rgba(25, 25, 25, 0.92);
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --shadow-color-strong: rgba(0, 0, 0, 0.85);
+  --glow-rgb: 243 103 24;
+  --glow-color: rgba(243, 103, 24, 0.25);
+  --glow-strong: rgba(255, 133, 61, 0.55);
+  --brand-lime: 243 103 24;
+}

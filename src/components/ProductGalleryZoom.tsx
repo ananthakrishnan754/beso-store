@@ -106,14 +106,14 @@ export function ProductGalleryZoom({
       {/* ─── Main Viewer ─── */}
       {activeTab === '3d' && modelUrl ? (
         // ── 3D Interactive Model Viewer ──
-        <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-[#121519] border border-line/10 shadow-lg flex items-center justify-center">
+        <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-[#191919] border border-line/10 shadow-lg flex items-center justify-center">
           {modelReady ? (
             <div className="w-full h-full relative">
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    'radial-gradient(120% 90% at 50% 35%, #2a2e35 0%, #171a1e 50%, #0d0f12 85%)',
+                    'radial-gradient(120% 90% at 50% 35%, #303030 0%, #222222 50%, #111111 85%)',
                 }}
               />
               {createElement('model-viewer', {
@@ -153,7 +153,7 @@ export function ProductGalleryZoom({
           onMouseEnter={() => setIsZooming(true)}
           onMouseLeave={() => setIsZooming(false)}
           onMouseMove={handleMouseMove}
-          className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-white dark:bg-[#121519] border border-line/10 shadow-lg cursor-crosshair group"
+          className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-white dark:bg-[#191919] border border-line/10 shadow-lg cursor-crosshair group"
         >
           {/* Subtle Ambient Studio Floor Shadow */}
           <div className="absolute inset-x-12 bottom-6 h-10 bg-black/10 dark:bg-black/40 rounded-full blur-xl pointer-events-none" />
@@ -201,7 +201,7 @@ export function ProductGalleryZoom({
               key={idx}
               type="button"
               onClick={() => setSelectedImgIndex(idx)}
-              className={`w-16 h-16 rounded-2xl overflow-hidden border p-1 bg-white dark:bg-[#121519] shrink-0 transition-all ${
+              className={`w-16 h-16 rounded-2xl overflow-hidden border p-1 bg-white dark:bg-[#191919] shrink-0 transition-all ${
                 selectedImgIndex === idx
                   ? 'border-accent ring-2 ring-accent/30 scale-105'
                   : 'border-line/10 hover:border-line/30 opacity-70 hover:opacity-100'
