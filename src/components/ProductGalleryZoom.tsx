@@ -106,16 +106,10 @@ export function ProductGalleryZoom({
       {/* ─── Main Viewer ─── */}
       {activeTab === '3d' && modelUrl ? (
         // ── 3D Interactive Model Viewer ──
-        <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-[#191919] border border-line/10 shadow-lg flex items-center justify-center">
+        <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden product-stage border border-line/10 shadow-lg flex items-center justify-center">
           {modelReady ? (
             <div className="w-full h-full relative">
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'radial-gradient(120% 90% at 50% 35%, #303030 0%, #222222 50%, #111111 85%)',
-                }}
-              />
+              <div className="absolute inset-0 pointer-events-none product-stage-glow" />
               {createElement('model-viewer', {
                 src: modelUrl,
                 alt: `${productName} — 3D Model`,

@@ -1042,7 +1042,7 @@ html[data-design-mode='1'] .scroll-progress {
  * existing utility (bg-app, bg-surface, text-ink, text-accent, border-line…)
  * follows it without touching page markup.
  * ───────────────────────────────────────────────────────────────────────── */
-html[data-product-theme='f36718'] {
+html[data-product-theme='f36718'][data-theme='dark-obsidian-oak'] {
   color-scheme: dark;
 
   /* Client palette */
@@ -1088,4 +1088,29 @@ html[data-product-theme='f36718'] {
   --glow-color: rgba(243, 103, 24, 0.25);
   --glow-strong: rgba(255, 133, 61, 0.55);
   --brand-lime: 243 103 24;
+}
+
+/* Product stage keeps its original values outside the product dark preview,
+   so the white theme looks exactly as it did before. */
+.product-stage {
+  background-color: #121519;
+}
+.product-stage-glow {
+  background: radial-gradient(
+    120% 90% at 50% 35%,
+    #2a2e35 0%,
+    #171a1e 50%,
+    #0d0f12 85%
+  );
+}
+html[data-product-theme='f36718'][data-theme='dark-obsidian-oak'] .product-stage {
+  background-color: #191919;
+}
+html[data-product-theme='f36718'][data-theme='dark-obsidian-oak'] .product-stage-glow {
+  background: radial-gradient(
+    120% 90% at 50% 35%,
+    #303030 0%,
+    #222222 50%,
+    #111111 85%
+  );
 }
