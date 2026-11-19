@@ -69,11 +69,15 @@ export async function generateMetadata({
 
 export default function ProductDetailPage({
   params,
+  searchParams,
 }: {
   params: { slug: string };
+  searchParams: { palette?: string };
 }) {
   const product = getProduct(params.slug);
   if (!product) notFound();
+
+  const palette = searchParams.palette === 'white' ? 'white' : 'orange';
 
   const specs = product.specs
     ? Object.entries(product.specs as Record<string, string>)
@@ -86,7 +90,7 @@ export default function ProductDetailPage({
 
   return (
     <div className="bg-transparent text-ink min-h-screen">
-      <ProductPageTheme />
+      <ProductPageTheme variant={palette} />
       {/* ─── Secondary Sticky Header ─── */}
       <div className="sticky top-20 z-40 bg-app/90 border-y border-line/10 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
